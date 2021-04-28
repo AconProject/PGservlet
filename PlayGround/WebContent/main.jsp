@@ -4,28 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Play Ground</title>
-
-
-<meta name="description" content="PlayGround" />
-    <meta name="author" content="TeamTwo" />
-    <link rel="icon" type="image/png" href="images/gameLogo.png"/>
-    <script
-      src="https://kit.fontawesome.com/8323a40432.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap"
-      rel="stylesheet"
-    />
-    <link href="style.css" rel="stylesheet">
-    <script src="main.js" defer></script>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>Main화면입니다.</h1>
-<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
-<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
-	
+<%
+   String mesg = (String)session.getAttribute("memberAdd");
+   if(mesg!=null){
+%>
+   <script type="text/javascript">
+     alert('<%=mesg%>');
+   </script>
+<%
+   }
+%>
+<h1>Main 화면입니다.</h1>
+<jsp:include page="common/top.jsp" flush="false" /><br>
+<jsp:include page="common/menu.jsp" flush="false" />
+<hr>
+<jsp:include page="goods/goodsList.jsp" flush="false" />
+
 </body>
 </html>
+
+
+
