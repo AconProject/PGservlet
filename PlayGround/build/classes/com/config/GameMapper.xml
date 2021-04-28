@@ -5,23 +5,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="GameMapper">
 	
 	<select id="newGameListSelect" resultType="GameDTO">
-		<!-- 아직 날짜가 들어가있지 않아서 불가 -->
+		SELECT *
+		FROM game
+		ORDER BY gameReleaseDate DESC
 	</select>
 	
 	<select id="recommendGameListSelect" resultType="GameDTO">
 		SELECT *
 		FROM game, rate
-		WHERE game.gameNo == rate.gameNo
-		ORDER BY rate.gameScore DESC
+		WHERE game.gameNo = rate.gameNo
+		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
 	<select id="tagGameListSelect" resultType="GameDTO">
 		SELECT *
 		FROM game, rate
-		WHERE game.gameNo == rate.gameNo
+		WHERE game.gameId = rate.rateId
+		AND game.gameGenre IN 
 		<foreach collection="array" item="arr" open="(" close=")" separator=",">
 			#{arr}
 		</foreach>
-		ORDER BY rate.gameScore DESC
+		ORDER BY rate.gameScore, game.gameReleasedDate DESC
+		
+		
 	</select>
 </mapper>
