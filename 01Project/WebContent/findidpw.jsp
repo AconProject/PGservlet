@@ -111,9 +111,9 @@ div.button input {
 	
 	<div class="findform">
 	<div class="menubar">
-		<a href=""><img src="image/logo.png"></a>
-		<a href="login.jsp" class="menu">로그인</a>
-		<a href="memberadd.jsp" class="menu">회원가입</a>
+		<a href=""><img src="Image/logo.png"></a>
+		<a href="Login.jsp" class="menu">로그인</a>
+		<a href="MemberAdd.jsp" class="menu">회원가입</a>
 	</div>
 	
 	<form method="post" class="findid">
@@ -126,7 +126,7 @@ div.button input {
 			<span class="title">이메일</span> 
 			<input type="email" class="content" id="memberemail">
 		</div>
-		<div class="button" onclick="window.open('findid.jsp'); return false;">
+		<div class="button" onclick="window.open('FindId.jsp'); return false;">
 			<input type="submit" id="findidsubmit" value="제 출">
 		</div>
 	</form>
@@ -141,7 +141,7 @@ div.button input {
 			<span class="title">이메일</span> 
 			<input type="email" class="content" id="memberemail">
 		</div>
-		<div class="button" onclick="window.open('findpw.jsp'); return false;">
+		<div class="button" onclick="window.open('FindPw.jsp'); return false;">
 			<input type="submit" id="findpwsubmit"value="제 출">
 		</div>
 	</form>

@@ -190,7 +190,7 @@ div.button input {
 <body>
 
 	<form method="get" class="addForm">
-		<a href=""><img src="image/logo.png"></a>
+		<a href=""><img src="Image/logo.png"></a>
 		<h2>회원가입</h2>
 		<div class="contentform">
 			<div class="row" style="display: inline; ">
@@ -219,10 +219,10 @@ div.button input {
 			</div>
 			<div class="row">
 				<span class="title" id="tagname">태그</span> 
-				<button id="tag"  onclick="window.open('tagpage.jsp'); return false;">Tag</button>
+				<button id="tag"  onclick="window.open('TagPage.jsp'); return false;">Tag</button>
 			</div>
 			<div class="button">
-				<input type="submit" value="제 출" onclick="javascript: form.action='addsubmit.jsp';">
+				<input type="submit" value="제 출" onclick="javascript: form.action='AddSubmit.jsp';">
 			</div>
 		</div>
 
