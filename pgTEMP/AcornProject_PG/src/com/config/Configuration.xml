@@ -7,11 +7,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    <properties resource="com/config/jdbc.properties" />
    
    <typeAliases>
-    <typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
-    <typeAlias type="com.dto.GoodsDTO" alias="GoodsDTO"/>
-    <typeAlias type="com.dto.CartDTO" alias="CartDTO"/>
-      <typeAlias type="com.dto.OrderDTO" alias="OrderDTO"/>
-      <typeAlias type="com.dto.GameDTO" alias="GameDTO"/>
+    	<typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
+     	<typeAlias type="com.dto.GameDTO" alias="GameDTO"/>
+     	<typeAlias type="com.dto.BoardDTO" alias="BoardDTO"/>
    </typeAliases>
    
 	<environments default="development">
@@ -27,9 +25,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<mapper resource="com/config/MemberMapper.xml" />
-		<mapper resource="com/config/GoodsMapper.xml" />
-		<mapper resource="com/config/CartMapper.xml" /><!--  주문도 함께 사용-->
 		<mapper resource="com/config/GameMapper.xml" />
+		<mapper resource="com/config/BoardMapper.xml"/>
 	</mappers>
 </configuration>
 

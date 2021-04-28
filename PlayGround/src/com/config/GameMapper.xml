@@ -19,14 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="tagGameListSelect" resultType="GameDTO">
 		SELECT *
-		FROM game, rate
-		WHERE game.gameId = rate.rateId
-		AND game.gameGenre IN 
-		<foreach collection="array" item="arr" open="(" close=")" separator=",">
-			#{arr}
-		</foreach>
-		ORDER BY rate.gameScore, game.gameReleasedDate DESC
-		
+FROM game, rate
+WHERE game.gameNo = rate.gameNo
+AND REGEXP_LIKE
+<foreach collection="array" item="arr" open="(game.gameGenre, " close=")" separator=",">
+	#{arr}
+</foreach> 
+ORDER BY rate.gameScore, game.gameReleasedDate DESC;
 		
 	</select>
 </mapper>
