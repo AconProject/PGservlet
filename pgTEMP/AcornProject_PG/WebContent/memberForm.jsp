@@ -11,5 +11,6 @@
 <jsp:include page="common/top.jsp"></jsp:include><br>
 <jsp:include page="common/menu.jsp"></jsp:include><br>
 <hr>
+<jsp:include page="/member/memberForm.jsp"  flush="false"></jsp:include>
 </body>
 </html>

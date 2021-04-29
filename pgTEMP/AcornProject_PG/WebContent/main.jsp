@@ -13,7 +13,7 @@
     <script
       src="https://kit.fontawesome.com/8323a40432.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap"
