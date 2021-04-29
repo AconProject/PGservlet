@@ -3,9 +3,9 @@ package com.dto;
 public class MemberDTO {
 
 	
-	private String userId;
-	private String userPw;
-	private String userName;
+	private String mbrId;
+	private String mbrPw;
+	private String mbrName;
 	private String mbrEmail;
 	private String mbrRegdate;
 	private String mbrGenre;
@@ -15,39 +15,38 @@ public class MemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String userId, String userPw, String userName, String mbrEmail, String mbrRegdate,
-			String mbrGenre) {
+	public MemberDTO(String mbrId, String mbrPw, String mbrName, String mbrEmail, String mbrRegdate, String mbrGenre) {
 		super();
-		this.userId = userId;
-		this.userPw = userPw;
-		this.userName = userName;
+		this.mbrId = mbrId;
+		this.mbrPw = mbrPw;
+		this.mbrName = mbrName;
 		this.mbrEmail = mbrEmail;
 		this.mbrRegdate = mbrRegdate;
 		this.mbrGenre = mbrGenre;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getMbrId() {
+		return mbrId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setMbrId(String mbrId) {
+		this.mbrId = mbrId;
 	}
 
-	public String getUserPw() {
-		return userPw;
+	public String getMbrPw() {
+		return mbrPw;
 	}
 
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setMbrPw(String mbrPw) {
+		this.mbrPw = mbrPw;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getMbrName() {
+		return mbrName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setMbrName(String mbrName) {
+		this.mbrName = mbrName;
 	}
 
 	public String getMbrEmail() {
@@ -76,10 +75,10 @@ public class MemberDTO {
 
 	@Override
 	public String toString() {
-		return "MemberDTO [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", mbrEmail="
-				+ mbrEmail + ", mbrRegdate=" + mbrRegdate + ", mbrGenre=" + mbrGenre + "]";
+		return "MemberDTO [mbrId=" + mbrId + ", mbrPw=" + mbrPw + ", mbrName=" + mbrName + ", mbrEmail=" + mbrEmail
+				+ ", mbrRegdate=" + mbrRegdate + ", mbrGenre=" + mbrGenre + "]";
 	}
-	
+
 	
 
 }
