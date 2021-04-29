@@ -19,15 +19,21 @@ public class MemberAddServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String userid = request.getParameter("mbrId");
-		String passwd = request.getParameter("mbrPw");
-		String username = request.getParameter("mbrName");
-		String email1 = request.getParameter("mbrEmail1");
-		
-		
+		String userid = request.getParameter("userid");
+		String passwd = request.getParameter("passwd");
+		String username = request.getParameter("username");
+		String post = request.getParameter("post");
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String phone1 = request.getParameter("phone1");
+		String phone2 = request.getParameter("phone2");
+		String phone3 = request.getParameter("phone3");
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
 		
 		MemberDTO dto =
-				new MemberDTO(mbrId,mbrPw,mbrName,mbrEmail1);
+				new MemberDTO(userid, passwd, username, post, 
+						addr1, addr2, phone1, phone2, phone3, email1, email2);
 		
 		MemberService service = new MemberService();
 		int n = service.memberAdd(dto);
