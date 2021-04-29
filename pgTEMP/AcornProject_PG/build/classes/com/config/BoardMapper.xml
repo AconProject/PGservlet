@@ -7,12 +7,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="recommendInfoBoardSelect" resultType="BoardDTO">
 		SELECT *
 		FROM board
+		WHERE boardCategory = '게임정보'
 		ORDER BY boardRecommend DESC, boardCount DESC
 	</select>
 	
 	<select id="hitInfoBoardSelect" resultType="BoardDTO">
 		SELECT *
 		FROM board
+		WHERE boardCategory = '게임정보'
 		ORDER BY boardCount DESC, boardRecommend DESC
 	</select>
+	
+	<select id="recommendQnaBoardSelect" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory = 'QnA'
+		ORDER BY boardRecommend DESC, boardCount DESC
+	</select>
+	
+	<select id="hitQnaBoardSelect" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory = 'QnA'
+		ORDER BY boardCount DESC, boardRecommend DESC
+	</select>
+	
+	<select id="newSelect" resultType="NewsDTO">
+		SELECT *
+		FROM news
+		ORDER BY boardDate DESC
+	</select>
+	
 </mapper>
