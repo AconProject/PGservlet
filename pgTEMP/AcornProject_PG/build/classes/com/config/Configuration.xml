@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
      	<typeAlias type="com.dto.GameDTO" alias="GameDTO"/>
      	<typeAlias type="com.dto.BoardDTO" alias="BoardDTO"/>
+     	<typeAlias type="com.dto.NewsDTO" alias="NewsDTO"/>
    </typeAliases>
    
 	<environments default="development">
@@ -27,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/MemberMapper.xml" />
 		<mapper resource="com/config/GameMapper.xml" />
 		<mapper resource="com/config/BoardMapper.xml"/>
+		<mapper resource="com/config/RateMapper.xml"/>
 	</mappers>
 </configuration>
 

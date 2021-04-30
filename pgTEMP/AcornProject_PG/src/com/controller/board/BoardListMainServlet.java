@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dto.BoardDTO;
+import com.dto.NewsDTO;
 import com.service.BoardService;
 
 /**
@@ -32,16 +33,29 @@ public class BoardListMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardCategory = request.getParameter("boardCategory");
-		BoardService service = new BoardService();
-		List<BoardDTO> list = null;
+		String gameInfoCategory = request.getParameter("gameInfoCategory");
+		String qnaCategory = request.getParameter("qnaCategory");
+		BoardService boardService = new BoardService();
 		
-		if (boardCategory == null || boardCategory == "recommend") {
-			list = service.recommendInfoBoardSelect();
+		List<NewsDTO> newsList = null;
+		List<BoardDTO> gameInfoList = null;
+		List<BoardDTO> qnaList = null;
+		
+		if (gameInfoCategory == null || gameInfoCategory == "recommend") {
+			gameInfoList = boardService.recommendInfoBoardSelect();
 		} else {
-			list = service.hitInfoBoardSelect();
+			gameInfoList = boardService.hitInfoBoardSelect();
 		}
+		if (qnaCategory == null || qnaCategory == "recommend") {
+			qnaList = boardService.recommendQnaBoardSelect();
+		} else {
+			qnaList = boardService.hitQnaBoardSelect();
+		}
+		newsList = boardService.newsSelect();
 		
+		request.setAttribute("newsList", newsList);
+		request.setAttribute("qnaList", qnaList);
+		request.setAttribute("gameInfoList", gameInfoList);
 		RequestDispatcher dis = request.getRequestDispatcher("???.jsp");
 		dis.forward(request, response);
 	}
