@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>로그인</title>
 <link rel="stylesheet" type="text/css" href="CSS/Login.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@
 </head>
 <body>
 	<form action="LoginSubmit.jsp" method="post" class="loginForm">
-		<a href=""><img src="Image/logo.png"></a>
+		<a href="Main.jsp"><img src="Image/logo.png"></a>
 		<p>" 자신을 알아야 평화를 찾을 수 있는 법 "</p>
 		<div class="idForm">
 			<input type="text" name="userid" id="userid" placeholder="ID">

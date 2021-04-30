@@ -58,7 +58,7 @@
 <body>
 
 	<form method="get" class="addForm">
-		<a href=""><img src="Image/logo.png"></a>
+		<a href="Main.jsp"><img src="Image/logo.png"></a>
 		<h2>회원가입</h2>
 		<div class="contentform">
 			<div class="row" style="display: inline; ">

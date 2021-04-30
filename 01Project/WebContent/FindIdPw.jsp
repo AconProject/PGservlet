@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디/비밀번호 찾기</title>
 <link rel="stylesheet" type="text/css" href="CSS/FindIdPw.css">
 
 </head>
@@ -14,7 +14,7 @@
 	<div class="findform">
 	
 	<div class="menubar">
-		<a href=""><img src="Image/logo.png"></a>
+		<a href="Main.jsp"><img src="Image/logo.png"></a>
 		<a href="Login.jsp" class="menu">로그인</a>
 		<a href="MemberAdd.jsp" class="menu">회원가입</a>
 	</div>
