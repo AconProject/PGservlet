@@ -61,7 +61,7 @@ nav {
 	margin: 100px auto;
 }
 
-.main-contents button {
+.main-contents > button {
 	background: rgba(171, 219, 252, 0.2);
 }
 
@@ -135,6 +135,42 @@ nav {
 	text-align: center;
 	background-color: #ffc952;
 	border-radius: 20%;
+}
+
+.tagScroll {
+	width: 180px;
+	height: 800px;
+	overflow: scroll;
+}
+
+.bestBoard {
+	display: flex;
+	justify-content: space-between;
+}
+
+.bestBoard p{
+	background-color: #34314c;
+	color: white;
+	width: 200px;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.bestBoard p:first-child {
+	margin-left: 150px;
+}
+
+.bestBoard p:last-child {
+	margin-right: 150px;
+}
+
+.btn {
+	border-radius: 20%;
+	width: 60px;
+	height: 40px;
+	margin-right: 5px;
+	background-color: #47b8e0;
+	color: white;
 }
 
 
