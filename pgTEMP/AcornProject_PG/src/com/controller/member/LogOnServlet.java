@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import com.dto.MemberDTO;
 import com.service.MemberService;
@@ -26,21 +27,25 @@ public class LogOnServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userid = request.getParameter("userid");
-		String passwd = request.getParameter("passwd");
+		String mbrId = request.getParameter("mbrId");
+		String mbrPw = request.getParameter("mbrPw");
 		HashMap<String, String> map = new HashMap<>();
-		map.put("userid", userid);
-		map.put("passwd", passwd);
+		map.put("mbrId", mbrId);
+		map.put("mbrPw", mbrPw);
 		
 		MemberService service = new MemberService();
 		MemberDTO dto = service.login(map);
+		
 		String nextPage=null;
 		if(dto!=null) {
-			nextPage = "main";
+			System.out.println(dto.toString());
+			nextPage = "main.jsp";
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
 		}else {
-			nextPage = "LoginUIServlet";			
+			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 다시 입력해주세요");
+			nextPage = "LoginServlet";
+			
 		}
 
 		response.sendRedirect(nextPage);

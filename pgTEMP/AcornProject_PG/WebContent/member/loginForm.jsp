@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href="CSS/Background.css">
 <link rel="stylesheet" type="text/css" href="CSS/MemberAdd.css">
-
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,18 +13,21 @@
 
 
 <script type="text/javascript">
-	$(function() {
-		$("form").submit(function() {
+	$(document).ready(function(){
+		$("form").submit(function(event) {
 			// 아이디 & 비밀번호 입력 검사
-			var userid = $("#mbrId");
-			var passwd = $("#mbrPw");
+			
+			var mbrId = $("#mbrId");
+			var mbrPw = $("#mbrPw");
+			console.log(mbrId,mbrPw);
+			
 			if (mbrId.val().length == 0) {
 				swal("Oops!!", "ID를 다시 입력해주세요!", "error");
-				userid.focus();
+				mbrId.focus();
 				event.preventDefault();
 			} else if (mbrPw.val().length == 0) {
 				swal("Oops!!", "PASSWORD를 다시 입력해주세요!", "error");
-				passwd.focus();
+				mbrPw.focus();
 				event.preventDefault();
 			}
 		})
@@ -35,14 +36,14 @@
 </script>
 </head>
 <body>
-	<form action="LoginServlet" method="post" class="loginForm">
-		<a href=""><img src="./images/logo.png"></a>
+	<form action="LogOnServlet" method="get" class="loginForm">
+		<img src="./images/logo.png">
 		<p>" 자신을 알아야 평화를 찾을 수 있는 법 "</p>
 		<div class="idForm">
-			<input type="text" name="userid" id="userid" placeholder="ID">
+			<input type="text" name="mbrId" id="mbrId" placeholder="ID">
 		</div>
 		<div class="pwForm">
-			<input type="text" name="passwd" id="passwd" placeholder="PassWord">
+			<input type="text" name="mbrPw" id="mbrPw" placeholder="PassWord">
 		</div>
 		<div class="button">
 			<button type="submit" name="login" id="login">L O G I N</button>

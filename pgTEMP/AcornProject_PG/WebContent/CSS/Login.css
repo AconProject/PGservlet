@@ -51,7 +51,7 @@ img{
 	padding: 10px;
 }
 
-#userid, #passwd {
+#mbrId, #mbrPw {
 	width: 100%;
 	border: none;
 	outline: none;
