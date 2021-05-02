@@ -79,44 +79,49 @@
 	<h2>회원가입</h2>
 	<div class="contentform">
 		<div class="row" style="display: inline;">
-			<span class="title">아이디  <span id="idcheck"
+			<span class="title">아이디  *<span id="idcheck"
 				style="margin-left: 10px; font-size: 13px;"></span>
-			</span> <input type="text" class="content" name="userid" id="userid"
+			</span> <input type="text" class="content" name="mbrId" id="mbrId"
 				autofocus>
 		</div>
 
 		<div class="row">
-			<span class="title">비밀번호 </span> <input type="text" class="content"
-				name="passwd1" id="passwd1" autocomplete="off"
+			<span class="title">비밀번호 * </span> <input type="text" class="content"
+				name="mbrPw" id="mbrPw" autocomplete="off"
 				placeholder="비밀번호는 6자리 이상이어야 합니다.">
 		</div>
 
 		<div class="row" style="display: inline;">
 			<span class="title">비밀번호 확인 * <span id="pwcheck"
 				style="margin-left: 10px; font-size: 13px;"></span>
-			</span> <input type="text" class="content" name="passwd2" id="passwd2">
+			</span> <input type="text" class="content" name="mbrPw2" id="mbrPw2">
 		</div>
 
 		<div class="row">
 			<span class="title">닉네임 *</span> <input type="text" class="content"
-				name="nickname" id="nickname">
+				name="mbrName" id="mbrName">
 		</div>
 
 		<div class="row">
 			<span class="title">이메일 *</span> <input type="email" class="content"
-				name="email" id="email">
+				name="mbrEmail" id="mbrEmail">
 		</div>
 		<!-- 가입일: -->
-		<input type="hidden" id="regDate" name="date" value=SYSDATE>
-
+		<input type="hidden"  name="mbrRegdate" id="mbrRegdate" value="">
+		
 		<div class="row">
-			<span class="title" id="tagname">태그</span>
-			<button id="tag" onclick="window.open('TagPage.jsp'); return false;">Tag</button>
+			<span class="title">장르 *</span> <input type="text" class="content"
+				name="mbrGenre" id="mbrGenre">
 		</div>
+<!-- 장르 잠시 묶어두기 -->
+		<!-- <div class="row">
+			<span class="title" id="tagname">태그</span>
+			<button id="tag" onclick="window.open('tagPage.jsp'); return false;">Tag</button>
+		</div> -->
+<!--  -->
 
 		<div class="button">
-			<input type="submit" value="제 출"
-				onclick="javascript: form.action='AddSubmit.jsp';">
+			<input type="submit" value="제 출">
 		</div>
 
 	</div>

@@ -27,10 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
    <insert id="memberAdd" parameterType="MemberDTO">
-     insert into member (userid,passwd,username,post,addr1,addr2,
-                         phone1,phone2,phone3,email1,email2)
-     values( #{userid},#{passwd},#{username},#{post},#{addr1},#{addr2},
-              #{phone1},#{phone2},#{phone3},#{email1},#{email2})
+     insert into member2 (mbrId, mbrPw, mbrName, mbrEmail, mbrRegdate, mbrGenre)
+     values( #{mbrId},#{mbrPw},#{mbrName},#{mbrEmail},#{mbrRegdate},#{mbrGenre})
    </insert>
    
    <select id="idCheck" parameterType="string"
@@ -41,10 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="login" parameterType="hashmap" resultType="MemberDTO">
-	  select userid,passwd,username,post,addr1,addr2,
-                         phone1,phone2,phone3,email1,email2
-      from member
-      where userid = #{userid} and passwd = #{passwd}
+	  select *
+      from member2
+      where mbrId = #{mbrId} and mbrPw = #{mbrPw}
 	</select>
 	
 	<select id="mypage" parameterType="string" resultType="MemberDTO">
