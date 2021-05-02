@@ -1,6 +1,8 @@
 package com.controller.game;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -34,7 +36,7 @@ public class GameTagListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String[] gameTags = request.getParameterValues("gameTag");
+		List<String> gameTags = Arrays.asList(request.getParameterValues("gameTag"));
 		List<GameDTO> gameList = null;
 		double rate = 0.0;
 		GameService gameService = new GameService();

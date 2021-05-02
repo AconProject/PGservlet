@@ -38,7 +38,7 @@ public class GameService {
 		return list;
 	}
 	
-	public List<GameDTO> tagGameListSelect(String[] gameTags) {
+	public List<GameDTO> tagGameListSelect(List<String> gameTags) {
 		List<GameDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {

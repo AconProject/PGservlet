@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
-	<select id="tagGameListSelect" resultType="GameDTO">
+	<select id="tagGameListSelect" parameterType="java.util.list" resultType="GameDTO">
 		SELECT game.*
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
