@@ -1,6 +1,7 @@
 package com.controller.board;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -52,10 +53,32 @@ public class BoardServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		} else if (boardKind.contains("recommend")) {
+			int n;
 			if (boardKind.contentEquals("boardRecommendPlus")) {
-				int n = service.boardRecommendPlus();
+				n = service.boardRecommendPlus();
 			} else {
-				int n = service.boardRecommendMinus();
+				n = service.boardRecommendMinus();
+			}
+			request.setAttribute("recommend", n);
+			RequestDispatcher dis = request.getRequestDispatcher(""); // board 페이지 중 하나
+		} else {
+			int n;
+			int board = Integer.parseInt(request.getParameter("boardId"));
+			String mbrId = request.getParameter("mbrId");
+			String boardCategory = request.getParameter("boardCategory");
+			String boardContent = request.getParameter("boardContent");
+			String boardRecommend = request.getParameter("boardRecommend");
+			String boardCount = request.getParameter("boardCount");
+			long miliSeconds = System.currentTimeMillis();
+			Date boardDate = new Date(miliSeconds);
+			BoardDTO dto = new BoardDTO(board, mbrId, boardCategory, boardContent, boardRecommend
+					, boardCount, boardDate);
+			if (boardKind.contentEquals("boardInsert")) {
+				n = service.boardInsert(dto);
+			} else if (boardKind.contentEquals("boardUpdate")) {
+				n = service.boardUpdate(dto);
+			} else {
+				n = service.boardDelete(dto);
 			}
 		}
 	}

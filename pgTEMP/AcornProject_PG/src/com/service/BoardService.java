@@ -66,17 +66,5 @@ public class BoardService {
 		return list;
 	}
 	
-	public List<NewsDTO> newsSelect() {
-		List<NewsDTO> list = null;
-		SqlSession session = MySqlSessionFactory.getSession();
-		try {
-			BoardDAO dao = new BoardDAO();
-			list = dao.newsSelect(session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return list;
-	}
+	
 }
