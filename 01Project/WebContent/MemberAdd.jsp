@@ -16,37 +16,37 @@
 		
 		$("form").on("submit", function() {
 			
-			var userid = $("#userid");
-			var passwd1 = $("#passwd1");
+			var mbrId = $("#mbrId");
+			var mbrPw = $("#mbrPw");
 			
-			if(userid.val().length == 0){
+			if(mbrId.val().length == 0){
 				swal("Oops!!", "ID를 다시 입력해주세요!", "error");
-				userid.focus();
+				mbrId.focus();
 				event.preventDefault();
 			} 
-			else if(passwd1.val().length == 0){
+			else if(mbrPw.val().length == 0){
 				swal("Oops!!", "PASSWORD를 다시 입력해주세요!", "error");
-				passwd1.focus();
+				mbrPw.focus();
 				event.preventDefault();
 			}
 		});
 		
 		// 비밀번호 숫자 제한(6자리)
-		$("#passwd1").focusout(function() {
-			var passwd1 = $("#passwd1").val();
+		$("#mbrPw").focusout(function() {
+			var passwd1 = $("#mbrPw").val();
 			if(passwd1.length<6){
 				swal("Oops!!", "비밀번호는 6글자 이상만 이용 가능합니다!", "error");
-				$("#passwd1").value = null;
+				$("#mbrPw").value = null;
 				event.preventDefault();
 			}
 		});
 		
 		// 비밀번호 확인
-		$("#passwd2").on("keyup", function() {
-			var passwd1 = $("#passwd1").val();
-			var passwd2 = $("#passwd2").val();
+		$("#mbrPw2").on("keyup", function() {
+			var mbrPw = $("#mbrPw").val();
+			var mbrPw2 = $("#mbrPw2").val();
 		
-			if(passwd1 == passwd2){
+			if(mbrPw == mbrPw2){
 				$("#pwcheck").text("비밀번호 일치");
 			}else{
 				$("#pwcheck").text("비밀번호 불일치");
@@ -58,41 +58,41 @@
 <body>
 
 	<form method="get" class="addForm">
-		<a href=""><img src="Image/logo.png"></a>
+		<a href="Main.jsp"><img src="Image/logo.png"></a>
 		<h2>회원가입</h2>
 		<div class="contentform">
 			<div class="row" style="display: inline; ">
 				<span class="title">아이디 *
 					<span id="idcheck" style="margin-left: 10px; font-size: 13px;"></span>
 				</span> 
-				<input type="text" class="content" name="userid" id="userid" autofocus>
+				<input type="text" class="content" name="mbrId" id="mbrId" autofocus>
 			</div>
 			
 			<div class="row">
 				<span class="title">비밀번호 *</span> 
-				<input type="text" class="content" name="passwd1" id="passwd1" autocomplete="off" placeholder="   비밀번호는 6자리 이상이어야 합니다.">
+				<input type="text" class="content" name="mbrPw" id="mbrPw" autocomplete="off" placeholder="   비밀번호는 6자리 이상이어야 합니다.">
 			</div>
 			
 			<div class="row" style="display: inline; ">
 				<span class="title">비밀번호 확인 *
 					<span id="pwcheck" style="margin-left: 10px; font-size: 13px;"></span>
 				</span> 
-				<input type="text" class="content" name="passwd2" id="passwd2">
+				<input type="text" class="content" name="mbrPw2" id="mbrPw2">
 			</div>
 			
 			<div class="row">
 				<span class="title">닉네임 *</span> 
-				<input type="text" class="content" name="nickname" id="nickname">
+				<input type="text" class="content" name="mbrName" id="mbrName">
 			</div>
 			
 			<div class="row">
 				<span class="title">이메일 *</span> 
-				<input type="email" class="content" name="email" id="email">
+				<input type="email" class="content" name="mbrEmail" id="mbrEmail">
 			</div>
 			
 			<div class="row">
 				<span class="title" id="tagname">태그</span> 
-				<button id="tag"  onclick="window.open('TagPage.jsp'); return false;">Tag</button>
+				<button name="mbrGenre" id="mbrGenre"  onclick="window.open('TagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button>
 			</div>
 			
 			<div class="button">

@@ -1,0 +1,57 @@
+@charset "UTF-8";
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: "나눔고딕", NanumGothic, "맑은고딕", MalgunGothic, sans-serif;
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+	color: black;
+}
+
+img {
+    max-width: 100%;
+}
+
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+header {
+	background: rgb(171, 219, 252);
+}
+
+.logo {
+    width: 210px;
+    margin-top: 14px;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+    bottom:5px;
+}
+
+.nav li {
+    margin-left: 36px;
+    margin-bottom:7px;
+}
+
+h2{
+	padding:10px;
+	margin:40px 50px ;
+}
+.menu{
+	text-align: center;
+}

@@ -4,67 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../CSS/TagPage.css">
 <title>TagPage</title>
-<style type="text/css">
-input[type="checkbox"] {
-		position: absolute;
-		left: -3000%;
-}
 
-input[type="checkbox"] + label {
-	position: relative;
-}
-
-input[type="checkbox"] + label:before {
-	content: "";
-	display: inline-block;
-	margin: 5px 10px 0 0;
-	width: 20px;
-	height: 20px;
-	border: 1px solid #A6A6A6;
-	position: relative;
-	top: 4px;
-	border-radius: 3px;
-	transition: all 0.5s;
-}
-input[type="checkbox"]:checked + label:before {
-	background: #FFA500;
-	border-color: #FFA500;
-}
-input[type="checkbox"] + label:after {
-	content:"";
-	position: absolute;
-	left: 0;
-	top:0;
-	background: url(Image/checkicon.png) no-repeat center;
-	width: 22px;
-	height: 22px;
-	background-size: 0 auto;
-	transition: all 0.5s 0.3s;
-}
-input[type="checkbox"]:checked + label:after {
-	background-size:30px auto;
-}
-
-button {
-	margin: 20px 53px;
-	width: 60px;
-	height:30px;
-	background:#FFA500	;
-	color:#fff;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	cursor:pointer;
-	border:none;
-	border-radius: 5px;
-	font-family: Electrolize;
-	font-weight: 800;
-}
-</style>
+ <script type="text/javascript">
+		function result() {
+            var tagCheck= document.getElementsByName("tag"); //전부다 가져옴
+            var mesg="";
+            console.log(tagCheck)
+            for (var i = 0; i < tagCheck.length; i++) {
+                   if(tagCheck[i].checked) mesg= mesg+tagCheck[i].value+ "/"
+            }
+            opener.document.getElementById("mbrGenre").value=mesg;
+		}
+	</script>
 </head>
 <body>
-<form action="">
 <input type="checkbox" name="tag" id="tag1" value="레이싱"><label for="tag1">레이싱</label><br>
 <input type="checkbox" name="tag" id="tag2" value="생존"><label for="tag2">생존</label><br>
 <input type="checkbox" name="tag" id="tag3" value="슈팅"><label for="tag3">슈팅</label><br>
@@ -90,7 +45,8 @@ button {
 <input type="checkbox" name="tag" id="tag23" value="인디게임"><label for="tag23">인디게임</label><br>
 <input type="checkbox" name="tag" id="tag24" value="경영"><label for="tag24">경영</label><br>
 
-<button type="submit">확 인</button>
-</form>
+<button onclick="result()">확 인</button>
+
+
 </body>
 </html>
