@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,8 +18,8 @@ public class GameDAO {
 		return list;
 	}
 	
-	public List<GameDTO> tagGameListSelect(SqlSession session, String[] gameTags) {
-		List<GameDTO> list = session.selectList("GameMapper.tagGameListSelect");
+	public List<GameDTO> tagGameListSelect(SqlSession session, List<String> gameTags) {
+		List<GameDTO> list = session.selectList("GameMapper.tagGameListSelect", gameTags);
 		return list;
 	}
 }
