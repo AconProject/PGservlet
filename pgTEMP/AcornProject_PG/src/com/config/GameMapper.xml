@@ -25,8 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<foreach collection="array" item="arr" open="(game.gameGenre, " close=")" separator=",">
 			#{arr}
 		</foreach> 
-		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
-		
+		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
 </mapper>
