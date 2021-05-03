@@ -156,6 +156,13 @@ nav {
 	font-size: 1.5rem;
 }
 
+.news p {
+	background-color: #34314c;
+	color: white;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
 .bestBoard p:first-child {
 	margin-left: 150px;
 }
@@ -171,6 +178,10 @@ nav {
 	margin-right: 5px;
 	background-color: #47b8e0;
 	color: white;
+}
+
+.icon {
+	width: 30px;
 }
 
 
