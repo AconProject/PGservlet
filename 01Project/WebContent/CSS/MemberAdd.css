@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@charset "UTF-8";
 
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Do+Hyeon&display=swap');
@@ -23,7 +24,7 @@ body {
 	background-color: white;
 	border-radius: 15px;
 	top: 10%;
-	left: 35%;
+	left: 36%;
 }
 
 img{
@@ -116,7 +117,7 @@ div.button input {
 #tagname {
 	margin-bottom: 0px;
 }
-#tag {
+#mbrGenre {
 	width:80px;
 	height:30px;
 	margin:10px 55px;
