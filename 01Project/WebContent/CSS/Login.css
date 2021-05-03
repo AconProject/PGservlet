@@ -45,13 +45,13 @@ img{
 }
 
 .idForm, .pwForm {
-	border-none;
+	border: none;
 	border-bottom: 2px solid #adadad;
 	margin: 20px;
 	padding: 10px;
 }
 
-#userid, #passwd {
+#mbrId, #mbrPw {
 	width: 100%;
 	border: none;
 	outline: none;
