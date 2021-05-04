@@ -8,8 +8,7 @@
 <!-- <style type="text/css">body{background-image: url("./images/background.png");}</style>-->
 <meta name="description" content="PlayGround" />
 <meta name="author" content="TeamTwo" />
-<link rel="icon" type="image/png" href="Ia/gameLogo.png" />
-
+<link rel="icon" type="image/png" href="Image/gameLogo.png" />
 
 <%
 	String mesg = (String) session.getAttribute("memberAdd");

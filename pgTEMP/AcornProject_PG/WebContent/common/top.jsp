@@ -9,13 +9,13 @@
 	 String mbrName = dto.getMbrName();
 %>
 안녕하세요.<%=mbrName  %>
-<a href="">로그아웃</a>    
+<a href="LogoutServlet">로그아웃</a>    
 <a href="MyPageServlet">내 페이지</a>
 <%
    }else{
 %>    
-<a href="loginForm.jsp">로그인</a>
-<a href="memberForm.jsp">회원가입</a>
+<a href="LoginServlet">로그인</a>
+<a href="MemberUIServlet">회원가입</a>
 
 <%
    }//end if~else

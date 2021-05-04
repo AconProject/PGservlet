@@ -51,4 +51,19 @@ public class GameService {
 		}
 		return list;
 	}
+
+	public GameDTO detailGameSelect(String gameNo) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		GameDTO dto = null;
+		try {
+			 GameDAO dao = new GameDAO();
+			 dto = dao.detailGameSelect(session, gameNo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return dto;
+	}//end idCheck
+
 }
