@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.dto.BoardDTO;
 import com.dto.NewsDTO;
 import com.service.BoardService;
+import com.service.NewsService;
 
 /**
  * Servlet implementation class BoardListMainServlet
@@ -36,6 +37,7 @@ public class BoardListMainServlet extends HttpServlet {
 		String gameInfoCategory = request.getParameter("gameInfoCategory");
 		String qnaCategory = request.getParameter("qnaCategory");
 		BoardService boardService = new BoardService();
+		NewsService newsService = new NewsService();
 		
 		List<NewsDTO> newsList = null;
 		List<BoardDTO> gameInfoList = null;
@@ -51,7 +53,7 @@ public class BoardListMainServlet extends HttpServlet {
 		} else {
 			qnaList = boardService.hitQnaBoardSelect();
 		}
-		newsList = boardService.newsSelect();
+		newsList = newsService.newsSelect();
 		
 		request.setAttribute("newsList", newsList);
 		request.setAttribute("qnaList", qnaList);

@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/GameMapper.xml" />
 		<mapper resource="com/config/BoardMapper.xml"/>
 		<mapper resource="com/config/RateMapper.xml"/>
+		<mapper resource="com/config/NewsMapper.xml"/>
 	</mappers>
 </configuration>
 
