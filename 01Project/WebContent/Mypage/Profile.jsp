@@ -39,7 +39,7 @@ button {
 	<div class="member">닉네임  &nbsp;&nbsp;&nbsp; <input type="text" value="bbb" name="mbrName" id="mbrName"></div><br>
 	<div class="member">이메일  &nbsp;&nbsp;&nbsp; <input type="email" value="ccc@ccc.com" name="mbrEmail" id="mbrEmail"></div><br>
 	<div class="member">선호장르  &nbsp;&nbsp;&nbsp; <input type="text" value="#전쟁" name="mbrGenre" id="mbrGenre"></div><br>
-	<button type="submit">수정</button>
+	<button type="submit">수 정</button>
 </form>
 </body>
 </html>
