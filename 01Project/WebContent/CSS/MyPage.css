@@ -54,6 +54,8 @@ h2{
 }
 .menu{
 	text-align: center;
+<<<<<<< HEAD
+=======
 }
 #profile, #update{
 	padding:10px;
@@ -82,4 +84,5 @@ h2{
 	padding:5px;
 	margin:10px 50px;
 	font-size: 17px;
+>>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 }

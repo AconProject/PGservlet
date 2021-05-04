@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 <link href="CSS/MyPage.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -17,6 +19,7 @@
 		};
 	});
 </script>
+>>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 </head>
 <body>
 	<header>
@@ -37,6 +40,9 @@
 	</header>
 	<div class="wrapper">
 	<h2>마이페이지</h2>
+<<<<<<< HEAD
+	<div class="menu">프로필</div>
+=======
 	<aside class="side">
 	 	<div id="profile">프로필</div>
 	 	<div id="update">정보수정</div>
@@ -44,6 +50,7 @@
 	<section class="content">
 		<jsp:include id="page" page="Profile.jsp" flush="true"></jsp:include>
 	</section>
+>>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 	</div>
 </body>
 </html>
