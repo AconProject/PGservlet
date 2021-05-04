@@ -54,4 +54,35 @@ h2{
 }
 .menu{
 	text-align: center;
+<<<<<<< HEAD
+=======
+}
+#profile, #update{
+	padding:10px;
+	margin:5px 10px;
+	font-size: 20px;
+	text-align: center;
+}
+.side{
+	width:230px;
+	height:500px;
+	border-right:3px solid black;
+	float:left;
+	display: block;
+}
+.content{
+	width: 500px;
+	height: 1000px;
+	display: block;
+	float:left;
+}
+.member{
+	padding:5px;
+	margin:10px 20px;
+	font-size: 17px;
+}form{
+	padding:5px;
+	margin:10px 50px;
+	font-size: 17px;
+>>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 }

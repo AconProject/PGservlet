@@ -92,7 +92,11 @@
 			
 			<div class="row">
 				<span class="title" id="tagname">태그</span> 
+<<<<<<< HEAD
 				<button name="mbrGenre" id="mbrGenre"  onclick="window.open('TagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button>
+=======
+				<button name="mbrGenre" id="mbrGenre"  onclick="window.open('TagPage.jsp','','width=200,height=300,left=700,top=650,scrollbars=1,location=no,resizable=no'); return false;">Tag</button>
+>>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 			</div>
 			
 			<div class="button">

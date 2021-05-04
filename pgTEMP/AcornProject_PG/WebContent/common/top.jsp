@@ -10,7 +10,7 @@
 %>
 안녕하세요.<%=mbrName  %>
 <a href="">로그아웃</a>    
-<a href="">내 페이지</a>
+<a href="MyPageServlet">내 페이지</a>
 <%
    }else{
 %>    
