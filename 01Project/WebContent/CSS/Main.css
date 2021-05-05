@@ -28,7 +28,7 @@ img {
 }
 
 
-/* HEADER
+/* HEADER (상단 배너)
 ------------------------------- */
 
 header {
@@ -61,7 +61,7 @@ nav {
 	margin: 100px auto;
 }
 
-.main-contents button {
+.main-contents > button {
 	background: rgba(171, 219, 252, 0.2);
 }
 
@@ -137,8 +137,6 @@ nav {
 	border-radius: 20%;
 }
 
-<<<<<<< HEAD
-=======
 .tagScroll {
 	width: 180px;
 	height: 800px;
@@ -190,9 +188,8 @@ nav {
 	font-size: 1.5rem;
 }
 
->>>>>>> 084b819bce4ce2d0f8a2033364859705ef98365f
 
-/* FOOTER
+/* FOOTER (하단 배너)
 ------------------------------- */
 
 footer {
