@@ -1,20 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>PlayGround</title>
+<meta charset="UTF-8">
+<title>PlayGround</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-    <link href="../CSS/Style.css" rel="stylesheet">
+    <link href="CSS/Style.css" rel="stylesheet">
 </head>
-
 <body>
-
-	<!-- 페이지 최상단 배너 -->
+	<!-- 페이지 상단 로고 및 배너 -->
     <header>
 		<div class="wrapper">
 			<h1>
-				<a href="Main.html"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
+				<a href="Main.jsp"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
 			</h1>
 			<nav>
 				<div class="empty"></div>
@@ -32,7 +32,7 @@
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
     <div class="wrapper">
 
-		<!-- 메인 상단 -->
+		<!-- 상단 -->
         <section class="main-contents">
 			<button>최신게임</button><button>추천게임</button>
 			<div class="container">
@@ -44,14 +44,14 @@
 							<td>3.</td>
 						</tr>
 						<tr>
-							<td><a href="#"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
+							<td><a href="DetailPage.jsp"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
+							<td><a href="DetailPage.jsp"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
+							<td><a href="DetailPage.jsp"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
 						</tr>
 						<tr>
-							<td class="center"><a href="#">Sample Game<br><small>(2019)</small></a></td>
-							<td class="center"><a href="#">Sample Game<br><small>(2019)</small></a></td>
-							<td class="center"><a href="#">Sample Game<br><small>(2019)</small></a></td>
+							<td class="center"><a href="DetailPage.jsp">Sample Game<br><small>(2019)</small></a></td>
+							<td class="center"><a href="DetailPage.jsp">Sample Game<br><small>(2019)</small></a></td>
+							<td class="center"><a href="DetailPage.jsp">Sample Game<br><small>(2019)</small></a></td>
 						</tr>
 						<tr>
 							<td class="center"><a href="#" class="tag">#태그</a></td>
@@ -88,42 +88,39 @@
 			</div>
         </section>
 
-		<!-- 메인 중단 -->
+		<!-- 중단 -->
         <section class="main-contents">
 			<div class="container">
 				<div>
 					<table class="midTable">
 						<tr>
 							<td>1.</td>
-							<td><a href="#"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#">Sample Game <small>(2019)</small></a></td>
+							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td>Sample Game <small>(2019)</small></td>
 							<td><div class="score">95.5</div></td>
 						</tr>
 						<tr>
 							<td>2.</td>
-							<td><a href="#"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#">Sample Game <small>(2019)</small></a></td>
+							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td>Sample Game <small>(2019)</small></td>
 							<td><div class="score">95.5</div></td>
 						</tr>
 						<tr>
 							<td>3.</td>
-							<td><a href="#"><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#">Sample Game <small>(2019)</small></a></td>
+							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td>Sample Game <small>(2019)</small></td>
 							<td><div class="score">95.5</div></td>
 						</tr>
 					</table>
 				</div>
 				<div>
-					태그 선택
-					<div class="tagScroll">
-						<input type="checkbox" name="tag" value="tag1">&nbsp tag1<br>
-						<input type="checkbox" name="tag" value="tag2">&nbsp tag2<br>
-						<input type="checkbox" name="tag" value="tag3">&nbsp tag3<br>
-						<input type="checkbox" name="tag" value="tag4">&nbsp tag4<br>
-						<input type="checkbox" name="tag" value="tag5">&nbsp tag5<br>
-						<input type="checkbox" name="tag" value="tag6">&nbsp tag6<br>
-						<input type="checkbox" name="tag" value="tag7">&nbsp tag7<br>
-					</div>
+					<input type="checkbox" name="tag" value="tag1">tag1<br>
+					<input type="checkbox" name="tag" value="tag2">tag2<br>
+					<input type="checkbox" name="tag" value="tag3">tag3<br>
+					<input type="checkbox" name="tag" value="tag4">tag4<br>
+					<input type="checkbox" name="tag" value="tag5">tag5<br>
+					<input type="checkbox" name="tag" value="tag6">tag6<br>
+					<input type="checkbox" name="tag" value="tag7">tag7
 				</div>
 			</div>
         </section>
@@ -234,5 +231,4 @@
         </div>
     </footer>
 </body>
-
 </html>

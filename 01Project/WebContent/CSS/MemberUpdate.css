@@ -54,18 +54,18 @@ nav {
 }
 
 /* mypage */
+
 .main-contents {
-	margin: 30px auto 50px auto;
+	margin: 60px auto;
+	
 }
 
 .main-contents .container {
 	background: rgba(171, 219, 252, 0.2);
-	display: inline;
-	justify-content: space-between;
 }
 h2{
 	padding:10px;
-	margin:40px 50px ;
+	margin:20px 50px ;
 }
 .menu{
 	text-align: center;
@@ -90,15 +90,42 @@ h2{
 	padding:5px;
 	margin:10px 20px;
 	font-size: 17px;
-	font-weight: bold;
 }form{
 	padding:5px;
 	margin:10px 50px;
 	font-size: 17px;
 }
+.member{
+	padding:5px;
+	margin:10px 20px;
+	font-size: 17px;
+}
+form{
+	font-size: 17px;
+}
+.content{
+	height:20px;
+	border:1px;
+}
+.mbrinfo{
+	height:20px;
+}
+table{
+	margin:10px;
+	border-collapse: collapse;
+	font-size: 16px;
+	width: 700px;
+}
+
+td{
+	padding: 10px 8px;
+	text-align: center;
+}
+
+
 
 button {
-	margin: 20px 40px;
+	margin: 20px 0px 20px 30px;
 	width: 90px;
 	height:30px;
 	background:#FFA500;
@@ -111,11 +138,6 @@ button {
 	border-radius: 5px;
 	font-family: Electrolize;
 	font-weight: 800;
-}
-
-.tag {
-	padding-left: 15px;
-	color: rgb(64, 147, 214);
 }
 /* FOOTER
 ------------------------------- */
