@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href="CSS/MemberAdd.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/MemberAdd.css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="CSS/Login.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/Login.css">
 
 
 <script type="text/javascript">
@@ -38,7 +38,7 @@
 </head>
 <body>
 	<form action="LogOnServlet" method="post" class="loginForm">
-		<img src="Image/logo.png">
+		<img src="${pageContext.request.contextPath}/Image/logo.png">
 		<p>" 자신을 알아야 평화를 찾을 수 있는 법 "</p>
 		<div class="idForm">
 			<input type="text" name="mbrId" id="mbrId" placeholder="ID">
@@ -51,7 +51,7 @@
 		</div>
 		<div class="check">
 			<a href="FindIdPw.jsp" id="find">아이디/비밀번호 찾기</a> 
-			<a href="memberForm.jsp" id="create">회원가입</a>
+			<a href="memberAddForm.jsp" id="create">회원가입</a>
 		</div>
 	</form>
 </body>

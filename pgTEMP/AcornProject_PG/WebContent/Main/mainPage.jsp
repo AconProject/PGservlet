@@ -7,21 +7,21 @@
 <title>MainPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-    <link href="../CSS/Style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/CSS/Style.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
     <header>
 		<div class="wrapper">
 			<h1>
-				<a href="Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
+				<a href="main.jsp"><img class="logo" src="${pageContext.request.contextPath}/Image/logo.png" alt="로고 이미지"></a>
 			</h1>
 			<nav>
 				<div class="empty"></div>
 				<ul class="nav">
 					<li><a href="#">게시판</a></li>
 					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="Login.jsp">로그인</a></li>
+					<li><a href="../Member/loginForm.jsp">로그인</a></li>
 					<li><a href="MemberAdd.jsp">회원가입</a></li>
 				</ul>
 			</nav>
@@ -44,9 +44,9 @@
 							<td>3.</td>
 						</tr>
 						<tr>
-							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
-							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
-							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></td>
 						</tr>
 						<tr>
 							<td class="center">Sample Game</td>
@@ -107,19 +107,19 @@
 					<table class="midTable">
 						<tr>
 							<td>1.</td>
-							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></td>
 							<td>Sample Game <small>(2019)</small></td>
 							<td><div class="score">95.5</div></td>
 						</tr>
 						<tr>
 							<td>2.</td>
-							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></td>
 							<td>Sample Game <small>(2019)</small></td>
 							<td><div class="score">95.5</div></td>
 						</tr>
 						<tr>
 							<td>3.</td>
-							<td><img class="gameImg" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></td>
 							<td>Sample Game <small>(2019)</small></td>
 							<td><div class="score">95.5</div></td>
 						</tr>

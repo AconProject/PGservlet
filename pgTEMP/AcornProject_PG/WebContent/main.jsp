@@ -8,7 +8,7 @@
 <!-- <style type="text/css">body{background-image: url("./images/background.png");}</style>-->
 <meta name="description" content="PlayGround" />
 <meta name="author" content="TeamTwo" />
-<link rel="icon" type="image/png" href="Image/gameLogo.png" />
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 
 <%
 	String mesg = (String) session.getAttribute("memberAdd");
@@ -26,7 +26,7 @@ if (mesg != null) {
 	<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	<hr>
-	<jsp:include page="Main/main.jsp" flush="true"></jsp:include>
+	<jsp:include page="Main/mainPage.jsp" flush="true"></jsp:include>
 
 
 </body>
