@@ -32,6 +32,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY boardCount DESC, boardRecommend DESC
 	</select>
 	
+	<select id="boardSelect" parameterType="string" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory = #{boardCategory}
+		ORDER BY boardDate DESC
+	</select>
 
+	<select id="boardTitleSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory = #{boardCategory}
+		AND boardName LIKE #{searchWord}
+		ORDER BY boardDate DESC
+	</select>
+
+	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory = #{boardCategory}
+		AND boardContent LIKE #{searchWord}
+		ORDER BY boardDate DESC
+	</select>
 	
 </mapper>

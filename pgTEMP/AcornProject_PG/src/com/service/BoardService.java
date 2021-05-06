@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import com.config.MySqlSessionFactory;
 import com.dao.BoardDAO;
 import com.dto.BoardDTO;
-import com.dto.NewsDTO;
 
 public class BoardService {
 	public List<BoardDTO> recommendInfoBoardSelect() {
@@ -66,5 +66,37 @@ public class BoardService {
 		return list;
 	}
 	
-	
+	public List<BoardDTO> boardSelect(String boardCategory) {
+		List<BoardDTO> list = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		if (boardCategory == null) 
+			boardCategory = "일반 글";
+		try {
+			BoardDAO dao = new BoardDAO();
+			list = dao.boardSelect(session, boardCategory);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	public List<BoardDTO> boardSearchSelect(HashMap<String, String> searchMap) {
+		List<BoardDTO> list = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			if (searchMap.get("searchCategory").contentEquals("title")) {
+				list = dao.boardTitleSearchSelect(session, searchMap);
+			} else {
+				list = dao.boardContentSearchSelect(session, searchMap);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 }

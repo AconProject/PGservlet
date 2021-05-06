@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,5 +27,17 @@ public class BoardDAO {
 	
 	public List<NewsDTO> newsSelect(SqlSession session) {
 		return session.selectList("BoardMapper.newsSelect");
+	}
+	
+	public List<BoardDTO> boardSelect(SqlSession session, String boardCategory) {
+		return session.selectList("BoardMapper.boardSelect", boardCategory);
+	}
+
+	public List<BoardDTO> boardTitleSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
+		return session.selectList("BoardMapper.boardTitleSearchSelect", searchMap);
+	}
+
+	public List<BoardDTO> boardContentSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
+		return session.selectList("BoardMapper.boardContentSearchSelect", searchMap);
 	}
 }
