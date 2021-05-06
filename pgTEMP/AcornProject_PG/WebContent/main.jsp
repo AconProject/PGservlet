@@ -26,7 +26,7 @@ if (mesg != null) {
 	<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	<hr>
-	<jsp:include page="common/main.jsp" flush="true"></jsp:include>
+	<jsp:include page="Main/main.jsp" flush="true"></jsp:include>
 
 
 </body>
