@@ -29,7 +29,7 @@ public class MemberDAO {
 	}
    
    public MemberDTO login(SqlSession session, HashMap<String, String> map) {
-	   MemberDTO n = session.selectOne("MemberMapper.login", map);
+	   MemberDTO n = session.selectOne("MemberMapper.login2", map);
 	   return n;
    }
    

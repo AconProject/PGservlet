@@ -68,5 +68,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from member
 	where mbrId = #{mbrId} and mbrPw = #{mbrPw}
 	</select>
+
+	<!--테스트용 by 장현수  -->
+	<select id="login2" parameterType="hashmap" resultType="MemberDTO">
+	select *
+	from member2
+	where mbrId = #{mbrId} and mbrPw = #{mbrPw}
+	</select>
 	
 </mapper>

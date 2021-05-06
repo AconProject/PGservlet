@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberUIServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("memberForm.jsp");
+		response.sendRedirect("MemberForm.jsp");
 	}
 
 	
