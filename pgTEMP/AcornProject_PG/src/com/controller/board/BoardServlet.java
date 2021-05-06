@@ -2,6 +2,7 @@ package com.controller.board;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -39,15 +40,20 @@ public class BoardServlet extends HttpServlet {
 			List<BoardDTO> list = null;
 			String nextPage = "";
 			if (boardKind.contentEquals("boardList")) {
-				list = service.boardSelect();
-				nextPage = ""; // 미정
-			} else if (boardKind.contentEquals("boardCategoryList")) {
 				String boardCategory = request.getParameter("boardCategory");
-				list = service.boardCategorySelect(boardCategory);
+				list = service.boardSelect(boardCategory);
 				nextPage = ""; // 미정
 			} else if (boardKind.contentEquals("boardSearchList")) {
+				String boardCategory = request.getParameter("boardCategory");
 				String searchWord = request.getParameter("searchWord");
-				list = service.boardSearchSelect(searchWord);
+				String searchCategory = request.getParameter("searchCategory");
+				HashMap <String, String> searchMap = new HashMap<String, String>();
+				if (searchWord == null)
+					searchWord = "%";
+				searchMap.put("searchWord", searchWord);
+				searchMap.put("searchCategory", searchCategory);
+				searchMap.put("boardCategory", boardCategory);
+				list = service.boardSearchSelect(searchMap);
 				nextPage = ""; // 미정
 			}
 			request.setAttribute("list", list);

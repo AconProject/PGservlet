@@ -17,15 +17,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
+<<<<<<< HEAD
+	<select id="tagGameListSelect" parameterType="string" resultType="GameDTO">
+=======
 	<select id="tagGameListSelect" parameterType="list" resultType="GameDTO">
+>>>>>>> 9d111c7857ef170dd3c02a10d45c37d5de1a084f
 		SELECT game.*
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
-		AND REGEXP_LIKE
-		<foreach collection="array" item="arr" open="(game.gameGenre, " close=")" separator=",">
-			#{arr}
-		</foreach> 
-		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
+		AND REGEXP_LIKE (game.gameGenre, (SELECT NVL(REPLACE(mbrGenre, ',', '|'), '*')
+		                       FROM member
+		                       WHERE mbrId = #{
+		                       ))
+		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
 	</select>
 	
 	<select id="detailGameSelect" resultType="GameDTO">

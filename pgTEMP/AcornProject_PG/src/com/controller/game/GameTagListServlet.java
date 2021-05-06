@@ -36,19 +36,18 @@ public class GameTagListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<String> gameTags = Arrays.asList(request.getParameterValues("gameTag"));
 		List<GameDTO> gameList = null;
+		String mbrId = request.getParameter("mbrId"); //세션으로 바꿔야할 지 모르겠음.
 		double rate = 0.0;
 		GameService gameService = new GameService();
 		RateService rateService = new RateService();
 		
-		if (gameTags == null) {
+		if (mbrId == null) {
 			gameList = gameService.recommendGameListSelect();
 			rate = rateService.rateRecommendSelect();
 		} else {
-			gameList = gameService.tagGameListSelect(gameTags);
+			gameList = gameService.tagGameListSelect(mbrId);
 			rate = rateService.rateTagSelect();
-			
 		}
 		request.setAttribute("rate", rate);
 		request.setAttribute("gameList", gameList);
