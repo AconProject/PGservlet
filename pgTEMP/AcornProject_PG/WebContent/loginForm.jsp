@@ -14,6 +14,6 @@
 	<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="common/menu.jsp" flush="true">
 	<hr></jsp:include>
-	<jsp:include page="member/loginForm.jsp" flush="false" />
+	<jsp:include page="Member/loginForm.jsp" flush="false" />
 </body>
 </html>
