@@ -22,7 +22,7 @@ public class GameDAO {
 		List<GameDTO> list = session.selectList("GameMapper.tagGameListSelect", mbrId);
 		return list;
 	}
-	
+
 	public GameDTO detailGameSelect(SqlSession session, String gameNo) {
 		GameDTO dto = 
 				   session.selectOne("GameMapper.detailGameSelect", gameNo);
