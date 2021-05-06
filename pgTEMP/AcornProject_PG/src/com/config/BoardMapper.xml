@@ -38,7 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE boardCategory = #{boardCategory}
 		ORDER BY boardDate DESC
 	</select>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 5d52cd7318fdf94b6d74e23a15cec77efe40c42b
 	<select id="boardTitleSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
@@ -46,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND boardName LIKE #{searchWord}
 		ORDER BY boardDate DESC
 	</select>
+<<<<<<< HEAD
 
 	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
@@ -54,5 +59,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND boardContent LIKE #{searchWord}
 		ORDER BY boardDate DESC
 	</select>
+=======
+>>>>>>> 5d52cd7318fdf94b6d74e23a15cec77efe40c42b
 	
+	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory = #{boardCategory}
+		AND boardContent LIKE #{searchWord}
+		ORDER BY boardDate DESC
+	</select>
 </mapper>

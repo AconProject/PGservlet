@@ -1,7 +1,5 @@
 @charset "UTF-8";
-html {
-    font-size: 100%;
-}
+
 
 body {
     font-family: "나눔고딕", NanumGothic, "맑은고딕", MalgunGothic, sans-serif;
@@ -54,8 +52,6 @@ h2{
 }
 .menu{
 	text-align: center;
-<<<<<<< HEAD
-=======
 }
 #profile, #update{
 	padding:10px;
@@ -65,14 +61,13 @@ h2{
 }
 .side{
 	width:230px;
-	height:500px;
-	border-right:3px solid black;
+	height:650px;
+	border-right:2px solid black;
 	float:left;
 	display: block;
 }
 .content{
 	width: 500px;
-	height: 1000px;
 	display: block;
 	float:left;
 }
@@ -84,5 +79,5 @@ h2{
 	padding:5px;
 	margin:10px 50px;
 	font-size: 17px;
->>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 }
+

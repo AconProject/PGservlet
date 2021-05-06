@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import com.dto.MemberDTO;
 import com.service.MemberService;
 
-
 //로그인해서 들어가면 나오는 화면 
 @WebServlet("/LogOnServlet")
 public class LogOnServlet extends HttpServlet {
@@ -32,8 +31,9 @@ public class LogOnServlet extends HttpServlet {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("mbrId", mbrId);
 		map.put("mbrPw", mbrPw);
-		
 		MemberService service = new MemberService();
+		System.out.println("maps: "+map.toString());
+		
 		MemberDTO dto = service.login(map);
 		
 		String nextPage=null;

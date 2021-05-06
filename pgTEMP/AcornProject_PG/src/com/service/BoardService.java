@@ -81,7 +81,11 @@ public class BoardService {
 		}
 		return list;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 5d52cd7318fdf94b6d74e23a15cec77efe40c42b
 	public List<BoardDTO> boardSearchSelect(HashMap<String, String> searchMap) {
 		List<BoardDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();

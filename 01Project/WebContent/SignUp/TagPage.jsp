@@ -77,11 +77,7 @@ button {
 <input type="checkbox" name="tag" id="tag10" value="전략"><label for="tag10">전략</label><br>
 <input type="checkbox" name="tag" id="tag11" value="전쟁"><label for="tag11">전쟁</label><br>
 <input type="checkbox" name="tag" id="tag12" value="캐쥬얼"><label for="tag12">캐쥬얼</label><br>
-<<<<<<< HEAD
-<input type="checkbox" name="tag" id="tag13" value="모함"><label for="tag13">모함</label><br>
-=======
 <input type="checkbox" name="tag" id="tag13" value="모험"><label for="tag13">모함</label><br>
->>>>>>> 96c4d48e39fc191acde0aae023b30f2ca6298591
 <input type="checkbox" name="tag" id="tag14" value="판타지"><label for="tag14">판타지</label><br>
 <input type="checkbox" name="tag" id="tag15" value="퍼즐"><label for="tag15">퍼즐</label><br>
 <input type="checkbox" name="tag" id="tag16" value="롤플레잉"><label for="tag16">롤플레잉</label><br>
