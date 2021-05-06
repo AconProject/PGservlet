@@ -25,6 +25,7 @@
 				swal("Oops!!", "ID를 다시 입력해주세요!", "error");
 				mbrId.focus();
 				event.preventDefault();
+				
 			} else if (mbrPw.val().length == 0) {
 				swal("Oops!!", "PASSWORD를 다시 입력해주세요!", "error");
 				mbrPw.focus();
@@ -36,8 +37,8 @@
 </script>
 </head>
 <body>
-	<form action="LogOnServlet" method="get" class="loginForm">
-		<img src="./images/logo.png">
+	<form action="LogOnServlet" method="post" class="loginForm">
+		<img src="Image/logo.png">
 		<p>" 자신을 알아야 평화를 찾을 수 있는 법 "</p>
 		<div class="idForm">
 			<input type="text" name="mbrId" id="mbrId" placeholder="ID">
