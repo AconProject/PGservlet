@@ -29,11 +29,6 @@ public class BoardDAO {
 	public List<BoardDTO> boardSelect(SqlSession session, String boardCategory) {
 		return session.selectList("BoardMapper.boardSelect", boardCategory);
 	}
-	
-<<<<<<< HEAD
-	public List<BoardDTO> boardSelect(SqlSession session, String boardCategory) {
-		return session.selectList("BoardMapper.boardSelect", boardCategory);
-	}
 
 	public List<BoardDTO> boardTitleSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
 		return session.selectList("BoardMapper.boardTitleSearchSelect", searchMap);
@@ -42,14 +37,4 @@ public class BoardDAO {
 	public List<BoardDTO> boardContentSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
 		return session.selectList("BoardMapper.boardContentSearchSelect", searchMap);
 	}
-=======
-	public List<BoardDTO> boardTitleSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
-		return session.selectList("BoardMapper.boardTitleSearchSelect", searchMap);
-	}
-	
-	public List<BoardDTO> boardContentSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
-		return session.selectList("BoardMapper.boardContentSearchSelect", searchMap);
-	}
-	
->>>>>>> 5d52cd7318fdf94b6d74e23a15cec77efe40c42b
 }

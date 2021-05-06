@@ -16,12 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE game.gameNo = rate.gameNo
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
-	
-<<<<<<< HEAD
+
 	<select id="tagGameListSelect" parameterType="string" resultType="GameDTO">
-=======
-	<select id="tagGameListSelect" parameterType="list" resultType="GameDTO">
->>>>>>> 9d111c7857ef170dd3c02a10d45c37d5de1a084f
 		SELECT game.*
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
@@ -30,15 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                       WHERE mbrId = #{
 		                       ))
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
-<<<<<<< HEAD
-=======
 	</select>
 	
 	<select id="detailGameSelect" resultType="GameDTO">
 		SELECT *
 		FROM game
 		WHERE gameNo = #{gameNo}
->>>>>>> 5d52cd7318fdf94b6d74e23a15cec77efe40c42b
 	</select>
 	
 </mapper>
