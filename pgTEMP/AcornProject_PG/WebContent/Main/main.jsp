@@ -7,14 +7,14 @@
 <title>MainPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-    <link href="CSS/Style.css" rel="stylesheet">
+    <link href="../CSS/Style.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
     <header>
 		<div class="wrapper">
 			<h1>
-				<a href="Main.jsp"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
+				<a href="Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
 			</h1>
 			<nav>
 				<div class="empty"></div>
