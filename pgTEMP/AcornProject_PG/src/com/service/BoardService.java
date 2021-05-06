@@ -81,7 +81,7 @@ public class BoardService {
 		}
 		return list;
 	}
-	
+
 	public List<BoardDTO> boardSearchSelect(HashMap<String, String> searchMap) {
 		List<BoardDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();

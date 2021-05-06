@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE boardCategory = #{boardCategory}
 		ORDER BY boardDate DESC
 	</select>
-	
+
 	<select id="boardTitleSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND boardName LIKE #{searchWord}
 		ORDER BY boardDate DESC
 	</select>
-	
+
 	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
