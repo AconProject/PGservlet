@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>MainPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-    <link href="${pageContext.request.contextPath}/CSS/Style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/CSS/Main.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
@@ -29,10 +29,9 @@
     </header>
 
 	<!-- 메인화면 컨텐츠-->
-	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
     <div class="wrapper">
 
-		<!-- 상단 -->
+		<!-- 메인 상단 -->
         <section class="main-contents">
 			<button>최신게임</button><button>추천게임</button>
 			<div class="container">
@@ -100,7 +99,7 @@
 			</div>
         </section>
 
-		<!-- 중단 -->
+		<!-- 메인 중단 -->
         <section class="main-contents">
 			<div class="container">
 				<div>
@@ -137,9 +136,100 @@
 			</div>
         </section>
 
-		<!-- 하단 -->
+		<!-- 메인 하단 -->
 		<section class="main-contents">
-			하단
+			<div class="bestBoard">
+				<p>게임 베스트</p><p>질문 답변 베스트</p>
+			</div>
+			<div class="container">
+				<div>
+					<button class="btn">추천</button><button class="btn">조회</button>
+					<ol class="boardChart">
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+					</ol>
+				</div>
+				<div>
+					<button class="btn">추천</button><button class="btn">조회</button>
+					<ol class="boardChart">
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+						<li>
+							title
+							<img class="icon" src="Image/eye.png" alt="조회수"> 123
+							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<hr>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="news">
+				<p>최신 뉴스</p>
+			</div>
+			<div class="container">
+				<div>
+					<ol class="boardChart">
+						<li>
+							News Title
+							<small>2021.04.21</small>
+							<hr>
+						</li>
+						<li>
+							News Title
+							<small>2021.04.21</small>
+							<hr>
+						</li>
+						<li>
+							News Title
+							<small>2021.04.21</small>
+							<hr>
+						</li>
+						<li>
+							News Title
+							<small>2021.04.21</small>
+							<hr>
+						</li>
+					</ol>
+				</div>
+			</div>
         </section>
 
     </div>

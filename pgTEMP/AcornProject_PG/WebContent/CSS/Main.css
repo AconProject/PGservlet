@@ -28,7 +28,7 @@ img {
 }
 
 
-/* HEADER
+/* HEADER (상단 배너)
 ------------------------------- */
 
 header {
@@ -61,7 +61,7 @@ nav {
 	margin: 100px auto;
 }
 
-.main-contents button {
+.main-contents > button {
 	background: rgba(171, 219, 252, 0.2);
 }
 
@@ -189,7 +189,7 @@ nav {
 }
 
 
-/* FOOTER
+/* FOOTER (하단 배너)
 ------------------------------- */
 
 footer {
