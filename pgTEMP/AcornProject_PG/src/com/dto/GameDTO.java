@@ -7,13 +7,15 @@ public class GameDTO {
 	private int gamePrice;
 	private String gameContent;
 	private String gameCategory;
+	private String gameGenre;
+	private String gameReleasedDate;
 	
 	public GameDTO() {
 		super();
 	}
-
+	
 	public GameDTO(String gameNo, String gameName, String gameImage, int gamePrice, String gameContent,
-			String gameCategory) {
+			String gameCategory, String gameGenre, String gameReleasedDate) {
 		super();
 		this.gameNo = gameNo;
 		this.gameName = gameName;
@@ -21,8 +23,27 @@ public class GameDTO {
 		this.gamePrice = gamePrice;
 		this.gameContent = gameContent;
 		this.gameCategory = gameCategory;
+		this.gameGenre = gameGenre;
+		this.gameReleasedDate = gameReleasedDate;
 	}
+
 	
+	public String getGameGenre() {
+		return gameGenre;
+	}
+
+	public void setGameGenre(String gameGenre) {
+		this.gameGenre = gameGenre;
+	}
+
+	public String getGameReleasedDate() {
+		return gameReleasedDate;
+	}
+
+	public void setGameReleasedDate(String gameReleasedDate) {
+		this.gameReleasedDate = gameReleasedDate;
+	}
+
 	public String getGameNo() {
 		return gameNo;
 	}
@@ -74,8 +95,11 @@ public class GameDTO {
 	@Override
 	public String toString() {
 		return "GameDTO [gameNo=" + gameNo + ", gameName=" + gameName + ", gameImage=" + gameImage + ", gamePrice="
-				+ gamePrice + ", gameContent=" + gameContent + ", gameCategory=" + gameCategory + "]";
+				+ gamePrice + ", gameContent=" + gameContent + ", gameCategory=" + gameCategory + ", gameGenre="
+				+ gameGenre + ", gameReleasedDate=" + gameReleasedDate + "]";
 	}
+
+	
 	
 	
 }
