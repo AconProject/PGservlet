@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.Date"%>
-<link rel="stylesheet" type="text/css" href="CSS/MemberAdd.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/MemberAdd.css">
 
 <script type="text/javascript" src="js/jquery-3.3.1.js">
 	$(document).ready(function() {
@@ -49,7 +49,7 @@
 <!--나오는 값: 아이디,비빌번호, 비밀번호 확인, 닉네임, 이메일 , 가입일자 (안보이는 값으로)   -->
 
 <form action="MemberAddServlet" method="post" class="addForm">
-	<a href="Main.jsp"><img src="Image/logo.png"></a>
+	<a href="Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
 	<h2>회원가입</h2>
 	<div class="contentform">
 		<div class="row" style="display: inline;">
@@ -82,7 +82,7 @@
 
 		<div class="row">
 			<span class="title" id="tagname">태그 <button 
-				onclick="window.open('GameFolder/TagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button></span>
+				onclick="window.open('tagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button></span>
 			<input type="text" name="mbrGenre" id="mbrGenre"  class="content">
 			<br>
 			
