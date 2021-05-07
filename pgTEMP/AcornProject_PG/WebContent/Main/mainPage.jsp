@@ -100,8 +100,19 @@
 			</div>
         </section>
 
-		<!-- 중단 -->
-        <section class="main-contents">
+		<!-- /////////////////////////////////////중단 ////////////////////////////////////////-->
+	<%-- 	<% ->해당 내용은 gameList.jsp에 포함
+		    List<GameDTO> list = (List<GameDTO>)request.getAttribute("gameList");
+		    for(int i=1;i<=list.size();i++){
+		    	GameDTO dto = list.get(i-1);
+		    	String gameNo = dto.getgGameNo();
+		    	String gameName = dto.getgGameName();
+		    	String gameImage = dto.getGameImage();
+		    	int gamePrice = dto.getGamePrice();
+		    	String gameContent = dto.getGameContent();
+		    	String gameCategory = dto.getGameCategory();
+		 %> --%>
+		<section class="main-contents">
 			<div class="container">
 				<div>
 					<table class="midTable">
