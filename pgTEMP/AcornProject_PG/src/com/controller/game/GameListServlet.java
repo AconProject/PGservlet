@@ -39,11 +39,11 @@ public class GameListServlet extends HttpServlet {
 		GameService service = new GameService();
 		
 		if (gameCategory == null || gameCategory == "new") {
-			gameList = service.newGameListSelect();
+		 	gameList = service.newGameListSelect();
 		} else if (gameCategory == "recommend") {
 			gameList = service.recommendGameListSelect();
 		}
-		request.setAttribute("gameList", gameList);
+		request.setAttribute("gameList2", gameList);
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
 	}
