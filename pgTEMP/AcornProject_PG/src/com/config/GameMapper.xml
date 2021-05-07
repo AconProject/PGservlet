@@ -5,13 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="GameMapper">
 	
 	<select id="newGameListSelect" resultType="GameDTO">
-		SELECT *
+		SELECT gameNo, gameName, gameImage, gamePrice, gameContent, gameContent, gameGenre, '('||to_char(gameReleasedDate,'yyyy')||')'
 		FROM game
 		ORDER BY gameReleaseDate DESC
 	</select>
 	
 	<select id="recommendGameListSelect" resultType="GameDTO">
-		SELECT game.*
+		SELECT game.gameNo, game.gameName, game.gameImage, 
+		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')'
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
@@ -23,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE (game.gameGenre, (SELECT NVL(REPLACE(mbrGenre, ',', '|'), '*')
 		                       FROM member
-		                       WHERE mbrId = #{
+		                       WHERE mbrId = #{mbrId}
 		                       ))
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
 	</select>
@@ -33,5 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM game
 		WHERE gameNo = #{gameNo}
 	</select>
+	
+	<select id="tagGameListChoice" resultType="GameDTO">
+		SELECT gameCategory
+		FROM genre
+	</select>
+	
 	
 </mapper>
