@@ -15,12 +15,12 @@ import com.service.GameService;
 
 
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/MainServlet")
+public class MainServlet_second extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public MainServlet() {
+    public MainServlet_second() {
         super();
     }
 
@@ -28,12 +28,8 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		GameService service = new GameService();
-		List<GameDTO> topList = service.newGameListSelect(); //상단:기본 최신게임
-		request.setAttribute("gameList1", topList); //상단:최신 게임에서 나온 게임 리스트
-		
-		List<GameDTO> middleList = service.tagGameListSelect(null); //중단: 기본장르 액션
-		request.setAttribute("gameList2", middleList); //중단:기본 장르에서 나온 게임 리스트
-		
+		List<GameDTO> list = service.tagGameListSelect(null);
+		request.setAttribute("goodsList", list);
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
 	}

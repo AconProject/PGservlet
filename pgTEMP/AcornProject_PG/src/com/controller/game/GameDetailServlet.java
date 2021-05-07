@@ -29,7 +29,7 @@ public class GameDetailServlet extends HttpServlet {
 		GameDTO dto = service.detailGameSelect(gameNo);
 		request.setAttribute("detailGame", dto);
 		System.out.println("DTO: "+ dto.toString());
-		RequestDispatcher dis = request.getRequestDispatcher("GameDetail.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("detailPage.jsp");
 		dis.forward(request, response);
 		
 	}
