@@ -37,4 +37,16 @@ public class BoardDAO {
 	public List<BoardDTO> boardContentSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
 		return session.selectList("BoardMapper.boardContentSearchSelect", searchMap);
 	}
+	
+	public int boardInsert(SqlSession session, BoardDTO dto) {
+		return session.insert("BoardMapper.boardInsert", dto);
+	}
+	
+	public int boardUpdate(SqlSession session, BoardDTO dto) {
+		return session.update("BoardMapper.boardUpdate", dto);
+	}
+	
+	public int boardDelete(SqlSession session, int boardId) {
+		return session.delete("BoardMapper.boardDelete", boardId);
+	}
 }

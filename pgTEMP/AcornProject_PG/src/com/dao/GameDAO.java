@@ -29,5 +29,4 @@ public class GameDAO {
 		   return dto;
 	}
 
-	
 }

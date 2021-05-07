@@ -7,24 +7,34 @@ public class BoardDTO {
 	private String mbrId;
 	private String boardCategory;
 	private String boardContent;
-	private String boardRecommend;
+	private String boardLiked;
 	private String boardCount;
 	private Date boardDate;
 	
 	public BoardDTO() {
 		super();
 	}
-	public BoardDTO(int boardId, String mbrId, String boardCategory, String boardContent, String boardRecommend,
-			String boardCount, Date boardDate) {
+	
+	public BoardDTO(int boardId, String mbrId, String boardCategory, String boardContent, 
+			String boardLiked, String boardCount, Date boardDate) {
 		super();
 		this.boardId = boardId;
 		this.mbrId = mbrId;
 		this.boardCategory = boardCategory;
 		this.boardContent = boardContent;
-		this.boardRecommend = boardRecommend;
+		this.boardLiked = boardLiked;
 		this.boardCount = boardCount;
 		this.boardDate = boardDate;
 	}
+
+	public String getBoardLiked() {
+		return boardLiked;
+	}
+
+	public void setBoardLiked(String boardLiked) {
+		this.boardLiked = boardLiked;
+	}
+
 	public int getBoardId() {
 		return boardId;
 	}
@@ -49,12 +59,7 @@ public class BoardDTO {
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
-	public String getBoardRecommend() {
-		return boardRecommend;
-	}
-	public void setBoardRecommend(String boardRecommend) {
-		this.boardRecommend = boardRecommend;
-	}
+
 	public String getBoardCount() {
 		return boardCount;
 	}
@@ -70,7 +75,7 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		return "BoardDTO [boardId=" + boardId + ", mbrId=" + mbrId + ", boardCategory=" + boardCategory
-				+ ", boardContent=" + boardContent + ", boardRecommend=" + boardRecommend + ", boardCount=" + boardCount
+				+ ", boardContent=" + boardContent + ", boardCount=" + boardCount
 				+ ", boardDate=" + boardDate + "]";
 	}
 	
