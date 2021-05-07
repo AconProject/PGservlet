@@ -99,4 +99,46 @@ public class BoardService {
 		}
 		return list;
 	}
+	
+	public int boardInsert(BoardDTO dto) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			n = dao.boardInsert(session, dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+	
+	public int boardUpdate(BoardDTO dto) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			n = dao.boardUpdate(session, dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+	
+	public int boardDelete(int boardId) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			n = dao.boardDelete(session, boardId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
 }

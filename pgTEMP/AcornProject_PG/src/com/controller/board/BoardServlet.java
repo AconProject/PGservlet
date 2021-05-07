@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dto.BoardDTO;
 import com.service.BoardService;
@@ -35,6 +36,7 @@ public class BoardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardService service = new BoardService();
+		HttpSession session = request.getSession();
 		String boardKind = request.getParameter("boardKind");
 		if (boardKind.contains("List")) {
 			List<BoardDTO> list = null;
@@ -61,30 +63,31 @@ public class BoardServlet extends HttpServlet {
 		} else if (boardKind.contains("recommend")) {
 			int n;
 			if (boardKind.contentEquals("boardRecommendPlus")) {
-				n = service.boardRecommendPlus();
+				n = service.boardLikePlus();
 			} else {
-				n = service.boardRecommendMinus();
+				n = service.boardLikeMinus();
 			}
 			request.setAttribute("recommend", n);
 			RequestDispatcher dis = request.getRequestDispatcher(""); // board 페이지 중 하나
 		} else {
 			int n;
-			int board = Integer.parseInt(request.getParameter("boardId"));
+			String sess_mbrId = (String) session.getAttribute("sess_mbrId");
+			int boardId = Integer.parseInt(request.getParameter("boardId"));
 			String mbrId = request.getParameter("mbrId");
 			String boardCategory = request.getParameter("boardCategory");
 			String boardContent = request.getParameter("boardContent");
-			String boardRecommend = request.getParameter("boardRecommend");
+			String boardLiked = request.getParameter("boardLiked");
 			String boardCount = request.getParameter("boardCount");
 			long miliSeconds = System.currentTimeMillis();
 			Date boardDate = new Date(miliSeconds);
-			BoardDTO dto = new BoardDTO(board, mbrId, boardCategory, boardContent, boardRecommend
+			BoardDTO dto = new BoardDTO(boardId, mbrId, boardCategory, boardContent, boardLiked
 					, boardCount, boardDate);
-			if (boardKind.contentEquals("boardInsert")) {
+			if (sess_mbrId.contentEquals(mbrId) && boardKind.contentEquals("boardInsert")) {
 				n = service.boardInsert(dto);
-			} else if (boardKind.contentEquals("boardUpdate")) {
+			} else if (sess_mbrId.contentEquals(mbrId) && boardKind.contentEquals("boardUpdate")) {
 				n = service.boardUpdate(dto);
-			} else {
-				n = service.boardDelete(dto);
+			} else if (sess_mbrId.contentEquals(mbrId) && boardKind.contentEquals("boardDelete")){
+				n = service.boardDelete(boardId);
 			}
 		}
 	}

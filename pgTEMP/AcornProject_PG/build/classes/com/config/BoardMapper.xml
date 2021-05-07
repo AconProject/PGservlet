@@ -54,4 +54,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND boardContent LIKE #{searchWord}
 		ORDER BY boardDate DESC
 	</select>
+	
+	<insert id="boardInsert" parameterType="BoardDTO">
+		INSERT board(boardId, mbrId, boardCategory, boardName, boardContent, boardLiked, boardCount, boardDate)
+		VALUES(#{boardID}, #{mbrId}, #{boardCategory}, #{boardName}, #{boardContent}, #{boardLiked}, #{boardCount}, #{boardDate})
+	</insert>
+	
+	<update id="boardUpdate" parameterType="BoardDTO">
+		UPDATE board
+		SET boardCategory = #{boardCategory}, boardName = #{boardName}, boardContent = #{boardContent}
+		WHERE boardId = #{boardId}
+	</update>
+	
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM board
+		WHERE boardId = #{boardId}
+	</delete>
 </mapper>
