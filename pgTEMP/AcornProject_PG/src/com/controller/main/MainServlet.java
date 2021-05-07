@@ -34,6 +34,7 @@ public class MainServlet extends HttpServlet {
 		List<GameDTO> middleList = service.tagGameListSelect(null); //중단: 기본장르 액션
 		request.setAttribute("gameList2", middleList); //중단:기본 장르에서 나온 게임 리스트
 		
+		
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		
 		dis.forward(request, response);
