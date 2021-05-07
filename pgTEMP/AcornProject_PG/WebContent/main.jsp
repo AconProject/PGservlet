@@ -16,7 +16,8 @@
 if (mesg != null) {
 %>
 <script type="text/javascript">
-     alert('<%=mesg%>');
+     alert('<%=mesg%>
+	');
 </script>
 <%
 	}
@@ -26,12 +27,12 @@ if (mesg != null) {
 	<h1>Main화면입니다.</h1>
 
 
-<%-- 	<jsp:include page="Game/gameList.jsp" flush="true"></jsp:include><br>--%>
+	<%-- 	<jsp:include page="Game/gameList.jsp" flush="true"></jsp:include><br>--%>
 	<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	<hr>
 	<jsp:include page="Main/mainPage.jsp" flush="true"></jsp:include>
-	
+
 
 
 
