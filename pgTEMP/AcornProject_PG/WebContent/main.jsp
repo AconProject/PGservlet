@@ -8,7 +8,8 @@
 <!-- <style type="text/css">body{background-image: url("./images/background.png");}</style>-->
 <meta name="description" content="PlayGround" />
 <meta name="author" content="TeamTwo" />
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
+<link rel="icon" type="image/png"
+	href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 
 <%
 	String mesg = (String) session.getAttribute("memberAdd");
@@ -23,10 +24,16 @@ if (mesg != null) {
 </head>
 <body>
 	<h1>Main화면입니다.</h1>
+
+
+<%-- 	<jsp:include page="Game/gameList.jsp" flush="true"></jsp:include><br>--%>
 	<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	<hr>
 	<jsp:include page="Main/mainPage.jsp" flush="true"></jsp:include>
+	
+
+
 
 
 </body>

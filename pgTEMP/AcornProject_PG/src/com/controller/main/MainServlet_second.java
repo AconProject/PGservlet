@@ -1,6 +1,7 @@
-package com.controller.game;
+package com.controller.main;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,29 +14,29 @@ import com.dto.GameDTO;
 import com.service.GameService;
 
 
-@WebServlet("/GameDetailServlet")
-public class GameDetailServlet extends HttpServlet {
+
+@WebServlet("/MainServlet")
+public class MainServlet_second extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public GameDetailServlet() {
+
+    public MainServlet_second() {
         super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String gameNo=request.getParameter("gameNo");
-		GameService service= new GameService();
-		GameDTO dto = service.detailGameSelect(gameNo);
-		request.setAttribute("detailGame", dto);
-		System.out.println("DTO: "+ dto.toString());
-		RequestDispatcher dis = request.getRequestDispatcher("detailPage.jsp");
-		dis.forward(request, response);
 		
+		GameService service = new GameService();
+		List<GameDTO> list = service.tagGameListSelect(null);
+		request.setAttribute("goodsList", list);
+		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
+		dis.forward(request, response);
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
