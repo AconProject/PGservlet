@@ -22,7 +22,7 @@
 					<li><a href="#">게시판</a></li>
 					<li><a href="#">뉴스 및 소식</a></li>
 					<li><a href="../Member/loginForm.jsp">로그인</a></li>
-					<li><a href="MemberAdd.jsp">회원가입</a></li>
+					<li><a href="../Member/memberAddForm.jsp">회원가입</a></li>
 				</ul>
 			</nav>
 		</div>
