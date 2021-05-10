@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dto.GameDTO;
-import com.dto.RateDTO;
 import com.service.GameService;
 import com.service.RateService;
 
@@ -40,7 +39,7 @@ public class GameTagListServlet extends HttpServlet {
 		List<GameDTO> gameList = null;
 		String[] tags = request.getParameterValues("tags"); //세션으로 바꿔야할 지 모르겠음.
 		ArrayList<String> listTags = new ArrayList<String>(Arrays.asList(tags));
-		List<RateDTO> rate = new ArrayList<RateDTO>();
+		List<Double> rate = new ArrayList<Double>();
 		GameService gameService = new GameService();
 		RateService rateService = new RateService();
 		

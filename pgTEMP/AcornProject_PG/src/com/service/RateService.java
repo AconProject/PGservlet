@@ -7,12 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.RateDAO;
-import com.dto.RateDTO;
 
 public class RateService {
-	public List<RateDTO> rateRecommendSelect() {
+	public List<Double> rateRecommendSelect() {
 		SqlSession session = MySqlSessionFactory.getSession();
-		List<RateDTO> rate = null;
+		List<Double> rate = null;
 		try {
 			RateDAO dao = new RateDAO();
 			rate = dao.rateRecommendSelect(session);
@@ -24,9 +23,9 @@ public class RateService {
 		return rate;
 	}
 	
-	public List<RateDTO> rateTagSelect(ArrayList<String> listTags) {
+	public List<Double> rateTagSelect(ArrayList<String> listTags) {
 		SqlSession session = MySqlSessionFactory.getSession();
-		List<RateDTO> rate = null;
+		List<Double> rate = null;
 		try {
 			RateDAO dao = new RateDAO();
 			rate = dao.rateTagSelect(session, listTags);

@@ -4,14 +4,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="RateMapper">
 	
-	<select id="rateRecommendSelect" resultType="RateDTO">
+	<select id="rateRecommendSelect" resultType="double">
 		SELECT *
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
-	<select id="rateTagSelect" resultType="RateDTO">
+	<select id="rateTagSelect" resultType="double">
 		SELECT *
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
