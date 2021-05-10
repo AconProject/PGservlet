@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dto.GameDTO;
+import com.dto.RateDTO;
 import com.service.GameService;
 import com.service.RateService;
 
@@ -37,17 +38,18 @@ public class GameTagListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<GameDTO> gameList = null;
-		String mbrId = request.getParameter("mbrId"); //세션으로 바꿔야할 지 모르겠음.
-		double rate = 0.0;
+		String[] tags = request.getParameterValues("tags"); //세션으로 바꿔야할 지 모르겠음.
+		ArrayList<String> listTags = new ArrayList<String>(Arrays.asList(tags));
+		List<RateDTO> rate = new ArrayList<RateDTO>();
 		GameService gameService = new GameService();
 		RateService rateService = new RateService();
 		
-		if (mbrId == null) {
+		if (tags == null) {
 			gameList = gameService.recommendGameListSelect();
 			rate = rateService.rateRecommendSelect();
 		} else {
-			gameList = gameService.tagGameListSelect(mbrId);
-			rate = rateService.rateTagSelect();
+			gameList = gameService.tagGameListSelect(listTags);
+			rate = rateService.rateTagSelect(listTags);
 		}
 		request.setAttribute("rate", rate);
 		request.setAttribute("gameList", gameList);

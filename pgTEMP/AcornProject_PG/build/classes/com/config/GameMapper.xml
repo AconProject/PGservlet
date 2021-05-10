@@ -17,16 +17,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE game.gameNo = rate.gameNo
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
-
-	<select id="tagGameListSelect" parameterType="string" resultType="GameDTO">
-		SELECT game.*
+	
+	<select id="recommendUserTagGameListSelect" parameterType="string" resultType="GameDTO">
+		SELECT game.gameNo, game.gameName, game.gameImage, 
+		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')'
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE (game.gameGenre, (SELECT NVL(REPLACE(mbrGenre, ',', '|'), '*')
 		                       FROM member
 		                       WHERE mbrId = #{mbrId}
 		                       ))
-		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
+		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
+	</select>
+
+	<select id="tagGameListSelect" parameterType="java.util.ArrayList" resultType="GameDTO">
+		SELECT game.gameNo, game.gameName, game.gameImage, 
+		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')'
+		FROM game, rate
+		WHERE game.gameNo = rate.gameNo
+		AND REGEXP_LIKE 
+		<foreach collection="array" item="item" open="(game.gameGenre, " close=")" separator=",">
+			#{item}
+		</foreach>
+		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
 	<select id="detailGameSelect" resultType="GameDTO">

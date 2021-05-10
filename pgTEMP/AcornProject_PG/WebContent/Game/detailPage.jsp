@@ -50,7 +50,7 @@
 							<td class="tags">
 								<table>
 									<tr>
-										<td><a href="#" class="tag">#로드라이크</a></td>
+										<td><a href="tagServlet?tag=#{tag.value() }" class="tag">#로드라이크</a></td>
 										<td><a href="#" class="tag">#플랫포머</a></td>
 										<td><a href="#" class="tag">#싱글플레이어</a></td>
 									</tr>

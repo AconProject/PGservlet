@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.BoardDTO;
+import com.dto.MemberDTO;
 import com.service.BoardService;
 
 /**
@@ -71,7 +72,7 @@ public class BoardServlet extends HttpServlet {
 			RequestDispatcher dis = request.getRequestDispatcher(""); // board 페이지 중 하나
 		} else {
 			int n;
-			String sess_mbrId = (String) session.getAttribute("sess_mbrId");
+			MemberDTO login = (MemberDTO) session.getAttribute("login");
 			int boardId = Integer.parseInt(request.getParameter("boardId"));
 			String mbrId = request.getParameter("mbrId");
 			String boardCategory = request.getParameter("boardCategory");
@@ -82,11 +83,11 @@ public class BoardServlet extends HttpServlet {
 			Date boardDate = new Date(miliSeconds);
 			BoardDTO dto = new BoardDTO(boardId, mbrId, boardCategory, boardContent, boardLiked
 					, boardCount, boardDate);
-			if (sess_mbrId.contentEquals(mbrId) && boardKind.contentEquals("boardInsert")) {
+			if (login.getMbrId().contentEquals(mbrId) && boardKind.contentEquals("boardInsert")) {
 				n = service.boardInsert(dto);
-			} else if (sess_mbrId.contentEquals(mbrId) && boardKind.contentEquals("boardUpdate")) {
+			} else if (login.getMbrId().contentEquals(mbrId) && boardKind.contentEquals("boardUpdate")) {
 				n = service.boardUpdate(dto);
-			} else if (sess_mbrId.contentEquals(mbrId) && boardKind.contentEquals("boardDelete")){
+			} else if (login.getMbrId().contentEquals(mbrId) && boardKind.contentEquals("boardDelete")){
 				n = service.boardDelete(boardId);
 			}
 		}

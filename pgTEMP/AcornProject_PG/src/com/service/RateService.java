@@ -1,14 +1,18 @@
 package com.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.RateDAO;
+import com.dto.RateDTO;
 
 public class RateService {
-	public double rateRecommendSelect() {
+	public List<RateDTO> rateRecommendSelect() {
 		SqlSession session = MySqlSessionFactory.getSession();
-		double rate = 0.0;
+		List<RateDTO> rate = null;
 		try {
 			RateDAO dao = new RateDAO();
 			rate = dao.rateRecommendSelect(session);
@@ -20,12 +24,12 @@ public class RateService {
 		return rate;
 	}
 	
-	public double rateTagSelect() {
+	public List<RateDTO> rateTagSelect(ArrayList<String> listTags) {
 		SqlSession session = MySqlSessionFactory.getSession();
-		double rate = 0.0;
+		List<RateDTO> rate = null;
 		try {
 			RateDAO dao = new RateDAO();
-			rate = dao.rateTagSelect(session);
+			rate = dao.rateTagSelect(session, listTags);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

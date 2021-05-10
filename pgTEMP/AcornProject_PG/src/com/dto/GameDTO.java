@@ -6,8 +6,14 @@ public class GameDTO {
 	private String gameImage;
 	private int gamePrice;
 	private String gameContent;
-	private String gameCategory;
-	private String gameGenre;
+	private String gameCategory; //1
+	private String gameGenre;// 여러개  "
+	/*
+	 * var gameCategory = 액션 로그라이크,로그라이크,인디,리플레이 가치,어려움"
+	 * gameCategory = gameCategory.split(",");
+	 * for (var i = 0; i < gameCategory.length; i++)
+	 * 	gameCategory[i].valuie(
+	 */
 	private String gameReleasedDate;
 	
 	public GameDTO() {

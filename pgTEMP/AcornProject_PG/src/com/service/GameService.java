@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -38,12 +39,12 @@ public class GameService {
 		return list;
 	}
 	
-	public List<GameDTO> tagGameListSelect(String mbrId) {
+	public List<GameDTO> tagGameListSelect(ArrayList<String> listTags) {
 		List<GameDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			GameDAO dao = new GameDAO();
-			list = dao.tagGameListSelect(session, mbrId);
+			list = dao.tagGameListSelect(session);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -65,5 +66,18 @@ public class GameService {
 		}
 		return dto;
 	}//end idCheck
-
+	
+	public List<GameDTO> recommendUserTagListSelect(String mbrId) {
+		List<GameDTO> list = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			GameDAO dao = new GameDAO();
+			list = dao.recommendUserTagListSelect(session, mbrId);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 }
