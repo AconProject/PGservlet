@@ -67,7 +67,7 @@ hr {
 	background-color: black;
 	height: 2px;
 }
-#category {
+#boardCategory {
 	font-size:17px;
 	width: 200px;
 	margin-top: 30px;
@@ -78,7 +78,7 @@ hr {
 	text-align: center;
 }
 
-#title {
+#boardName {
 	font-size:17px;
 	margin-top:30px;
 	width: 845px;
@@ -88,7 +88,7 @@ hr {
 	text-indent: 15px;
 }
 
-#content {
+#boardContent {
 	width: 1075px;
 	height:500px;
 	margin-top: 30px;
@@ -96,11 +96,11 @@ hr {
 	font-size: 17px;
 	border: 1px solid black;
 	border-radius: 5px;
-	text-indent: 15px;
+	text-indent: 10px;
 	text-align: justify;
 }
 
-#boardsubmit, #reset {
+#boardsubmit, #boardreset {
 	width: 120px;
 	height:40px;
 	margin-top: 20px;
@@ -113,7 +113,7 @@ hr {
 	color: white;
 }
 
-#reset {
+#boardreset {
 	margin-right:20px;
 }
 /* FOOTER
