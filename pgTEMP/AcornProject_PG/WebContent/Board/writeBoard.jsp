@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Write Board</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="CSS/WriteBoard.css" rel="stylesheet">
+    <link href="../CSS/WriteBoard.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
     <header>
 		<div class="wrapper">
-				<a href="main.jsp"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
+				<a href="../Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
 			<nav>
 				<div class="empty"></div>
 				<ul class="nav">
@@ -33,20 +33,22 @@
         <h1>게시글 작성</h1>
         <hr>
         <div class="container">
-		<form class="boardpost" action="" method="post">
+		<form class="boardwrite" action="" method="post">
 		
-			<select class="select_change" name="category" id="category" >
+			<select class="select_category" name="boardCategory" id="boardCategory" >
 				<option selected>Category</option>
 				<option value="게임정보">게임정보</option>
-				<option value="게임정보">질문&답변</option>
-				<option value="게임정보">할인정보</option>
-				<option value="게임정보">자유게시판</option>
-				<option value="게임정보">기타</option>
+				<option value="질문&답변">질문&답변</option>
+				<option value="할인정보">할인정보</option>
+				<option value="자유게시판">자유게시판</option>
+				<option value="기타">기타</option>
 			</select>
 
-			<input type="text" name="boardtitle" id="title" placeholder="제목" ><br>
+			<input type="text" name="boardName" id="boardName" placeholder="제목" ><br>
 			
-			<textarea name="Content" id="content" maxlength="2048" placeholder="(샘플 텍스트)
+			<textarea name="boardContent" id="boardContent" maxlength="2048" placeholder="
+
+(샘플 텍스트)
  
  게임을 다른 사람에게 추천하고 싶으시지만 어떻게 해야 할지 모르시는 분들을 위한 리뷰 작성의 가이드 입니다.
 
@@ -65,7 +67,7 @@
 3. 그대로 사용하시거나 편집(변경)하시어 리뷰 작성하기. "></textarea><br>
 			
 			<button type="submit" name="boardsubmit" id="boardsubmit">제출</button>
-			<button type="reset" name="reset" id="reset">다시쓰기</button>
+			<button type="reset" name="boardreset" id="boardreset">다시쓰기</button>
 				
 		</form>
 		</div>

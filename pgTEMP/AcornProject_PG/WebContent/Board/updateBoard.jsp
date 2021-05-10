@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Update Board</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="CSS/UpdateBoard.css" rel="stylesheet">
+    <link href="../CSS/UpdateBoard.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
     <header>
 		<div class="wrapper">
-				<a href="main.jsp"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
+				<a href="../Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
 			<nav>
 				<div class="empty"></div>
 				<ul class="nav">
@@ -33,23 +33,23 @@
         <h1>게시글 수정</h1>
         <hr>
         <div class="container">
-		<form class="boardpost" action="" method="post">
+		<form class="boardupdate" action="" method="post">
 		
-			<select class="select_change" name="category" id="category" >
+			<select class="select_category" name="boardCategory" id="boardCategory" >
 				<option selected>Category</option>
 				<option value="게임정보">게임정보</option>
-				<option value="게임정보">질문&답변</option>
-				<option value="게임정보">할인정보</option>
-				<option value="게임정보">자유게시판</option>
-				<option value="게임정보">기타</option>
+				<option value="질문&답변">질문&답변</option>
+				<option value="할인정보">할인정보</option>
+				<option value="자유게시판">자유게시판</option>
+				<option value="기타">기타</option>
 			</select>
 
-			<input type="text" name="boardtitle" id="title" placeholder="제목" ><br>
+			<input type="text" name="boardName" id="boardName" placeholder="제목" ><br>
 			
-			<textarea name="Content" id="content" maxlength="2048" placeholder="내용을 작성하세요."></textarea><br>
+			<textarea name="boardContent" id="boardContent" maxlength="2048"></textarea><br>
 			
-			<button type="button" name="update" id="update">수정</button>
-			<button type="button" name="delete" id="delete">삭제</button>
+			<button type="button" name="boardupdate" id="boardupdate">수정</button>
+			<button type="button" name="boarddelete" id="boarddelete">삭제</button>
 				
 		</form>
 		</div>
