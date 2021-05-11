@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="newGameListSelect" resultType="GameDTO">
 		SELECT gameNo, gameName, gameImage, gamePrice, gameContent, gameContent, gameGenre, '('||to_char(gameReleasedDate,'yyyy')||')'
 		FROM game
-		ORDER BY gameReleaseDate DESC
+		ORDER BY gameReleasedDate DESC
 	</select>
 	
 	<select id="recommendGameListSelect" resultType="GameDTO">
