@@ -43,8 +43,10 @@ public class LogOnServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
 		}else {
-			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 다시 입력해주세요");
-			nextPage = "LoginServlet";
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("mesg", "ID/PW 다시 확인해주십시오");		
+			nextPage = "LoginServlet"; //-> loginForm.jsp 
 			
 		}
 

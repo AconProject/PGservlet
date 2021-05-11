@@ -31,7 +31,7 @@ public class MainServlet extends HttpServlet {
 		List<GameDTO> topList = service.newGameListSelect(); //상단:기본 최신게임
 		request.setAttribute("gameList1", topList); //상단:최신 게임에서 나온 게임 리스트
 		
-		List<GameDTO> middleList = service.tagGameListSelect(null); //중단: 기본장르 액션
+		List<GameDTO> middleList = service.tagGameListSelect("action"); //중단: 기본장르 액션:확인 필요.. 
 		request.setAttribute("gameList2", middleList); //중단:기본 장르에서 나온 게임 리스트
 		
 		

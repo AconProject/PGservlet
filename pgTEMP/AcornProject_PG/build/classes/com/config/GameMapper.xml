@@ -33,5 +33,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM game
 		WHERE gameNo = #{gameNo}
 	</select>
+
+
+
+	 <!--연관 게임 리스트-->
+	<select id="relatedGameList" resultType="GameDTO">
+		SELECT *
+		FROM game,rate
+		WHERE game.gameNo = rate.gameNo
+			AND  game.gameCategory = #{gameCategory}
+		ORDER BY  rate.gameScore desc, game.ReleasedDate desc
+	</select>
+	
+	
 	
 </mapper>

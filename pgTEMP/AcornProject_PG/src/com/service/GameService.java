@@ -66,4 +66,18 @@ public class GameService {
 		return dto;
 	}//end idCheck
 
+	public List<GameDTO> relatedGameList(String gameCategory) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<GameDTO> list = null;
+		try {
+			 GameDAO dao = new GameDAO();
+			 list = dao.relatedGameList(session, gameCategory);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
 }

@@ -29,5 +29,12 @@ public class GameDAO {
 		   return dto;
 	}
 
+
+
+	public List<GameDTO> relatedGameList(SqlSession session, String gameCategory) {
+		List<GameDTO> list = session.selectList("GameMapper.relatedGameList", gameCategory);
+		return list;
+	}
+
 	
 }

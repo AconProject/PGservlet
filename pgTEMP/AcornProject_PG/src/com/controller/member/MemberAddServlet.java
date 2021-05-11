@@ -23,7 +23,7 @@ public class MemberAddServlet extends HttpServlet {
 		String mbrPw = request.getParameter("mbrPw");
 		String mbrName= request.getParameter("mbrName");
 		String mbrEmail = request.getParameter("mbrEmail");
-		String mbrRegdate = request.getParameter("mbrRegdate");
+		String mbrRegdate = null;
 		String mbrGenre = request.getParameter("mbrGenre");
 		
 		
@@ -39,6 +39,7 @@ public class MemberAddServlet extends HttpServlet {
 		  HttpSession session = request.getSession(); 
 		  session.setAttribute("memberAdd", "회원가입성공");
 		  session.setMaxInactiveInterval(3600);
+		  
 		  response.sendRedirect("main.jsp");
 		 
 	}

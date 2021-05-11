@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper">
+
+	<select id="reviewSelect" resultType="list">
+		SELECT *
+		FROM review
+		WHERE  review.gameNo=#{gameNo)
+		ORDER BY reviewLiked desc
+	</select>
+	
+	
+
+</mapper>

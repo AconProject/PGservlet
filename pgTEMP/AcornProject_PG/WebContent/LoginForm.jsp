@@ -5,7 +5,7 @@
 <head>
 <style> body{} </style>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="images/gameLogo.png" />
+<link rel="icon" type="${pageContext.request.contextPath}/image/png" href="images/gameLogo.png" />
 
 <title>Insert title here</title>
 </head>

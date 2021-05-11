@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 최초 회원가입 -->
 	<insert id="memberAdd" parameterType="MemberDTO">
 	insert into member (mbrId,mbrPw,mbrName,mbrEmail,mbrGenre,mbrRegdate)
-	values(#{mbrId},#{mbrPw},#{mbrName},#{mbrEmail},NULL,SYSDATE)
+	values(#{mbrId},#{mbrPw},#{mbrName},#{mbrEmail},#{mbrGenre},SYSDATE)
 	</insert>
 	
 	<!-- 최초 회원가입 시 태그 설정 -->

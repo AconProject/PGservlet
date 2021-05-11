@@ -1,6 +1,7 @@
 package com.controller.game;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dto.GameDTO;
+import com.dto.ReviewDTO;
 import com.service.GameService;
+import com.service.ReviewService;
 
 
 @WebServlet("/GameDetailServlet")
@@ -24,11 +27,36 @@ public class GameDetailServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		GameService gservice= new GameService();
+		
+		//1.상단. (게임정보) → detailGame (완료)
 		String gameNo=request.getParameter("gameNo");
-		GameService service= new GameService();
-		GameDTO dto = service.detailGameSelect(gameNo);
-		request.setAttribute("detailGame", dto);
-		System.out.println("DTO: "+ dto.toString());
+		GameDTO gdto = gservice.detailGameSelect(gameNo);
+		request.setAttribute("detailGame", gdto); //게임하나에 대한 정보
+		System.out.println("DTO: "+ gdto.toString());
+		
+		//2. 중단. (리뷰) →reviewList (완료)
+		ReviewService rservice= new ReviewService();
+		List<ReviewDTO> rdto= rservice.reviewSelect(gameNo);
+		request.setAttribute("reviewList", rdto);
+		System.out.println("review DTO: "+rdto.toString());
+		
+		//3. 하단. (관련 게임) → relateGame
+		String gameCategory=gdto.getGameCategory(); //해당 게임 타이틀 정보의 gameCategory()를 가져옴
+		List<GameDTO> gdto2 = gservice.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
+		request.setAttribute("relateGame", gdto2); //해당 값을 relateGame에 저장
+		System.out.println("G_DTO: "+gdto2.toString());
+		
+		
+		//4. update 하기 && 추천순 누르면 올라가기
+		
+		
+		
+		
+		
 		RequestDispatcher dis = request.getRequestDispatcher("detailPage.jsp");
 		dis.forward(request, response);
 		

@@ -8,10 +8,13 @@ import com.dto.MemberDTO;
 
 public class MemberDAO {
 
-	public String idSearch(SqlSession session,
-			MemberDTO dto) {
+	public String idSearch(SqlSession session,MemberDTO dto) {
 		String userid = session.selectOne("MemberMapper.idSearch",dto);
 		return userid;
+	}
+	public String pwSearch(SqlSession session,MemberDTO dto) {
+		String userpw = session.selectOne("MemberMapper.pwSearch",dto);
+		return userpw;
 	}
 	
 	public int memberUpdate(SqlSession session,MemberDTO dto) {

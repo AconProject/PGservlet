@@ -50,8 +50,8 @@
 			<button type="submit" name="login" id="login">L O G I N</button>
 		</div>
 		<div class="check">
-			<a href="FindIdPw.jsp" id="find">아이디/비밀번호 찾기</a> 
-			<a href="memberAddForm.jsp" id="create">회원가입</a>
+			<a href="MemberSearchUIServlet" id="find">아이디/비밀번호 찾기</a> 
+			<a href="MemberUIServlet" id="create">회원가입</a>
 		</div>
 	</form>
 </body>

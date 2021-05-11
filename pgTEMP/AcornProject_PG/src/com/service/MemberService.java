@@ -24,6 +24,19 @@ public class MemberService {
 		}
 		return userid;
 	}
+	public String pwSearch(MemberDTO dto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		String userid = null;
+		try {
+			MemberDAO dao = new MemberDAO();
+			userid = dao.pwSearch(session, dto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return userid;
+	}
 	
 	
   public int memberUpdate(MemberDTO dto) {
@@ -53,6 +66,9 @@ public class MemberService {
 		}
 		  return n;
 	   }//end memberAdd
+	  
+	  
+	  
 	  public int idCheck(String userid) {
 			SqlSession session = MySqlSessionFactory.getSession();
 			int count = 0;

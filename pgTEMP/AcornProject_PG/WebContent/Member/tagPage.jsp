@@ -13,9 +13,13 @@
             var mesg="";
             console.log(tagCheck)
             for (var i = 0; i < tagCheck.length; i++) {
-                   if(tagCheck[i].checked) mesg= mesg+tagCheck[i].value+ "/"
+                   if (tagCheck[i].checked) 
+                	   mesg += "," + tagCheck[i].value
             }
+            mesg = mesg.substring(1);
+            
             opener.document.getElementById("mbrGenre").value=mesg;
+			window.close();		
 		}
 	</script>
 </head>

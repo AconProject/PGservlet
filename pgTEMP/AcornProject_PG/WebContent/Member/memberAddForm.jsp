@@ -79,10 +79,13 @@
 			<span class="title">이메일 *</span> <input type="email" class="content"
 				name="mbrEmail" id="mbrEmail">
 		</div>
-
+		
+		<!--regdate(가입일자): hidd   -->
+		
+		
 		<div class="row">
 			<span class="title" id="tagname">태그 <button 
-				onclick="window.open('tagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button></span>
+				onclick="window.open('Member/tagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button></span>
 			<input type="text" name="mbrGenre" id="mbrGenre"  class="content">
 			<br>
 			

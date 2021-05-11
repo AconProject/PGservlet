@@ -29,11 +29,8 @@ public class GameListServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String gameCategory = request.getParameter("gameCategory");
 		List<GameDTO> gameList = null;
 		GameService service = new GameService();
@@ -43,7 +40,7 @@ public class GameListServlet extends HttpServlet {
 		} else if (gameCategory == "recommend") {
 			gameList = service.recommendGameListSelect();
 		}
-		request.setAttribute("gameList2", gameList);
+		request.setAttribute("gameList", gameList);
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
 	}

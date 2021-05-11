@@ -1,3 +1,5 @@
+<!--게임 중단 페이지  -->
+
 <%-- <%@page import="com.dto.GameDTO"%>
 <%@page import="java.util.List"%> --%>
 
@@ -40,7 +42,7 @@
 							<table style='padding:15px'>
 								<tr>
 									<td>
-<%-- 										 <a href="GameDetailServlet?gameNo=<%=gameNo %>"> </a>
+<%-- 										 	<a href="GameDetailServlet?gameNo=<%=gameNo %>"> </a>
  --%>											<img src="${pageContext.request.contextPath}/Image/sampleGame.jpg" border="0" align="center" width="200">
 										</a>
 									</td>
