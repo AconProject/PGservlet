@@ -7,8 +7,8 @@
 <title>MainPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-    <link href="${pageContext.request.contextPath}/CSS/Main.css" rel="stylesheet">
-    <script type="text/javascript" src="JS/main.js"></script>
+    <link href="${pageContext.request.contextPath}/CSS/Main.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+    <script type="text/javascript" src="JS/main.js?v=<%=System.currentTimeMillis() %>"></script>
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
@@ -134,7 +134,6 @@
 					<input type="checkbox" name="tag" value="tag5">tag5<br>
 					<input type="checkbox" name="tag" value="tag6">tag6<br>
 					<input type="checkbox" name="tag" value="tag7">tag7<br>
-					<div id="result">선택된 태그: </div>
 				</div>
 			</div>
         </section>
@@ -146,8 +145,8 @@
 			</div>
 			<div class="container">
 				<div>
-					<button class="boardBtn">추천</button>
-					<button class="boardBtn">조회</button>
+					<button class="boardBtn" id="recommendedPost">추천</button>
+					<button class="boardBtn" id="mostViewPost">조회</button>
 					<ol class="boardChart">
 						<li><a href="#">
 							title
@@ -176,8 +175,8 @@
 					</ol>
 				</div>
 				<div>
-					<button class="boardBtn">추천</button>
-					<button class="boardBtn">조회</button>
+					<button class="boardBtn" id="recommendedQnA">추천</button>
+					<button class="boardBtn" id="mostViewQnA">조회</button>
 					<ol class="boardChart">
 						<li><a href="#">
 							title
