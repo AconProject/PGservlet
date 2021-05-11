@@ -180,6 +180,10 @@ button {
 	color: white;
 }
 
+.boardBtn:hover {
+	background-color: #36a8d1;
+}
+
 .icon {
 	width: 25px;
 }
