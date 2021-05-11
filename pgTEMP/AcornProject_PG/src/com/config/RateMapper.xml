@@ -5,20 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="RateMapper">
 	
 	<select id="rateRecommendSelect" resultType="double">
-		SELECT rate.gameScore
+		SELECT *
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
 	<select id="rateTagSelect" resultType="double">
-		SELECT rate.gameScore
+		SELECT *
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE
 		<foreach collection="array" item="arr" open="(game.gameGenre, " close=")" separator=",">
 			#{arr}
-		</foreach> 
+		</foreach>
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
 	</select>
 	

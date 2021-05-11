@@ -141,4 +141,17 @@ public class BoardService {
 		}
 		return n;
 	}
+	
+	public void boardLikePlus() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			n = dao.boardDelete(session, boardId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
 }

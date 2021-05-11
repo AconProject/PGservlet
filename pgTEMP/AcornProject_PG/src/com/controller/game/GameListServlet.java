@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dto.GameDTO;
+import com.dto.MemberDTO;
 import com.service.GameService;
 
 /**
@@ -35,15 +37,19 @@ public class GameListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String gameCategory = request.getParameter("gameCategory");
+		HttpSession session = request.getSession();
+		MemberDTO mDto = (MemberDTO)session.getAttribute("login");
 		List<GameDTO> gameList = null;
 		GameService service = new GameService();
 		
 		if (gameCategory == null || gameCategory == "new") {
 		 	gameList = service.newGameListSelect();
-		} else if (gameCategory == "recommend") {
+		} else if (mDto == null && gameCategory == "recommend") {
 			gameList = service.recommendGameListSelect();
+		} else if (mDto != null && gameCategory == "recommend") {
+			gameList = service.recommendUserTagListSelect(mDto.getMbrId());
 		}
-		request.setAttribute("gameList2", gameList);
+		request.setAttribute("gameList", gameList);
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
 	}

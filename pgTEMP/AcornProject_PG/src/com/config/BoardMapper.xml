@@ -39,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY boardDate DESC
 	</select>
 
+	<!-- %넣기 -->
 	<select id="boardTitleSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
@@ -47,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY boardDate DESC
 	</select>
 
+	<!-- %넣기 -->
 	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board

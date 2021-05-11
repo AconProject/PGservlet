@@ -1,13 +1,16 @@
 package com.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 public class RateDAO {
-	public double rateRecommendSelect(SqlSession session) {
-		return session.selectOne("RateMapper.rateRecommendSelect");
+	public List<Double> rateRecommendSelect(SqlSession session) {
+		return session.selectList("RateMapper.rateRecommendSelect");
 	}
 	
-	public double rateTagSelect(SqlSession session) {
-		return session.selectOne("RateMapper.rateTagSelect");
+	public List<Double> rateTagSelect(SqlSession session, ArrayList<String> listTags) {
+		return session.selectList("RateMapper.rateTagSelect", listTags);
 	}
 }
