@@ -15,11 +15,15 @@ window.onload = function(){
 
 	// 상단 게임 리스트 데이터 ajax 요청
 	fetch('GameListServlet')
-		.then(res => res.json())
 		.then(res => {
-			if (res.success) {
+			if (res.status === 200) {
 				console.log(res);
+			} else {
+				throw new Error('Unable to fetch');
 			}
+		})
+		.catch(err => {
+			console.log(err);
 		});
 };
 
