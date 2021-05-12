@@ -14,7 +14,13 @@ window.onload = function(){
 	});
 
 	// 상단 게임 리스트 데이터 ajax 요청
-	
+	fetch('GameListServlet')
+		.then(res => res.json())
+		.then(res => {
+			if (res.success) {
+				console.log(res);
+			}
+		});
 };
 
 // 최신게임 불러오기
