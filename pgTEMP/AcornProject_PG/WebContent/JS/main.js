@@ -13,19 +13,14 @@ window.onload = function(){
 		tag.addEventListener('click', getCheckboxValue, false);
 	});
 
-	// main servlet에 ajax 요청
-	const xhr = new XMLHttpRequest();
-	const requestURL = 'GameListServlet';
-	xhr.open('GET', requestURL, true);
-	xhr.send();
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			console.log(xhr.resquest("gameList"));
-		}
-		else {
-			console.log('error!');
-		}
-	};
+	// 상단 게임 리스트 데이터 ajax 요청
+	fetch('GameListServlet')
+		.then(res => res.json())
+		.then(res => {
+			if (res.success) {
+				console.log(res);
+			}
+		});
 };
 
 // 최신게임 불러오기
