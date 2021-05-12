@@ -30,7 +30,7 @@ public class MainServlet_second extends HttpServlet {
 		GameService service = new GameService();
 		List<GameDTO> list = service.tagGameListSelect(null);
 		request.setAttribute("goodsList", list);
-		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
 		dis.forward(request, response);
 	}
 
