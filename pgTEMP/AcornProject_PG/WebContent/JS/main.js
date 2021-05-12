@@ -15,12 +15,12 @@ window.onload = function(){
 
 	// main servlet에 ajax 요청
 	const xhr = new XMLHttpRequest();
-	const requestURL = '../src/com/main/MainServelt.java';
+	const requestURL = 'GameListServlet';
 	xhr.open('GET', requestURL, true);
 	xhr.send();
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			console.log(xhr.response);
+			console.log(xhr.resquest("gameList"));
 		}
 		else {
 			console.log('error!');

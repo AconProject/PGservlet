@@ -50,7 +50,7 @@ public class GameListServlet extends HttpServlet {
 			gameList = service.recommendUserTagListSelect(mDto.getMbrId());
 		}
 		request.setAttribute("gameList", gameList);
-		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
 		dis.forward(request, response);
 	}
 
