@@ -49,4 +49,16 @@ public class BoardDAO {
 	public int boardDelete(SqlSession session, int boardId) {
 		return session.delete("BoardMapper.boardDelete", boardId);
 	}
+	
+	public int boardLikePlus(SqlSession session, String boardId) {
+		return session.update("BoardMapper.boardLikePlus", boardId);
+	}
+	
+	public int boardLikeMinus(SqlSession session, String boardId) {
+		return session.update("BoardMapper.boardLikePlus", boardId);
+	}
+	
+	public BoardDTO boardDetailSelect(SqlSession session, String boardId) {
+		return session.selectOne("BoardMapper.boardDetailSelect", boardId);
+	}
 }

@@ -100,7 +100,7 @@ public class BoardService {
 		return list;
 	}
 	
-	public int boardInsert(BoardDTO dto) {
+	public boolean boardInsert(BoardDTO dto) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -111,10 +111,10 @@ public class BoardService {
 		} finally {
 			session.close();
 		}
-		return n;
+		return n == 1 ? true : false;
 	}
 	
-	public int boardUpdate(BoardDTO dto) {
+	public boolean boardUpdate(BoardDTO dto) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -125,10 +125,10 @@ public class BoardService {
 		} finally {
 			session.close();
 		}
-		return n;
+		return n == 1 ? true : false;
 	}
 	
-	public int boardDelete(int boardId) {
+	public boolean boardDelete(int boardId) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -139,19 +139,48 @@ public class BoardService {
 		} finally {
 			session.close();
 		}
-		return n;
+		return n == 1 ? true : false;
 	}
 	
-	public void boardLikePlus() {
+	public int boardLikePlus(String boardId) {
+		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			BoardDAO dao = new BoardDAO();
-			n = dao.boardDelete(session, boardId);
+			n = dao.boardLikePlus(session, boardId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 		return n;
+	}
+	
+	public int boardLikeMinus(String boardId) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			n = dao.boardLikeMinus(session, boardId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+	
+	public BoardDTO boardDetailSelect(String boardId) {
+		BoardDTO dto = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			dto = dao.boardDetailSelect(session, boardId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
 	}
 }
