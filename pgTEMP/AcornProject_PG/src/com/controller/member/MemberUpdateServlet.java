@@ -20,7 +20,6 @@ import com.service.MemberService;
 public class MemberUpdateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO)session.getAttribute("login");
 		String nextPage=null;

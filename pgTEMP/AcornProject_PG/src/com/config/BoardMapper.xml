@@ -58,8 +58,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="boardInsert" parameterType="BoardDTO">
-		INSERT board(boardId, mbrId, boardCategory, boardName, boardContent, boardLiked, boardCount, boardDate)
-		VALUES(#{boardID}, #{mbrId}, #{boardCategory}, #{boardName}, #{boardContent}, #{boardLiked}, #{boardCount}, #{boardDate})
+		INSERT INTO board(boardId,mbrId,boardCategory,boardName,boardContent,boardCount,boardLiked,boardDate) 
+		VALUES(boardSeq.NEXTVAL,#{mbrId},#{boardCategory},#{boardName},#{boardContent},0,0,SYSDATE)
 	</insert>
 	
 	<update id="boardUpdate" parameterType="BoardDTO">
@@ -72,4 +72,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM board
 		WHERE boardId = #{boardId}
 	</delete>
+	
+	<update id="boardLikeCount" parameterType="Hashmap">
+		SELECT count(*)
+        FROM liked
+        WHERE boardId = #{boardId}
+        AND mbrId = #{mbrId}
+	</update>
+	
+	<update id="boardLikePlus" parameterType="string">
+		UPDATE board
+	     SET boardLiked = boardLiked + 1
+	     WHERE boardId = #{boardId}
+	</update>
+	
+	<update id="boardLikeMinus" parameterType="string">
+		UPDATE board
+	     SET boardLiked = boardLiked - 1
+	     WHERE boardId = #{boardId}
+	</update>
+	
+	<select id="boardDetailSelect" parameterType="string">
+		SELECT *
+		FROM board
+		WHERE boardId = #{boardId}
+	</select>
 </mapper>

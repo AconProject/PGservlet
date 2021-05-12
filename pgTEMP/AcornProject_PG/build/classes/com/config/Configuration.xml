@@ -30,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/BoardMapper.xml"/>
 		<mapper resource="com/config/RateMapper.xml"/>
 		<mapper resource="com/config/NewsMapper.xml"/>
+		<mapper resource="com/config/LikeMapper.xml"/>
 	</mappers>
 </configuration>
 
