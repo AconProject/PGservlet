@@ -1,9 +1,9 @@
 package com.controller.game;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +36,7 @@ public class GameListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
 		String gameCategory = request.getParameter("gameCategory");
 		HttpSession session = request.getSession();
 		MemberDTO mDto = (MemberDTO)session.getAttribute("login");
@@ -49,9 +50,12 @@ public class GameListServlet extends HttpServlet {
 		} else if (mDto != null && gameCategory == "recommend") {
 			gameList = service.recommendUserTagListSelect(mDto.getMbrId());
 		}
-		request.setAttribute("gameList", gameList);
-		RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
-		dis.forward(request, response);
+		
+		PrintWriter out = response.getWriter();
+		out.println(gameList);
+//		request.setAttribute("gameList", gameList);
+//		RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
+//		dis.forward(request, response);
 	}
 
 	/**
