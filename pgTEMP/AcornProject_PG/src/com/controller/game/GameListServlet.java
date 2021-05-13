@@ -1,9 +1,9 @@
 package com.controller.game;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +21,7 @@ import com.service.GameService;
  */
 @WebServlet("/GameListServlet")
 public class GameListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,35 +31,39 @@ public class GameListServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String gameCategory = request.getParameter("gameCategory");
-		HttpSession session = request.getSession();
-		MemberDTO mDto = (MemberDTO)session.getAttribute("login");
-		List<GameDTO> gameList = null;
-		GameService service = new GameService();
-		
-		if (gameCategory == null || gameCategory == "new") {
-		 	gameList = service.newGameListSelect();
-		} else if (mDto == null && gameCategory == "recommend") {
-			gameList = service.recommendGameListSelect();
-		} else if (mDto != null && gameCategory == "recommend") {
-			gameList = service.recommendUserTagListSelect(mDto.getMbrId());
-		}
-		request.setAttribute("gameList", gameList);
-		RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
-		dis.forward(request, response);
-	}
+   /**
+    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      response.setContentType("text/html;charset=utf-8");
+      String gameCategory = request.getParameter("gameCategory");
+      HttpSession session = request.getSession();
+      MemberDTO mDto = (MemberDTO)session.getAttribute("login");
+      List<GameDTO> gameList = null;
+      GameService service = new GameService();
+      
+      if (gameCategory == null || gameCategory == "new") {
+          gameList = service.newGameListSelect();
+      } else if (mDto == null && gameCategory == "recommend") {
+         gameList = service.recommendGameListSelect();
+      } else if (mDto != null && gameCategory == "recommend") {
+         gameList = service.recommendUserTagListSelect(mDto.getMbrId());
+      }
+      
+      PrintWriter out = response.getWriter();
+      out.println(gameList);
+//      request.setAttribute("gameList", gameList);
+//      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
+//      dis.forward(request, response);
+   }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      doGet(request, response);
+   }
 
 }

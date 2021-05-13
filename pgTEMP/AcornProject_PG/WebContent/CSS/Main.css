@@ -76,7 +76,7 @@ nav {
 }
 
 .topTable td, .midTable td {
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	padding-left: 30px;
 }
 
@@ -95,6 +95,7 @@ nav {
 
 .tag {
 	color: rgb(64, 147, 214);
+	font-size: 1rem;
 }
 
 .topChart {
@@ -191,11 +192,20 @@ button {
 }
 
 .icon {
-	width: 25px;
+	width: 15px;
 }
 
 .boardChart li {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
+	list-style-position: inside;
+}
+
+.icon + span {
+	font-size: 0.8rem;
+}
+
+small {
+	font-size: 0.8rem;
 }
 
 

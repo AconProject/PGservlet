@@ -72,9 +72,9 @@
 							<td class="center"><a href="#">Sample Game</a></td>
 						</tr>
 						<tr>
-							<td class="center">(2019)</td>
-							<td class="center">(2019)</td>
-							<td class="center">(2019)</td>
+							<td class="center"><small>(2019)</small></td>
+							<td class="center"><small>(2019)</small></td>
+							<td class="center"><small>(2019)</small></td>
 						</tr>
 						<tr>
 							<td class="center"><a href="#" class="tag">#태그</a></td>
@@ -167,26 +167,26 @@
 					<ol class="boardChart">
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 					</ol>
@@ -197,26 +197,26 @@
 					<ol class="boardChart">
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 						<li><a href="#">
 							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> 123
-							<img class="icon" src="Image/thumb.png" alt="추천수"> 12
+							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
+							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
 							</a><hr>
 						</li>
 					</ol>
