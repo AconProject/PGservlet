@@ -9,6 +9,23 @@
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link href="${pageContext.request.contextPath}/CSS/Main.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
     <script type="text/javascript" src="JS/main.js?v=<%=System.currentTimeMillis() %>"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$.ajax({
+				type: 'GET',
+				url: 'GameListServlet',
+				dataType: 'text',
+				success: function(data, status, xhr){
+					console.log(data);
+				},
+				error: function(xhr, status, e){
+					console.log('error', e);
+					console.log('status', status);
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
