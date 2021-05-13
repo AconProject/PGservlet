@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+<<<<<<< HEAD
+=======
+import org.json.simple.JSONObject;
+>>>>>>> 8d9293bbc138e40f6b31df8f1fb988d196fb3f52
 
 import com.dto.GameDTO;
 import com.dto.MemberDTO;
@@ -49,7 +53,11 @@ public class GameListServlet extends HttpServlet {
       Gson gson = new GsonBuilder().create();
       JSONArray jsonList = new JSONArray();
       
+<<<<<<< HEAD
       if (gameCategory == null || gameCategory == "new") {	
+=======
+      if (gameCategory == null || gameCategory == "new") {   
+>>>>>>> 8d9293bbc138e40f6b31df8f1fb988d196fb3f52
           gameList = service.newGameListSelect();
       } else if (mDto == null && gameCategory == "recommend") {
          gameList = service.recommendGameListSelect();
@@ -58,9 +66,19 @@ public class GameListServlet extends HttpServlet {
       }
       PrintWriter out = response.getWriter();
       for (GameDTO dto : gameList) {
+<<<<<<< HEAD
     	  jsonList.add(gson.toJson(dto));
       }
       out.println(jsonList);
+=======
+         jsonList.add(gson.toJson(dto));
+      }
+      out.println(jsonList);
+
+//      request.setAttribute("gameList", gameList);
+//      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
+//      dis.forward(request, response);
+>>>>>>> 8d9293bbc138e40f6b31df8f1fb988d196fb3f52
    }
 
    /**
