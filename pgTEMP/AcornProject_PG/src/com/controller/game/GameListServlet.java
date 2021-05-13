@@ -63,6 +63,7 @@ public class GameListServlet extends HttpServlet {
       }
       out.println(jsonList);
 
+
 //      request.setAttribute("gameList", gameList);
 //      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
 //      dis.forward(request, response);
