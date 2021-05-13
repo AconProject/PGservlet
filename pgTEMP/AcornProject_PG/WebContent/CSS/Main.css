@@ -132,9 +132,15 @@ button {
 .score {
 	width: 120px;
 	height: 120px;
-	text-align: center;
 	background-color: #ffc952;
 	border-radius: 20%;
+	display: table;
+	text-align: center;
+}
+
+.score span {
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .tagScroll {
