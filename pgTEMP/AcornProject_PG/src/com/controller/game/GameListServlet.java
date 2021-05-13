@@ -11,8 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.dto.GameDTO;
 import com.dto.MemberDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.GameService;
 
 /**
@@ -42,8 +47,10 @@ public class GameListServlet extends HttpServlet {
       MemberDTO mDto = (MemberDTO)session.getAttribute("login");
       List<GameDTO> gameList = null;
       GameService service = new GameService();
+      Gson gson = new GsonBuilder().create();
+      JSONArray jsonList = new JSONArray();
       
-      if (gameCategory == null || gameCategory == "new") {
+      if (gameCategory == null || gameCategory == "new") {   
           gameList = service.newGameListSelect();
       } else if (mDto == null && gameCategory == "recommend") {
          gameList = service.recommendGameListSelect();
@@ -52,8 +59,9 @@ public class GameListServlet extends HttpServlet {
       }
       PrintWriter out = response.getWriter();
       for (GameDTO dto : gameList) {
-         out.println(dto);
+         jsonList.add(gson.toJson(dto));
       }
+      out.println(jsonList);
 
 //      request.setAttribute("gameList", gameList);
 //      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");

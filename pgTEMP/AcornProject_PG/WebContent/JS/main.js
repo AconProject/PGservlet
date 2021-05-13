@@ -14,15 +14,22 @@ window.onload = function(){
 	});
 
 	getNewGame();
-	
+	getTagGame();
+	getNewPost();
+	getNewQnA();
+	getNews();
 };
+
+function jsonParser(data){
+	console.log(data[0]);
+}
 
 // 상단 최신게임 불러오기
 function getNewGame(){
 	fetch('GameListServlet')
-		.then(res => res.text())
+		.then(res => res.json())
 		.then(data => {
-			console.log(data);
+			jsonParser(data);
 		})
 		.catch(err => {
 			console.log(err);
@@ -31,10 +38,29 @@ function getNewGame(){
 
 // 상단 추천게임 불러오기
 function getRecommendedGame(){
-	console.log('click2');
+	fetch('GameListServlet')
+		.then(res => res.json())
+		.then(data => {
+			console.log(data[0]);
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 // 중단 태그별 게임 불러오기
+function getTagGame(){
+	// fetch('GameTagListServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
+}
+
+// 중단 태그 클릭시 게임리스트 변경
 function getCheckboxValue(){
 	const query = 'input[name="tag"]:checked';
 	const selectedEls = 
@@ -48,22 +74,79 @@ function getCheckboxValue(){
 	console.log(result);
 }
 
+// 하단 게임게시판 최신순으로 불러오기
+function getNewPost(){
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
+}
+
 // 하단 게임게시판 추천수 정렬
 function getRecommendedPost(){
-	console.log('click3');
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
 }
 
 // 하단 게임게시판 조회수 정렬
 function getMostViewPost(){
-	console.log('click4');
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
+}
+
+// 하단 QnA게시판 최신순으로 불러오기
+function getNewQnA(){
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
 }
 
 // 하단 QnA게시판 추천수 정렬
 function getRecommendedQnA(){
-	console.log('click5');
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
 }
 
 // 하단 QnA게시판 조회수 정렬
 function getMostViewQnA(){
-	console.log('click6');
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
+}
+
+// 하단 뉴스게시판 불러오기
+function getNews(){
+	//
 }
