@@ -127,19 +127,19 @@
 							<td>1.</td>
 							<td><a href="#"><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></a></td>
 							<td><a href="#">Sample Game <small>(2019)</small></a></td>
-							<td><div class="score">95.5</div></td>
+							<td><div class="score"><span>95.5</span></div></td>
 						</tr>
 						<tr>
 							<td>2.</td>
 							<td><a href="#"><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></a></td>
 							<td><a href="#">Sample Game <small>(2019)</small></a></td>
-							<td><div class="score">95.5</div></td>
+							<td><div class="score"><span>95.5</span></div></td>
 						</tr>
 						<tr>
 							<td>3.</td>
 							<td><a href="#"><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></a></td>
 							<td><a href="#">Sample Game <small>(2019)</small></a></td>
-							<td><div class="score">95.5</div></td>
+							<td><div class="score"><span>95.5</span></div></td>
 						</tr>
 					</table>
 				</div>
