@@ -3,7 +3,6 @@ package com.controller.board;
 import java.io.IOException;
 import java.util.HashMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,23 +39,23 @@ public class BoardLikeServlet extends HttpServlet {
 		HashMap<String, String> ids = new HashMap<>();
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
 		String boardId = request.getParameter("boardId");
-		int like = Integer.parseInt(request.getParameter("like"));
+		int boardLike = Integer.parseInt(request.getParameter("boardLike"));
 		int cnt = 0;
 		boolean isComplete = false;
-		System.out.println("현재 좋아요 개수 : " + like);
+		System.out.println("현재 좋아요 개수 : " + boardLike);
 		ids.put("boardId", boardId);
 		ids.put("mbrId", login.getMbrId());
 		cnt = lService.likeBoardCount(ids);
 		if (cnt >= 1) {
-			like += bService.boardLikeMinus(boardId) * -1;
+			boardLike += bService.boardLikeMinus(boardId) * -1;
 			isComplete = lService.likeBoardDelete(ids);
 		} else {
-			like += bService.boardLikePlus(boardId);
+			boardLike += bService.boardLikePlus(boardId);
 			isComplete = lService.likeBoardInsert(ids);
 		}
-		System.out.println("좋아요 : " + like + " , liked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);
+		System.out.println("좋아요 : " + boardLike + " , boardLiked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);
 		
-		request.setAttribute("like", like);
+		request.setAttribute("boardLike", boardLike);
 	}
 
 

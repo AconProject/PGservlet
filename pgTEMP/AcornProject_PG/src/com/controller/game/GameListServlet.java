@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import com.dto.GameDTO;
 import com.dto.MemberDTO;
@@ -62,11 +61,6 @@ public class GameListServlet extends HttpServlet {
     	  jsonList.add(gson.toJson(dto));
       }
       out.println(jsonList);
-
-
-//      request.setAttribute("gameList", gameList);
-//      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
-//      dis.forward(request, response);
    }
 
    /**
