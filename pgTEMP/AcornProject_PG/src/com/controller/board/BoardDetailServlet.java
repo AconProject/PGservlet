@@ -36,7 +36,7 @@ public class BoardDetailServlet extends HttpServlet {
 		BoardDTO dto = service.boardDetailSelect(boardId);
 		System.out.println("게임 상세 페이지 :" + dto);
 		request.setAttribute("board", dto);
-		RequestDispatcher dis = request.getRequestDispatcher("boardPage?boardId" + boardId);
+		RequestDispatcher dis = request.getRequestDispatcher("boardPage?boardId=" + boardId + ".jsp");
 		dis.forward(request, response);
 	}
 

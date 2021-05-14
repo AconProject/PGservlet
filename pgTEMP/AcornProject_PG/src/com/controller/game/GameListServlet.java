@@ -57,15 +57,13 @@ public class GameListServlet extends HttpServlet {
       } else if (mDto != null && gameCategory == "recommend") {
          gameList = service.recommendUserTagListSelect(mDto.getMbrId());
       }
+      
       PrintWriter out = response.getWriter();
       for (GameDTO dto : gameList) {
-         jsonList.add(gson.toJson(dto));
+    	  jsonList.add(gson.toJson(dto));
       }
       out.println(jsonList);
 
-//      request.setAttribute("gameList", gameList);
-//      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
-//      dis.forward(request, response);
    }
 
    /**
