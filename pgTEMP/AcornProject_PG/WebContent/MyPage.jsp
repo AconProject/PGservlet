@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyPage</title>
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 </head>
 <body>
 <h1>회원상세 페이지 화면입니다.</h1>

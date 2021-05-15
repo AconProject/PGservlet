@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.Date"%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/MemberAdd.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}//CSS/MemberAdd.css">
 
-<script type="text/javascript" src="js/jquery-3.3.1.js">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
 	$(document).ready(function() {
 
 		$("form").on("submit", function() {
@@ -44,6 +47,14 @@
 			}
 		});
 	});
+	
+	// 태그페이지 넘어가기
+	var tagPage;
+	function tag() {
+		console.log("tagPage!!");
+		tagPage = window.open("Member/tagPage.jsp","","width=200,height=300,left=700,top=650,scrollbars=1,location=no,resizable=no");
+	}
+	
 </script>
 
 <!--나오는 값: 아이디,비빌번호, 비밀번호 확인, 닉네임, 이메일 , 가입일자 (안보이는 값으로)   -->
@@ -52,44 +63,42 @@
 	<a href="Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
 	<h2>회원가입</h2>
 	<div class="contentform">
+	
 		<div class="row" style="display: inline;">
-			<span class="title">아이디 * <span id="idcheck"
-				style="margin-left: 10px; font-size: 13px;"></span>
-			</span> <input type="text" class="content" name="mbrId" id="mbrId" autofocus>
+			<span class="title">아이디 * 
+				<span id="idcheck"></span>
+			</span> 
+			<input type="text" class="content" name="mbrId" id="mbrId" autofocus>
 		</div>
 
 		<div class="row">
-			<span class="title">비밀번호 *</span> <input type="text" class="content"
-				name="mbrPw" id="mbrPw" autocomplete="off"
-				placeholder="   비밀번호는 6자리 이상이어야 합니다.">
+			<span class="title">비밀번호 *</span> 
+			<input type="text" class="content" name="mbrPw" id="mbrPw" autocomplete="off" placeholder=" 비밀번호는 6자리 이상이어야 합니다.">
 		</div>
 
 		<div class="row" style="display: inline;">
-			<span class="title">비밀번호 확인 * <span id="pwcheck"
-				style="margin-left: 10px; font-size: 13px;"></span>
-			</span> <input type="text" class="content" name="mbrPw2" id="mbrPw2">
+			<span class="title">비밀번호 확인 * 
+				<span id="pwcheck"></span>
+			</span> 
+			<input type="text" class="content" name="mbrPw2" id="mbrPw2">
 		</div>
 
 		<div class="row">
-			<span class="title">닉네임 *</span> <input type="text" class="content"
-				name="mbrName" id="mbrName">
+			<span class="title">닉네임 *</span> 
+			<input type="text" class="content" name="mbrName" id="mbrName">
 		</div>
 
 		<div class="row">
-			<span class="title">이메일 *</span> <input type="email" class="content"
-				name="mbrEmail" id="mbrEmail">
+			<span class="title">이메일 *</span> 
+			<input type="email" class="content" name="mbrEmail" id="mbrEmail">
 		</div>
 
 		<div class="row">
-			<span class="title" id="tagname">태그 <button 
-				onclick="window.open('tagPage.jsp','','width=200,height=300,left=670,top=500,scrollbars=1,location=no,resizable=no'); return false;">Tag</button></span>
-			<input type="text" name="mbrGenre" id="mbrGenre"  class="content">
-			<br>
+			<span class="title" id="tagname">태그</span> 
+			<button name="mbrGenre" id="tagbtn" onclick="tag()">Tag</button>
+			<span id="mbrGenre"></span>
+		</div>
 			
-		</div>
-		
-
-
 		<div class="button">
 			<input type="submit" value="제 출">
 		</div>

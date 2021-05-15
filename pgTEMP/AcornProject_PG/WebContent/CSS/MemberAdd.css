@@ -81,6 +81,7 @@ img{
 	width: 80%;
 	margin-left: 50px;
 	font-size: 15px;
+	text-indent: 10px;
 }
 
 .tag {
@@ -93,6 +94,10 @@ img{
 	border: 1px solid black;
 }
 
+#idcheck, #pwcheck{
+	margin-left: 10px; 
+	font-size: 13px;
+}
 .tags {
 	margin-left:43px;
 	margin-right:30px;
@@ -117,7 +122,7 @@ div.button input {
 #tagname {
 	margin-bottom: 0px;
 }
-#mbrGenre {
+#tagbtn {
 	width:80px;
 	height:30px;
 	margin:10px 55px;
@@ -131,4 +136,9 @@ div.button input {
 	border-radius: 5px;
 	font-family: Electrolize;
 	font-weight: 800;
+}
+#mbrGenre {
+	display: block;
+	font-size: 18px;
+	margin: 10px 55px;
 }
