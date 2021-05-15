@@ -39,25 +39,13 @@
 			<div class="container">
 				<div>
 					<table class="topTable">
+						<tr id="topTableNum"></tr>
+						<tr id="topTableImg"></tr>
+						<tr id="topTableName"></tr>
 						<tr>
-							<td>1.</td>
-							<td>2.</td>
-							<td>3.</td>
-						</tr>
-						<tr>
-							<td><a href="#"><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#"><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-							<td><a href="#"><img class="gameImg" src="${pageContext.request.contextPath}/Image/sampleGame.jpg" alt="게임 이미지"></a></td>
-						</tr>
-						<tr>
-							<td class="center"><a href="#">Sample Game</a></td>
-							<td class="center"><a href="#">Sample Game</a></td>
-							<td class="center"><a href="#">Sample Game</a></td>
-						</tr>
-						<tr>
-							<td class="center"><small>(2019)</small></td>
-							<td class="center"><small>(2019)</small></td>
-							<td class="center"><small>(2019)</small></td>
+							<td class="center">(2019)</small></td>
+							<td class="center">(2019)</small></td>
+							<td class="center">(2019)</small></td>
 						</tr>
 						<tr>
 							<td class="center"><a href="#" class="tag">#태그</a></td>
@@ -67,36 +55,7 @@
 					</table>
 				</div>
 				<div>
-					<ol class="topChart" start="4">
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-						<li><a href="#">
-							Sample Game
-							<small>(2019)</small>
-						</a></li>
-					</ol>
+					<ol class="topChart" id="topChart" start="4"></ol>
 				</div>
 			</div>
         </section>

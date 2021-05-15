@@ -76,17 +76,17 @@ nav {
 }
 
 .topTable td, .midTable td {
-	font-size: 1.4rem;
-	padding-left: 30px;
+	font-size: 1.2rem;
+	padding-left: 20px;
+}
+
+.topTable td, .gameImg {
+	width: 200px;
 }
 
 .topTable tr:first-child td {
 	font-size: 1.5rem;
 	font-weight: bold;
-}
-
-.gameImg {
-	width: 150px;
 }
 
 .center {
@@ -101,12 +101,13 @@ nav {
 .topChart {
 	list-style-position: outside;
 	margin-top: 20px;
-	margin-right: 40px;
+	margin-right: 20px;
 }
 
 .topChart li {
 	padding: 0px 10px;
-	font-size: 1.5rem;
+	width: 250px;
+	font-size: 1rem;
 	margin-bottom: 10px;
 }
 
@@ -201,10 +202,6 @@ button {
 }
 
 .icon + span {
-	font-size: 0.8rem;
-}
-
-small {
 	font-size: 0.8rem;
 }
 
