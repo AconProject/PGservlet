@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="likeBoardInsert" parameterType="Hashmap">
 		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
-		VALUES("시퀀스", #{mbrId}, #{boardId}, null, null)
+		VALUES(likedSeq.NEXTVAL, #{mbrId}, #{boardId}, null, null)
 	</insert>
 	
 	<delete id="likeBoardDelete" parameterType="Hashmap">
@@ -21,4 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE mbrId = #{mbrId}
 		AND boardId = #{boardId}
 	</delete>
+	
+	<delete id="likeReplyDelete" parameterType="Hashmap">
+		DELETE FROM liked
+		WHERE mbrId = #{mbrId}
+		AND replyId = #{replyId}
+	</delete>
+	
+	<insert id="likeReplyInsert" parameterType="Hashmap">
+		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
+		VALUES (likedSeq.NEXTVAL, #{mbrId}, null, null, #{replyId})
+	</insert>
 </mapper>

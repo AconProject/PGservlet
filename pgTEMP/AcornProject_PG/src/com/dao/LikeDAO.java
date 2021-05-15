@@ -17,4 +17,12 @@ public class LikeDAO {
 	public int likeBoardDelete(SqlSession session, HashMap<String, String> ids) {
 		return session.delete("LikeMapper.likeBoardDelete", ids);
 	}
+	
+	public int likeReplyDelete(SqlSession session, HashMap<String, String> ids) {
+		return session.delete("LikeMapper.likeReplyDelete", ids);
+	}
+	
+	public int likeReplyInsert(SqlSession session, HashMap<String, String> ids) {
+		return session.insert("LikeMapper.likeReplyInsert", ids);
+	}
 }

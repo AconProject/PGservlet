@@ -36,34 +36,7 @@ public class GameListServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-<<<<<<< HEAD
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
-		String gameCategory = request.getParameter("gameCategory");
-		HttpSession session = request.getSession();
-		MemberDTO mDto = (MemberDTO)session.getAttribute("login");
-		List<GameDTO> gameList = null;
-		GameService service = new GameService();
-		
-		if (gameCategory == null || gameCategory == "new") {
-		 	gameList = service.newGameListSelect();
-		} else if (mDto == null && gameCategory == "recommend") {
-			gameList = service.recommendGameListSelect();
-		} else if (mDto != null && gameCategory == "recommend") {
-			gameList = service.recommendUserTagListSelect(mDto.getMbrId());
-		}
-		
-		PrintWriter out = response.getWriter();
-		out.println(gameList);
-//		request.setAttribute("gameList", gameList);
-//		RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
-//		dis.forward(request, response);
-	}
-=======
+
    /**
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
@@ -85,17 +58,15 @@ public class GameListServlet extends HttpServlet {
       } else if (mDto != null && gameCategory == "recommend") {
          gameList = service.recommendUserTagListSelect(mDto.getMbrId());
       }
+      
       PrintWriter out = response.getWriter();
       for (GameDTO dto : gameList) {
-         jsonList.add(gson.toJson(dto));
+    	  jsonList.add(gson.toJson(dto));
       }
       out.println(jsonList);
 
-//      request.setAttribute("gameList", gameList);
-//      RequestDispatcher dis = request.getRequestDispatcher("Main.jsp");
-//      dis.forward(request, response);
    }
->>>>>>> c8d808e0c348e2a7de8d608a34f6d2963af9de17
+
 
    /**
     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

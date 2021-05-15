@@ -49,4 +49,32 @@ public class LikeService {
 		}
 		return cnt == 1 ? true : false;
 	}
+	
+	public boolean likeReplyDelete(HashMap<String, String> ids) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int cnt = 0;
+		try {
+			LikeDAO dao = new LikeDAO();
+			cnt = dao.likeReplyDelete(session, ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return cnt == 1 ? true : false;
+	}
+	
+	public boolean likeReplyInsert(HashMap<String, String> ids) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int cnt = 0;
+		try {
+			LikeDAO dao = new LikeDAO();
+			cnt = dao.likeReplyInsert(session, ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return cnt == 1 ? true : false;
+	}
 }
