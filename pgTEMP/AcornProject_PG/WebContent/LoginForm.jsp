@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="images/gameLogo.png" />
 
-<title>Insert title here</title>
+<title>Login</title>
 </head>
 <body>
 	<h1>로그인 화면입니다.</h1>

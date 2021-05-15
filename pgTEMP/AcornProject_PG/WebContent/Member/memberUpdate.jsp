@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,15 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="CSS/MemberUpdate.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../CSS/MemberUpdate.css" rel="stylesheet">
 </head>
+
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
     <header>
 		<div class="wrapper">
 			<h1>
-				<a href="Main.jsp"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
+				<a href="Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
 			</h1>
 			<nav>
 				<div class="empty"></div>
@@ -26,24 +28,33 @@
 			</nav>
 		</div>
     </header>
-
+	
+	<% 
+		MemberDTO dto =(MemberDTO)session.getAttribute("login");
+	    String mbrId = dto.getMbrId();
+	    String mbrName = dto.getMbrName();
+	    String mbrPw = dto.getMbrPw();
+	    String mbrEmail = dto.getMbrEmail();
+	    String mbrGenre = dto.getMbrGenre();
+	    String mbrRegdate = dto.getMbrRegdate();
+	%>
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
     <div class="wrapper">
 		<h2>회원정보 수정</h2>
 		<!-- 상단 -->
         <section class="main-contents">
-			<form action="" method="post">
+			<form action="MemberUpdateServlet" method="post">
 				<input type="hidden" value="" name="mbrId">
 				<!-- hidden으로 데이터 전달  -->
-				<div class="member">아이디 &nbsp;&nbsp;&nbsp; aaa</div><br>
+				<div class="member">아이디 &nbsp;&nbsp;&nbsp; <%= mbrId %></div><br>
 				
 				<div class="member">닉네임 &nbsp;&nbsp;&nbsp;
-				<input type="text" class="mbrinfo" value="bbb" name="mbrName" id="mbrName">
+				<input type="text" class="mbrinfo" value="<%= mbrName %>" name="mbrName" id="mbrName">
 				</div><br>
 				
 				<div class="member">이메일 &nbsp;&nbsp;&nbsp;
-				<input type="email" class="mbrinfo" value="ccc@ccc.com" name="mbrEmail" id="mbrEmail">
+				<input type="email" class="mbrinfo" value="<%= mbrEmail %>" name="mbrEmail" id="mbrEmail">
 				</div><br>
 				
 				<div class="member">
