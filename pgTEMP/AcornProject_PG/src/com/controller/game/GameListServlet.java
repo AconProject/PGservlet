@@ -36,6 +36,7 @@ public class GameListServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+
    /**
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
@@ -65,6 +66,7 @@ public class GameListServlet extends HttpServlet {
       out.println(jsonList);
 
    }
+
 
    /**
     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
