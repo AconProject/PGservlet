@@ -1,6 +1,6 @@
 window.onload = function(){
 	// 버튼 클릭 이벤트 등록
-	document.getElementById('newGame').addEventListener('click', getNewGame, false);
+	document.getElementById('newGame').addEventListener('click', getNewGameEvent, false);
 	document.getElementById('recommendedGame').addEventListener('click', getRecommendedGame, false);
 	document.getElementById('recommendedPost').addEventListener('click', getRecommendedPost, false);
 	document.getElementById('mostViewPost').addEventListener('click', getMostViewPost, false);
@@ -20,6 +20,14 @@ window.onload = function(){
 	getNews();
 };
 
+/* 모든 요소 삭제(데이터 갱신 시 기존 데이터 삭제 위함) */
+function removeAllElements(query) {
+	let removeEles = document.querySelectorAll(query);
+	for (let i=0; i<removeEles.length; i++){
+		removeEles[i].parentNode.removeChild(removeEles[i]);
+	}
+}
+
 /* JSP에 새로운 태그 및 컨텐츠 삽입 */
 function insertElement(childTag, parentId, content, attr, attrVal){
 	let newEle = document.createElement(childTag);
@@ -33,29 +41,30 @@ function insertElement(childTag, parentId, content, attr, attrVal){
 
 /* 상단에 표시할 게임데이터 파싱 후 출력 */
 function jsonParserForTop(data){
-	// servlet 변경 후
+	// servlet 변경 후 아래로 바꿀 것
 	// for (let i=0; i<data.length; i++){
 	for (let i=0; i<10; i++){
 		let jsonObj = JSON.parse(data[i]);
-		console.log(jsonObj);
-		console.log(jsonObj.gameCategory);
-		console.log(jsonObj.gameReleasedDate);
 		if (i<3){
 			insertElement('td', 'topTableNum', (i+1)+'.');
 			insertElement('td', 'topTableImg',
 				'<img class="gameImg" src="'+jsonObj.gameImage+'">');
 			insertElement('td', 'topTableName', jsonObj.gameName);
-			// 게임 대표장르, 출시년도 데이터 필요
+			insertElement('td', 'topTableYear',
+				'('+jsonObj.gameReleasedDate+')', 'class', 'center');
+			insertElement('td', 'topTableCategory',
+				'#'+jsonObj.gameCategory, 'class', 'center tag');
+			// 미해결: 대표장르, 출시년도 undefined로 뜸
 		} else {
-			insertElement('li', 'topChart', jsonObj.gameName);
-			// 게임 출시년도 데이터 필요
+			insertElement('li', 'topChart',
+				jsonObj.gameName + jsonObj.gameReleasedDate);
 		}
 	}
 }
 
-/* 상단 최신게임 불러오기 */
+/* 상단 최신게임 불러오기(페이지 첫 로딩) */
 function getNewGame(){
-	fetch('GameListServlet')
+	fetch('GameListServlet?gameCategory=new')
 		.then(res => res.json())
 		.then(data => {
 			jsonParserForTop(data);
@@ -65,16 +74,32 @@ function getNewGame(){
 		});
 }
 
+/* 상단 최신게임 불러오기(버튼 클릭) */
+function getNewGameEvent(){
+	fetch('GameListServlet?gameCategory=new')
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('.topTable td');
+			removeAllElements('.topChart li');
+			jsonParserForTop(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+}
+
 /* 상단 추천게임 불러오기 */
 function getRecommendedGame(){
-	// fetch('GameListServlet')
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		jsonParserForTop(data);
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
+	fetch('GameListServlet?gameCategory=recommend')
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('.topTable td');
+			removeAllElements('.topChart li');
+			jsonParserForTop(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 중단 태그별 게임 불러오기 */
