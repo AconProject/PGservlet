@@ -1,6 +1,7 @@
 package com.controller.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dto.BoardDTO;
+import com.dto.ReplyDTO;
 import com.service.BoardService;
+import com.service.ReplyService;
 
 /**
  * Servlet implementation class BoardDetailServlet
@@ -32,8 +35,10 @@ public class BoardDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardId = request.getParameter("boardId");
-		BoardService service = new BoardService();
-		BoardDTO dto = service.boardDetailSelect(boardId);
+		BoardService bService = new BoardService();
+		ReplyService rService = new ReplyService();
+		BoardDTO dto = bService.boardDetailSelect(boardId);
+		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
 		System.out.println("게임 상세 페이지 :" + dto);
 		request.setAttribute("board", dto);
 		RequestDispatcher dis = request.getRequestDispatcher("boardPage?boardId=" + boardId + ".jsp");

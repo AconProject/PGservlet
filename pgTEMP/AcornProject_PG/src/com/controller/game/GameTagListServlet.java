@@ -61,9 +61,10 @@ public class GameTagListServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		int limit = gameList.size();
+		System.out.println(rate + "\t" + gameList);
 	      for (int i = 0; i < limit; i++ ) {
 	    	  JSONObject json = new JSONObject();
-	    	  json.put("rate", rate.get(i));
+	    	  json.put("rate" + Integer.toString(i), rate.get(i));
 	    	  jsonList.add(gson.toJson(gameList.get(i)));
 	    	  jsonList.add(json);
 	      }
