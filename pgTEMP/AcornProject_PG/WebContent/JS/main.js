@@ -57,7 +57,7 @@ function jsonParserForTop(data){
 			// 미해결: 대표장르, 출시년도 undefined로 뜸
 		} else {
 			insertElement('li', 'topChart',
-				jsonObj.gameName + jsonObj.gameReleasedDate);
+				jsonObj.gameName + '(' +jsonObj.gameReleasedDate + ')');
 		}
 	}
 }
