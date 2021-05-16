@@ -12,13 +12,14 @@
 
 <%
 	String mesg = (String) session.getAttribute("memberAdd");
-if (mesg != null) {
+	if (mesg != null) {
 %>
 <script type="text/javascript">
      alert('<%=mesg%>');
 </script>
 <%
 	session.removeAttribute("memberAdd");
+
 	}
 %>
 </head>

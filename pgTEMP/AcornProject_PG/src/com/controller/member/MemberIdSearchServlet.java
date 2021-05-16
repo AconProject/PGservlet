@@ -37,7 +37,7 @@ public class MemberIdSearchServlet extends HttpServlet {
 
 		if (mbrId == null) { // findId.jsp로 돌아가서 alert 창 띄우기
 			nextPage = "MemberIdSearchUIServlet";
-			request.setAttribute("mesg", "다시 입력해주십시오. ");
+			request.setAttribute("mesg", "다시 확인해 주십시오. ");
 		} else {
 			nextPage = "LoginForm.jsp";
 			request.setAttribute("mbrId", "회원님의 아이디는 "+ mbrId +" 입니다. 다시 로그인하세요!");

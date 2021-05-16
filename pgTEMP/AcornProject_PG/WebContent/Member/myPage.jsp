@@ -1,6 +1,7 @@
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link href="${pageContext.request.contextPath}/CSS/MyPage.css" rel="stylesheet">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -98,6 +99,7 @@
 	 				<div class="menu" id="update" onclick="location.href='${pageContext.request.contextPath}/Member/MemberUpdate.jsp'">정보수정</div>
 				</div>
 				<div class="content">
+				
 					<form action="${pageContext.request.contextPath}/Member/memberUpdate.jsp" method="post">
 
 						<div class="member">아이디 &nbsp;&nbsp;&nbsp; <span><%= mbrId %></span>
