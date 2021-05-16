@@ -68,11 +68,10 @@
    String [] category = mbrGenre.split(",");
    
 %>
-<form action="MemberUpdateServlet" method="post">
 <header>
 		<div class="wrapper">
 			<h1>
-				<a href="${pageContext.request.contextPath}/main.jsp"><img class="logo" src="${pageContext.request.contextPath}/Image/logo.png" alt="로고 이미지"></a>
+				<a href="Main.jsp"><img class="logo" src="${pageContext.request.contextPath}/Image/logo.png" alt="로고 이미지"></a>
 			</h1>
 			<nav>
 				<div class="empty"></div>
@@ -96,11 +95,12 @@
 			<div class="container">
 				<div class="side">
 	 				<div class="menu" id="profile" onclick="location.href='${pageContext.request.contextPath}/MyPage.jsp'">프로필</div>
-	 				<div class="menu" id="update" onclick="location.href='${pageContext.request.contextPath}/Member/MemberUpdate.jsp'">정보수정</div>
+	 				<div class="menu" id="update" onclick="location.href='${pageContext.request.contextPath}/Member/memberUpdate.jsp'">정보수정</div>
 				</div>
+				
 				<div class="content">
 				
-					<form action="${pageContext.request.contextPath}/Member/memberUpdate.jsp" method="post">
+					
 
 						<div class="member">아이디 &nbsp;&nbsp;&nbsp; <span><%= mbrId %></span>
 						</div><br>
@@ -119,8 +119,9 @@
 							<a href="#" class="tag">#<%= category[4] %></a>
 						</div><br>
 						
-						<button type="submit">수 정</button>
-					</form>
+						<button type="submit" onclick = "location.href='${pageContext.request.contextPath}/Member/memberUpdate.jsp'">수 정</button>
+					
+					
 				</div>
 			</div>
         </section>
@@ -133,4 +134,3 @@
         </div>
     </footer>
 
-</form>
