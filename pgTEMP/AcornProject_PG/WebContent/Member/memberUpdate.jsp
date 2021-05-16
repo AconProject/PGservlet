@@ -10,6 +10,23 @@
 <link href="${pageContext.request.contextPath}/CSS/MemberUpdate.css" rel="stylesheet">
 </head>
 
+<script type="text/javascript">
+
+		function result() {
+            var tagCheck= document.getElementsByName("tag"); //전부다 가져옴
+            var mesg="";
+            console.log(tagCheck)
+            for (var i = 0; i < tagCheck.length; i++) {
+                   if (tagCheck[i].checked) 
+                	   mesg += "," + tagCheck[i].value
+            }
+            mesg = mesg.substring(1);
+            
+            document.getElementById("mbrGenre").value=mesg;
+	
+		}
+</script>
+	
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
     <header>
@@ -47,8 +64,9 @@
 		<h2>회원정보 수정</h2>
 		<!-- 상단 -->
         <section class="main-contents">
-			<form action="MemberUpdateServlet" method="post">
-				<input type="hidden" value="" name="mbrId">
+        
+			<form action="Member" method="post">
+				<input type="hidden" value="" name="mbrId" id="mbrId">
 				<!-- hidden으로 데이터 전달  -->
 				<div class="member">아이디 &nbsp;&nbsp;&nbsp; <%= mbrId %></div><br>
 				
@@ -62,6 +80,7 @@
 				
 				<div class="member">
 					선호장르
+					<input type="text" name="mbrGenre" id="mbrGenre"  class="content">
 					<table border="1">
 						<tr>
 							<td>

@@ -2,34 +2,25 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GameMapper">
+<mapper namespace="LikeMapper">
+
+
+
+	<!--댓글:삽입 -->
+	<insert id="likeInsert" parameterType="LikeDTO">
+		Insert
+		INTO liked (reviewId,mbrId)
+		VALUES (#{reviewId},#{mbrId})
+	</insert>
+
 	
-	<select id="likeBoardCount" parameterType="Hashmap" resultType="int">
-		SELECT count(*)
+	<!--좋아요한 리스트 가져오기-->
+	<select id="reviewLikeCheck" parameterType="int" resultType="list">
+		SELECT mbrId
 		FROM liked
-		WHERE mbrId = #{mbrId}
-		AND boardId = #{boardId}
+		WHERE reviewId=#{reviewId}
 	</select>
+
 	
-	<insert id="likeBoardInsert" parameterType="Hashmap">
-		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
-		VALUES(likedSeq.NEXTVAL, #{mbrId}, #{boardId}, null, null)
-	</insert>
-	
-	<delete id="likeBoardDelete" parameterType="Hashmap">
-		DELETE FROM liked
-		WHERE mbrId = #{mbrId}
-		AND boardId = #{boardId}
-	</delete>
-	
-	<delete id="likeReplyDelete" parameterType="Hashmap">
-		DELETE FROM liked
-		WHERE mbrId = #{mbrId}
-		AND replyId = #{replyId}
-	</delete>
-	
-	<insert id="likeReplyInsert" parameterType="Hashmap">
-		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
-		VALUES (likedSeq.NEXTVAL, #{mbrId}, null, null, #{replyId})
-	</insert>
+
 </mapper>
