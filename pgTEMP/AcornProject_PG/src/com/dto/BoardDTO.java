@@ -6,6 +6,7 @@ public class BoardDTO {
 	private int boardId;
 	private String mbrId;
 	private String mbrName;
+	private String boardName;
 	private String boardCategory;
 	private String boardContent;
 	private int boardLiked;
@@ -16,20 +17,37 @@ public class BoardDTO {
 		super();
 	}
 	
-	
 
-	public BoardDTO(int boardId, String mbrId, String mbrName, String boardCategory, String boardContent,
-			int boardLiked, int boardCount, Date boardDate) {
+
+
+	public BoardDTO(int boardId, String mbrId, String mbrName, String boardName, String boardCategory,
+			String boardContent, int boardLiked, int boardCount, Date boardDate) {
 		super();
 		this.boardId = boardId;
 		this.mbrId = mbrId;
 		this.mbrName = mbrName;
+		this.boardName = boardName;
 		this.boardCategory = boardCategory;
 		this.boardContent = boardContent;
 		this.boardLiked = boardLiked;
 		this.boardCount = boardCount;
 		this.boardDate = boardDate;
 	}
+
+
+
+
+	public String getBoardName() {
+		return boardName;
+	}
+
+
+
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
+
 
 
 
