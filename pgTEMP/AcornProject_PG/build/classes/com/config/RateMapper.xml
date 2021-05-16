@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
+		AND rownum &lt; 5
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
@@ -19,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<foreach collection="array" item="arr" open="(game.gameGenre, " close=")" separator=",">
 			#{arr}
 		</foreach>
+		AND rownum &lt; 5
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
 	</select>
 	

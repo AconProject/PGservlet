@@ -25,12 +25,12 @@ public class GameService {
 		return list;
 	}
 	
-	public List<GameDTO> recommendGameListSelect() {
+	public List<GameDTO> recommendGameListSelect(int limit) {
 		List<GameDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			GameDAO dao = new GameDAO();
-			list = dao.recommendGameListSelect(session);
+			list = dao.recommendGameListSelect(session, limit);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally { 

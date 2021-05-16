@@ -44,15 +44,15 @@ public class BoardListMainServlet extends HttpServlet {
 		BoardService boardService = new BoardService();
 	    Gson gson = new GsonBuilder().create();
 	    JSONArray jsonList = new JSONArray();  
-		List<BoardDTO> qnaList = null;
+		List<BoardDTO> infoList = null;
 		
-		if (infoCategory == null || infoCategory == "recommend") {
-			qnaList = boardService.recommendInfoBoardSelect();
+		if (infoCategory == null || infoCategory.contentEquals("recommend")) {
+			infoList = boardService.recommendInfoBoardSelect();
 		} else {
-			qnaList = boardService.hitInfoBoardSelect();
+			infoList = boardService.hitInfoBoardSelect();
 		}
 		PrintWriter out = response.getWriter();
-		for (BoardDTO dto : qnaList) {
+		for (BoardDTO dto : infoList) {
 			jsonList.add(gson.toJson(dto));
 		}
 	    out.println(jsonList);

@@ -1,18 +1,23 @@
 package com.controller.game;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.dto.GameDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.GameService;
 import com.service.RateService;
 
@@ -42,19 +47,26 @@ public class GameTagListServlet extends HttpServlet {
 		List<Double> rate = new ArrayList<Double>();
 		GameService gameService = new GameService();
 		RateService rateService = new RateService();
+		Gson gson = new GsonBuilder().create();
+	    JSONArray jsonList = new JSONArray();
 		
 		if (tags == null) {
-			gameList = gameService.recommendGameListSelect();
+			gameList = gameService.recommendGameListSelect(6);
 			rate = rateService.rateRecommendSelect();
 		} else {
 			gameList = gameService.tagGameListSelect(listTags);
 			rate = rateService.rateTagSelect(listTags);
 		}
-		request.setAttribute("rate", rate);
-		request.setAttribute("gameList", gameList);
-		//jsp 경로 추가해야함 
-		RequestDispatcher dis = request.getRequestDispatcher("???");
-		dis.forward(request, response);
+		
+		PrintWriter out = response.getWriter();
+		int limit = gameList.size();
+	      for (int i = 0; i < limit; i++ ) {
+	    	  JSONObject json = new JSONObject();
+	    	  json.put("rate", rate.get(i));
+	    	  jsonList.add(gson.toJson(gameList.get(i)));
+	    	  jsonList.add(json);
+	      }
+	      out.println(jsonList);
 	}
 
 	/**

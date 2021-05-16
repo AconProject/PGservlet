@@ -13,8 +13,8 @@ public class GameDAO {
 		return list;
 	}
 	
-	public List<GameDTO> recommendGameListSelect(SqlSession session) {
-		List<GameDTO> list = session.selectList("GameMapper.recommendGameListSelect");
+	public List<GameDTO> recommendGameListSelect(SqlSession session, int limit) {
+		List<GameDTO> list = session.selectList("GameMapper.recommendGameListSelect", limit);
 		return list;
 	}
 	
