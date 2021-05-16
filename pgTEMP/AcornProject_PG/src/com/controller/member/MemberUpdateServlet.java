@@ -34,8 +34,10 @@ public class MemberUpdateServlet extends HttpServlet {
 					
 			MemberDTO dto2 =
 					new MemberDTO(mbrId,mbrPw,mbrName,mbrEmail,mbrRegdate,mbrGenre);			
+			System.out.println("dto2: " + dto2);
 			MemberService service = new MemberService();
 			int num = service.memberUpdate(dto2);
+			System.out.println("num : " + num);
 			nextPage = "main";
 		}else {
 			nextPage = "LoginUIServlet";

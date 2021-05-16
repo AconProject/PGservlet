@@ -22,6 +22,10 @@ public class MemberIdSearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
 		String mbrName = request.getParameter("mbrName").trim();
 		String mbrEmail = request.getParameter("mbrEmail").trim();
 

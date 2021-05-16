@@ -37,6 +37,9 @@
 	    String mbrEmail = dto.getMbrEmail();
 	    String mbrGenre = dto.getMbrGenre();
 	    String mbrRegdate = dto.getMbrRegdate();
+	    
+	    System.out.println("마마마마마마 "+dto.toString());
+	    System.out.println("나나나나나나 "+mbrId);
 	%>
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
