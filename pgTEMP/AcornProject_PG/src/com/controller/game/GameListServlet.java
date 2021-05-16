@@ -54,7 +54,7 @@ public class GameListServlet extends HttpServlet {
       if (gameCategory == null || gameCategory.contentEquals("new")) {   
           gameList = service.newGameListSelect();
       } else if (mDto == null && gameCategory.contentEquals("recommend")) {
-         gameList = service.recommendGameListSelect();
+         gameList = service.recommendGameListSelect(11);
       } else if (mDto != null && gameCategory.contentEquals("recommend")) {
          gameList = service.recommendUserTagListSelect(mDto.getMbrId());
       }
