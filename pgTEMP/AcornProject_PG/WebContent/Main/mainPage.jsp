@@ -76,62 +76,12 @@
 				<div>
 					<button class="boardBtn" id="recommendedPost">추천</button>
 					<button class="boardBtn" id="mostViewPost">조회</button>
-					<ol class="boardChart">
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-					</ol>
+					<ol class="boardChart" id="boardPost"></ol>
 				</div>
 				<div>
 					<button class="boardBtn" id="recommendedQnA">추천</button>
 					<button class="boardBtn" id="mostViewQnA">조회</button>
-					<ol class="boardChart">
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-					</ol>
+					<ol class="boardChart" id="boardQnA"></ol>
 				</div>
 			</div>
 			<div class="news">
