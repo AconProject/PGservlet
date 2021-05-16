@@ -59,13 +59,10 @@
 					<table class="midTable" id="midTable"></table>
 				</div>
 				<div class="tagScroll">
-					<input type="checkbox" name="tag" value="tag1">tag1<br>
-					<input type="checkbox" name="tag" value="tag2">tag2<br>
-					<input type="checkbox" name="tag" value="tag3">tag3<br>
-					<input type="checkbox" name="tag" value="tag4">tag4<br>
-					<input type="checkbox" name="tag" value="tag5">tag5<br>
-					<input type="checkbox" name="tag" value="tag6">tag6<br>
-					<input type="checkbox" name="tag" value="tag7">tag7<br>
+					<input type="checkbox" name="tag" value="협동">협동<br>
+					<input type="checkbox" name="tag" value="웅장한 사운드트랙">웅장한 사운드트랙<br>
+					<input type="checkbox" name="tag" value="무료">무료<br>
+					<input type="checkbox" name="tag" value="생존">생존<br>
 				</div>
 			</div>
         </section>
