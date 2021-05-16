@@ -56,7 +56,10 @@ public class GameTagListServlet extends HttpServlet {
 			rate = rateService.rateRecommendSelect();
 		} else {
 			String[] tags = tag.split(",");
-			ArrayList<String> listTags = new ArrayList<String>(Arrays.asList(tags));
+			for (String t : tags) {
+				System.out.println(t);
+			}
+			List<String> listTags = new ArrayList<String>(Arrays.asList(tags));
 
 			gameList = gameService.tagGameListSelect(listTags);
 			rate = rateService.rateTagSelect(listTags);
