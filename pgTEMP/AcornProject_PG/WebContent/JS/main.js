@@ -2,9 +2,9 @@ window.onload = function(){
 	// 버튼 클릭 이벤트 등록
 	document.getElementById('newGame').addEventListener('click', getNewGameEvent, false);
 	document.getElementById('recommendedGame').addEventListener('click', getRecommendedGame, false);
-	document.getElementById('recommendedPost').addEventListener('click', getRecommendedPost, false);
+	document.getElementById('recommendedPost').addEventListener('click', getRecommendedPostEvent, false);
 	document.getElementById('mostViewPost').addEventListener('click', getMostViewPost, false);
-	document.getElementById('recommendedQnA').addEventListener('click', getRecommendedQnA, false);
+	document.getElementById('recommendedQnA').addEventListener('click', getRecommendedQnAEvent, false);
 	document.getElementById('mostViewQnA').addEventListener('click', getMostViewQnA, false);
 
 	// 중단 게임 태그 선택 이벤트 등록 
@@ -15,12 +15,12 @@ window.onload = function(){
 
 	getNewGame();
 	getTagGame();
-	getNewPost();
-	getNewQnA();
+	getRecommendedPost();
+	getRecommendedQnA();
 	getNews();
 };
 
-/* 모든 요소 삭제(데이터 갱신 시 기존 데이터 삭제 위함) */
+/* 모든 요소 삭제 (데이터 갱신 시 기존 데이터 삭제 위함) */
 function removeAllElements(query) {
 	let removeEles = document.querySelectorAll(query);
 	for (let i=0; i<removeEles.length; i++){
@@ -84,7 +84,7 @@ function jsonParserForMiddle(data){
 	}
 }
 
-/* 상단 최신게임 불러오기(페이지 첫 로딩) */
+/* 상단 최신게임 불러오기 (페이지 첫 로딩) */
 function getNewGame(){
 	fetch('GameListServlet?gameCategory=new')
 		.then(res => res.json())
@@ -96,7 +96,7 @@ function getNewGame(){
 		});
 }
 
-/* 상단 최신게임 불러오기(버튼 클릭) */
+/* 상단 최신게임 불러오기 (버튼 클릭) */
 function getNewGameEvent(){
 	fetch('GameListServlet?gameCategory=new')
 		.then(res => res.json())
@@ -110,7 +110,7 @@ function getNewGameEvent(){
 		});
 }
 
-/* 상단 추천게임 불러오기 */
+/* 상단 추천게임 불러오기 (버튼 클릭)*/
 function getRecommendedGame(){
 	fetch('GameListServlet?gameCategory=recommend')
 		.then(res => res.json())
@@ -139,16 +139,18 @@ function getTagGame(){
 /* 중단 태그별 게임 불러오기 (태그 클릭) */
 function getTagGameEvent(tags){
 	fetch('GameTagListServlet?tags='+tags)
-		.then(res => res.json())
-		.then(data => {
-			jsonParserForMiddle(data);
-		})
+		.then(res => {console.log(res.text());})
+		// .then(res => res.json())
+		// .then(data => {
+		// 	removeAllElements('.midTable tr');
+		// 	jsonParserForMiddle(data);
+		// })
 		.catch(err => {
 			console.log(err);
 		});
 }
 
-/* 중단 태그 클릭 이벤트 */
+/* 중단 태그 클릭 이벤트 (버튼 클릭) */
 function getCheckboxValue(){
 	const query = 'input[name="tag"]:checked';
 	const selectedEls = 
@@ -158,24 +160,25 @@ function getCheckboxValue(){
 	selectedEls.forEach((el) => {
 		result += el.value + ',';
 	});
-	
+	console.log(result.slice(0, result.length-1));
 	getTagGameEvent(result);
 }
 
-/* 하단 게임게시판 최신순으로 불러오기 */
-function getNewPost(){
-	// fetch('BoardListMainServlet')
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		console.log(data[0]);
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
-}
-
-/* 하단 게임게시판 추천수 정렬 */
+/* 하단 게임게시판 추천순으로 불러오기 (페이지 첫 로딩) */
 function getRecommendedPost(){
+	fetch('BoardListMainServlet')
+		.then(res => {console.log(res.text());})
+		// .then(res => res.json())
+		// .then(data => {
+		// 	console.log(data);
+		// })
+		.catch(err => {
+			console.log(err);
+		});
+}
+
+/* 하단 게임게시판 추천순으로 불러오기 (버튼 클릭) */
+function getRecommendedPostEvent(){
 	// fetch('BoardListMainServlet')
 	// 	.then(res => res.json())
 	// 	.then(data => {
@@ -186,7 +189,7 @@ function getRecommendedPost(){
 	// 	});
 }
 
-/* 하단 게임게시판 조회수 정렬 */
+/* 하단 게임게시판 조회수 정렬 (버튼 클릭) */
 function getMostViewPost(){
 	// fetch('BoardListMainServlet')
 	// 	.then(res => res.json())
@@ -198,19 +201,7 @@ function getMostViewPost(){
 	// 	});
 }
 
-/* 하단 QnA게시판 최신순으로 불러오기 */
-function getNewQnA(){
-	// fetch('BoardListMainServlet')
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		console.log(data[0]);
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
-}
-
-/* 하단 QnA게시판 추천수 정렬 */
+/* 하단 QnA게시판 추천수 정렬 (페이지 첫 로딩) */
 function getRecommendedQnA(){
 	// fetch('BoardListMainServlet')
 	// 	.then(res => res.json())
@@ -222,7 +213,19 @@ function getRecommendedQnA(){
 	// 	});
 }
 
-/* 하단 QnA게시판 조회수 정렬 */
+/* 하단 QnA게시판 추천수 정렬 (버튼 클릭) */
+function getRecommendedQnAEvent(){
+	// fetch('BoardListMainServlet')
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log(data[0]);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	});
+}
+
+/* 하단 QnA게시판 조회수 정렬 (버튼 클릭) */
 function getMostViewQnA(){
 	// fetch('BoardListMainServlet')
 	// 	.then(res => res.json())
