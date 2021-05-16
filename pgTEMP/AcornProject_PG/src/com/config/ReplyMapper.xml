@@ -16,4 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     WHERE boardId = #{replyId}
 	</update>
 	
+	<select id="replyListSelect" parameterType="string">
+		SELECT *
+		FROM reply
+		WHERE boardId = #{boardId}
+	</select>
+	
 </mapper>
