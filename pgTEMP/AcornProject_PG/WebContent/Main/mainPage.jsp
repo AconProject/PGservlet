@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link href="${pageContext.request.contextPath}/CSS/Main.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
-    <script type="text/javascript" src="JS/main.js?v=<%=System.currentTimeMillis() %>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/JS/main.js?v=<%=System.currentTimeMillis() %>"></script>
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->

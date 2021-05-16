@@ -1,11 +1,13 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.LikeDAO;
+import com.dto.LikeDTO;
 
 public class LikeService {
 	public int likeBoardCount(HashMap<String, String> ids) {
@@ -76,5 +78,34 @@ public class LikeService {
 			session.close();
 		}
 		return cnt == 1 ? true : false;
+	}
+	
+	
+	// 현수님 LikeService
+	public int likeInsert(LikeDTO ldto) {
+		// Liked 테이블에 집어넣기
+		SqlSession session = MySqlSessionFactory.getSession();
+		int result;
+		try {
+			LikeDAO dao = new LikeDAO();
+			result = dao.likeInsert(session, ldto);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	public List<LikeDTO> reviewLikeCheck(int reviewId) {
+
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<LikeDTO>  list = null;
+		try {
+			LikeDAO dao = new LikeDAO();
+			list = dao.reviewLikeCheck(session,reviewId);
+		} finally {
+			session.close();
+		}
+		return list;
+
 	}
 }
