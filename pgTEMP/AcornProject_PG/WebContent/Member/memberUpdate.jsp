@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>회원정보수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../CSS/MemberUpdate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/CSS/MemberUpdate.css" rel="stylesheet">
 </head>
 
 <body>

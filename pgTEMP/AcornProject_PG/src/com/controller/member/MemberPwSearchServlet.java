@@ -36,15 +36,16 @@ public class MemberPwSearchServlet extends HttpServlet {
 		 
 		 MemberService service = new MemberService();
 		 String mbrPw = service.pwSearch(dto);
+		 System.out.println("비밀번호: " + mbrPw);
 		 
 		 String nextPage = null;
 		 
 		 if(mbrPw==null) {
-			 nextPage="findPw.jsp";
+			 nextPage="MemberIdSearchUIServlet";
 			 request.setAttribute("mesg", "다시 확인해 주십시오");
 		 }else {
-			 nextPage="findPw.jsp";
-			 request.setAttribute("mbrPw", mbrPw);
+			 nextPage="LoginForm.jsp";
+			 request.setAttribute("mbrPw", "회원님의 비밀번호는 " + mbrPw + " 입니다. 다시  로그인해주세요!");
 		 }
 		 
 		 RequestDispatcher dis = request.getRequestDispatcher(nextPage);
