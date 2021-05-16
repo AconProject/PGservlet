@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE
-		<foreach collection="array" item="arr" open="(game.gameGenre, " close=")" separator=",">
+		<foreach collection="list" item="arr" open="(game.gameGenre, " close=")" separator=",">
 			#{arr}
 		</foreach>
 		AND rownum &lt; 6

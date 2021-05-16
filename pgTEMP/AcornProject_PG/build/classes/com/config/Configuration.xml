@@ -11,7 +11,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
      	<typeAlias type="com.dto.GameDTO" alias="GameDTO"/>
      	<typeAlias type="com.dto.BoardDTO" alias="BoardDTO"/>
      	<typeAlias type="com.dto.NewsDTO" alias="NewsDTO"/>
-     	<typeAlias type="com.dto.ReplyDTO" alias="ReplyDTO"/>
+     	<typeAlias type="com.dto.ReplyDTO" alias="ReplyDTO"/>  <!-- board쪽 댓글  -->
+     	<typeAlias type="com.dto.ReviewDTO" alias="ReviewDTO"/>  <!-- game쪽 댓글  -->
    </typeAliases>
    
 	<environments default="development">
@@ -34,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/LikeMapper.xml"/>
 		<mapper resource="com/config/ReplyMapper.xml"/>
 		<mapper resource="com/config/TagMapper.xml"/>
+		<mapper resource="com/config/ReviewMapper.xml"/>
 	</mappers>
 </configuration>
 
