@@ -46,8 +46,9 @@ function jsonParserForTop(data){
 		if (i<3){
 			insertElement('td', 'topTableNum', (i+1)+'.');
 			insertElement('td', 'topTableImg',
-				'<img class="gameImg" src="'+jsonObj.gameImage+'">');
-			insertElement('td', 'topTableName', jsonObj.gameName);
+				'<img src="'+jsonObj.gameImage+'">', 'class', 'gameImg');
+			insertElement('td', 'topTableName',
+				jsonObj.gameName, 'class', 'center');
 			insertElement('td', 'topTableYear',
 				jsonObj.gameReleasedDate, 'class', 'center');
 			insertElement('td', 'topTableCategory',
@@ -62,6 +63,16 @@ function jsonParserForTop(data){
 /* 중단에 표시할 게임데이터 파싱 후 출력 */
 function jsonParserForMiddle(data){
 	for (let i=0; i<data.length; i++){
+		// let jsonObj = JSON.parse(data[i]);
+		// if (i%2 == 0) {
+		// 	// 게임 데이터
+		// 	insertElement('tr', 'midTable', '', 'id', 'midTr'+i);
+		// 	insertElement('td', 'midTr'+i, (i+1)+'.');
+		// 	insertElement('td', 'midTr'+i,
+		// 		'<img src="'+jsonObj.gameImage+'">', 'class', 'gameImg');
+		// } else {
+		// 	// 게임 평점
+		// }
 		console.log(data[i]);
 	}
 }
@@ -109,10 +120,14 @@ function getRecommendedGame(){
 /* 중단 태그별 게임 불러오기 (페이지 첫 로딩) */
 function getTagGame(){
 	fetch('GameTagListServlet')
-		.then(res => res.json())
-		.then(data => {
-			jsonParserForMiddle(data);
+		.then(res => {
+			console.log(res.text());
 		})
+		// .then(res => res.json())
+		// .then(data => {
+		// 	console.log(data);
+		// 	jsonParserForMiddle(data);
+		// })
 		.catch(err => {
 			console.log(err);
 		});
