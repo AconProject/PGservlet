@@ -46,7 +46,7 @@ function jsonParserForTop(data){
 		if (i<3){
 			insertElement('td', 'topTableNum', (i+1)+'.');
 			insertElement('td', 'topTableImg',
-				'<img src="'+jsonObj.gameImage+'">', 'class', 'gameImg');
+				'<img class="gameImg" src="'+jsonObj.gameImage+'">');
 			insertElement('td', 'topTableName',
 				jsonObj.gameName, 'class', 'center');
 			insertElement('td', 'topTableYear',
@@ -62,18 +62,25 @@ function jsonParserForTop(data){
 
 /* 중단에 표시할 게임데이터 파싱 후 출력 */
 function jsonParserForMiddle(data){
+	let gameRate;
+	let cnt = 0;
 	for (let i=0; i<data.length; i++){
-		// let jsonObj = JSON.parse(data[i]);
-		// if (i%2 == 0) {
-		// 	// 게임 데이터
-		// 	insertElement('tr', 'midTable', '', 'id', 'midTr'+i);
-		// 	insertElement('td', 'midTr'+i, (i+1)+'.');
-		// 	insertElement('td', 'midTr'+i,
-		// 		'<img src="'+jsonObj.gameImage+'">', 'class', 'gameImg');
-		// } else {
-		// 	// 게임 평점
-		// }
-		console.log(data[i]);
+		if (i%2 == 0) {
+			// 게임 데이터
+			let jsonObj = JSON.parse(data[i]);
+			insertElement('tr', 'midTable', '', 'id', 'midTr'+i);
+			insertElement('td', 'midTr'+i, (cnt+1)+'.');
+			insertElement('td', 'midTr'+i,
+				'<img class="gameImg" src="'+jsonObj.gameImage+'">');
+			insertElement('td', 'midTr'+i,
+				jsonObj.gameName + jsonObj.gameReleasedDate);
+		} else {
+			// 게임 평점
+			gameRate = data[i];
+			insertElement('td', 'midTr'+(i-1),
+				'<div class="score"><span>'+gameRate['rate'+cnt]+'</span></div>');
+			cnt++;
+		}
 	}
 }
 
@@ -120,14 +127,10 @@ function getRecommendedGame(){
 /* 중단 태그별 게임 불러오기 (페이지 첫 로딩) */
 function getTagGame(){
 	fetch('GameTagListServlet')
-		.then(res => {
-			console.log(res.text());
+		.then(res => res.json())
+		.then(data => {
+			jsonParserForMiddle(data);
 		})
-		// .then(res => res.json())
-		// .then(data => {
-		// 	console.log(data);
-		// 	jsonParserForMiddle(data);
-		// })
 		.catch(err => {
 			console.log(err);
 		});
