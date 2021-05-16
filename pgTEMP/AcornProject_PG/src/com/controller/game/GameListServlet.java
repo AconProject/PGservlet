@@ -51,11 +51,11 @@ public class GameListServlet extends HttpServlet {
       Gson gson = new GsonBuilder().create();
       JSONArray jsonList = new JSONArray();
       
-      if (gameCategory == null || gameCategory == "new") {   
+      if (gameCategory == null || gameCategory.contentEquals("new")) {   
           gameList = service.newGameListSelect();
-      } else if (mDto == null && gameCategory == "recommend") {
+      } else if (mDto == null && gameCategory.contentEquals("recommend")) {
          gameList = service.recommendGameListSelect();
-      } else if (mDto != null && gameCategory == "recommend") {
+      } else if (mDto != null && gameCategory.contentEquals("recommend")) {
          gameList = service.recommendUserTagListSelect(mDto.getMbrId());
       }
       
