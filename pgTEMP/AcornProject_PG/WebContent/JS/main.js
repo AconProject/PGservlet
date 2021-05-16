@@ -110,7 +110,7 @@ function getNewGameEvent(){
 		});
 }
 
-/* 상단 추천게임 불러오기 (버튼 클릭)*/
+/* 상단 추천게임 불러오기 (버튼 클릭) */
 function getRecommendedGame(){
 	fetch('GameListServlet?gameCategory=recommend')
 		.then(res => res.json())
