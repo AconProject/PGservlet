@@ -39,8 +39,8 @@ public class MemberIdSearchServlet extends HttpServlet {
 			nextPage = "MemberIdSearchUIServlet";
 			request.setAttribute("mesg", "다시 입력해주십시오. ");
 		} else {
-			nextPage = "Member/findId.jsp";
-			request.setAttribute("mbrId", "너의 아이디는 "+ mbrId);
+			nextPage = "LoginForm.jsp";
+			request.setAttribute("mbrId", "회원님의 아이디는 "+ mbrId +" 입니다. 다시 로그인하세요!");
 		}
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		dis.forward(request, response);

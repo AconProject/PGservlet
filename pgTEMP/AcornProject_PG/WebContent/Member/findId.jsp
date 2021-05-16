@@ -14,11 +14,12 @@
    <script>
      alert('<%=mesg %>');
    </script>
+  
 <%
   }
 %>   
 </head>
 <body>
-	
+
 </body>
 </html>
