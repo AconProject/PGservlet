@@ -123,7 +123,7 @@ function getTagGameEvent(tags){
 	fetch('GameTagListServlet?tags='+tags)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data[0]);
+			jsonParserForMiddle(data);
 		})
 		.catch(err => {
 			console.log(err);
