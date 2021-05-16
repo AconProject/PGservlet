@@ -16,10 +16,15 @@ public class BoardDTO {
 	public BoardDTO() {
 		super();
 	}
+<<<<<<< HEAD
+
+
+=======
 	
 
 
 
+>>>>>>> aa374320a698c2d165c889bf7818200cbe58f412
 	public BoardDTO(int boardId, String mbrId, String mbrName, String boardName, String boardCategory,
 			String boardContent, int boardLiked, int boardCount, Date boardDate) {
 		super();
@@ -34,8 +39,13 @@ public class BoardDTO {
 		this.boardDate = boardDate;
 	}
 
+	public String getBoardName() {
+		return boardName;
+	}
 
 
+<<<<<<< HEAD
+=======
 
 	public String getBoardName() {
 		return boardName;
@@ -44,17 +54,20 @@ public class BoardDTO {
 
 
 
+>>>>>>> aa374320a698c2d165c889bf7818200cbe58f412
 	public void setBoardName(String boardName) {
 		this.boardName = boardName;
 	}
 
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> aa374320a698c2d165c889bf7818200cbe58f412
 	public String getMbrName() {
 		return mbrName;
 	}
-
 
 
 	public void setMbrName(String mbrName) {
@@ -68,11 +81,9 @@ public class BoardDTO {
 	}
 
 
-
 	public void setBoardLiked(int boardLiked) {
 		this.boardLiked = boardLiked;
 	}
-
 
 
 	public int getBoardCount() {
