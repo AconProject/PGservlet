@@ -42,16 +42,8 @@
 						<tr id="topTableNum"></tr>
 						<tr id="topTableImg"></tr>
 						<tr id="topTableName"></tr>
-						<tr>
-							<td class="center">(2019)</small></td>
-							<td class="center">(2019)</small></td>
-							<td class="center">(2019)</small></td>
-						</tr>
-						<tr>
-							<td class="center"><a href="#" class="tag">#태그</a></td>
-							<td class="center"><a href="#" class="tag">#태그</a></td>
-							<td class="center"><a href="#" class="tag">#태그</a></td>
-						</tr>
+						<tr id="topTableYear"></tr>
+						<tr id="topTableCategory"></tr>
 					</table>
 				</div>
 				<div>

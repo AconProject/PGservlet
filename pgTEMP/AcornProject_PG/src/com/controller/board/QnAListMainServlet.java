@@ -23,7 +23,7 @@ import com.service.NewsService;
 /**
  * Servlet implementation class BoardListMainServlet
  */
-@WebServlet("/BoardListMainServlet")
+@WebServlet("/QnAListMainServlet")
 public class QnAListMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
