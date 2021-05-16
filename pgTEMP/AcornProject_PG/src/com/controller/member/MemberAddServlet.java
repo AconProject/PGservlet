@@ -18,7 +18,10 @@ import com.service.MemberService;
 public class MemberAddServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
 		String mbrId = request.getParameter("mbrId");
 		String mbrPw = request.getParameter("mbrPw");
 		String mbrName= request.getParameter("mbrName");
@@ -35,11 +38,14 @@ public class MemberAddServlet extends HttpServlet {
 		
 		  MemberService service = new MemberService();
 		  int n = service.memberAdd(dto);
+	
+		  System.out.println("회원가입여부: "+n);
+		  System.out.println("dto: "+dto.toString());
 		  
 		  HttpSession session = request.getSession(); 
 		  session.setAttribute("memberAdd", "회원가입성공");
 		  session.setMaxInactiveInterval(3600);
-		  response.sendRedirect("main.jsp");
+		  response.sendRedirect("Main.jsp");
 		 
 	}
 

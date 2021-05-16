@@ -5,21 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디/비밀번호 찾기</title>
-<link rel="stylesheet" type="text/css" href="../CSS/FindIdPw.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/FindIdPw.css">
 
 </head>
 
+<%
+   String mesg = (String)request.getAttribute("mesg");
+  if(mesg!=null){
+%>    
+   <script>
+     alert('<%=mesg %>');
+   </script>
+<%
+  }
+%>
 <body>
 	
 	<div class="findform">
 	
 	<div class="menubar">
-		<a href="../Main.jsp"><img src="../Image/logo.png"></a>
+		<a href="main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
 		<a href="../LoginForm.jsp" class="menu">로그인</a>
 		<a href="../MemberForm.jsp" class="menu">회원가입</a>
 	</div>
 	
-	<form action="" method="post" class="findid">
+	<form action="MemberIdSearchServlet" method="post" class="findid">
 		<h2>아이디 찾기</h2>
 		<div class="row">
 			<span class="title">닉네임</span> 
@@ -34,7 +44,7 @@
 		</div>
 	</form>
 	
-	<form action="" method="post" class="findpw">
+	<form action="MemberPwSearchServlet" method="post" class="findpw">
 		<h2>비밀번호 찾기</h2>
 		<div class="row">
 			<span class="title">아이디</span> 

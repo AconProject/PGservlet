@@ -8,8 +8,7 @@ import com.dto.MemberDTO;
 
 public class MemberDAO {
 
-	public String idSearch(SqlSession session,
-			MemberDTO dto) {
+	public String idSearch(SqlSession session, MemberDTO dto) {
 		String userid = session.selectOne("MemberMapper.idSearch",dto);
 		return userid;
 	}
@@ -29,7 +28,7 @@ public class MemberDAO {
 	}
    
    public MemberDTO login(SqlSession session, HashMap<String, String> map) {
-	   MemberDTO n = session.selectOne("MemberMapper.login2", map);
+	   MemberDTO n = session.selectOne("MemberMapper.login", map);
 	   return n;
    }
    
@@ -37,4 +36,9 @@ public class MemberDAO {
 	   MemberDTO n = session.selectOne("MemberMapper.mypage", userid);
 	   return n;
    }
+
+	public String pwSearch(SqlSession session, MemberDTO dto) {
+		String userpw = session.selectOne("MemberMapper.pwSearch", dto);
+		return userpw;
+	}
 }

@@ -18,6 +18,7 @@ if (mesg != null) {
      alert('<%=mesg%>');
 </script>
 <%
+	session.removeAttribute("memberAdd");
 	}
 %>
 </head>
