@@ -1,6 +1,7 @@
 package com.controller.reply;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.dto.MemberDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.LikeService;
 import com.service.ReplyService;
 
@@ -42,6 +48,9 @@ public class ReplyLikeServlet extends HttpServlet {
 		int replyLike = Integer.parseInt(request.getParameter("like"));
 		int cnt = 0;
 		boolean isComplete = false;
+		int originLike = replyLike;
+
+		
 		System.out.println("현재 좋아요 개수 : " + replyLike);
 		ids.put("replyId", replyId);
 		ids.put("mbrId", login.getMbrId());
@@ -54,8 +63,12 @@ public class ReplyLikeServlet extends HttpServlet {
 			isComplete = lService.likeReplyInsert(ids);
 		}
 		System.out.println("좋아요 : " + replyLike + " , liked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);
-		
-		request.setAttribute("like", replyLike);
+		PrintWriter out = response.getWriter();
+
+		if (originLike == replyLike)
+			out.println("error");
+		else
+			out.println(replyLike);
 	}
 
 
