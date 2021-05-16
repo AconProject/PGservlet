@@ -6,23 +6,30 @@ public class ReplyDTO {
 	private int replyId;
 	private int boardId;
 	private String mbrId;
+	private String mbrName;
 	private String replyContent;
 	private int replyLiked;
 	private Date replyDate;
 	
-	public ReplyDTO() {
-	}
+	public ReplyDTO() {}
 	
-	public ReplyDTO(int replyId, int boardId, String mbrId, String replyContent, int replyLiked, Date replyDate) {
+	public ReplyDTO(int replyId, int boardId, String mbrId, String mbrName, String replyContent, int replyLiked,
+			Date replyDate) {
 		super();
 		this.replyId = replyId;
 		this.boardId = boardId;
 		this.mbrId = mbrId;
+		this.mbrName = mbrName;
 		this.replyContent = replyContent;
 		this.replyLiked = replyLiked;
 		this.replyDate = replyDate;
 	}
-	
+	public String getMbrName() {
+		return mbrName;
+	}
+	public void setMbrName(String mbrName) {
+		this.mbrName = mbrName;
+	}
 	public int getReplyId() {
 		return replyId;
 	}

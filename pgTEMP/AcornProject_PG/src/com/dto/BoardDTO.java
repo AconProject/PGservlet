@@ -5,21 +5,25 @@ import java.sql.Date;
 public class BoardDTO {
 	private int boardId;
 	private String mbrId;
+	private String mbrName;
 	private String boardCategory;
 	private String boardContent;
-	private String boardLiked;
-	private String boardCount;
+	private int boardLiked;
+	private int boardCount;
 	private Date boardDate;
 	
 	public BoardDTO() {
 		super();
 	}
 	
-	public BoardDTO(int boardId, String mbrId, String boardCategory, String boardContent, 
-			String boardLiked, String boardCount, Date boardDate) {
+	
+
+	public BoardDTO(int boardId, String mbrId, String mbrName, String boardCategory, String boardContent,
+			int boardLiked, int boardCount, Date boardDate) {
 		super();
 		this.boardId = boardId;
 		this.mbrId = mbrId;
+		this.mbrName = mbrName;
 		this.boardCategory = boardCategory;
 		this.boardContent = boardContent;
 		this.boardLiked = boardLiked;
@@ -27,13 +31,43 @@ public class BoardDTO {
 		this.boardDate = boardDate;
 	}
 
-	public String getBoardLiked() {
+
+
+	public String getMbrName() {
+		return mbrName;
+	}
+
+
+
+	public void setMbrName(String mbrName) {
+		this.mbrName = mbrName;
+	}
+
+
+
+	public int getBoardLiked() {
 		return boardLiked;
 	}
 
-	public void setBoardLiked(String boardLiked) {
+
+
+	public void setBoardLiked(int boardLiked) {
 		this.boardLiked = boardLiked;
 	}
+
+
+
+	public int getBoardCount() {
+		return boardCount;
+	}
+
+
+
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+
+
 
 	public int getBoardId() {
 		return boardId;
@@ -60,12 +94,7 @@ public class BoardDTO {
 		this.boardContent = boardContent;
 	}
 
-	public String getBoardCount() {
-		return boardCount;
-	}
-	public void setBoardCount(String boardCount) {
-		this.boardCount = boardCount;
-	}
+
 	public Date getBoardDate() {
 		return boardDate;
 	}
