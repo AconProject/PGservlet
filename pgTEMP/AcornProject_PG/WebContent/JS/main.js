@@ -41,9 +41,7 @@ function insertElement(childTag, parentId, content, attr, attrVal){
 
 /* 상단에 표시할 게임데이터 파싱 후 출력 */
 function jsonParserForTop(data){
-	// servlet 변경 후 아래로 바꿀 것
-	// for (let i=0; i<data.length; i++){
-	for (let i=0; i<10; i++){
+	for (let i=0; i<data.length; i++){
 		let jsonObj = JSON.parse(data[i]);
 		if (i<3){
 			insertElement('td', 'topTableNum', (i+1)+'.');
@@ -51,14 +49,20 @@ function jsonParserForTop(data){
 				'<img class="gameImg" src="'+jsonObj.gameImage+'">');
 			insertElement('td', 'topTableName', jsonObj.gameName);
 			insertElement('td', 'topTableYear',
-				'('+jsonObj.gameReleasedDate+')', 'class', 'center');
+				jsonObj.gameReleasedDate, 'class', 'center');
 			insertElement('td', 'topTableCategory',
 				'#'+jsonObj.gameCategory, 'class', 'center tag');
-			// 미해결: 대표장르, 출시년도 undefined로 뜸
 		} else {
 			insertElement('li', 'topChart',
 				jsonObj.gameName + jsonObj.gameReleasedDate);
 		}
+	}
+}
+
+/* 중단에 표시할 게임데이터 파싱 후 출력 */
+function jsonParserForMiddle(data){
+	for (let i=0; i<data.length; i++){
+		console.log(data[i]);
 	}
 }
 
@@ -102,19 +106,31 @@ function getRecommendedGame(){
 		});
 }
 
-/* 중단 태그별 게임 불러오기 */
+/* 중단 태그별 게임 불러오기 (페이지 첫 로딩) */
 function getTagGame(){
-	// fetch('GameTagListServlet')
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		console.log(data[0]);
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
+	fetch('GameTagListServlet')
+		.then(res => res.json())
+		.then(data => {
+			jsonParserForMiddle(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
-/* 중단 태그 클릭시 게임리스트 변경 */
+/* 중단 태그별 게임 불러오기 (태그 클릭) */
+function getTagGameEvent(tags){
+	fetch('GameTagListServlet?tags='+tags)
+		.then(res => res.json())
+		.then(data => {
+			console.log(data[0]);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+}
+
+/* 중단 태그 클릭 이벤트 */
 function getCheckboxValue(){
 	const query = 'input[name="tag"]:checked';
 	const selectedEls = 
@@ -122,10 +138,10 @@ function getCheckboxValue(){
 	
 	let result = '';
 	selectedEls.forEach((el) => {
-		result += el.value + ' ';
+		result += el.value + ',';
 	});
 	
-	console.log(result);
+	getTagGameEvent(result);
 }
 
 /* 하단 게임게시판 최신순으로 불러오기 */
