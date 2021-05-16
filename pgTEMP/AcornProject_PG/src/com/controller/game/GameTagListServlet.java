@@ -43,21 +43,22 @@ public class GameTagListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<GameDTO> gameList = null;
 		String[] tags = request.getParameterValues("tags"); //세션으로 바꿔야할 지 모르겠음.
-		ArrayList<String> listTags = new ArrayList<String>(Arrays.asList(tags));
 		List<Double> rate = new ArrayList<Double>();
 		GameService gameService = new GameService();
 		RateService rateService = new RateService();
 		Gson gson = new GsonBuilder().create();
 	    JSONArray jsonList = new JSONArray();
-		
+	    
 		if (tags == null) {
 			gameList = gameService.recommendGameListSelect(6);
 			rate = rateService.rateRecommendSelect();
 		} else {
+			ArrayList<String> listTags = new ArrayList<String>(Arrays.asList(tags));
+
 			gameList = gameService.tagGameListSelect(listTags);
 			rate = rateService.rateTagSelect(listTags);
 		}
-		
+
 		PrintWriter out = response.getWriter();
 		int limit = gameList.size();
 	      for (int i = 0; i < limit; i++ ) {
