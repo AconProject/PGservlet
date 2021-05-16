@@ -18,4 +18,16 @@ public class ReplyDAO {
 	public List<ReplyDTO> replyListSelect(SqlSession session, String boardId) {
 		return session.selectList("ReplyMapper.replyListSelect", boardId);
 	}
+	
+	public int replyInsert(SqlSession session, ReplyDTO dto) {
+		return session.insert("ReplyMapper.replyInsert", dto);
+	}
+	
+	public int replyUpdate(SqlSession session, ReplyDTO dto) {
+		return session.update("ReplyMapper.replyUpdate", dto);
+	}
+	
+	public int replyDelete(SqlSession session, int replyId) {
+		return session.delete("ReplyMapper.replyDelete", replyId);
+	}
 }

@@ -52,4 +52,46 @@ public class ReplyService {
 		}
 		return list;
 	}
+	
+	public boolean replyInsert(ReplyDTO dto) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			ReplyDAO dao = new ReplyDAO();
+			n = dao.replyInsert(session, dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n == 1 ? true : false;
+	}
+	
+	public boolean replyUpdate(ReplyDTO dto) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			ReplyDAO dao = new ReplyDAO();
+			n = dao.replyUpdate(session, dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n == 1 ? true : false;
+	}
+	
+	public boolean replyDelete(int replyId) {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			ReplyDAO dao = new ReplyDAO();
+			n = dao.replyDelete(session, replyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n == 1 ? true : false;
+	}
 }

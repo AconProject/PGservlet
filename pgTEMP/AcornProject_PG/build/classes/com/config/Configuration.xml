@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/NewsMapper.xml"/>
 		<mapper resource="com/config/LikeMapper.xml"/>
 		<mapper resource="com/config/ReplyMapper.xml"/>
+		<mapper resource="com/config/TagMapper.xml"/>
 	</mappers>
 </configuration>
 
