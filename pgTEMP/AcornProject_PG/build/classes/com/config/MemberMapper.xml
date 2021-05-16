@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 최초 회원가입 -->
 	<insert id="memberAdd" parameterType="MemberDTO">
 	insert into member (mbrId,mbrPw,mbrName,mbrEmail,mbrGenre,mbrRegdate)
-	values(#{mbrId},#{mbrPw},#{mbrName},#{mbrEmail},NULL,SYSDATE)
+	values(#{mbrId},#{mbrPw},#{mbrName},#{mbrEmail},#{mbrGenre},SYSDATE)
 	</insert>
 	
 	<!-- 최초 회원가입 시 태그 설정 -->
@@ -64,16 +64,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 로그인, 데이터 가져오기 -->
 	<select id="login" parameterType="hashmap" resultType="MemberDTO">
-	select mbrId,mbrPw,mbrName,mbrEmail,mbrGenre,mbrRegdate
+	select *
 	from member
 	where mbrId = #{mbrId} and mbrPw = #{mbrPw}
 	</select>
+	
 
-	<!--테스트용 by 장현수  -->
-	<select id="login2" parameterType="hashmap" resultType="MemberDTO">
-	select *
-	from member2
-	where mbrId = #{mbrId} and mbrPw = #{mbrPw}
-	</select>
+
 	
 </mapper>

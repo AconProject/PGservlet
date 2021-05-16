@@ -55,11 +55,12 @@
 		tagPage = window.open("Member/tagPage.jsp","","width=200,height=300,left=700,top=650,scrollbars=1,location=no,resizable=no");
 	}
 	
+	
 </script>
 
 <!--나오는 값: 아이디,비빌번호, 비밀번호 확인, 닉네임, 이메일 , 가입일자 (안보이는 값으로)   -->
 
-<form action="MemberAddServlet" method="post" class="addForm">
+<form action="MemberAddServlet" method="post" class="addForm" id="addForm">
 	<a href="Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
 	<h2>회원가입</h2>
 	<div class="contentform">
@@ -95,8 +96,8 @@
 
 		<div class="row">
 			<span class="title" id="tagname">태그</span> 
-			<button name="mbrGenre" id="tagbtn" onclick="tag()">Tag</button>
-			<span id="mbrGenre"></span>
+			<button name="mbrGenre" id="tagbtn" onclick="tag(); return false;" >Tag</button>
+			<input type="text" name="mbrGenre" id="mbrGenre"  class="content">
 		</div>
 			
 		<div class="button">

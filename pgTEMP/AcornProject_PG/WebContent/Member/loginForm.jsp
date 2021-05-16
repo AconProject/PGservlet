@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href=../CSS/MemberAdd.css">
+<link rel="stylesheet" type="text/css" href="../CSS/MemberAdd.css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -50,7 +50,7 @@
 			<button type="submit" name="login" id="login">L O G I N</button>
 		</div>
 		<div class="check">
-			<a href="Member/findIdPw.jsp" id="find">아이디/비밀번호 찾기</a> 
+			<a href="findIdPw.jsp" id="find">아이디/비밀번호 찾기</a> 
 			<a href="Member/memberAddForm.jsp" id="create">회원가입</a>
 		</div>
 	</form>
