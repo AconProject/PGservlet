@@ -5,15 +5,16 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
-import com.dao.TagDAO;
+import com.dao.GenreDAO;
+import com.dto.GenreDTO;
 
-public class TagService {
-	public List<String> tagSelect() {
-		List<String> list = null;
+public class GenreService {
+	public List<GenreDTO> genreSelect() {
+		List<GenreDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
-			TagDAO dao = new TagDAO();
-			list = dao.tagSelect(session);
+			GenreDAO dao = new GenreDAO();
+			list = dao.genreSelect(session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
