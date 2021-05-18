@@ -11,7 +11,7 @@ import com.dto.NewsDTO;
 
 public class BoardDAO {
 	public List<BoardDTO> recommendInfoBoardSelect(SqlSession session) {
-		return session.selectList("BoardMapper.recommendInfoBoardSelect.");
+		return session.selectList("BoardMapper.recommendInfoBoardSelect");
 	}
 	
 	public List<BoardDTO> hitInfoBoardSelect(SqlSession session) {

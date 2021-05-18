@@ -46,13 +46,14 @@ public class BoardModifyServlet extends HttpServlet {
 		int boardId = 0;
 		if (bId != null)
 			boardId = Integer.parseInt(bId);
+		String boardName = request.getParameter("boardName");
 		String boardCategory = request.getParameter("boardCategory");
 		String boardContent = request.getParameter("boardContent");
 		int boardLiked = 0;
 		int boardCount = 0;
 		long miliSeconds = System.currentTimeMillis();
 		Date boardDate = new Date(miliSeconds);
-		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(),boardCategory, boardContent, boardLiked
+		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(), boardName, boardCategory, boardContent, boardLiked
 				, boardCount, boardDate);
 		if (login != null) {
 			if (login.getMbrId().contentEquals(login.getMbrId()) && boardKind.contentEquals("boardInsert")) {

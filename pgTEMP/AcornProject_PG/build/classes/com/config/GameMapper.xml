@@ -33,13 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 
-	<select id="tagGameListSelect" parameterType="java.util.ArrayList" resultType="GameDTO">
+	<select id="tagGameListSelect"  resultType="GameDTO">
 		SELECT game.gameNo, game.gameName, game.gameImage, 
 		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')' as gameReleasedDate, game.gameCategory
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE 
-		<foreach collection="array" item="item" open="(game.gameGenre, " close=")" separator=",">
+		<foreach collection="list" item="item" open="(game.gameGenre, " close=")" separator=",">
 			#{item}
 		</foreach>
 		AND rownum &lt; 6
