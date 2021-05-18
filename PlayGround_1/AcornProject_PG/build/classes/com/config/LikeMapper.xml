@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GameMapper">
+	
+	<select id="likeBoardCount" parameterType="Hashmap" resultType="int">
+		SELECT count(*)
+		FROM liked
+		WHERE mbrId = #{mbrId}
+		AND boardId = #{boardId}
+	</select>
+	
+	<insert id="likeBoardInsert" parameterType="Hashmap">
+		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
+		VALUES(likedSeq.NEXTVAL, #{mbrId}, #{boardId}, null, null)
+	</insert>
+	
+	<delete id="likeBoardDelete" parameterType="Hashmap">
+		DELETE FROM liked
+		WHERE mbrId = #{mbrId}
+		AND boardId = #{boardId}
+	</delete>
+	
+	<delete id="likeReplyDelete" parameterType="Hashmap">
+		DELETE FROM liked
+		WHERE mbrId = #{mbrId}
+		AND replyId = #{replyId}
+	</delete>
+	
+	<insert id="likeReplyInsert" parameterType="Hashmap">
+		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
+		VALUES (likedSeq.NEXTVAL, #{mbrId}, null, null, #{replyId})
+	</insert>
+</mapper>
