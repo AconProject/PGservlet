@@ -8,6 +8,6 @@ import com.dto.GenreDTO;
 
 public class GenreDAO {
 	public List<GenreDTO> genreSelect(SqlSession session) {
-		return session.selectList("TagMapper.genreSelect");
+		return session.selectList("GenreMapper.genreSelect");
 	}
 }

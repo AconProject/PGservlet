@@ -1,4 +1,13 @@
 window.onload = function(){
+
+	// 화면에 표시할 데이터 불러오기
+	getNewGame();
+	getTag();
+	getTagGame();
+	getRecommendedPost();
+	getRecommendedQnA();
+	getNews();
+
 	// 버튼 클릭 이벤트 등록
 	document.getElementById('newGame').addEventListener('click', getNewGameEvent, false);
 	document.getElementById('recommendedGame').addEventListener('click', getRecommendedGame, false);
@@ -6,19 +15,6 @@ window.onload = function(){
 	document.getElementById('mostViewPost').addEventListener('click', getMostViewPost, false);
 	document.getElementById('recommendedQnA').addEventListener('click', getRecommendedQnAEvent, false);
 	document.getElementById('mostViewQnA').addEventListener('click', getMostViewQnA, false);
-
-	// 중단 게임 태그 선택 이벤트 등록 
-	const tags = document.getElementsByName('tag');
-	tags.forEach((tag) => {
-		tag.addEventListener('click', getCheckboxValue, false);
-	});
-
-	getNewGame();
-	getTag();
-	getTagGame();
-	getRecommendedPost();
-	getRecommendedQnA();
-	getNews();
 };
 
 /* 모든 요소 삭제 (데이터 갱신 시 기존 데이터 삭제 위함) */
@@ -85,6 +81,17 @@ function jsonParserForMiddle(data){
 	}
 }
 
+/* 중단 태그 파싱 후 출력 */
+function jsonParserForTags(data) {
+	for (let i=0; i<data.length; i++){
+		let jsonObj = JSON.parse(data[i]);
+		insertElement('p', 'tagScroll',
+			'<input type="checkbox" name="tag" value="' +
+			jsonObj.gameCategory + '">' + jsonObj.gameCategory,
+			'class', 'tag');
+	}
+}
+
 /* 하단에 표시할 게시판 데이터 파싱 후 출력 */
 // function jsonParserForBoard(data, boardCategory) {
 // 	for (let i=0; i<data.length; i++){
@@ -140,7 +147,20 @@ function getRecommendedGame(){
 
 /* 중단 태그 불러오기 */
 function getTag(){
-	// empty
+	fetch('GenreListServlet')
+		.then(res => res.json())
+		.then(data => {
+			jsonParserForTags(data);
+			
+			// 중단 게임 태그 선택 이벤트 등록 
+			const tags = document.getElementsByName('tag');
+			tags.forEach((tag) => {
+				tag.addEventListener('click', getCheckboxValue, false);
+			});
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 중단 태그별 게임 불러오기 (페이지 첫 로딩) */
@@ -156,18 +176,18 @@ function getTagGame(){
 }
 
 /* 중단 태그별 게임 불러오기 (태그 클릭) */
-function getTagGameEvent(tags){
-	fetch('GameTagListServlet?tags='+tags)
-		.then(res => {console.log(res.text());})
-		// .then(res => res.json())
-		// .then(data => {
-		// 	removeAllElements('.midTable tr');
-		// 	jsonParserForMiddle(data);
-		// })
-		.catch(err => {
-			console.log(err);
-		});
-}
+// function getTagGameEvent(tags){
+// 	fetch('GameTagListServlet')
+// 		.then(res => res.json())
+// 		.then(data => {
+// 			// removeAllElements('.midTable tr');
+// 			// jsonParserForMiddle(data);
+// 			console.log('임시출력',data, tags);
+// 		})
+// 		.catch(err => {
+// 			console.log(err);
+// 		});
+// }
 
 /* 중단 태그 클릭 이벤트 (버튼 클릭) */
 function getCheckboxValue(){
@@ -179,7 +199,8 @@ function getCheckboxValue(){
 	selectedEls.forEach((el) => {
 		result += el.value + ',';
 	});
-	getTagGameEvent(result);
+	console.log(result);
+	// getTagGameEvent(result);
 }
 
 /* 하단 게임게시판 추천순으로 불러오기 (페이지 첫 로딩) */
