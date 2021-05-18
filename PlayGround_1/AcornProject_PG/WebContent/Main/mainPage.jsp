@@ -58,12 +58,7 @@
 				<div>
 					<table class="midTable" id="midTable"></table>
 				</div>
-				<div class="tagScroll" id="tagScroll">
-					<input type="checkbox" name="tag" value="temp1">temp<br>
-					<input type="checkbox" name="tag" value="temp2">temp<br>
-					<input type="checkbox" name="tag" value="temp3">temp<br>
-					<input type="checkbox" name="tag" value="temp4">temp<br>
-				</div>
+				<div class="tagScroll" id="tagScroll"></div>
 			</div>
         </section>
 
