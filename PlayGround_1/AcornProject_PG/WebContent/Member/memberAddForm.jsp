@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-
+		// 아이디 ,비밀번호 체크
 		$("form").on("submit", function() {
 
 			var mbrId = $("#mbrId");
@@ -24,6 +24,26 @@
 				event.preventDefault();
 			}
 		});
+		
+		// 아이디 중복체크
+		$("#idchk").click(function() {
+			
+			$.ajax({
+				type:"get",
+				url:"MemberIdCheckServlet",
+				dataType: "text",
+				data:{
+					mbrId : $("#mbrId").val()
+				},
+				success : function(Data, status, xhr) {
+					swal(""+Data);
+				},
+				error : function(xhr, status, error) {
+					console.log("error");
+				}
+			});
+		});
+		return false;
 
 		// 비밀번호 숫자 제한(6자리)
 		$("#mbrPw").focusout(function() {
@@ -67,7 +87,7 @@
 	
 		<div class="row" style="display: inline;">
 			<span class="title">아이디 * 
-				<span id="idcheck"></span>
+				<button id="idchk">중복체크</button>
 			</span> 
 			<input type="text" class="content" name="mbrId" id="mbrId" autofocus>
 		</div>

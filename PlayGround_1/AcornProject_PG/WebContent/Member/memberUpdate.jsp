@@ -13,17 +13,19 @@
 <script type="text/javascript">
 
 		function result() {
-            var tagCheck= document.getElementsByName("tag"); //전부다 가져옴
-            var mesg="";
-            console.log(tagCheck)
-            for (var i = 0; i < tagCheck.length; i++) {
-                   if (tagCheck[i].checked) 
-                	   mesg += "," + tagCheck[i].value
+			
+
+			var check = document.getElementsByName("tag");
+			var mesg ="";
+			
+            for (var i = 0; i < check.length; i++) {
+            	 if (check[i].checked) {
+              	   mesg += "," + check[i].value;
+              	 }
             }
-            mesg = mesg.substring(1);
-            
+            mesg = mesg.substring(1); 
             document.getElementById("mbrGenre").value=mesg;
-	
+            document.getElementById("genre").innerText=mesg;
 		}
 </script>
 	
@@ -32,7 +34,7 @@
     <header>
 		<div class="wrapper">
 			<h1>
-				<a href="Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
+				<a href="${pageContext.request.contextPath}/Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
 			</h1>
 			<nav>
 				<div class="empty"></div>
@@ -55,8 +57,8 @@
 	    String mbrGenre = dto.getMbrGenre();
 	    String mbrRegdate = dto.getMbrRegdate();
 	    
-	    System.out.println("마마마마마마 "+dto.toString());
-	    System.out.println("나나나나나나 "+mbrId);
+	    System.out.println("memberUpdate.jsp: "+dto.toString());
+	    System.out.println("memberUpdate.jsp(mbrId): "+mbrId);
 	%>
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
@@ -65,10 +67,15 @@
 		<!-- 상단 -->
         <section class="main-contents">
         
-			<form action="Member" method="post">
-				<input type="hidden" value="" name="mbrId" id="mbrId">
-				<!-- hidden으로 데이터 전달  -->
-				<div class="member">아이디 &nbsp;&nbsp;&nbsp; <%= mbrId %></div><br>
+			<form action="../MemberUpdateServlet" method="post">
+			
+				<div class="member">아이디 &nbsp;&nbsp;&nbsp; <%=mbrId%>
+				<input type="hidden" class="mbrinfo" value="<%=mbrId%>" name="mbrId" id="mbrId" style="border:none;">
+                </div>
+				
+				<div class="member">비밀번호 &nbsp;&nbsp;&nbsp;
+				<input type="text" class="mbrinfo" value="" name="mbrPw" id="mbrPw">
+				</div><br>
 				
 				<div class="member">닉네임 &nbsp;&nbsp;&nbsp;
 				<input type="text" class="mbrinfo" value="<%= mbrName %>" name="mbrName" id="mbrName">
@@ -80,7 +87,9 @@
 				
 				<div class="member">
 					선호장르
-					<input type="text" name="mbrGenre" id="mbrGenre"  class="content">
+					<button onclick="result(); return false;">선택완료</button><br>
+					<span id="genre"></span>
+					<input type="hidden" name="mbrGenre" id="mbrGenre"  class="content">
 					<table border="1">
 						<tr>
 							<td>

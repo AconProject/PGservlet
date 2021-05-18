@@ -22,8 +22,8 @@ public class MemberDAO {
 	   int n = session.insert("MemberMapper.memberAdd", dto);
 	   return n;
    }
-   public int idCheck(SqlSession session, String userid) {
-		int count = session.selectOne("MemberMapper.idCheck", userid);
+   public int idCheck(SqlSession session, String mbrId) {
+		int count = session.selectOne("MemberMapper.idCheck", mbrId);
 		return count;
 	}
    

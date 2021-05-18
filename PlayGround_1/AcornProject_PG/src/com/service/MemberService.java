@@ -53,12 +53,12 @@ public class MemberService {
 		}
 		  return n;
 	   }//end memberAdd
-	  public int idCheck(String userid) {
+	  public int idCheck(String mbrId) {
 			SqlSession session = MySqlSessionFactory.getSession();
 			int count = 0;
 			try {
 				 MemberDAO dao = new MemberDAO();
-				count = dao.idCheck(session, userid);
+				count = dao.idCheck(session, mbrId);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {

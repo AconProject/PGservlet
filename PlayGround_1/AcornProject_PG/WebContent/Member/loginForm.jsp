@@ -38,7 +38,7 @@
 </head>
 <body>
 	<form action="LogOnServlet" method="post" class="loginForm">
-		<a href="Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
+		<a href="${pageContext.request.contextPath}/Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
 		<p>" 자신을 알아야 평화를 찾을 수 있는 법 "</p>
 		<div class="idForm">
 			<input type="text" name="mbrId" id="mbrId" placeholder="ID">

@@ -35,15 +35,16 @@ public class LogOnServlet extends HttpServlet {
 
 		MemberDTO dto = service.login(map);
 		System.out.println("dto: " + dto);
+		HttpSession session = request.getSession();
 		
 		String nextPage = null;
 		if (dto != null) {
 			System.out.println(dto.toString());
 			nextPage = "Main.jsp";
-			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
 		} else {
-			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 다시 입력해주세요");
+			session.setAttribute("mesg","아이디, 비밀번호를 다시 입력해주세요");
+//			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 다시 입력해주세요");
 			nextPage = "LoginServlet";
 
 		}
