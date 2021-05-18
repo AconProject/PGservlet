@@ -31,13 +31,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 마이페이지 - 정보수정 -->
 	<update id="memberUpdate" parameterType="MemberDTO">
 	update member
-	set mbrPw = #{mbrPw},
+	set 
+	mbrPw = #{mbrPw},
 	mbrName = #{mbrName},
 	mbrEmail = #{mbrEmail},
-	mbrGenre =  
-	<foreach collection="mbrGenre" item="mbrGenre" separator=",">
-	#{mbrGenre}
-	</foreach>
+	mbrGenre = #{mbrGenre}
 	where mbrId = #{mbrId}
 	</update>
 	

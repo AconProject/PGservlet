@@ -7,9 +7,10 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="images/gameLogo.png" />
 <%
-   String mesg1 = (String)request.getAttribute("mbrId");
-   String mesg2 = (String)request.getAttribute("mbrPw");
-  if(mesg1 != null){
+	String mesg = (String) session.getAttribute("mesg");
+    String mesg1 = (String)request.getAttribute("mbrId");
+    String mesg2 = (String)request.getAttribute("mbrPw");
+    if(mesg1 != null){
 %>    
    <script>
      alert('<%= mesg1 %>');
@@ -25,8 +26,15 @@
 <%
 	session.removeAttribute("mbrId");
   } 
+   if(mesg != null) {
 %>
-
+	<script>
+     alert('<%= mesg %>');
+   </script>
+<%
+	session.removeAttribute("mesg");
+  } 
+%>
 <title>Login</title>
 </head>
 <body>
