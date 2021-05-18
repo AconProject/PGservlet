@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link href="${pageContext.request.contextPath}/CSS/Main.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
-    <script type="text/javascript" src="JS/main.js?v=<%=System.currentTimeMillis() %>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/JS/main.js?v=<%=System.currentTimeMillis() %>"></script>
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
@@ -76,62 +76,12 @@
 				<div>
 					<button class="boardBtn" id="recommendedPost">추천</button>
 					<button class="boardBtn" id="mostViewPost">조회</button>
-					<ol class="boardChart">
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-					</ol>
+					<ol class="boardChart" id="boardPost"></ol>
 				</div>
 				<div>
 					<button class="boardBtn" id="recommendedQnA">추천</button>
 					<button class="boardBtn" id="mostViewQnA">조회</button>
-					<ol class="boardChart">
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							title
-							<img class="icon" src="Image/eye.png" alt="조회수"> <span>123</span>
-							<img class="icon" src="Image/thumb.png" alt="추천수"> <span>123</span>
-							</a><hr>
-						</li>
-					</ol>
+					<ol class="boardChart" id="boardQnA"></ol>
 				</div>
 			</div>
 			<div class="news">
