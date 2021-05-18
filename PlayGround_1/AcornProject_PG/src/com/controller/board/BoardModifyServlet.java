@@ -36,6 +36,17 @@ public class BoardModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doAction(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doAction(request, response);
+	}
+	
+	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		BoardService service = new BoardService();
 		HttpSession session = request.getSession();
 		String boardKind = request.getParameter("boardKind");
@@ -53,6 +64,7 @@ public class BoardModifyServlet extends HttpServlet {
 		int boardCount = 0;
 		long miliSeconds = System.currentTimeMillis();
 		Date boardDate = new Date(miliSeconds);
+		String nextPage = "";
 		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(), boardName, boardCategory, boardContent, boardLiked
 				, boardCount, boardDate);
 		if (login != null) {
@@ -65,12 +77,18 @@ public class BoardModifyServlet extends HttpServlet {
 			}
 		}
 		if (isComplete) {
-			if (boardKind.contentEquals("boardInsert"))
+			if (boardKind.contentEquals("boardInsert")) {
 				mesg = "해당 게시글을 추가하였습니다.";
-			else if (boardKind.contentEquals("boardUpdate"))
+				nextPage = "boardPage.jsp?boardId=" + bId;
+			}
+			else if (boardKind.contentEquals("boardUpdate")) {
 				mesg = "해당 게시글을 수정하였습니다.";
-			else
+				nextPage = "boardPage.jsp?boardId=" + bId;
+			}
+			else {
 				mesg = "해당 게시글을 삭제하였습니다.";
+				nextPage = "boardList.jsp";
+			}
 		} 
 		if (!isComplete){
 			if (login != null)
@@ -79,13 +97,7 @@ public class BoardModifyServlet extends HttpServlet {
 				mesg = "해당 게시물에 대한 처리를 수행하지 못했습니다.";
 		}
 		request.setAttribute("mesg", mesg);
-		RequestDispatcher dis = request.getRequestDispatcher("boardPage.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 	     dis.forward(request, response);
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 }
