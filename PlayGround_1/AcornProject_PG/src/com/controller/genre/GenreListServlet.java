@@ -42,13 +42,11 @@ public class GenreListServlet extends HttpServlet {
 	    Gson gson = new GsonBuilder().create();
 	    JSONArray jsonList = new JSONArray();  
 		List<GenreDTO> tags = service.genreSelect();
-		
+
 		
 		PrintWriter out = response.getWriter();
 		for (GenreDTO tag: tags) {
-			JSONObject json = new JSONObject();
-			json.put("tagName", tag);
-			jsonList.add(json);
+			jsonList.add(gson.toJson(tag));
 		}
 	    out.println(jsonList);
 	}
