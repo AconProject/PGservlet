@@ -84,6 +84,19 @@ function jsonParserForMiddle(data){
 	}
 }
 
+/* 하단에 표시할 게시판 데이터 파싱 후 출력 */
+function jsonParserForBoard(data, boardCategory) {
+	for (let i=0; i<data.length; i++){
+		let jsonObj = JSON.parse(data[i]);
+		insertElement('li', boardCategory,
+			jsonObj.boardName + jsonObj.boardDate
+			+ '<img class="icon" src="Image/eye.png"><span>'
+			+jsonObj.boardCount+'</span>'
+			+ '<img class="icon" src="Image/thumb.png"><span>'
+			+jsonObj.boardLiked+'</span>');
+	}
+}
+
 /* 상단 최신게임 불러오기 (페이지 첫 로딩) */
 function getNewGame(){
 	fetch('GameListServlet?gameCategory=new')
@@ -110,7 +123,7 @@ function getNewGameEvent(){
 		});
 }
 
-/* 상단 추천게임 불러오기 (버튼 클릭)*/
+/* 상단 추천게임 불러오기 (버튼 클릭) */
 function getRecommendedGame(){
 	fetch('GameListServlet?gameCategory=recommend')
 		.then(res => res.json())
@@ -160,18 +173,16 @@ function getCheckboxValue(){
 	selectedEls.forEach((el) => {
 		result += el.value + ',';
 	});
-	console.log(result.slice(0, result.length-1));
 	getTagGameEvent(result);
 }
 
 /* 하단 게임게시판 추천순으로 불러오기 (페이지 첫 로딩) */
 function getRecommendedPost(){
 	fetch('BoardListMainServlet')
-		.then(res => {console.log(res.text());})
-		// .then(res => res.json())
-		// .then(data => {
-		// 	console.log(data);
-		// })
+		.then(res => res.json())
+		.then(data => {
+			jsonParserForBoard(data, 'boardPost');
+		})
 		.catch(err => {
 			console.log(err);
 		});
@@ -203,14 +214,14 @@ function getMostViewPost(){
 
 /* 하단 QnA게시판 추천수 정렬 (페이지 첫 로딩) */
 function getRecommendedQnA(){
-	// fetch('BoardListMainServlet')
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		console.log(data[0]);
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
+	fetch('BoardListMainServlet')
+		.then(res => res.json())
+		.then(data => {
+			jsonParserForBoard(data, 'boardQnA');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 하단 QnA게시판 추천수 정렬 (버튼 클릭) */
