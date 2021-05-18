@@ -1,4 +1,4 @@
-package com.controller.tag;
+package com.controller.genre;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,21 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.dto.GenreDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.service.TagService;
+import com.service.GenreService;
 
 /**
  * Servlet implementation class TagListServlet
  */
-@WebServlet("/TagListServlet")
-public class TagListServlet extends HttpServlet {
+@WebServlet("/GenreListServlet")
+public class GenreListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TagListServlet() {
+    public GenreListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,14 +38,14 @@ public class TagListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		TagService service = new TagService();
+		GenreService service = new GenreService();
 	    Gson gson = new GsonBuilder().create();
 	    JSONArray jsonList = new JSONArray();  
-		List<String> tags = service.tagSelect();
+		List<GenreDTO> tags = service.genreSelect();
 		
 		
 		PrintWriter out = response.getWriter();
-		for (String tag: tags) {
+		for (GenreDTO tag: tags) {
 			JSONObject json = new JSONObject();
 			json.put("tagName", tag);
 			jsonList.add(json);

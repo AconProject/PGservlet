@@ -55,7 +55,7 @@ public class BoardDAO {
 	}
 	
 	public int boardLikeMinus(SqlSession session, String boardId) {
-		return session.update("BoardMapper.boardLikePlus", boardId);
+		return session.update("BoardMapper.boardLikeMinus", boardId);
 	}
 	
 	public BoardDTO boardDetailSelect(SqlSession session, String boardId) {
