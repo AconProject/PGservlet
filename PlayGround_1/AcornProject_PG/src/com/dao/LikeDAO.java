@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.dto.LikeDTO;
+
 public class LikeDAO {
 	
 	public int likeBoardCount(SqlSession session, HashMap<String, String> ids) {
@@ -25,4 +27,10 @@ public class LikeDAO {
 	public int likeReplyInsert(SqlSession session, HashMap<String, String> ids) {
 		return session.insert("LikeMapper.likeReplyInsert", ids);
 	}
+	
+	/////게임 댓글에 대한  좋아요 삽입 가능
+	public int likeReviewInsert(SqlSession session, LikeDTO ldto) {
+		return session.insert("LikeMapper.likeReviewInsert",ldto); 
+	}
+	
 }
