@@ -80,10 +80,7 @@ public class LikeService {
 		return cnt == 1 ? true : false;
 	}
 	///////////////////////////
-	public List<LikeDTO> reviewLikeCheck(int reviewId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public int likeReviewInsert(LikeDTO ldto) {
 		SqlSession session = MySqlSessionFactory.getSession();
@@ -98,4 +95,21 @@ public class LikeService {
 		}
 		return likeReview ;
 	}
+	//////
+	public int likeReviewCount(LikeDTO ldto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int result = 0;
+		try {
+			LikeDAO dao = new LikeDAO();
+			result = dao.likeReviewCount(session, ldto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
+	
+	
 }

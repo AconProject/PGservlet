@@ -30,11 +30,11 @@ public class reviewInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 
-		ReviewService rservice = new ReviewService();
+		ReviewService rService = new ReviewService();
 		String nextPage = null;
 
 		if (dto != null) {
-			int reviewId = 0;
+			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 			String mbrId = request.getParameter("mbrId");
 			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
@@ -47,25 +47,30 @@ public class reviewInsertServlet extends HttpServlet {
 
 			
 			//댓글 삽입
-			int reviewResult = rservice.reviewInsert(rdto);
+			int reviewResult = rService.reviewInsert(rdto);
 
-			///////like 테이블 증가////////////////
+			////////like 테이블에 삽입: reviewId 
 			int likeNo = 0; //추천번호 
 			int boardId = 0; //게시글 ID 
 			int replyId = 0; //게시판 댓글ID
 
+			
+			//likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한  순서 
 			LikeDTO ldto = new LikeDTO(likeNo, mbrId, boardId, reviewId, replyId);
-			LikeService lservice = new LikeService();
+			LikeService lService = new LikeService();
 
-			// 댓글에 대한 좋아요를 위해 삽입
-			int likedReviewInsert = lservice.likeReviewInsert(ldto); 
-
-			if (reviewResult == 1 && likedReviewInsert == 1) {
-				System.out.println("삽입 성공");
-			} else {
-				System.out.println("삽입 실패");
+			// 댓글에 대한 좋아요를 위해 삽입 
+			int likedReviewInsert = lService.likeReviewInsert(ldto); 
+			int cnt = lService.likeReviewCount(ldto); //여기부터 내일
+			if (cnt == 1) { //이미 있는 경우
+				reviewLike += rService.reviewLikeMinus(replyId) * -1;
+				isComplete = lService.likeReviewDelete(ldto);
+			} else { //없는 경우
+				reviewLike += rService.reviewLikePlus(replyId);
+				isComplete = lService.likeReviewInsert(ldto);
 			}
-
+			
+		
 			nextPage = "GameDetailServlet";
 		} else {
 			nextPage = "LoginServlet";

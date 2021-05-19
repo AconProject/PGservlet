@@ -32,5 +32,9 @@ public class LikeDAO {
 	public int likeReviewInsert(SqlSession session, LikeDTO ldto) {
 		return session.insert("LikeMapper.likeReviewInsert",ldto); 
 	}
+
+	public int likeReviewCount(SqlSession session, LikeDTO ldto) {
+		return session.selectOne("LikeMapper.likeReviewCount", ldto);
+	}
 	
 }
