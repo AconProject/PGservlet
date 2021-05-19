@@ -58,14 +58,14 @@
 		});
 
 		// 비밀번호 확인
-		$("#mbrPw2").on("keyup", function() {
+		$("#mbrPw2").on("mouseout", function() {
 			var mbrPw = $("#mbrPw").val();
 			var mbrPw2 = $("#mbrPw2").val();
 
 			if (mbrPw == mbrPw2) {
-				$("#pwcheck").text("비밀번호 일치");
+				swal("Good!!", "비밀번호가 일치합니다!", "success");
 			} else {
-				$("#pwcheck").text("비밀번호 불일치");
+				swal("Oops!!", "비밀번호가 일치하지 않습니다. 다시 입력해주세요!", "error");
 			}
 		});
 	});
