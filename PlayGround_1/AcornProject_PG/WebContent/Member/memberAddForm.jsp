@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.Date"%>
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/MemberAdd.css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -27,13 +28,14 @@
 		
 		// 아이디 중복체크
 		$("#idchk").click(function() {
-			
+			var mbrId = $("#mbrId");
+
 			$.ajax({
 				type:"get",
 				url:"MemberIdCheckServlet",
 				dataType: "text",
 				data:{
-					mbrId : $("#mbrId").val()
+					mbrId : mbrId.val()
 				},
 				success : function(Data, status, xhr) {
 					swal(""+Data);

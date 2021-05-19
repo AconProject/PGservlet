@@ -25,11 +25,16 @@ public class MemberIdCheckServlet extends HttpServlet {
 		
 		String mbrId = request.getParameter("mbrId");
 		MemberService service = new MemberService();
+
 		int count = service.idCheck(mbrId);
+		
 		String mesg = "사용가능한 아이디입니다.";
 		if(count==1) {
 			mesg = "이미 사용하고 있는 아이디입니다. 다시 입력해주세요";
+		} else if(mbrId=="") {
+			mesg = "공백입니다. 다시 입력해주세요";
 		}
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(mesg);

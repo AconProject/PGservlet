@@ -5,13 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href="../CSS/MemberAdd.css">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/Login.css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/Login.css">
-
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("form").submit(function(event) {
@@ -36,7 +34,9 @@
 	
 </script>
 </head>
+
 <body>
+
 	<form action="LogOnServlet" method="post" class="loginForm">
 		<a href="${pageContext.request.contextPath}/Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
 		<p>" 자신을 알아야 평화를 찾을 수 있는 법 "</p>
@@ -54,5 +54,6 @@
 			<a href="Member/memberAddForm.jsp" id="create">회원가입</a>
 		</div>
 	</form>
+	
 </body>
 </html>

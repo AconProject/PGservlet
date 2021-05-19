@@ -79,7 +79,7 @@ h2{
 .side{
 	width: 200px;
 	height: 400px;
-	margin: 30px;
+	margin-right: 30px;
 	border-right:2px solid black;
 	float:left;
 }
@@ -112,7 +112,10 @@ button {
 	font-family: Electrolize;
 	font-weight: 800;
 }
-
+#notag {
+	margin-top:10px;
+	color:red;
+}
 .tag {
 	padding-left: 15px;
 	color: rgb(64, 147, 214);

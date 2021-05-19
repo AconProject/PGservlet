@@ -12,22 +12,7 @@
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
-    <header>
-		<div class="wrapper">
-			<h1>
-				<a href="Main.jsp"><img class="logo" src="${pageContext.request.contextPath}/Image/logo.png" alt="로고 이미지"></a>
-			</h1>
-			<nav>
-				<div class="empty"></div>
-				<ul class="nav">
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="LoginForm.jsp">로그인</a></li>
-					<li><a href="MemberForm.jsp">회원가입</a></li>
-				</ul>
-			</nav>
-		</div>
-    </header>
+    <jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<!-- 메인화면 컨텐츠-->
     <div class="wrapper">
@@ -113,11 +98,7 @@
     </div>
 
 
-	<!-- 페이지 맨 밑부분 -->
-    <footer>
-        <div class="wrapper">
-            <p><small>&copy; 2021 PlayGround</small></p>
-        </div>
-    </footer>
+	<!-- 페이지 최하단 배너 -->
+	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
 </body>
 </html>

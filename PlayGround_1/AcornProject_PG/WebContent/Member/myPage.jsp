@@ -1,6 +1,7 @@
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 <link href="${pageContext.request.contextPath}/CSS/MyPage.css" rel="stylesheet">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -15,22 +16,9 @@
     String mbrRegdate = dto.getMbrRegdate();
    
 %>
-<header>
-		<div class="wrapper">
-			<h1>
-				<a href="Main.jsp"><img class="logo" src="${pageContext.request.contextPath}/Image/logo.png" alt="로고 이미지"></a>
-			</h1>
-			<nav>
-				<div class="empty"></div>
-				<ul class="nav">
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="${pageContext.request.contextPath}/MyPage.jsp">마이페이지</a></li>
-					<li><a href="#">로그아웃</a></li>
-				</ul>
-			</nav>
-		</div>
-    </header>
+
+	<!-- 페이지 상단 로고 및 배너 -->
+	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
@@ -59,14 +47,19 @@
 						</div><br>
 						
 						<div class="member">선호장르 &nbsp;&nbsp;&nbsp; 
-						
 						<%
+							if(mbrGenre==null){
+						%>
+							<div id="notag">선택하신 태그가 없습니다.</div>
+						<%
+							} else if(mbrGenre!=null) {
 							String [] category = mbrGenre.split(",");
 							for(int i=0; i<category.length; i++) {
 						%>
 							<a href="#" class="tag">#<%= category[i] %></a>
 						
 						<%
+							}
 							}
 						%>
 						
@@ -79,11 +72,8 @@
 			</div>
         </section>
 
-	</div>	
+	</div>
+		
 	<!-- 페이지 최하단 배너 -->
-    <footer>
-        <div class="wrapper">
-            <p><small>&copy; 2021 PlayGround</small></p>
-        </div>
-    </footer>
+	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
 

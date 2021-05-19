@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디/비밀번호 찾기</title>
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/FindIdPw.css">
 
 </head>
@@ -20,13 +21,14 @@
   }
 %>
 <body>
+
 	
 	<div class="findform">
 	
 	<div class="menubar">
-		<a href="main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
-		<a href="../LoginForm.jsp" class="menu">로그인</a>
-		<a href="../MemberForm.jsp" class="menu">회원가입</a>
+		<a href="Main.jsp"><img src="${pageContext.request.contextPath}/Image/logo.png"></a>
+		<a href="LoginServlet" class="menu">로그인</a>
+		<a href="MemberUIServlet" class="menu">회원가입</a>
 	</div>
 	
 	<form action="MemberIdSearchServlet" method="post" class="findid">
