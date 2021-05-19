@@ -1,11 +1,13 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.LikeDAO;
+import com.dto.LikeDTO;
 
 public class LikeService {
 	public int likeBoardCount(HashMap<String, String> ids) {
@@ -76,5 +78,24 @@ public class LikeService {
 			session.close();
 		}
 		return cnt == 1 ? true : false;
+	}
+	///////////////////////////
+	public List<LikeDTO> reviewLikeCheck(int reviewId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int likeReviewInsert(LikeDTO ldto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int likeReview = 0;
+		try {
+			LikeDAO dao = new LikeDAO();
+			likeReview = dao.likeReviewInsert(session, ldto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return likeReview ;
 	}
 }
