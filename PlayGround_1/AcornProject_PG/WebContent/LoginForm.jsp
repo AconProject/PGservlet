@@ -5,7 +5,7 @@
 <head>
 <style> body{} </style>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="images/gameLogo.png" />
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 <%
 	String mesg = (String) session.getAttribute("mesg");
     String mesg1 = (String)request.getAttribute("mbrId");
@@ -38,10 +38,6 @@
 <title>Login</title>
 </head>
 <body>
-	<h1>로그인 화면입니다.</h1>
-	<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
-	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
-	<hr>
 	<jsp:include page="Member/loginForm.jsp" flush="false" />
 </body>
 </html>

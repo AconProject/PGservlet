@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <title>회원정보수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 <link href="${pageContext.request.contextPath}/CSS/MemberUpdate.css" rel="stylesheet">
-</head>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 		function result() {
-			
-
 			var check = document.getElementsByName("tag");
 			var mesg ="";
 			
@@ -27,26 +27,51 @@
             document.getElementById("mbrGenre").value=mesg;
             document.getElementById("genre").innerText=mesg;
 		}
+		
+		function check() {
+			
+			// 비밀번호 체크
+			var mbrPw = document.updateForm.mbrPw.value;
+			if(mbrPw.length==0) {
+				swal("Oops!!", "비밀번호를 작성해주세요", "error");
+				document.updateForm.mbrPw.focus();
+				event.preventDefault();
+				return;
+			} else if(mbrPw.length<6){
+				swal("Oops!!", "비밀번호는 6글자 이상만 이용 가능합니다!", "error");
+				document.updateForm.mbrPw.focus();
+				event.preventDefault();
+				return;
+			}
+			
+			// 닉네임 체크
+			var mbrName = document.updateForm.mbrName.value;
+			if(mbrName.length==0) {
+				swal("Oops!!", "닉네임을 작성해주세요", "error");
+				document.updateForm.mbrName.focus();
+				event.preventDefault();
+				return;
+			}
+			
+			// 이메일 체크
+			var mbrEmail = document.updateForm.mbrEmail.value;
+			if(mbrEmail.length==0) {
+				swal("Oops!!", "이메일을 작성해주세요", "error");
+				document.updateForm.mbrEmail.focus();
+				event.preventDefault();
+				return;
+			}
+			
+		}
+
+		
 </script>
-	
+</head>
+
 <body>
+
 	<!-- 페이지 상단 로고 및 배너 -->
-    <header>
-		<div class="wrapper">
-			<h1>
-				<a href="${pageContext.request.contextPath}/Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
-			</h1>
-			<nav>
-				<div class="empty"></div>
-				<ul class="nav">
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="MyPage.jsp">마이페이지</a></li>
-					<li><a href="#">로그아웃</a></li>
-				</ul>
-			</nav>
-		</div>
-    </header>
+	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 	
 	<% 
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
@@ -67,7 +92,7 @@
 		<!-- 상단 -->
         <section class="main-contents">
         
-			<form action="../MemberUpdateServlet" method="post">
+			<form action="../MemberUpdateServlet" name="updateForm" method="post">
 			
 				<div class="member">아이디 &nbsp;&nbsp;&nbsp; <%=mbrId%>
 				<input type="hidden" class="mbrinfo" value="<%=mbrId%>" name="mbrId" id="mbrId" style="border:none;">
@@ -90,6 +115,7 @@
 					<button onclick="result(); return false;">선택완료</button><br>
 					<span id="genre"></span>
 					<input type="hidden" name="mbrGenre" id="mbrGenre"  class="content">
+					
 					<table border="1">
 						<tr>
 							<td>
@@ -117,6 +143,7 @@
 							<label for="tag6">&nbsp;액션</label>
 							</td>
 						</tr>
+						
 						<tr>
 							<td>
 							<input type="checkbox" name="tag" id="tag7" value="어드밴처">
@@ -143,6 +170,7 @@
 							<label for="tag12">&nbsp;캐쥬얼</label>
 							</td>
 						</tr>
+						
 						<tr>
 							<td>
 							<input type="checkbox" name="tag" id="tag13" value="모험">
@@ -169,6 +197,7 @@
 							<label for="tag18">&nbsp;턴제전략</label>
 							</td>
 						</tr>
+						
 						<tr>
 							<td>
 							<input type="checkbox" name="tag" id="tag19" value="협동">
@@ -194,7 +223,7 @@
 						</tr>
 					</table>
 				</div>
-					<button type="submit">확인</button>
+					<button type="submit" onclick="check();">확인</button>
 					<button type="reset">취소</button>
 			</form>
 
@@ -203,10 +232,7 @@
 	</div>	
 	
 	<!-- 페이지 최하단 배너 -->
-    <footer>
-        <div class="wrapper">
-            <p><small>&copy; 2021 PlayGround</small></p>
-        </div>
-    </footer>
+	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
+	
 </body>
 </html>

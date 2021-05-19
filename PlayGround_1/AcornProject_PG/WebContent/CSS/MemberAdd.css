@@ -94,7 +94,17 @@ img{
 	border: 1px solid black;
 }
 
-#idcheck, #pwcheck{
+#idchk {
+	width:80px;
+	height:25px;
+	background:#FFA500;
+	color:#fff;
+	text-align: center;
+	text-decoration: none;
+	border:none;
+	border-radius: 5px;
+}
+#pwcheck{
 	margin-left: 10px; 
 	font-size: 13px;
 }
