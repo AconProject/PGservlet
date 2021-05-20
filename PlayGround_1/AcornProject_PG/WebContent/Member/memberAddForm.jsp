@@ -14,7 +14,8 @@
 
 			var mbrId = $("#mbrId");
 			var mbrPw = $("#mbrPw");
-
+			var mbrPw2 = $("#mbrPw2");
+			
 			if (mbrId.val().length == 0) {
 				swal("Oops!!", "ID를 다시 입력해주세요!", "error");
 				mbrId.focus();
@@ -24,6 +25,13 @@
 				mbrPw.focus();
 				event.preventDefault();
 			}
+			// 비밀번호 / 비밀번호 일치하지 않는 경우
+			if (mbrPw.val() != mbrPw2.val()){
+				swal("Oops!!", "PASSWORD가 일치하지 않습니다! 다시 확인해주세요!", "error");
+				mbrPw.focus();
+				event.preventDefault();
+			}
+			
 		});
 		
 		// 아이디 중복체크
