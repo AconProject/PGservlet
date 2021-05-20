@@ -1,3 +1,4 @@
+<%@page import="com.dto.GameDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,29 +19,31 @@ function range() {
 </script>
 
 </head>
+
+
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
-    <header>
-		<div class="wrapper">
-				<a href="main.jsp"><img class="logo" src="Image/logo.png" alt="로고 이미지"></a>
-			<nav>
-				<div class="empty"></div>
-				<ul class="nav">
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="LoginForm.jsp">로그인</a></li>
-					<li><a href="MemberForm.jsp">회원가입</a></li>
-				</ul>
-			</nav>
-		</div>
-    </header>
+	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
+	<%
+		GameDTO dto = (GameDTO)request.getAttribute("detailGame");
+		String gameNo = dto.getGameNo();
+		String gameName = dto.getGameName();
+		String gameIamge = dto.getGameImage();
+		int gamePrice = dto.getGamePrice();
+		String gameContent = dto.getGameContent();
+		String gameCategory = dto.getGameCategory();
+		String gameGenre = dto.getGameGenre();
+		
+		String [] category = gameGenre.split(",");
+	%>
+	
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
     <div class="wrapper">
 		<!-- 상단 -->
         <section class="main-contents">
-			<div class="gamename"><h1 id="gameName">After Alpha<small id="gameReleaseDate">(2021)</small></h1></div>
+			<div class="gamename"><h1 id="gameName"><%= gameName %><small id="gameReleaseDate"></small></h1></div>
 			<div class="container">
 				<div>
 					<table class="topTable">
@@ -49,24 +52,20 @@ function range() {
 							<td class="tags">
 								<table>
 			 						<tr>
-										<td><a href="#" class="tag">#로드라이크</a></td>
-										<td><a href="#" class="tag">#플랫포머</a></td>
-										<td><a href="#" class="tag">#싱글플레이어</a></td>
+										<td><a href="#" class="tag">#<%= category[0] %></a></td>
+										<td><a href="#" class="tag">#<%= category[1] %></a></td>
+										<td><a href="#" class="tag">#<%= category[2] %></a></td>
 									</tr>
 									<tr>
-										<td><a href="#" class="tag">#탐험</a></td>
-										<td><a href="#" class="tag">#인디</a></td>
-										<td><a href="#" class="tag">#아케이드</a></td>	
+										<td><a href="#" class="tag">#<%= category[3] %></a></td>
+										<td><a href="#" class="tag">#<%= category[4] %></a></td>
 									</tr>
 								</table>
 							</td>
 							<td rowspan="2"><div class="score" id="gameScore">95.5</div></td>
 						</tr>
 						<tr>
-							<td><p class="content" id="gameContent">“SCUM is a next generation, story driven survival game featuring extremely complex game mechanics and unrevealed survival features. 
-								Gamepires is an experienced team oriented towards innovation and perfection in game production and have decided to develop SCUM 
-								side by side in collaboration with its community with the goal of making the best possible survival game yet.
-								SCUM is a next generation, story driven survival game featuring extremely complex game mechanics and unrevealed survival features.”</p></td>
+							<td><p class="content" id="gameContent">“<%= gameContent %>”</p></td>
 						</tr>
 			
 					</table>
@@ -144,10 +143,7 @@ function range() {
 	</div>
 		
 	<!-- 페이지 최하단 배너 -->
-    <footer>
-        <div class="wrapper">
-            <p><small>&copy; 2021 PlayGround</small></p>
-        </div>
-    </footer>
+	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
+	
 </body>
 </html>
