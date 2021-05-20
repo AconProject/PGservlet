@@ -46,4 +46,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
 		VALUES (likedSeq.NEXTVAL, #{mbrId}, null, #{reviewId}, null)
 	</insert>
+
+	<delete id="likeReplyDelete" parameterType="Hashmap">
+		DELETE FROM liked
+		WHERE mbrId = #{mbrId}
+		AND reviewId = #{reviewId}
+	</delete>
 </mapper>

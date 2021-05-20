@@ -21,6 +21,7 @@ public class reviewDeleteServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	//댓글 삭제 기능
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");

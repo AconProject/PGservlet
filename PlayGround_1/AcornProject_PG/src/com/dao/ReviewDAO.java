@@ -39,34 +39,44 @@ public class ReviewDAO {
 		return list;
 	}
 
-//////////////////댓글 삽입 부붑
+//////////////////댓글 삽입 부분
 	public int reviewInsert(SqlSession session,ReviewDTO rdto) {
 		int result= session.insert("ReviewMapper.reviewInsert",rdto);
 		return result;
 	}
 
-//////////////////댓글 수정 부붑
+//////////////////댓글 수정 부분
 	public int reviewUpdate(SqlSession session, ReviewDTO rdto) {
 		int result= session.update("ReviewMapper.reviewUpdate",rdto);
 		return result;
 	}
-//////////////////댓글 삭제 부붑
+//////////////////댓글 삭제 부분
 	public int reviewDelete(SqlSession session,int reviewId) {
 		int result= session.delete("ReviewMapper.reviewDelete",reviewId);
 		return result;
 	}
 
-
-	public int reviewLikeUpdate(SqlSession session, int reviewId) {
-		int result= session.update("ReviewMapper.reviewLikeUpdate",reviewId);
+////////////////
+	public int reviewLikePlus(SqlSession session, int reviewId) {
+		int result= session.update("ReviewMapper.reviewLikePlus",reviewId);
 		return result;
 	}
+	public int reviewLikeMinus(SqlSession session, int reviewId) {
+		int result= session.update("ReviewMapper.reviewLikeMinus",reviewId);
+		return result;
+	}
+////////////////
+	
+	
 
 
 	public int reviewLikeSelect(SqlSession session, int reviewId) {
 		int result= session.selectOne("ReviewMapper.reviewLikeSelect",reviewId);
 		return result;
 	}
+
+
+	
 
 
 
