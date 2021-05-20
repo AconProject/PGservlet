@@ -87,7 +87,7 @@ function jsonParserForTags(data) {
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('p', 'tagScroll',
 			'<input type="checkbox" name="tag" value="' +
-			jsonObj.gameCategory + '">' + jsonObj.gameCategory,
+			jsonObj.genreId + '">' + jsonObj.gameCategory,
 			'class', 'tag');
 	}
 }
@@ -145,14 +145,12 @@ function getRecommendedGame(){
 		});
 }
 
-/* 중단 태그 불러오기 */
+/* 중단 태그 불러오기 및 태그 클릭 이벤트 등록 */
 function getTag(){
 	fetch('GenreListServlet')
 		.then(res => res.json())
 		.then(data => {
 			jsonParserForTags(data);
-			
-			// 중단 게임 태그 선택 이벤트 등록 
 			const tags = document.getElementsByName('tag');
 			tags.forEach((tag) => {
 				tag.addEventListener('click', getCheckboxValue, false);
@@ -176,31 +174,46 @@ function getTagGame(){
 }
 
 /* 중단 태그별 게임 불러오기 (태그 클릭) */
-// function getTagGameEvent(tags){
-// 	fetch('GameTagListServlet')
-// 		.then(res => res.json())
-// 		.then(data => {
-// 			// removeAllElements('.midTable tr');
-// 			// jsonParserForMiddle(data);
-// 			console.log('임시출력',data, tags);
-// 		})
-// 		.catch(err => {
-// 			console.log(err);
-// 		});
-// }
+function getTagGameEvent(tagId){
+	console.log(tagId);
+	fetch('GameTagListServlet?tags='+tagId)
+		.then(res => res.json())
+		.then(data => {
+			// removeAllElements('.midTable tr');
+			// jsonParserForMiddle(data);
+			console.log(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+}
 
 /* 중단 태그 클릭 이벤트 (버튼 클릭) */
 function getCheckboxValue(){
-	const query = 'input[name="tag"]:checked';
-	const selectedEls = 
+	let query = 'input[name="tag"]:checked';
+	let selectedEls = 
 		document.querySelectorAll(query);
-	
-	let result = '';
+
+	let checkedTagId = '';
 	selectedEls.forEach((el) => {
-		result += el.value + ',';
+		checkedTagId += el.value + ',';
 	});
-	console.log(result);
-	// getTagGameEvent(result);
+	getTagGameEvent(checkedTagId);
+
+	// 3개 클릭 시 체크박스 막기
+	if (selectedEls.length > 2) {
+		query = 'input[name="tag"]:not(:checked)';
+		selectedEls = document.querySelectorAll(query);
+		selectedEls.forEach((el) => {
+			el.setAttribute('disabled', 'disabled');
+		});
+	} else {
+		query = 'input[name="tag"]';
+		selectedEls = document.querySelectorAll(query);
+		selectedEls.forEach((el) => {
+			el.removeAttribute('disabled');
+		});
+	}
 }
 
 /* 하단 게임게시판 추천순으로 불러오기 (페이지 첫 로딩) */
