@@ -23,7 +23,7 @@ public class reviewUpdateServlet extends HttpServlet {
         super();
     }
 
-	
+	//댓글 수정 기능 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
@@ -41,11 +41,10 @@ public class reviewUpdateServlet extends HttpServlet {
 			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
 			String reviewDate = "";
 			
-			
 			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, gameNo, reviewContent, reviewLiked, reviewScore,
 					reviewDate);
 			int result = rservice.reviewUpdate(rdto);
-			if(result==1) {
+			if (result == 1) {
 				System.out.println("Update 성공");
 			} else {
 				System.out.println("Update 실패");

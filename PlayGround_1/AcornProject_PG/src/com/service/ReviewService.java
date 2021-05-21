@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.GameDAO;
+import com.dao.ReplyDAO;
 import com.dao.ReviewDAO;
 import com.dto.GameDTO;
 import com.dto.ReviewDTO;
@@ -62,8 +63,6 @@ public class ReviewService {
 		}
 		return result;
 	}
-	
-
 
 	////// 댓글 수정///////
 	public int reviewUpdate(ReviewDTO rdto) {
@@ -76,9 +75,8 @@ public class ReviewService {
 		}
 		return result;
 	}
-	
-	
-	//////댓글 삭제///////	
+
+	////// 댓글 삭제///////
 	public int reviewDelete(int reviewId) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int result;
@@ -89,19 +87,40 @@ public class ReviewService {
 		}
 		return result;
 	}
-	//좋아요 눌렀을때 +1
-	public int reviewLikeUpdate(int reviewId) {
+
+/////////////////////////////////////// 0520
+	////// 댓글 좋아요 +1///////
+	public int reviewLikePlus(int reviewId) {
+		int result = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
-		int result;
 		try {
-			result = dao.reviewLikeUpdate(session, reviewId);
+			ReviewDAO dao = new ReviewDAO();
+			result = dao.reviewLikePlus(session, reviewId);
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 		return result;
-		
 	}
-	//증가된 좋아요 가져오기
+
+	////// 댓글 좋아요 -1///////
+	public int reviewLikeMinus(int reviewId) {
+		int result = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			ReviewDAO dao = new ReviewDAO();
+			result = dao.reviewLikeMinus(session, reviewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+///////////////////////////////////
+
+	// 증가된 좋아요 가져오기
 	public int reviewLikeSelect(int reviewId) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int result;
@@ -112,7 +131,5 @@ public class ReviewService {
 		}
 		return result;
 	}
-
-
 
 }

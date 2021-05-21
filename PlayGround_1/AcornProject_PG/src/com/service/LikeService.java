@@ -79,15 +79,29 @@ public class LikeService {
 		}
 		return cnt == 1 ? true : false;
 	}
-	///////////////////////////
+/////////Review(게임 댓글 부분)//////////////////
 
-
+//like 테이블 +1
 	public int likeReviewInsert(LikeDTO ldto) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int likeReview = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
 			likeReview = dao.likeReviewInsert(session, ldto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return likeReview ;
+	}
+//like 테이블 -1	
+	public int likeReviewDelete(LikeDTO ldto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int likeReview = 0;
+		try {
+			LikeDAO dao = new LikeDAO();
+			likeReview = dao.likeReviewDelete(session, ldto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
