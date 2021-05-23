@@ -52,7 +52,9 @@ public class BoardModifyServlet extends HttpServlet {
 		String boardKind = request.getParameter("boardKind");
 		boolean isComplete = false;
 		String mesg = "";
+		
 		MemberDTO login= (MemberDTO) session.getAttribute("login");
+		System.out.println(login);
 		String bId = request.getParameter("boardId");
 		int boardId = 0;
 		if (bId != null)
@@ -67,6 +69,7 @@ public class BoardModifyServlet extends HttpServlet {
 		String nextPage = "";
 		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(), boardName, boardCategory, boardContent, boardLiked
 				, boardCount, boardDate);
+		System.out.println(dto);
 		if (login != null) {
 			if (login.getMbrId().contentEquals(login.getMbrId()) && boardKind.contentEquals("boardInsert")) {
 				isComplete = service.boardInsert(dto);
@@ -79,11 +82,11 @@ public class BoardModifyServlet extends HttpServlet {
 		if (isComplete) {
 			if (boardKind.contentEquals("boardInsert")) {
 				mesg = "해당 게시글을 추가하였습니다.";
-				nextPage = "boardPage.jsp?boardId=" + bId;
+				nextPage = "BoardDetailServlet?boardId=" + bId;
 			}
 			else if (boardKind.contentEquals("boardUpdate")) {
 				mesg = "해당 게시글을 수정하였습니다.";
-				nextPage = "boardPage.jsp?boardId=" + bId;
+				nextPage = "BoardDetailServlet?boardId=" + bId;
 			}
 			else {
 				mesg = "해당 게시글을 삭제하였습니다.";

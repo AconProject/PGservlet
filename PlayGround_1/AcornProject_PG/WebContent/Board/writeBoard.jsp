@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,32 +10,21 @@
     <link href="../CSS/WriteBoard.css" rel="stylesheet">
 </head>
 <body>
+
 	<!-- 페이지 상단 로고 및 배너 -->
-    <header>
-		<div class="wrapper">
-				<a href="../Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
-			<nav>
-				<div class="empty"></div>
-				<ul class="nav">
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="LoginForm.jsp">로그인</a></li>
-					<li><a href="MemberForm.jsp">회원가입</a></li>
-				</ul>
-			</nav>
-		</div>
-    </header>
+	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
+
     <div class="wrapper">
 		<!-- 상단 -->
         <section class="main-contents">
         <h1>게시글 작성</h1>
         <hr>
         <div class="container">
-		<form class="boardwrite" action="" method="post">
-		
+		<form class="boardwrite" action="../BoardModifyServlet" method="post">
+			
 			<select class="select_category" name="boardCategory" id="boardCategory" >
 				<option selected>Category</option>
 				<option value="게임정보">게임정보</option>
@@ -66,7 +56,7 @@
 2. 리뷰 작성 페이지에 아래 내용을 붙여넣기.
 3. 그대로 사용하시거나 편집(변경)하시어 리뷰 작성하기. "></textarea><br>
 			
-			<button type="submit" name="boardsubmit" id="boardsubmit">제출</button>
+			<button type="submit" name="boardKind" id="boardsubmit" value="boardInsert">제출</button>
 			<button type="reset" name="boardreset" id="boardreset">다시쓰기</button>
 				
 		</form>
@@ -76,10 +66,7 @@
 	</div>
 		
 	<!-- 페이지 최하단 배너 -->
-    <footer>
-        <div class="wrapper">
-            <p><small>&copy; 2021 PlayGround</small></p>
-        </div>
-    </footer>
+	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
+	
 </body>
 </html>
