@@ -39,12 +39,12 @@ public class GameService {
 		return list;
 	}
 	
-	public List<GameDTO> tagGameListSelect(List<String> listTags) {
+	public List<GameDTO> tagGameListSelect(List<Integer> listTags) {
 		List<GameDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			GameDAO dao = new GameDAO();
-			list = dao.tagGameListSelect(session);
+			list = dao.tagGameListSelect(session, listTags);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

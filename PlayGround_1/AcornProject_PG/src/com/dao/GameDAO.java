@@ -18,11 +18,6 @@ public class GameDAO {
 		return list;
 	}
 
-	public List<GameDTO> tagGameListSelect(SqlSession session) {
-		List<GameDTO> list = session.selectList("GameMapper.tagGameListSelect");
-		return list;
-	}
-
 	public GameDTO detailGameSelect(SqlSession session, String gameNo) {
 		GameDTO dto = session.selectOne("GameMapper.detailGameSelect", gameNo);
 		return dto;
@@ -33,7 +28,7 @@ public class GameDAO {
 		return list;
 	}
 
-	public List<GameDTO> tagGameListSelect(SqlSession session, List<String> listTags) {
+	public List<GameDTO> tagGameListSelect(SqlSession session, List<Integer> listTags) {
 		List<GameDTO> list = session.selectList("GameMapper.tagGameListSelect", listTags);
 		return list;
 	}

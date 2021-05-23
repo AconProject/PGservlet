@@ -10,7 +10,7 @@ public class RateDAO {
 		return session.selectList("RateMapper.rateRecommendSelect");
 	}
 	
-	public List<Double> rateTagSelect(SqlSession session, List<String> listTags) {
+	public List<Double> rateTagSelect(SqlSession session, List<Integer> listTags) {
 		return session.selectList("RateMapper.rateTagSelect", listTags);
 	}
 }

@@ -23,7 +23,7 @@ public class RateService {
 		return rate;
 	}
 	
-	public List<Double> rateTagSelect(List<String> listTags) {
+	public List<Double> rateTagSelect(List<Integer> listTags) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<Double> rate = null;
 		try {

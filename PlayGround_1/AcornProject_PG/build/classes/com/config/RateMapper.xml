@@ -17,9 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE
-		<foreach collection="list" item="arr" open="(game.gameGenre, " close=")" separator=",">
-			#{arr}
-		</foreach>
+		  <foreach collection="list" item="item"
+	        open="(game.gameGenre, (select genre.gameCategory from genre where genreId = "
+	        close="))"
+	        separator=")'|'(select genre.gameCategory from genre where genreId = ">
+            #{item}
+        </foreach>
 		AND rownum &lt; 6
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
 	</select>
