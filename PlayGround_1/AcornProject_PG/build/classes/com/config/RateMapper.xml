@@ -20,11 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  <foreach collection="list" item="item"
 	        open="(game.gameGenre, (select genre.gameCategory from genre where genreId = "
 	        close="))"
-	        separator=")'|'(select genre.gameCategory from genre where genreId = ">
+	        separator=")||'|'||(select genre.gameCategory from genre where genreId = ">
             #{item}
         </foreach>
 		AND rownum &lt; 6
-		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
+		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 	
 	
