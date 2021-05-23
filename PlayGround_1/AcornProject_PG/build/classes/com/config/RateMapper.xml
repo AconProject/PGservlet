@@ -24,4 +24,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC;
 	</select>
 	
+	
+	<select id="getGameScore" resultType="RateDTO">
+	SELECT *
+	FROM rate
+	WHERE gameNo=#{gameNo}
+	</select>
+	
 </mapper>
