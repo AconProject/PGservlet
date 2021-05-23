@@ -54,12 +54,16 @@ nav {
     margin-left: 36px;
 }
 
-/* MAIN
+/* BoardList
 ------------------------------- */
 
 .contents {
 	margin-top: 100px;
 	margin-bottom: 150px;
+}
+
+img {
+	width: 20px;
 }
 
 
