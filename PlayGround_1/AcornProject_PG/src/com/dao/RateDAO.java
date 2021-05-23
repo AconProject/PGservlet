@@ -1,11 +1,9 @@
 package com.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dto.GameDTO;
 import com.dto.RateDTO;
 
 public class RateDAO {
@@ -18,7 +16,9 @@ public class RateDAO {
 	}
 
 	public RateDTO getGameScore(SqlSession session, String gameNo) {
+		System.out.println("gameNo: "+gameNo);
 		RateDTO dto = session.selectOne("RateMapper.getGameScore", gameNo);
+		System.out.println(dto);
 		return dto;
 	}
 }

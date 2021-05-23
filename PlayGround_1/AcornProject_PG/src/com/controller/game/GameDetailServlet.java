@@ -32,22 +32,25 @@ public class GameDetailServlet extends HttpServlet {
 	
 		
 		//1.상단. (게임정보) → detailGame (완료)
-		GameService gService= new GameService();
 		String gameNo=request.getParameter("gameNo");
+		
+		GameService gService= new GameService();
 		GameDTO gdto = gService.detailGameSelect(gameNo);
+		System.out.println("게임정보: "+ gdto.toString());
 		
 		RateService rateService = new RateService();
 		RateDTO rateDTO = rateService.getGameScore(gameNo);
+		System.out.println("게임점수: "+rateDTO);
 		
 		request.setAttribute("detailGame", gdto); //게임하나에 대한 게임 정보
 		request.setAttribute("gameScore", rateDTO); //게임 하나에 대한  점수 정보
-		System.out.println("DTO: "+ gdto.toString());
+		
 		
 		//2. 중단. (리뷰) →reviewList (완료)
 		ReviewService rservice= new ReviewService();
 		List<ReviewDTO> rdto= rservice.reviewSelect(gameNo);
 		request.setAttribute("reviewList", rdto);
-		System.out.println("review DTO: "+rdto.toString());
+		
 		
 		//3. 하단. (관련 게임) → relateGame
 		//String gameNo=request.getParameter("gameNo");

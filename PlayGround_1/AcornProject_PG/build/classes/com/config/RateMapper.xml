@@ -26,12 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND rownum &lt; 6
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
+
 	
 	
-	<select id="getGameScore" resultType="RateDTO">
+	<select id="getGameScore" parameterType="string" resultType="RateDTO">
 	SELECT *
 	FROM rate
-	WHERE gameNo=#{gameNo}
+	WHERE gameNo = #{gameNo}
 	</select>
 	
 </mapper>

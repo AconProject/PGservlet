@@ -15,6 +15,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
      	<typeAlias type="com.dto.GenreDTO" alias="GenreDTO"/>
      	<typeAlias type="com.dto.LikeDTO" alias="LikeDTO"/>
      	<typeAlias type="com.dto.RateDTO" alias="RateDTO"/>
+     	<typeAlias type="com.dto.ReviewDTO" alias="ReviewDTO"/>
+     	
    </typeAliases>
    
 	<environments default="development">
@@ -36,6 +38,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/NewsMapper.xml"/>
 		<mapper resource="com/config/ReplyMapper.xml"/>
 		<mapper resource="com/config/GenreMapper.xml"/>
+		<mapper resource="com/config/RateMapper.xml"/>
+		<mapper resource="com/config/ReviewMapper.xml"/>		
 		<mapper resource="com/config/LikeMapper.xml"/>
 	</mappers>
 </configuration>
