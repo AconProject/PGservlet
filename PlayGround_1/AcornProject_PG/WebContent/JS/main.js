@@ -95,10 +95,19 @@ function jsonParserForTags(data){
 function jsonParserForBoard(data, boardCategory){
 	for (let i=0; i<data.length; i++){
 		let jsonObj = JSON.parse(data[i]);
-		insertElement('li', boardCategory,
-			jsonObj.boardName + jsonObj.boardDate + '<img class="icon" src="Image/eye.png"><span>'
-			+ jsonObj.boardCount + '</span>' + '<img class="icon" src="Image/thumb.png"><span>'
-			+ jsonObj.boardLiked + '</span>');
+		insertElement('li', boardCategory, '<a href="BoardDetailServlet?boardId='
+			+ jsonObj.boardId + '">' + jsonObj.boardName + jsonObj.boardDate + '</a>'
+			+ '<img class="icon" src="Image/eye.png"><span>' + jsonObj.boardCount + '</span>'
+			+ '<img class="icon" src="Image/thumb.png"><span>' + jsonObj.boardLiked + '</span>');
+	}
+}
+
+/* 하단에 표시할 뉴스 데이터 파싱 후 출력 */
+function jsonParserForNews(data){
+	for (let i=0; i<data.length; i++){
+		let jsonObj = JSON.parse(data[i]);
+		insertElement('li', 'mainNews', '<a href="'+ jsonObj.newsUrl + '">'
+			+ jsonObj.newsTitle + jsonObj.newsDate + '</a>');
 	}
 }
 
@@ -190,6 +199,7 @@ function getCheckboxValue(){
 		document.querySelectorAll(query);
 
 	if (selectedEls.length == 0){
+		removeAllElements('.midTable tr');
 		getTagGame();
 	} else{
 		let checkedTagId = '';
@@ -296,7 +306,7 @@ function getNews(){
 	fetch('NewsListMainServlet')
 		.then(res => res.json())
 		.then(data => {
-			// jsonParserForNews(data);
+			jsonParserForNews(data);
 			console.log(data);
 		})
 		.catch(err => {

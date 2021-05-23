@@ -69,28 +69,7 @@
 			</div>
 			<div class="container">
 				<div>
-					<ol class="boardChart">
-						<li><a href="#">
-							News Title
-							<small>2021.04.21</small>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							News Title
-							<small>2021.04.21</small>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							News Title
-							<small>2021.04.21</small>
-							</a><hr>
-						</li>
-						<li><a href="#">
-							News Title
-							<small>2021.04.21</small>
-							</a><hr>
-						</li>
-					</ol>
+					<ol class="boardChart" id="mainNews"></ol>
 				</div>
 			</div>
         </section>
