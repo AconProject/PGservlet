@@ -41,6 +41,7 @@ public class BoardDetailServlet extends HttpServlet {
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
 		System.out.println("게임 상세 페이지 :" + dto);
 		request.setAttribute("board", dto);
+		request.setAttribute("replyList", replyList);
 		RequestDispatcher dis = request.getRequestDispatcher("boardPage?boardId=" + boardId + ".jsp");
 		dis.forward(request, response);
 	}

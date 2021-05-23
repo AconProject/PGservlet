@@ -19,7 +19,7 @@
 			<nav>
 				<div class="empty"></div>
 				<ul class="nav">
-					<li><a href="#">게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/Board/writeBoard.jsp">게시판쓰기</a></li>
 					<li><a href="#">뉴스 및 소식</a></li>
 					<li><a href="${pageContext.request.contextPath}/MyPageServlet">마이페이지</a></li>
 					<li><a href="LogoutServlet">로그아웃</a></li>

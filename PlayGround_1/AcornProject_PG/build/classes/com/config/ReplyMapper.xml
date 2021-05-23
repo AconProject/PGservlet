@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     WHERE boardId = #{replyId}
 	</update>
 	
-	<select id="replyListSelect" parameterType="string">
-		SELECT *
+	<select id="replyListSelect" parameterType="string" resultType="ReplyDTO">
+		SELECT replyId, boardId, mbrId, mbrName, replyContent, replyLiked, replyDate
 		FROM reply
 		WHERE boardId = #{boardId}
 		ORDER BY replyDate DESC

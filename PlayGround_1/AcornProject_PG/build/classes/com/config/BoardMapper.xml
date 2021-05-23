@@ -58,8 +58,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="boardInsert" parameterType="BoardDTO">
-		INSERT INTO board(boardId,mbrId,boardCategory,boardName,boardContent,boardCount,boardLiked,boardDate) 
-		VALUES(boardSeq.NEXTVAL,#{mbrId},#{boardCategory},#{boardName},#{boardContent},0,0,SYSDATE)
+		INSERT INTO board(boardId,mbrId, mbrName, boardCategory,boardName,boardContent,boardCount,boardLiked,boardDate) 
+		VALUES(boardSeq.NEXTVAL,#{mbrId}, #{mbrName}, #{boardCategory},#{boardName},#{boardContent},0,0,SYSDATE)
 	</insert>
 	
 	<update id="boardUpdate" parameterType="BoardDTO">

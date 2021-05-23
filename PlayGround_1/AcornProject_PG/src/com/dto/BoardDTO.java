@@ -31,86 +31,84 @@ public class BoardDTO {
 		this.boardDate = boardDate;
 	}
 
-	public String getBoardName() {
-		return boardName;
+	public int getBoardId() {
+		return boardId;
 	}
 
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
+	}
 
+	public String getMbrId() {
+		return mbrId;
+	}
 
-	public void setBoardName(String boardName) {
-		this.boardName = boardName;
+	public void setMbrId(String mbrId) {
+		this.mbrId = mbrId;
 	}
 
 	public String getMbrName() {
 		return mbrName;
 	}
 
-
 	public void setMbrName(String mbrName) {
 		this.mbrName = mbrName;
 	}
 
+	public String getBoardName() {
+		return boardName;
+	}
 
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
+
+	public String getBoardCategory() {
+		return boardCategory;
+	}
+
+	public void setBoardCategory(String boardCategory) {
+		this.boardCategory = boardCategory;
+	}
+
+	public String getBoardContent() {
+		return boardContent;
+	}
+
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
+	}
 
 	public int getBoardLiked() {
 		return boardLiked;
 	}
 
-
 	public void setBoardLiked(int boardLiked) {
 		this.boardLiked = boardLiked;
 	}
-
 
 	public int getBoardCount() {
 		return boardCount;
 	}
 
-
-
 	public void setBoardCount(int boardCount) {
 		this.boardCount = boardCount;
 	}
 
-
-
-	public int getBoardId() {
-		return boardId;
-	}
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
-	}
-	public String getMbrId() {
-		return mbrId;
-	}
-	public void setMbrId(String mbrId) {
-		this.mbrId = mbrId;
-	}
-	public String getBoardCategory() {
-		return boardCategory;
-	}
-	public void setBoardCategory(String boardCategory) {
-		this.boardCategory = boardCategory;
-	}
-	public String getBoardContent() {
-		return boardContent;
-	}
-	public void setBoardContent(String boardContent) {
-		this.boardContent = boardContent;
-	}
-
-
 	public Date getBoardDate() {
 		return boardDate;
 	}
+
 	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
+
 	@Override
 	public String toString() {
-		return "BoardDTO [boardId=" + boardId + ", mbrId=" + mbrId + ", boardCategory=" + boardCategory
-				+ ", boardContent=" + boardContent + ", boardCount=" + boardCount
-				+ ", boardDate=" + boardDate + "]";
+		return "BoardDTO [boardId=" + boardId + ", mbrId=" + mbrId + ", mbrName=" + mbrName + ", boardName=" + boardName
+				+ ", boardCategory=" + boardCategory + ", boardContent=" + boardContent + ", boardLiked=" + boardLiked
+				+ ", boardCount=" + boardCount + ", boardDate=" + boardDate + "]";
 	}
+
 	
 }
