@@ -1,7 +1,5 @@
 <%@page import="com.dto.GameDTO"%>
-<%@page import="com.dto.RateDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +9,12 @@
 <link href="../CSS/DetailPage.css" rel="stylesheet">
 
 <script type="text/javascript">
-function range() {
-	
-	var x = document.getElementById("newmeter").value;
-	document.getElementById("reviewScore").innerHTML = x;
-	
-}
+	function range() {
+
+		var x = document.getElementById("newmeter").value;
+		document.getElementById("reviewScore").innerHTML = x;
+
+	}
 </script>
 
 </head>
@@ -27,60 +25,65 @@ function range() {
 	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<%
-		GameDTO dto = (GameDTO)request.getAttribute("detailGame");
-		String gameNo = dto.getGameNo();
-		String gameName = dto.getGameName();
-		String gameIamge = dto.getGameImage();
-		int gamePrice = dto.getGamePrice();
-		String gameContent = dto.getGameContent();
-		String gameCategory = dto.getGameCategory();
-		String gameGenre = dto.getGameGenre();
-		String gameReleasedDate = "20" + dto.getGameReleasedDate().substring(0,1);
-		
-		String [] category = gameGenre.split(",");
-				
-		RateDTO Rdto = (RateDTO)request.getAttribute("gameScore");
-		double gameScore = Rdto.getGameScore();
+
+	GameDTO dto = (GameDTO) request.getAttribute("detailGame");
+	String gameNo = dto.getGameNo();
+	String gameName = dto.getGameName();
+	String gameIamge = dto.getGameImage();
+	int gamePrice = dto.getGamePrice();
+	String gameContent = dto.getGameContent();
+	String gameCategory = dto.getGameCategory();
+	String gameGenre = dto.getGameGenre();
+
+	String[] category = gameGenre.split(",");
+
 	%>
-	
+
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
-    <div class="wrapper">
+	<div class="wrapper">
 		<!-- 상단 -->
-        <section class="main-contents">
-			<div class="gamename"><h1 id="gameName"><%= gameName %><small id="gameReleaseDate"><%= gameReleasedDate %></small></h1></div>
+		<section class="main-contents">
+			<div class="gamename">
+				<h1 id="gameName"><%=gameName%><small id="gameReleaseDate"></small>
+				</h1>
+			</div>
 			<div class="container">
 				<div>
 					<table class="topTable">
 						<tr>
-							<td rowspan="2" style="width:250px;"><img class="gameImg" id="gameImage" src="<%= gameIamge %>" alt="게임 이미지"></td>
+							<td rowspan="2" style="width: 250px;"><img class="gameImg" id="gameImage" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
 							<td class="tags">
 								<table>
-			 						<tr>
-										<td><a href="#" class="tag">#<%= category[0] %></a></td>
-										<td><a href="#" class="tag">#<%= category[1] %></a></td>
-										<td><a href="#" class="tag">#<%= category[2] %></a></td>
+									<tr>
+										<td><a href="#" class="tag">#<%=category[0]%></a></td>
+										<td><a href="#" class="tag">#<%=category[1]%></a></td>
+										<td><a href="#" class="tag">#<%=category[2]%></a></td>
 									</tr>
 									<tr>
-										<td><a href="#" class="tag">#<%= category[3] %></a></td>
-										<td><a href="#" class="tag">#<%= category[4] %></a></td>
+										<td><a href="#" class="tag">#<%=category[3]%></a></td>
+										<td><a href="#" class="tag">#<%=category[4]%></a></td>
 									</tr>
 								</table>
 							</td>
-							<td rowspan="2"><div class="score" id="gameScore"><%= gameScore %></div></td>
+							<td rowspan="2"><div class="score" id="gameScore">95.5</div></td>
 						</tr>
 						<tr>
-							<td><p class="content" id="gameContent">“<%= gameContent %>”</p></td>
+							<td><p class="content" id="gameContent">
+									“<%=gameContent%>”
+								</p></td>
 						</tr>
-			
+
 					</table>
 				</div>
 			</div>
-        </section>
+		</section>
 
 		<!-- 중단 -->
-        <section class="main-contents">
-			<div class="usereval"><h1>유저평가</h1></div>
+		<section class="main-contents">
+			<div class="usereval">
+				<h1>유저평가</h1>
+			</div>
 			<div class="container">
 				<div>
 					<table class="midTable">
@@ -101,28 +104,31 @@ function range() {
 							<td><button type="submit" id="delete">삭제</button></td>
 						</tr>
 					</table>
-					
+
 					<form action="DetailSubmit.jsp">
-					<table class="reviewTable">
-						<tr>
-							<td rowspan="3" class="mbrName" id="mbrName">내 닉네임</td>
-							<td rowspan="3" class="review"><textarea name="newreview" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea></td>
-							<td class="newmeter">0 <input type="range" name="newmeter" id="newmeter"min="0" max="100" onclick="range()">100</td>
-						<tr>
-							<td><span id="reviewScore">0</span></td>
-						</tr>
-						<tr>
-							<td><button type="submit" id="submit">올리기</button></td>
-						</tr>			
-					</table>
+						<table class="reviewTable">
+							<tr>
+								<td rowspan="3" class="mbrName" id="mbrName">내 닉네임</td>
+								<td rowspan="3" class="review"><textarea name="newreview" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea></td>
+								<td class="newmeter">0 <input type="range" name="newmeter" id="newmeter" min="0" max="100" onclick="range()">100
+								</td>
+							<tr>
+								<td><span id="reviewScore"></span></td>
+							</tr>
+							<tr>
+								<td><button type="submit" id="submit">올리기</button></td>
+							</tr>
+						</table>
 					</form>
 				</div>
 			</div>
-        </section>
-        
-        <!-- 하단 -->
-        <section class="main-contents">
-			<div class="assogame"><h1>연관 게임</h1></div>
+		</section>
+
+		<!-- 하단 -->
+		<section class="main-contents">
+			<div class="assogame">
+				<h1>연관 게임</h1>
+			</div>
 			<div class="container">
 				<div>
 					<table class="bottomTable">
@@ -143,12 +149,12 @@ function range() {
 					</table>
 				</div>
 			</div>
-        </section>
-        
+		</section>
+
 	</div>
-		
+
 	<!-- 페이지 최하단 배너 -->
 	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
-	
+
 </body>
 </html>
