@@ -47,21 +47,21 @@ public class GameDetailServlet extends HttpServlet {
 		
 		
 		//2. 중단. (리뷰) →reviewList (완료)
-//		ReviewService rservice= new ReviewService();
-//		List<ReviewDTO> rdto= rservice.reviewSelect(gameNo);
-//		request.setAttribute("reviewList", rdto);
+		ReviewService rservice= new ReviewService();
+		List<ReviewDTO> rdto= rservice.reviewSelect(gameNo);
+		request.setAttribute("reviewList", rdto);
 		
 		
 		//3. 하단. (관련 게임) → relateGame
 		//String gameNo=request.getParameter("gameNo");
 		//GameDTO gdto = gservice.detailGameSelect(gameNo);
-//		String gameCategory=gdto.getGameCategory(); //해당 게임 타이틀 정보의 gameCategory()를 가져옴
-//		List<GameDTO> gdto2 = gService.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
-//		request.setAttribute("relateGame", gdto2); //해당 값을 relateGame에 저장
-//		System.out.println("G_DTO: "+gdto2.toString());
+		String gameCategory=gdto.getGameCategory(); //해당 게임 타이틀 정보의 gameCategory()를 가져옴
+		List<GameDTO> gdto2 = gService.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
+		request.setAttribute("relateGame", gdto2); //해당 값을 relateGame에 저장
+		System.out.println("G_DTO: "+gdto2.toString());
 		
 
-		RequestDispatcher dis = request.getRequestDispatcher("Game/detailPage.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("detailPage.jsp");
 		dis.forward(request, response);
 		
 	}
