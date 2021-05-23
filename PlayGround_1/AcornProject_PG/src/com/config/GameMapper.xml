@@ -66,6 +66,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM game,rate
 		WHERE game.gameNo = rate.gameNo
 		AND game.gameCategory = #{gameCategory}
-		ORDER BY rate.gameScore desc, game.ReleasedDate desc
+		ORDER BY rate.gameScore desc, game.gameReleasedDate desc
 	</select>
 </mapper>

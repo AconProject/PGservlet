@@ -37,13 +37,14 @@ public class reviewInsertServlet extends HttpServlet {
 		if (dto != null) {
 			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 			String mbrId = request.getParameter("mbrId");
+			String mbrName=request.getParameter("mbrName");
 			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
 			int reviewLiked = Integer.parseInt(request.getParameter("reviewLiked"));
 			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
 			String reviewDate = "";
 
-			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, gameNo, reviewContent, reviewLiked, reviewScore,
+			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, mbrName,gameNo, reviewContent, reviewLiked, reviewScore,
 					reviewDate);
 
 			// 댓글 삽입
