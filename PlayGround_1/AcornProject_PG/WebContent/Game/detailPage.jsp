@@ -35,6 +35,7 @@ function range() {
 		String gameCategory = dto.getGameCategory();
 		String gameGenre = dto.getGameGenre();
 		
+		
 		String [] category = gameGenre.split(",");
 	%>
 	
