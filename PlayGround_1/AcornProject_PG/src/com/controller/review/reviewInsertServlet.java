@@ -29,7 +29,8 @@ public class reviewInsertServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-
+		System.out.println("로그인상태 회원정보: "+dto);
+		
 		ReviewService rService = new ReviewService();
 		String nextPage = null;
 
