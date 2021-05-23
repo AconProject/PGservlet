@@ -50,6 +50,7 @@ public class GameListServlet extends HttpServlet {
 		String gameCategory = request.getParameter("gameCategory");
 		HttpSession session = request.getSession();
 		MemberDTO mDto = (MemberDTO) session.getAttribute("login");
+		System.out.println(mDto);
 		List<GameDTO> gameList = null;
 		GameService service = new GameService();
 		Gson gson = new GsonBuilder().create();
