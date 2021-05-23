@@ -40,7 +40,7 @@ public class GameDetailServlet extends HttpServlet {
 		
 		RateService rateService = new RateService();
 		RateDTO rateDTO = rateService.getGameScore(gameNo);
-		System.out.println("게임점수: "+rateDTO.toString());
+		System.out.println("게임점수: "+rateDTO);
 		
 		request.setAttribute("detailGame", gdto); //게임하나에 대한 게임 정보
 		request.setAttribute("gameScore", rateDTO); //게임 하나에 대한  점수 정보

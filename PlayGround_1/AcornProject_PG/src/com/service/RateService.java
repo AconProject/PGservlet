@@ -1,14 +1,11 @@
 package com.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
-import com.dao.GameDAO;
 import com.dao.RateDAO;
-import com.dto.GameDTO;
 import com.dto.RateDTO;
 
 public class RateService {

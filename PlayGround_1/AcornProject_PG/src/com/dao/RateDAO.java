@@ -18,7 +18,7 @@ public class RateDAO {
 	public RateDTO getGameScore(SqlSession session, String gameNo) {
 		System.out.println("gameNo: "+gameNo);
 		RateDTO dto = session.selectOne("RateMapper.getGameScore", gameNo);
-		System.out.println(dto.toString());
+		System.out.println(dto);
 		return dto;
 	}
 }
