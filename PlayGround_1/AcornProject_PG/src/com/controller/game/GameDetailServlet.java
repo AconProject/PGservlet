@@ -40,7 +40,7 @@ public class GameDetailServlet extends HttpServlet {
 		
 		RateService rateService = new RateService();
 		RateDTO rateDTO = rateService.getGameScore(gameNo);
-		System.out.println("게임점수: "+rateDTO);
+		System.out.println("게임점수: "+rateDTO.toString());
 		
 		request.setAttribute("detailGame", gdto); //게임하나에 대한 게임 정보
 		request.setAttribute("gameScore", rateDTO); //게임 하나에 대한  점수 정보
@@ -49,20 +49,24 @@ public class GameDetailServlet extends HttpServlet {
 		//2. 중단. (리뷰) →reviewList (완료)
 		ReviewService rservice= new ReviewService();
 		List<ReviewDTO> rdto= rservice.reviewSelect(gameNo);
+		System.out.println("댓글: "+rdto.toString());
 		request.setAttribute("reviewList", rdto);
+		
 		
 		
 		//3. 하단. (관련 게임) → relateGame
 		//String gameNo=request.getParameter("gameNo");
 		//GameDTO gdto = gservice.detailGameSelect(gameNo);
 		String gameCategory=gdto.getGameCategory(); //해당 게임 타이틀 정보의 gameCategory()를 가져옴
-		List<GameDTO> gdto2 = gService.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
-    	request.setAttribute("relateGame", gdto2); //해당 값을 relateGame에 저장
-		System.out.println("G_DTO: "+gdto2.toString());
+		System.out.println("check");
+		List<GameDTO> relatedGameList = gService.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
+		System.out.println("관련 게임 리스트: "+relatedGameList.toString());
+		request.setAttribute("relateGame", relatedGameList); //해당 값을 relateGame에 저장
 		
 
 		RequestDispatcher dis = request.getRequestDispatcher("Game/detailPage.jsp");
 		dis.forward(request, response);
+		
 		
 	}
 
