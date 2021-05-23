@@ -61,7 +61,7 @@ public class GameDetailServlet extends HttpServlet {
 		System.out.println("G_DTO: "+gdto2.toString());
 		
 
-		RequestDispatcher dis = request.getRequestDispatcher("detailPage.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("Game/detailPage.jsp");
 		dis.forward(request, response);
 		
 	}
