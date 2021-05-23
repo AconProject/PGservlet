@@ -4,6 +4,7 @@ public class ReviewDTO {
 
 	private int reviewId;
 	private String mbrId;
+	private String mbrName;
 	private String gameNo;
 	private String reviewContent;
 	private int reviewLiked;
@@ -15,11 +16,12 @@ public class ReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(int reviewId, String mbrId, String gameNo, String reviewContent, int reviewLiked,
+	public ReviewDTO(int reviewId, String mbrId, String mbrName, String gameNo, String reviewContent, int reviewLiked,
 			Double reviewScore, String reviewDate) {
 		super();
 		this.reviewId = reviewId;
 		this.mbrId = mbrId;
+		this.mbrName = mbrName;
 		this.gameNo = gameNo;
 		this.reviewContent = reviewContent;
 		this.reviewLiked = reviewLiked;
@@ -41,6 +43,14 @@ public class ReviewDTO {
 
 	public void setMbrId(String mbrId) {
 		this.mbrId = mbrId;
+	}
+
+	public String getMbrName() {
+		return mbrName;
+	}
+
+	public void setMbrName(String mbrName) {
+		this.mbrName = mbrName;
 	}
 
 	public String getGameNo() {
@@ -85,9 +95,11 @@ public class ReviewDTO {
 
 	@Override
 	public String toString() {
-		return "ReviewDTO [reviewId=" + reviewId + ", mbrId=" + mbrId + ", gameNo=" + gameNo + ", reviewContent="
-				+ reviewContent + ", reviewLiked=" + reviewLiked + ", reviewScore=" + reviewScore + ", reviewDate="
-				+ reviewDate + "]";
+		return "ReviewDTO [reviewId=" + reviewId + ", mbrId=" + mbrId + ", mbrName=" + mbrName + ", gameNo=" + gameNo
+				+ ", reviewContent=" + reviewContent + ", reviewLiked=" + reviewLiked + ", reviewScore=" + reviewScore
+				+ ", reviewDate=" + reviewDate + "]";
 	}
-
+	
+	
+	
 }

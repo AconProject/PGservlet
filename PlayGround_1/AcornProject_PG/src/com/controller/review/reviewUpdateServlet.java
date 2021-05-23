@@ -35,13 +35,14 @@ public class reviewUpdateServlet extends HttpServlet {
 			//변수 수정 (jsp에서 들어오는 데이터에 따라) //점수 내용. 
 			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 			String mbrId = "";
+			String mbrName=request.getParameter("mbrName");
 			String gameNo = "";
 			String reviewContent = request.getParameter("reviewContent");
 			int reviewLiked = 0;
 			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
 			String reviewDate = "";
 			
-			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, gameNo, reviewContent, reviewLiked, reviewScore,
+			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, mbrName,gameNo, reviewContent, reviewLiked, reviewScore,
 					reviewDate);
 			int result = rservice.reviewUpdate(rdto);
 			if (result == 1) {
