@@ -1,3 +1,4 @@
+
 package com.controller.game;
 
 import java.io.IOException;
@@ -24,56 +25,59 @@ import com.service.GameService;
  * Servlet implementation class GameListServlet
  * 
  */
+
 @WebServlet("/GameListServlet")
 public class GameListServlet extends HttpServlet {
-   private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GameListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 
-   /**
-    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-    */
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      // TODO Auto-generated method stub
-      response.setContentType("text/html;charset=utf-8");
-      String gameCategory = request.getParameter("gameCategory");
-      HttpSession session = request.getSession();
-      MemberDTO mDto = (MemberDTO)session.getAttribute("login");
-      List<GameDTO> gameList = null;
-      GameService service = new GameService();
-      Gson gson = new GsonBuilder().create();
-      JSONArray jsonList = new JSONArray();
-      
-      if (gameCategory == null || gameCategory.contentEquals("new")) {   
-          gameList = service.newGameListSelect();
-      } else if (mDto == null && gameCategory.contentEquals("recommend")) {
-         gameList = service.recommendGameListSelect(11);
-      } else if (mDto != null && gameCategory.contentEquals("recommend")) {
-         gameList = service.recommendUserTagListSelect(mDto.getMbrId());
-      }
-      
-      PrintWriter out = response.getWriter();
-      for (GameDTO dto : gameList) {
-    	  jsonList.add(gson.toJson(dto));
-      }
-      out.println(jsonList);
+	public GameListServlet() {
+		super();
+		// TODO Auto-generated constructor stub }
+	}
 
-   }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		String gameCategory = request.getParameter("gameCategory");
+		HttpSession session = request.getSession();
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login");
+		List<GameDTO> gameList = null;
+		GameService service = new GameService();
+		Gson gson = new GsonBuilder().create();
+		JSONArray jsonList = new JSONArray();
 
-   /**
-    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-    */
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      // TODO Auto-generated method stub
-      doGet(request, response);
-   }
+		if (gameCategory == null || gameCategory.contentEquals("new")) {
+			gameList = service.newGameListSelect();
+		} else if (mDto == null && gameCategory.contentEquals("recommend")) {
+			gameList = service.recommendGameListSelect(11);
+		} else if (mDto != null && gameCategory.contentEquals("recommend")) {
+			gameList = service.recommendUserTagListSelect(mDto.getMbrId());
+		}
+
+		PrintWriter out = response.getWriter();
+		for (GameDTO dto : gameList) {
+			jsonList.add(gson.toJson(dto));
+		}
+		out.println(jsonList);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }
