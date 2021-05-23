@@ -58,6 +58,7 @@ public class GameDetailServlet extends HttpServlet {
 		//String gameNo=request.getParameter("gameNo");
 		//GameDTO gdto = gservice.detailGameSelect(gameNo);
 		String gameCategory=gdto.getGameCategory(); //해당 게임 타이틀 정보의 gameCategory()를 가져옴
+		System.out.println("check");
 		List<GameDTO> relatedGameList = gService.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
 		System.out.println("관련 게임 리스트: "+relatedGameList.toString());
 		request.setAttribute("relateGame", relatedGameList); //해당 값을 relateGame에 저장
