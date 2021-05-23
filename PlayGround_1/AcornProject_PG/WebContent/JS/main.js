@@ -104,7 +104,7 @@ function jsonParserForBoard(data, boardCategory){
 
 /* 하단에 표시할 뉴스 데이터 파싱 후 출력 */
 function jsonParserForNews(data){
-	for (let i=0; i<data.length; i++){
+	for (let i=0; i<5; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('li', 'mainNews', '<a href="'+ jsonObj.newsUrl + '">'
 			+ jsonObj.newsTitle + jsonObj.newsDate + '</a>');
