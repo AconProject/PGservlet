@@ -60,11 +60,11 @@ public class GameTagListServlet extends HttpServlet {
 			rate = rateService.rateRecommendSelect();
 		} else {
 			String[] tags = tag.split(",");
+			
+			List<Integer> listTags = new ArrayList<Integer>();
 			for (String t : tags) {
-				System.out.println(t);
+				listTags.add(Integer.parseInt(t));
 			}
-			List<String> listTags = new ArrayList<String>(Arrays.asList(tags));
-
 			gameList = gameService.tagGameListSelect(listTags);
 			rate = rateService.rateTagSelect(listTags);
 		}
