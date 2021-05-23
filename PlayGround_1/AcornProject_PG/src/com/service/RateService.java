@@ -6,7 +6,10 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
+import com.dao.GameDAO;
 import com.dao.RateDAO;
+import com.dto.GameDTO;
+import com.dto.RateDTO;
 
 public class RateService {
 	public List<Double> rateRecommendSelect() {
@@ -22,7 +25,7 @@ public class RateService {
 		}
 		return rate;
 	}
-	
+
 	public List<Double> rateTagSelect(List<String> listTags) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<Double> rate = null;
@@ -36,4 +39,19 @@ public class RateService {
 		}
 		return rate;
 	}
+
+	public RateDTO getGameScore(String gameNo) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		RateDTO dto = null;
+		try {
+			RateDAO dao = new RateDAO();
+			dto = dao.getGameScore(session, gameNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
+
 }
