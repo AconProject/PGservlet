@@ -19,7 +19,6 @@ public class ReviewService {
 		List<ReviewDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
-
 			list = dao.reviewSelect(session, gameNo);
 		} catch (Exception e) {
 			e.printStackTrace();

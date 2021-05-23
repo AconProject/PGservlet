@@ -11,6 +11,7 @@ import com.dto.ReviewDTO;
 public class ReviewDAO {
 
 	public List<ReviewDTO> reviewSelect(SqlSession session, String gameNo) {
+		System.out.println("댓글을 볼 게임 번호(DAO): "+ gameNo);
 		List<ReviewDTO> list = session.selectList("ReviewMapper.reviewSelect", gameNo);
 		return list;
 	}
