@@ -1,4 +1,6 @@
 <%@page import="com.dto.GameDTO"%>
+<%@page import="com.dto.RateDTO"%>
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Detail Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../CSS/DetailPage.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/CSS/DetailPage.css" rel="stylesheet">
 
 <script type="text/javascript">
 	function range() {
@@ -26,17 +28,25 @@
 
 	<%
 
-	GameDTO dto = (GameDTO) request.getAttribute("detailGame");
-	String gameNo = dto.getGameNo();
-	String gameName = dto.getGameName();
-	String gameIamge = dto.getGameImage();
-	int gamePrice = dto.getGamePrice();
-	String gameContent = dto.getGameContent();
-	String gameCategory = dto.getGameCategory();
-	String gameGenre = dto.getGameGenre();
-
+	GameDTO gdto = (GameDTO) request.getAttribute("detailGame");
+	/* RateDTO rdto = (RateDTO) request.getAttribute("gameScore"); */
+	
+	System.out.println("detailjsp - 게임정보 gdto : " + gdto);
+	String gameNo = gdto.getGameNo();
+	String gameName = gdto.getGameName();
+	String gameIamge = gdto.getGameImage();
+	int gamePrice = gdto.getGamePrice();
+	String gameContent = gdto.getGameContent();
+	String gameCategory = gdto.getGameCategory();
+	String gameGenre = gdto.getGameGenre();
+	String gameReleasedDate = gdto.getGameReleasedDate();
+	
+	/* 게임출시년도만 뜨기 */
+	String date = gameReleasedDate.substring(0, 4);
+	
+	/* double gameScore = rdto.getGameScore(); */
 	String[] category = gameGenre.split(",");
-
+	
 	%>
 
 	<!-- 메인화면 컨텐츠-->
@@ -45,14 +55,14 @@
 		<!-- 상단 -->
 		<section class="main-contents">
 			<div class="gamename">
-				<h1 id="gameName"><%=gameName%><small id="gameReleaseDate"></small>
+				<h1 id="gameName"><%=gameName%><small id="gameReleaseDate">( <%= date %> )</small>
 				</h1>
 			</div>
 			<div class="container">
 				<div>
 					<table class="topTable">
 						<tr>
-							<td rowspan="2" style="width: 250px;"><img class="gameImg" id="gameImage" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td rowspan="2" style="width: 250px;"><img class="gameImg" id="gameImage" src="<%= gameIamge %>" alt="게임 이미지"></td>
 							<td class="tags">
 								<table>
 									<tr>
@@ -66,12 +76,12 @@
 									</tr>
 								</table>
 							</td>
-							<td rowspan="2"><div class="score" id="gameScore">95.5</div></td>
+							<td rowspan="2"><div class="score" id="gameScore">99.9</div></td>
 						</tr>
 						<tr>
 							<td><p class="content" id="gameContent">
-									“<%=gameContent%>”
-								</p></td>
+									“ <%= gameContent %> ”
+							</p></td>
 						</tr>
 
 					</table>
@@ -105,21 +115,45 @@
 						</tr>
 					</table>
 
-					<form action="DetailSubmit.jsp">
+					<!-- 댓글 삽입  -->
+					<%
+					
+						MemberDTO dto =(MemberDTO)session.getAttribute("login");
+						
+						String name = "로그인해주세요";
+			    		if(dto != null ){
+			    			name =  dto.getMbrName();
+			    		} else if(dto == null) {
+					%>
+					<script>
+					    function click() {
+							alert("로그인하고 작성하세요!");
+						}
+					</script>
+					<%
+			    		}
+			    		
+					%>
+					<form action="reviewInsertServlet">
 						<table class="reviewTable">
 							<tr>
-								<td rowspan="3" class="mbrName" id="mbrName">내 닉네임</td>
-								<td rowspan="3" class="review"><textarea name="newreview" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea></td>
-								<td class="newmeter">0 <input type="range" name="newmeter" id="newmeter" min="0" max="100" onclick="range()">100
+								<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
+								<td rowspan="3" class="review">
+								<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
+								</td>
+								<td class="newmeter">0 <input type="range" name="reviewScore" id="newmeter" min="0" max="100" onclick="range()"> 100
 								</td>
 							<tr>
-								<td><span id="reviewScore"></span></td>
+								<td><span id="reviewScore">0</span></td>
 							</tr>
 							<tr>
-								<td><button type="submit" id="submit">올리기</button></td>
+								<td><button type="submit" id="submit" onclick="click();">올리기</button></td>
 							</tr>
 						</table>
 					</form>
+					
+					
+		
 				</div>
 			</div>
 		</section>
