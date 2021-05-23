@@ -1,3 +1,4 @@
+
 package com.controller.genre;
 
 import java.io.IOException;
@@ -21,42 +22,46 @@ import com.service.GenreService;
 /**
  * Servlet implementation class TagListServlet
  */
+
 @WebServlet("/GenreListServlet")
 public class GenreListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GenreListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
-		GenreService service = new GenreService();
-	    Gson gson = new GsonBuilder().create();
-	    JSONArray jsonList = new JSONArray();  
-		List<GenreDTO> tags = service.genreSelect();
-		System.out.println("tags: " + tags);
 
-		
-		PrintWriter out = response.getWriter();
-		for (GenreDTO tag: tags) {
-			jsonList.add(gson.toJson(tag));
-		}
-	    out.println(jsonList);
+	public GenreListServlet() {
+		super();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		GenreService service = new GenreService();
+		Gson gson = new GsonBuilder().create();
+		JSONArray jsonList = new JSONArray();
+		List<GenreDTO> tags = service.genreSelect();
+		System.out.println("tags: " + tags);
+
+		PrintWriter out = response.getWriter();
+		for (GenreDTO tag : tags) {
+			jsonList.add(gson.toJson(tag));
+		}
+		out.println(jsonList);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

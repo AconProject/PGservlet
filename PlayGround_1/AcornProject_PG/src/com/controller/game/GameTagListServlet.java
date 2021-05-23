@@ -1,3 +1,4 @@
+
 package com.controller.game;
 
 import java.io.IOException;
@@ -24,33 +25,36 @@ import com.service.RateService;
 /**
  * Servlet implementation class GameTagListServlet
  */
+
 @WebServlet("/GameTagListServlet")
 public class GameTagListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GameTagListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	    response.setContentType("text/html;charset=utf-8");
+
+	public GameTagListServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 		List<GameDTO> gameList = null;
-		String tag = request.getParameter("tags"); 
+		String tag = request.getParameter("tags");
 		System.out.println(tag);
 		List<Double> rate = new ArrayList<Double>();
 		GameService gameService = new GameService();
 		RateService rateService = new RateService();
 		Gson gson = new GsonBuilder().create();
-	    JSONArray jsonList = new JSONArray();
-	    
+		JSONArray jsonList = new JSONArray();
+
 		if (tag == null) {
 			gameList = gameService.recommendGameListSelect(6);
 			rate = rateService.rateRecommendSelect();
@@ -68,20 +72,21 @@ public class GameTagListServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int limit = gameList.size();
 		System.out.println(rate + "\t" + gameList);
-	      for (int i = 0; i < limit; i++ ) {
-	    	  JSONObject json = new JSONObject();
-	    	  json.put("rate" + Integer.toString(i), rate.get(i));
-	    	  jsonList.add(gson.toJson(gameList.get(i)));
-	    	  jsonList.add(json);
-	      }
-	      out.println(jsonList);
+		for (int i = 0; i < limit; i++) {
+			JSONObject json = new JSONObject();
+			json.put("rate" + Integer.toString(i), rate.get(i));
+			jsonList.add(gson.toJson(gameList.get(i)));
+			jsonList.add(json);
+		}
+		out.println(jsonList);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
