@@ -25,7 +25,8 @@
 	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<%
-		GameDTO dto = (GameDTO) request.getAttribute("detailGame");
+
+	GameDTO dto = (GameDTO) request.getAttribute("detailGame");
 	String gameNo = dto.getGameNo();
 	String gameName = dto.getGameName();
 	String gameIamge = dto.getGameImage();
@@ -35,6 +36,7 @@
 	String gameGenre = dto.getGameGenre();
 
 	String[] category = gameGenre.split(",");
+
 	%>
 
 	<!-- 메인화면 컨텐츠-->
