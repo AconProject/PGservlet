@@ -92,15 +92,15 @@ function jsonParserForTags(data){
 }
 
 /* 하단에 표시할 게시판 데이터 파싱 후 출력 */
-// function jsonParserForBoard(data, boardCategory){
-// 	for (let i=0; i<data.length; i++){
-// 		let jsonObj = JSON.parse(data[i]);
-// 		insertElement('li', boardCategory,
-// 			jsonObj.boardName + jsonObj.boardDate + '<img class="icon" src="Image/eye.png"><span>'
-// 			+ jsonObj.boardCount + '</span>' + '<img class="icon" src="Image/thumb.png"><span>'
-// 			+ jsonObj.boardLiked + '</span>');
-// 	}
-// }
+function jsonParserForBoard(data, boardCategory){
+	for (let i=0; i<data.length; i++){
+		let jsonObj = JSON.parse(data[i]);
+		insertElement('li', boardCategory,
+			jsonObj.boardName + jsonObj.boardDate + '<img class="icon" src="Image/eye.png"><span>'
+			+ jsonObj.boardCount + '</span>' + '<img class="icon" src="Image/thumb.png"><span>'
+			+ jsonObj.boardLiked + '</span>');
+	}
+}
 
 /* 상단 최신게임 불러오기 (페이지 첫 로딩) */
 function getNewGame(){
@@ -172,13 +172,11 @@ function getTagGame(){
 
 /* 중단 태그별 게임 불러오기 (태그 클릭) */
 function getTagGameEvent(tagId){
-	console.log(tagId);
 	fetch('GameTagListServlet?tags='+tagId)
 		.then(res => res.json())
 		.then(data => {
 			removeAllElements('.midTable tr');
 			jsonParserForMiddle(data);
-			console.log(data);
 		})
 		.catch(err => {
 			console.log(err);
@@ -215,11 +213,10 @@ function getCheckboxValue(){
 
 /* 하단 게임게시판 추천순으로 불러오기 (페이지 첫 로딩) */
 function getRecommendedPost(){
-	fetch('GameInfoListMainServlet')
+	fetch('GameInfoListMainServlet?gameInfoCategory=recommend')
 		.then(res => res.json())
 		.then(data => {
-			// jsonParserForBoard(data, 'boardPost');
-			console.log(data);
+			jsonParserForBoard(data, 'boardPost');
 		})
 		.catch(err => {
 			console.log(err);
@@ -228,72 +225,77 @@ function getRecommendedPost(){
 
 /* 하단 게임게시판 추천순으로 불러오기 (버튼 클릭) */
 function getRecommendedPostEvent(){
-	// fetch('GameInfoListMainServlet')
-	//    .then(res => res.json())
-	//    .then(data => {
-	//       console.log(data[0]);
-	//    })
-	//    .catch(err => {
-	//       console.log(err);
-	//    });
+	fetch('GameInfoListMainServlet?gameInfoCategory=recommend')
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('#boardPost li');
+			jsonParserForBoard(data, 'boardPost');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 하단 게임게시판 조회수 정렬 (버튼 클릭) */
 function getMostViewPost(){
-	// fetch('GameInfoListMainServlet')
-	//    .then(res => res.json())
-	//    .then(data => {
-	//       console.log(data[0]);
-	//    })
-	//    .catch(err => {
-	//       console.log(err);
-	//    });
+	fetch('GameInfoListMainServlet?gameInfoCategory=hit')
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('#boardPost li');
+			jsonParserForBoard(data, 'boardPost');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 하단 QnA게시판 추천수 정렬 (페이지 첫 로딩) */
 function getRecommendedQnA(){
-	// fetch('QnAListMainServlet')
-	//    .then(res => res.json())
-	//    .then(data => {
-	//       jsonParserForBoard(data, 'boardQnA');
-	//    })
-	//    .catch(err => {
-	//       console.log(err);
-	//    });
+	fetch('QnAListMainServlet?qnaCategory=recommend')
+		.then(res => res.json())
+		.then(data => {
+			jsonParserForBoard(data, 'boardQnA');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 하단 QnA게시판 추천수 정렬 (버튼 클릭) */
 function getRecommendedQnAEvent(){
-	// fetch('QnAListMainServlet')
-	//    .then(res => res.json())
-	//    .then(data => {
-	//       console.log(data[0]);
-	//    })
-	//    .catch(err => {
-	//       console.log(err);
-	//    });
+	fetch('QnAListMainServlet?qnaCategory=recommend')
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('#boardQnA li');
+			jsonParserForBoard(data, 'boardQnA');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 하단 QnA게시판 조회수 정렬 (버튼 클릭) */
 function getMostViewQnA(){
-	// fetch('QnAListMainServlet')
-	//    .then(res => res.json())
-	//    .then(data => {
-	//       console.log(data[0]);
-	//    })
-	//    .catch(err => {
-	//       console.log(err);`
-	//    });
+	fetch('QnAListMainServlet?qnaCategory=hit')
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('#boardQnA li');
+			jsonParserForBoard(data, 'boardQnA');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 /* 하단 뉴스게시판 불러오기 */
 function getNews(){
-	// fetch('NewsListMainServlet')
-	//    .then(res => res.json())
-	//    .then(data => {
-	//       console.log(data[0]);
-	//    })
-	//    .catch(err => {
-	//       console.log(err);
-	//    });
+	fetch('NewsListMainServlet')
+		.then(res => res.json())
+		.then(data => {
+			// jsonParserForNews(data);
+			console.log(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
