@@ -65,7 +65,7 @@ public class GameService {
 			session.close();
 		}
 		return dto;
-	}//end idCheck
+	}
 	
 	public List<GameDTO> recommendUserTagListSelect(String mbrId) {
 		List<GameDTO> list = null;

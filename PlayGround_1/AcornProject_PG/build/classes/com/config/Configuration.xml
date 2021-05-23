@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
      	<typeAlias type="com.dto.ReplyDTO" alias="ReplyDTO"/>
      	<typeAlias type="com.dto.GenreDTO" alias="GenreDTO"/>
      	<typeAlias type="com.dto.LikeDTO" alias="LikeDTO"/>
+     	<typeAlias type="com.dto.RateDTO" alias="RateDTO"/>
    </typeAliases>
    
 	<environments default="development">
