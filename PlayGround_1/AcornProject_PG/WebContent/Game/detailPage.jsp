@@ -1,4 +1,5 @@
 <%@page import="com.dto.GameDTO"%>
+<%@page import="com.dto.RateDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,9 +35,12 @@ function range() {
 		String gameContent = dto.getGameContent();
 		String gameCategory = dto.getGameCategory();
 		String gameGenre = dto.getGameGenre();
-		
+		String gameReleasedDate = "20" + dto.getGameReleasedDate().substring(0,1);
 		
 		String [] category = gameGenre.split(",");
+				
+		RateDTO Rdto = (RateDTO)request.getAttribute("gameScore");
+		double gameScore = Rdto.getGameScore();
 	%>
 	
 	<!-- 메인화면 컨텐츠-->
@@ -44,12 +48,12 @@ function range() {
     <div class="wrapper">
 		<!-- 상단 -->
         <section class="main-contents">
-			<div class="gamename"><h1 id="gameName"><%= gameName %><small id="gameReleaseDate"></small></h1></div>
+			<div class="gamename"><h1 id="gameName"><%= gameName %><small id="gameReleaseDate"><%= gameReleasedDate %></small></h1></div>
 			<div class="container">
 				<div>
 					<table class="topTable">
 						<tr>
-							<td rowspan="2" style="width:250px;"><img class="gameImg" id="gameImage" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+							<td rowspan="2" style="width:250px;"><img class="gameImg" id="gameImage" src="<%= gameIamge %>" alt="게임 이미지"></td>
 							<td class="tags">
 								<table>
 			 						<tr>
@@ -63,7 +67,7 @@ function range() {
 									</tr>
 								</table>
 							</td>
-							<td rowspan="2"><div class="score" id="gameScore">95.5</div></td>
+							<td rowspan="2"><div class="score" id="gameScore"><%= gameScore %></div></td>
 						</tr>
 						<tr>
 							<td><p class="content" id="gameContent">“<%= gameContent %>”</p></td>
@@ -105,7 +109,7 @@ function range() {
 							<td rowspan="3" class="review"><textarea name="newreview" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea></td>
 							<td class="newmeter">0 <input type="range" name="newmeter" id="newmeter"min="0" max="100" onclick="range()">100</td>
 						<tr>
-							<td><span id="reviewScore"></span></td>
+							<td><span id="reviewScore">0</span></td>
 						</tr>
 						<tr>
 							<td><button type="submit" id="submit">올리기</button></td>
