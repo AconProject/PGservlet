@@ -189,11 +189,15 @@ function getCheckboxValue(){
 	let selectedEls = 
 		document.querySelectorAll(query);
 
-	let checkedTagId = '';
-	selectedEls.forEach((el) => {
-		checkedTagId += el.value + ',';
-	});
-	getTagGameEvent(checkedTagId);
+	if (selectedEls.length == 0){
+		getTagGame();
+	} else{
+		let checkedTagId = '';
+		selectedEls.forEach((el) => {
+			checkedTagId += el.value + ',';
+		});
+		getTagGameEvent(checkedTagId);
+	}
 
 	// 3개 클릭 시 체크박스 막기
 	if (selectedEls.length > 2) {
