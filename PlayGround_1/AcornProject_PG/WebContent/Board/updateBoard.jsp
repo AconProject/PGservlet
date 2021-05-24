@@ -9,21 +9,9 @@
     <link href="../CSS/UpdateBoard.css" rel="stylesheet">
 </head>
 <body>
+	
 	<!-- 페이지 상단 로고 및 배너 -->
-    <header>
-		<div class="wrapper">
-				<a href="../Main.jsp"><img class="logo" src="../Image/logo.png" alt="로고 이미지"></a>
-			<nav>
-				<div class="empty"></div>
-				<ul class="nav">
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">뉴스 및 소식</a></li>
-					<li><a href="LoginForm.jsp">로그인</a></li>
-					<li><a href="MemberForm.jsp">회원가입</a></li>
-				</ul>
-			</nav>
-		</div>
-    </header>
+	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
@@ -58,11 +46,7 @@
 	</div>
 		
 	<!-- 페이지 최하단 배너 -->
-    <footer>
-        <div class="wrapper">
-            <p><small>&copy; 2021 PlayGround</small></p>
-        </div>
-    </footer>
+	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
     
 </body>
 </html>
