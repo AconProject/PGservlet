@@ -308,7 +308,6 @@ function getNews(){
 		.then(res => res.json())
 		.then(data => {
 			jsonParserForNews(data);
-			console.log(data);
 		})
 		.catch(err => {
 			console.log(err);
