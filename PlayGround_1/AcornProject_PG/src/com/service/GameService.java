@@ -81,7 +81,7 @@ public class GameService {
 		return list;
 	}
 
-		public List<GameDTO> relatedGameList(String gameCategory) {
+	public List<GameDTO> relatedGameList(String gameCategory) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<GameDTO> list = null;
 		try {
@@ -94,5 +94,18 @@ public class GameService {
 		}
 		return list;
 	}
-
+		
+	public List<GameDTO> tagDetailSelect(String gameCategory) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<GameDTO> list = null;
+		try {
+			GameDAO dao = new GameDAO();
+			list = dao.tagDetailSelect(session, gameCategory);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
 }
