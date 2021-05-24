@@ -69,7 +69,7 @@
 			</div>
 			<div class="container">
 				<div>
-					<ol class="boardChart" id="mainNews"></ol>
+					<ol class="newsChart" id="mainNews"></ol>
 				</div>
 			</div>
         </section>

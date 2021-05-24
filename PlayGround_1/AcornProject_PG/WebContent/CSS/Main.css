@@ -158,6 +158,8 @@ button {
 	width: 60px;
 	height: 40px;
 	margin-right: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	background-color: #47b8e0;
 	color: white;
 }
@@ -167,14 +169,21 @@ button {
 }
 
 .icon {
-	width: 15px;
+	width: 20px;
 }
 
-.boardChart li {
+.boardChart {
+	width: 450px;
+}
+
+.boardChart li, .newsChart li {
 	font-size: 1.3rem;
-	list-style-position: inside;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
 }
 
-.icon + span {
-	font-size: 0.8rem;
+li span {
+	font-size: 1.1rem;
 }

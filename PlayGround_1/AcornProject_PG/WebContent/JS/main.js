@@ -96,9 +96,10 @@ function jsonParserForBoard(data, boardCategory){
 	for (let i=0; i<data.length; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('li', boardCategory, '<a href="BoardDetailServlet?boardId='
-			+ jsonObj.boardId + '">' + jsonObj.boardName + jsonObj.boardDate + '</a>'
-			+ '<img class="icon" src="Image/eye.png"><span>' + jsonObj.boardCount + '</span>'
-			+ '<img class="icon" src="Image/thumb.png"><span>' + jsonObj.boardLiked + '</span>');
+			+ jsonObj.boardId + '">' + jsonObj.boardName + '</a><div><span>'
+			+ jsonObj.boardDate + '</span>&nbsp<img class="icon" src="Image/eye.png">&nbsp<span>'
+			+ jsonObj.boardCount + '</span>&nbsp<img class="icon" src="Image/thumb.png">&nbsp<span>'
+			+ jsonObj.boardLiked + '</span></div>');
 	}
 }
 
