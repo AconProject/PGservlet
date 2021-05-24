@@ -63,17 +63,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!--댓글 페이지 -->
-<!-- 	<select id="selectAll"  resultType="ReviewDTO">
+	<select id="selectAll"  resultType="ReviewDTO">
 		select *
 		from review
 		order by mbrId
-	</select> -->
+	</select>
 
-<!-- 	<select id="totalCount" resultType="int" parameterType="string">
+	<select id="totalCount" resultType="int" parameterType="string">
 		select count(*)
 		from review
 		order by mbrId
 	</select>
- -->
+
 
 </mapper>

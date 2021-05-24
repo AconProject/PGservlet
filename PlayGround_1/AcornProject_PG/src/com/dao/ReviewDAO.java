@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.dto.GameDTO;
+import com.dto.PageDTO;
 import com.dto.ReviewDTO;
 
 public class ReviewDAO {
@@ -14,73 +15,67 @@ public class ReviewDAO {
 		List<ReviewDTO> list = session.selectList("ReviewMapper.reviewSelect", gameNo);
 		return list;
 	}
-	
-	
+
 	///////////////////////////////////////////////////////////////////////////////
 	// 전체 레코드 갯수 구하는 sql
 	private int totalCount(SqlSession session) {
 		return session.selectOne("com.dto.totalCount");
 	}
 
-	/*
-	 * public PageDTO selectAllPage(SqlSession session, int curPage) {
-	 * 
-	 * PageDTO pDTO = new PageDTO(); int perPage = 4; int offset = (curPage -
-	 * 1)*perPage;
-	 * 
-	 * List<ReviewDTO> list = session.selectList("com.dto.selectAll", null, new
-	 * RowBounds(offset, perPage)); pDTO.setPerPage(perPage);
-	 * pDTO.setCurPage(curPage); // 현재페이지 저장 pDTO.setList(list);
-	 * pDTO.setTotalCount(totalCount(session)); return pDTO; }
-	 */
-	
+	/// 페이지
+	public PageDTO selectAllPage(SqlSession session, int curPage) {
+		
+		PageDTO pDTO = new PageDTO();
+		int perPage = 4;
+		int offset = (curPage - 1)*perPage;
+		
+		List<ReviewDTO> list = session.selectList("com.dto.selectAll", null, new RowBounds(offset, perPage));
+		pDTO.setPerPage(perPage);
+		pDTO.setCurPage(curPage); // 현재페이지 저장
+		pDTO.setList(list);
+		pDTO.setTotalCount(totalCount(session));
+		return pDTO;
+	}
+	////
+
 	public List<ReviewDTO> selectAllReview(SqlSession session) {
 		List<ReviewDTO> list = session.selectList("selectAll");
 		return list;
 	}
 
 //////////////////댓글 삽입 부분
-	public int reviewInsert(SqlSession session,ReviewDTO rdto) {
-		int result= session.insert("ReviewMapper.reviewInsert",rdto);
+	public int reviewInsert(SqlSession session, ReviewDTO rdto) {
+		int result = session.insert("ReviewMapper.reviewInsert", rdto);
 		return result;
 	}
 
 //////////////////댓글 수정 부분
 	public int reviewUpdate(SqlSession session, ReviewDTO rdto) {
-		int result= session.update("ReviewMapper.reviewUpdate",rdto);
+		int result = session.update("ReviewMapper.reviewUpdate", rdto);
 		return result;
 	}
+
 //////////////////댓글 삭제 부분
-	public int reviewDelete(SqlSession session,int reviewId) {
-		int result= session.delete("ReviewMapper.reviewDelete",reviewId);
+	public int reviewDelete(SqlSession session, int reviewId) {
+		int result = session.delete("ReviewMapper.reviewDelete", reviewId);
 		return result;
 	}
 
 ////////////////
 	public int reviewLikePlus(SqlSession session, int reviewId) {
-		int result= session.update("ReviewMapper.reviewLikePlus",reviewId);
+		int result = session.update("ReviewMapper.reviewLikePlus", reviewId);
 		return result;
 	}
+
 	public int reviewLikeMinus(SqlSession session, int reviewId) {
-		int result= session.update("ReviewMapper.reviewLikeMinus",reviewId);
+		int result = session.update("ReviewMapper.reviewLikeMinus", reviewId);
 		return result;
 	}
 ////////////////
-	
-	
-
 
 	public int reviewLikeSelect(SqlSession session, int reviewId) {
-		int result= session.selectOne("ReviewMapper.reviewLikeSelect",reviewId);
+		int result = session.selectOne("ReviewMapper.reviewLikeSelect", reviewId);
 		return result;
 	}
 
-
-	
-
-
-
-
-	
-	
 }

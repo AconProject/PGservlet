@@ -11,67 +11,68 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dto.GameDTO;
+import com.dto.PageDTO;
 import com.dto.RateDTO;
 import com.dto.ReviewDTO;
 import com.service.GameService;
 import com.service.RateService;
 import com.service.ReviewService;
 
-
 @WebServlet("/GameDetailServlet")
 public class GameDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-    public GameDetailServlet() {
-        super();
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
-		//1.상단. (게임정보) → detailGame (완료)
-		String gameNo=request.getParameter("gameNo");
-		
-		GameService gService= new GameService();
+	public GameDetailServlet() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// 1.상단. (게임정보) → detailGame (완료)
+		String gameNo = request.getParameter("gameNo");
+
+		GameService gService = new GameService();
 		GameDTO gdto = gService.detailGameSelect(gameNo);
-		System.out.println("게임정보: "+ gdto.toString());
-		
+		System.out.println("게임정보: " + gdto.toString());
+
 		RateService rateService = new RateService();
 		RateDTO rateDTO = rateService.getGameScore(gameNo);
-		System.out.println("게임점수: "+rateDTO.toString());
-		
-		request.setAttribute("detailGame", gdto); //게임하나에 대한 게임 정보
-		request.setAttribute("gameScore", rateDTO); //게임 하나에 대한  점수 정보
-		
-		
-		//2. 중단. (리뷰) →reviewList (완료)
-		ReviewService rservice= new ReviewService();
-		List<ReviewDTO> rdto= rservice.reviewSelect(gameNo);
-		System.out.println("댓글: "+rdto.toString());
+		System.out.println("게임점수: " + rateDTO.toString());
+
+		request.setAttribute("detailGame", gdto); // 게임하나에 대한 게임 정보
+		request.setAttribute("gameScore", rateDTO); // 게임 하나에 대한 점수 정보
+
+		// 2. 중단. (리뷰) →reviewList (완료)
+		ReviewService rservice = new ReviewService();
+		List<ReviewDTO> rdto = rservice.reviewSelect(gameNo);
+		System.out.println("댓글: " + rdto.toString());
 		request.setAttribute("reviewList", rdto);
-		
-		
-		
-		//3. 하단. (관련 게임) → relateGame
-		//String gameNo=request.getParameter("gameNo");
-		//GameDTO gdto = gservice.detailGameSelect(gameNo);
-		String gameCategory=gdto.getGameCategory(); //해당 게임 타이틀 정보의 gameCategory()를 가져옴
+
+		// 2-1. 댓글 페이지
+		String curPage = request.getParameter("curPage"); // 현재 페이지 번호 얻기
+		if (curPage == null)
+			curPage = "1";
+		PageDTO pDTO = rservice.selectAllPage(Integer.parseInt(curPage));
+		System.out.println(pDTO.toString());
+		request.setAttribute("pDTO", pDTO);
+
+		// 3. 하단. (관련 게임) → relateGame
+		// String gameNo=request.getParameter("gameNo");
+		// GameDTO gdto = gservice.detailGameSelect(gameNo);
+		String gameCategory = gdto.getGameCategory(); // 해당 게임 타이틀 정보의 gameCategory()를 가져옴
 		System.out.println("check");
-		List<GameDTO> relatedGameList = gService.relatedGameList(gameCategory); //해당 게임 카테고리를 가진 다른 게임 리스트 도출
-		System.out.println("관련 게임 리스트: "+relatedGameList.toString());
-		request.setAttribute("relateGame", relatedGameList); //해당 값을 relateGame에 저장
-		
+		List<GameDTO> relatedGameList = gService.relatedGameList(gameCategory); // 해당 게임 카테고리를 가진 다른 게임 리스트 도출
+		System.out.println("관련 게임 리스트: " + relatedGameList.toString());
+		request.setAttribute("relateGame", relatedGameList); // 해당 값을 relateGame에 저장
 
 		RequestDispatcher dis = request.getRequestDispatcher("Game/detailPage.jsp");
 		dis.forward(request, response);
-		
-		
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
