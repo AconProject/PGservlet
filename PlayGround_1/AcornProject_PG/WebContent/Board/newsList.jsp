@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>BoardPage</title>
+<title>NewsPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="${pageContext.request.contextPath}/CSS/BoardList.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/JS/boardList.js?v=<%=System.currentTimeMillis() %>"></script>
@@ -16,37 +16,14 @@
 	<!-- 게시판 컨텐츠-->
     <div class="wrapper contents">
 
-		<h1>게시판</h1>
-
-		<select name="boardCategory">
-			<option>일반글</option>
-			<option>게임정보</option>
-			<option>할인정보</option>
-			<option>QnA</option>
-		</select>
+		<h1>뉴스 및 소식</h1>
 
 		<table>
 			<tr>
-				<th>카테고리</th>
 				<th>제목</th>
-				<th>작성자</th>
 				<th>날짜</th>
-				<th>조회수</th>
-				<th>추천수</th>
 			</tr>
 		</table>
-
-		<form action="BoardListServlet">
-			<select name="searchCategory">
-				<option>제목+작성자</option>
-				<option>제목</option>
-				<option>작성자</option>
-			</select>
-			<input type="text">
-			<button type="submit"><img src="../Image/search.png" alt="검색"></button>
-		</form>
-
-		<button id="write">글 작성</button>
 
 		<div>
 			<button>&lt;</button>
@@ -54,6 +31,7 @@
 		</div>
 
     </div>
+
 
 	<!-- 페이지 맨 밑부분 -->
     <jsp:include page="../common/footer.jsp" flush="true"></jsp:include>

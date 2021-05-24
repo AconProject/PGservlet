@@ -37,5 +37,9 @@ public class GameDAO {
 		List<GameDTO> list = session.selectList("GameMapper.relatedGameList", gameCategory);
 		return list;
 	}
-
+		
+	public List<GameDTO> tagDetailSelect(SqlSession session, String gameCategory) {
+	   List<GameDTO> list = session.selectList("GoodsMapper.tagDetailSelect", gameCategory);
+	   return list;
+	}
 }
