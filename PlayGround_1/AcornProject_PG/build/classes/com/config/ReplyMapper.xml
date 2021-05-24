@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     WHERE boardId = #{replyId}
 	</update>
 	
-	<select id="replyListSelect" parameterType="string" resultType="ReplyDTO">
+	<select id="replyListSelect" parameterType="int" resultType="ReplyDTO">
 		SELECT replyId, boardId, mbrId, mbrName, replyContent, replyLiked, replyDate
 		FROM reply
 		WHERE boardId = #{boardId}
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE replyId = #{replyId}
 	</update>
 	
-	<delete id="replyDelete" parameterType="string">
+	<delete id="replyDelete" parameterType="int">
 		DELETE FROM reply
 		WHERE replyId = #{replyId}
 	</delete>

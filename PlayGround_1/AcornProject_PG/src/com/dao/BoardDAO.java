@@ -50,15 +50,19 @@ public class BoardDAO {
 		return session.delete("BoardMapper.boardDelete", boardId);
 	}
 	
-	public int boardLikePlus(SqlSession session, String boardId) {
+	public int boardLikePlus(SqlSession session, int boardId) {
 		return session.update("BoardMapper.boardLikePlus", boardId);
 	}
 	
-	public int boardLikeMinus(SqlSession session, String boardId) {
+	public int boardLikeMinus(SqlSession session, int boardId) {
 		return session.update("BoardMapper.boardLikeMinus", boardId);
 	}
 	
-	public BoardDTO boardDetailSelect(SqlSession session, String boardId) {
+	public BoardDTO boardDetailSelect(SqlSession session, int boardId) {
 		return session.selectOne("BoardMapper.boardDetailSelect", boardId);
+	}
+	
+	public int getBoardId(SqlSession session) {
+		return session.selectOne("BoardMapper.getBoardId");
 	}
 }
