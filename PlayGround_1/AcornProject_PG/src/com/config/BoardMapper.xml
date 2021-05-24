@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="boardInsert" parameterType="BoardDTO">
 		INSERT INTO board(boardId,mbrId, mbrName, boardCategory,boardName,boardContent,boardCount,boardLiked,boardDate) 
-		VALUES(boardSeq.NEXTVAL,#{mbrId}, #{mbrName}, #{boardCategory},#{boardName},#{boardContent},0,0,SYSDATE)
+		VALUES(#{boardId},#{mbrId}, #{mbrName}, #{boardCategory},#{boardName},#{boardContent},0,0,SYSDATE)
 	</insert>
 	
 	<update id="boardUpdate" parameterType="BoardDTO">
@@ -80,21 +80,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         AND mbrId = #{mbrId}
 	</update>
 	
-	<update id="boardLikePlus" parameterType="string">
+	<update id="boardLikePlus" parameterType="int">
 		UPDATE board
 	     SET boardLiked = boardLiked + 1
 	     WHERE boardId = #{boardId}
 	</update>
 	
-	<update id="boardLikeMinus" parameterType="string">
+	<update id="boardLikeMinus" parameterType="int">
 		UPDATE board
 	     SET boardLiked = boardLiked - 1
 	     WHERE boardId = #{boardId}
 	</update>
 	
-	<select id="boardDetailSelect" parameterType="string">
+	<select id="boardDetailSelect" parameterType="int" resultType="boardDTO">
 		SELECT *
 		FROM board
 		WHERE boardId = #{boardId}
+	</select>
+	
+	<select id="getBoardId" resultType="int">
+		SELECT boardSeq.NEXTVAL
+		FROM dual
 	</select>
 </mapper>

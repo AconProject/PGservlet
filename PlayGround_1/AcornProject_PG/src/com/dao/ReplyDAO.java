@@ -7,15 +7,15 @@ import org.apache.ibatis.session.SqlSession;
 import com.dto.ReplyDTO;
 
 public class ReplyDAO {
-	public int replyLikeMinus(SqlSession session, String replyId) {
+	public int replyLikeMinus(SqlSession session, int replyId) {
 		return session.update("ReplyMapper.replyLikeMinus", replyId);
 	}
 	
-	public int replyLikePlus(SqlSession session, String replyId) {
+	public int replyLikePlus(SqlSession session, int replyId) {
 		return session.update("ReplyMapper.replyLikeMinus", replyId);
 	}
 
-	public List<ReplyDTO> replyListSelect(SqlSession session, String boardId) {
+	public List<ReplyDTO> replyListSelect(SqlSession session, int boardId) {
 		return session.selectList("ReplyMapper.replyListSelect", boardId);
 	}
 	

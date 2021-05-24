@@ -47,18 +47,15 @@ public class BoardModifyServlet extends HttpServlet {
 	
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8"); 
 		BoardService service = new BoardService();
 		HttpSession session = request.getSession();
 		String boardKind = request.getParameter("boardKind");
 		boolean isComplete = false;
 		String mesg = "";
-		
 		MemberDTO login= (MemberDTO) session.getAttribute("login");
 		System.out.println(login);
-		String bId = request.getParameter("boardId");
-		int boardId = 0;
-		if (bId != null)
-			boardId = Integer.parseInt(bId);
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		String boardName = request.getParameter("boardName");
 		String boardCategory = request.getParameter("boardCategory");
 		String boardContent = request.getParameter("boardContent");
@@ -72,6 +69,8 @@ public class BoardModifyServlet extends HttpServlet {
 		System.out.println(dto);
 		if (login != null) {
 			if (login.getMbrId().contentEquals(login.getMbrId()) && boardKind.contentEquals("boardInsert")) {
+				boardId = service.getBoardId();
+				dto.setBoardId(boardId);
 				isComplete = service.boardInsert(dto);
 			} else if (login.getMbrId().contentEquals(login.getMbrId()) && boardKind.contentEquals("boardUpdate")) {
 				isComplete = service.boardUpdate(dto);
@@ -82,11 +81,11 @@ public class BoardModifyServlet extends HttpServlet {
 		if (isComplete) {
 			if (boardKind.contentEquals("boardInsert")) {
 				mesg = "해당 게시글을 추가하였습니다.";
-				nextPage = "BoardDetailServlet?boardId=" + bId;
+				nextPage = "BoardDetailServlet?boardId=" + boardId;
 			}
 			else if (boardKind.contentEquals("boardUpdate")) {
 				mesg = "해당 게시글을 수정하였습니다.";
-				nextPage = "BoardDetailServlet?boardId=" + bId;
+				nextPage = "BoardDetailServlet?boardId=" + boardId;
 			}
 			else {
 				mesg = "해당 게시글을 삭제하였습니다.";
@@ -99,6 +98,8 @@ public class BoardModifyServlet extends HttpServlet {
 			else
 				mesg = "해당 게시물에 대한 처리를 수행하지 못했습니다.";
 		}
+		System.out.println(isComplete + "\t " + mesg);
+		System.out.println(nextPage);
 		request.setAttribute("mesg", mesg);
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 	     dis.forward(request, response);

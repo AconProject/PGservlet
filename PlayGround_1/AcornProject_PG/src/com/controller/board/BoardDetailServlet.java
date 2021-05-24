@@ -34,12 +34,13 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardId = request.getParameter("boardId");
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		BoardService bService = new BoardService();
 		ReplyService rService = new ReplyService();
+		System.out.println("boardID : " + boardId);
 		BoardDTO dto = bService.boardDetailSelect(boardId);
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
-		System.out.println("게임 상세 페이지 :" + dto);
+		System.out.println("게시판 상세 페이지 :" + dto);
 		request.setAttribute("board", dto);
 		request.setAttribute("replyList", replyList);
 		RequestDispatcher dis = request.getRequestDispatcher("boardPage?boardId=" + boardId + ".jsp");

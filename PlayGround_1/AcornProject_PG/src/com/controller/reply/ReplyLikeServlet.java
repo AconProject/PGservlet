@@ -56,10 +56,10 @@ public class ReplyLikeServlet extends HttpServlet {
 		ids.put("mbrId", login.getMbrId());
 		cnt = lService.likeBoardCount(ids);
 		if (cnt >= 1) {
-			replyLike += rService.replyLikeMinus(replyId) * -1;
+			replyLike += rService.replyLikeMinus(Integer.parseInt(replyId)) * -1;
 			isComplete = lService.likeReplyDelete(ids);
 		} else {
-			replyLike += rService.replyLikePlus(replyId);
+			replyLike += rService.replyLikePlus(Integer.parseInt(replyId));
 			isComplete = lService.likeReplyInsert(ids);
 		}
 		System.out.println("좋아요 : " + replyLike + " , liked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);

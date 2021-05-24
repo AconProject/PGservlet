@@ -47,10 +47,10 @@ public class BoardLikeServlet extends HttpServlet {
 		ids.put("mbrId", login.getMbrId());
 		cnt = lService.likeBoardCount(ids);
 		if (cnt >= 1) {
-			boardLike += bService.boardLikeMinus(boardId) * -1;
+			boardLike += bService.boardLikeMinus(Integer.parseInt(boardId)) * -1;
 			isComplete = lService.likeBoardDelete(ids);
 		} else {
-			boardLike += bService.boardLikePlus(boardId);
+			boardLike += bService.boardLikePlus(Integer.parseInt(boardId));
 			isComplete = lService.likeBoardInsert(ids);
 		}
 		System.out.println("좋아요 : " + boardLike + " , boardLiked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);

@@ -109,6 +109,7 @@ public class BoardService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			session.commit();
 			session.close();
 		}
 		return n == 1 ? true : false;
@@ -123,6 +124,7 @@ public class BoardService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			session.commit();
 			session.close();
 		}
 		return n == 1 ? true : false;
@@ -137,12 +139,13 @@ public class BoardService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			session.commit();
 			session.close();
 		}
 		return n == 1 ? true : false;
 	}
 	
-	public int boardLikePlus(String boardId) {
+	public int boardLikePlus(int boardId) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -156,7 +159,7 @@ public class BoardService {
 		return n;
 	}
 	
-	public int boardLikeMinus(String boardId) {
+	public int boardLikeMinus(int boardId) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -170,7 +173,7 @@ public class BoardService {
 		return n;
 	}
 	
-	public BoardDTO boardDetailSelect(String boardId) {
+	public BoardDTO boardDetailSelect(int boardId) {
 		BoardDTO dto = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -182,5 +185,19 @@ public class BoardService {
 			session.close();
 		}
 		return dto;
+	}
+	
+	public int getBoardId() {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BoardDAO dao = new BoardDAO();
+			n = dao.getBoardId(session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return n;
 	}
 }

@@ -11,7 +11,7 @@ import com.dto.ReplyDTO;
 
 public class ReplyService {
 
-	public int replyLikePlus(String replyId) {
+	public int replyLikePlus(int replyId) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -25,7 +25,7 @@ public class ReplyService {
 		return n;
 	}
 	
-	public int replyLikeMinus(String replyId) {
+	public int replyLikeMinus(int replyId) {
 		int n = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -39,7 +39,7 @@ public class ReplyService {
 		return n;
 	}
 	
-	public List<ReplyDTO> replyListSelect(String boardId) {
+	public List<ReplyDTO> replyListSelect(int boardId) {
 		List<ReplyDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
@@ -62,6 +62,7 @@ public class ReplyService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			session.commit();
 			session.close();
 		}
 		return n == 1 ? true : false;
@@ -76,6 +77,7 @@ public class ReplyService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			session.commit();
 			session.close();
 		}
 		return n == 1 ? true : false;
@@ -90,6 +92,7 @@ public class ReplyService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			session.commit();
 			session.close();
 		}
 		return n == 1 ? true : false;
