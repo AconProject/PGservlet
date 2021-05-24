@@ -26,7 +26,7 @@ public class GameTagDetailServlet extends HttpServlet {
 		String gameCategory = request.getParameter("gameCategory");
 		GameService service = new GameService();
 		List<GameDTO> list = service.tagDetailSelect(gameCategory);
-		request.setAttribute("gameList", list);
+		request.setAttribute("tagDetailSelect", list);
 		RequestDispatcher dis = request.getRequestDispatcher("tagDetail.jsp");
 		dis.forward(request, response);
 		
