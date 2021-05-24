@@ -41,8 +41,8 @@ public class BoardListServlet extends HttpServlet {
 		String boardKind = request.getParameter("boardKind");
 		Gson gson = new GsonBuilder().create();
 		JSONArray jsonList = new JSONArray();
-
 		List<BoardDTO> list = null;
+		
 		if (boardKind.contentEquals("boardList")) {
 			String boardCategory = request.getParameter("boardCategory");
 			list = service.boardSelect(boardCategory);
