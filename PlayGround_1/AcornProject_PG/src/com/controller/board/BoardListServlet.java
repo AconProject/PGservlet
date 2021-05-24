@@ -1,20 +1,21 @@
 package com.controller.board;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
 
 import com.dto.BoardDTO;
-import com.dto.MemberDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.BoardService;
 
 /**
@@ -38,6 +39,9 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardService service = new BoardService();
 		String boardKind = request.getParameter("boardKind");
+		Gson gson = new GsonBuilder().create();
+		JSONArray jsonList = new JSONArray();
+
 		List<BoardDTO> list = null;
 		if (boardKind.contentEquals("boardList")) {
 			String boardCategory = request.getParameter("boardCategory");
@@ -54,9 +58,12 @@ public class BoardListServlet extends HttpServlet {
 			searchMap.put("boardCategory", boardCategory);
 			list = service.boardSearchSelect(searchMap);
 		}
-		request.setAttribute("list", list);
-		RequestDispatcher dis = request.getRequestDispatcher("boardList");
-		dis.forward(request, response);
+		System.out.println(list);
+		PrintWriter out = response.getWriter();
+		for (BoardDTO dto : list) {
+			jsonList.add(gson.toJson(dto));
+		}
+		out.println(jsonList);
 	}
 
 

@@ -43,7 +43,7 @@ public class BoardDetailServlet extends HttpServlet {
 		System.out.println("게시판 상세 페이지 :" + dto);
 		request.setAttribute("board", dto);
 		request.setAttribute("replyList", replyList);
-		RequestDispatcher dis = request.getRequestDispatcher("boardPage?boardId=" + boardId + ".jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("Board/boardPage.jsp");
 		dis.forward(request, response);
 	}
 
