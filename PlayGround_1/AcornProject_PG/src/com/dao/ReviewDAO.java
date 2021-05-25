@@ -6,7 +6,6 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.dto.GameDTO;
-import com.dto.PageDTO;
 import com.dto.ReviewDTO;
 
 public class ReviewDAO {
@@ -17,29 +16,10 @@ public class ReviewDAO {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 전체 레코드 갯수 구하는 sql
-	private int totalCount(SqlSession session) {
-		return session.selectOne("com.dto.totalCount");
-	}
 
-	/// 페이지
-	public PageDTO selectAllPage(SqlSession session, int curPage) {
-		
-		PageDTO pDTO = new PageDTO();
-		int perPage = 4;
-		int offset = (curPage - 1)*perPage;
-		
-		List<ReviewDTO> list = session.selectList("com.dto.selectAll", null, new RowBounds(offset, perPage));
-		pDTO.setPerPage(perPage);
-		pDTO.setCurPage(curPage); // 현재페이지 저장
-		pDTO.setList(list);
-		pDTO.setTotalCount(totalCount(session));
-		return pDTO;
-	}
-	////
 
 	public List<ReviewDTO> selectAllReview(SqlSession session) {
-		List<ReviewDTO> list = session.selectList("selectAll");
+		List<ReviewDTO> list = session.selectList("ReviewMapper.selectAll");
 		return list;
 	}
 

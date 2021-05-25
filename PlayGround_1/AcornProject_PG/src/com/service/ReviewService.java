@@ -9,7 +9,6 @@ import com.dao.GameDAO;
 import com.dao.ReplyDAO;
 import com.dao.ReviewDAO;
 import com.dto.GameDTO;
-import com.dto.PageDTO;
 import com.dto.ReviewDTO;
 
 public class ReviewService {
@@ -45,17 +44,7 @@ public class ReviewService {
 		}
 		return list;
 	}
-	//페이지 정보 가져오기
-	public PageDTO selectAllPage(int curPage) {
-		SqlSession session = MySqlSessionFactory.getSession();
-		PageDTO pDTO = null;
-		try {
-			pDTO = dao.selectAllPage(session, curPage);
-		} finally {
-			session.close();
-		}
-		return pDTO;
-	}
+
 
 	/////// 댓글 삽입////////
 	public int reviewInsert(ReviewDTO rdto) {
