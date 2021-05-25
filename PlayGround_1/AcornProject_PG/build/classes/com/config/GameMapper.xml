@@ -68,4 +68,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND game.gameCategory = #{gameCategory}
 		ORDER BY rate.gameScore desc, game.gameReleasedDate desc
 	</select>
+	
+	<!-- 태그 상세 페이지 -->
+	<select id="tagDetailSelect" parameterType="string" resultType="GameDTO">
+	select gameNo,gameName,gameImage,gameGenre,to_char(gameReleasedDate, 'YYYY-MM-DD') as gameReleasedDate
+	from game
+	where gameCategory = #{gameCategory}
+	</select>
 </mapper>
