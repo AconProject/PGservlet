@@ -35,7 +35,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardSelect" parameterType="string" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory = #{boardCategory}
 		ORDER BY boardDate DESC
 	</select>
 
