@@ -65,7 +65,12 @@ function range() {
 			<p id="boardContent"><%= boardContent %></p>
 			<br>
 		
-		<div class="button_good"><button type="button" id="good">좋아요</button></div>
+			<div class="button_good">
+				<button type="button" id="good">좋아요</button>
+			</div>
+			
+			<button type="button" name="boardKind" id="boardupdate" value="boardUpdate" onclick="location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>
+			<button type="button" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
 		</div>
 	
        
