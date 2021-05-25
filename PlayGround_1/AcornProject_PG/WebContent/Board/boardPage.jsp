@@ -70,8 +70,8 @@
 		</div>
 		
 		<div class="boardbutton">
-			<button type="submit" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정하기</button>		
-			<button type="submit" name="boardKind" id="boarddelete" value="boardDelete">삭제하기</button>
+			<button type="submit" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>		
+			<button type="submit" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
 		</div>
 	</section>
        
