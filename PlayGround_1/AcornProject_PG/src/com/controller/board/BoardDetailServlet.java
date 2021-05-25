@@ -37,6 +37,8 @@ public class BoardDetailServlet extends HttpServlet {
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		BoardService bService = new BoardService();
 		ReplyService rService = new ReplyService();
+		String mesg = request.getParameter("mesg");
+		System.out.println(mesg);
 		System.out.println("boardID : " + boardId);
 		BoardDTO dto = bService.boardDetailSelect(boardId);
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
