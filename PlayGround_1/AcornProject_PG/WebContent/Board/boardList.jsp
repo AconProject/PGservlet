@@ -19,10 +19,10 @@
 		<h1>게시판</h1>
 
 		<select name="boardCategory">
-			<option>일반글</option>
-			<option>게임정보</option>
-			<option>할인정보</option>
-			<option>QnA</option>
+			<option value="common" selected>일반글</option>
+			<option value="info">게임정보</option>
+			<option value="sales">할인정보</option>
+			<option value="QnA">QnA</option>
 		</select>
 
 		<table>
@@ -38,7 +38,7 @@
 
 		<form action="BoardListServlet">
 			<select name="searchCategory">
-				<option>제목+작성자</option>
+				<option selected>제목+작성자</option>
 				<option>제목</option>
 				<option>작성자</option>
 			</select>
