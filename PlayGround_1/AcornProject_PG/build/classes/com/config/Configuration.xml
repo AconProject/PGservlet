@@ -17,6 +17,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
      	<typeAlias type="com.dto.RateDTO" alias="RateDTO"/>
      	<typeAlias type="com.dto.ReviewDTO" alias="ReviewDTO"/>
      	<typeAlias type="com.dto.PageDTO" alias="PageDTO"/>
+     	<typeAlias type="com.dto.NewsDTO" alias="NewsDTO"/>
+
      	
    </typeAliases>
    
