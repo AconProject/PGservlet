@@ -33,6 +33,7 @@ public class BoardLikeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 		BoardService bService = new BoardService();
 		LikeService lService = new LikeService();
 		HttpSession session = request.getSession();

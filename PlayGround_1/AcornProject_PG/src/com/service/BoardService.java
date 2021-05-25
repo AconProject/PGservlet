@@ -66,14 +66,12 @@ public class BoardService {
 		return list;
 	}
 	
-	public List<BoardDTO> boardSelect(String boardCategory) {
+	public List<BoardDTO> boardSelect() {
 		List<BoardDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
-		if (boardCategory == null) 
-			boardCategory = "일반 글";
 		try {
 			BoardDAO dao = new BoardDAO();
-			list = dao.boardSelect(session, boardCategory);
+			list = dao.boardSelect(session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
