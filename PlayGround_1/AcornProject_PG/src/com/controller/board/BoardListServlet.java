@@ -39,15 +39,14 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardService service = new BoardService();
 		String boardKind = request.getParameter("boardKind");
+		String boardCategory = request.getParameter("boardCategory");
 		Gson gson = new GsonBuilder().create();
 		JSONArray jsonList = new JSONArray();
 		List<BoardDTO> list = null;
-		
+		System.out.println(boardKind + "\t" + boardCategory);
 		if (boardKind.contentEquals("boardList")) {
-			String boardCategory = request.getParameter("boardCategory");
 			list = service.boardSelect(boardCategory);
 		} else if (boardKind.contentEquals("boardSearchList")) {
-			String boardCategory = request.getParameter("boardCategory");
 			String searchWord = request.getParameter("searchWord");
 			String searchCategory = request.getParameter("searchCategory");
 			HashMap <String, String> searchMap = new HashMap<String, String>();

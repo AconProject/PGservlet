@@ -1,6 +1,8 @@
 <%@page import="com.dto.GameDTO"%>
 <%@page import="com.dto.RateDTO"%>
 <%@page import="com.dto.MemberDTO"%>
+<%@page import="com.dto.ReviewDTO"%>
+<%@page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,6 +29,7 @@
 	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
 	<%
+	
 
 	GameDTO gdto = (GameDTO) request.getAttribute("detailGame");
 	/* RateDTO rdto = (RateDTO) request.getAttribute("gameScore"); */
@@ -90,6 +93,10 @@
 		</section>
 
 		<!-- 중단 -->
+		<%
+			List<ReviewDTO> rdto = (List<ReviewDTO>) request.getAttribute("reviewList");
+			if (rdto == null) {
+		%>
 		<section class="main-contents">
 			<div class="usereval">
 				<h1>유저평가</h1>
@@ -98,7 +105,7 @@
 				<div>
 					<table class="midTable">
 						<tr>
-							<td class="mbrName" id="mbrName">닉네임 뭐로하지</td>
+							<td class="mbrName" id="mbrName">sadf</td>
 							<td class="review"><p id="gameReplyContent">만약 같이 할 사람이 있고 할만한 게임을 찾고 계시다면 꼭 사셔서 해보시길 바랍니다. 시간 가는 줄 모르고 즐겼습니다. 아직 초반이지만 엔딩까지가 너무 기대되고 플레이 하는 내내 웃으면서 즐겼습니다.</p></td>
 							<td class="meter"><meter min="0" max="100" value="75.1"></meter><span id="gameScore">75.1</span></td>
 							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend">12</span></td>
@@ -114,7 +121,36 @@
 							<td><button type="submit" id="delete">삭제</button></td>
 						</tr>
 					</table>
-
+		<%
+			} else {
+				int totalPage = rdto.size();
+				int perPage = 4;
+				int p = 1;
+				for (int i = (perPage - 1) * 4; i < (p * perPage); i++) {
+					ReviewDTO review = rdto.get(i);
+		%>
+		
+		<section class="main-contents">
+			<div class="usereval">
+				<h1>유저평가</h1>
+			</div>
+			<div class="container">
+				<div>
+					<table class="midTable">
+						<tr>
+							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
+							<td class="review"><p id="gameReplyContent"><%= review.getReviewContent() %></p></td>
+							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
+							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend"><%= review.getReviewLiked() %></span></td>
+							<td><button type="submit" id="update">수정</button></td>
+							<td><button type="submit" id="delete">삭제</button></td>
+						</tr>
+					</table>
+		
+		<%				
+				}
+			}
+		%>
 					<!-- 댓글 삽입  -->
 					<%
 					
