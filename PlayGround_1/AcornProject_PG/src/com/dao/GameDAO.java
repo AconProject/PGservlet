@@ -39,7 +39,7 @@ public class GameDAO {
 	}
 		
 	public List<GameDTO> tagDetailSelect(SqlSession session, String gameCategory) {
-	   List<GameDTO> list = session.selectList("GoodsMapper.tagDetailSelect", gameCategory);
+	   List<GameDTO> list = session.selectList("GameMapper.tagDetailSelect", gameCategory);
 	   return list;
 	}
 }
