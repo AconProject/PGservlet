@@ -19,7 +19,7 @@ public class ReviewDAO {
 	///////////////////////////////////////////////////////////////////////////////
 	// 전체 레코드 갯수 구하는 sql
 	private int totalCount(SqlSession session) {
-		return session.selectOne("com.dto.totalCount");
+		return session.selectOne("ReviewMapper.totalCount");
 	}
 
 	/// 페이지
@@ -29,7 +29,7 @@ public class ReviewDAO {
 		int perPage = 4;
 		int offset = (curPage - 1)*perPage;
 		
-		List<ReviewDTO> list = session.selectList("com.dto.selectAll", null, new RowBounds(offset, perPage));
+		List<ReviewDTO> list = session.selectList("ReviewMapper.selectAll", null, new RowBounds(offset, perPage));
 		pDTO.setPerPage(perPage);
 		pDTO.setCurPage(curPage); // 현재페이지 저장
 		pDTO.setList(list);
@@ -39,7 +39,7 @@ public class ReviewDAO {
 	////
 
 	public List<ReviewDTO> selectAllReview(SqlSession session) {
-		List<ReviewDTO> list = session.selectList("selectAll");
+		List<ReviewDTO> list = session.selectList("ReviewMapper.selectAll");
 		return list;
 	}
 
