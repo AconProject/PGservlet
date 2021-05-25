@@ -69,9 +69,18 @@
 			<button type="button" id="good">좋아요</button>
 		</div>
 		
+<<<<<<< HEAD
 		<div class="boardbutton">
 			<button type="submit" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>		
 			<button type="submit" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
+=======
+			<div class="button_good">
+				<button type="button" id="good">좋아요</button>
+			</div>
+			
+			<button type="button" name="boardKind" id="boardupdate" value="boardUpdate" onclick="location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>
+			<button type="button" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
+>>>>>>> b21628ef2091c852cdd9098530d656e9f30f2515
 		</div>
 	</section>
        

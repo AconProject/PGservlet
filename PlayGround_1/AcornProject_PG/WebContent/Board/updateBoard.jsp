@@ -1,5 +1,8 @@
 <%@page import="com.dto.BoardDTO"%>
+<<<<<<< HEAD
 <%@page import="com.dto.MemberDTO"%>
+=======
+>>>>>>> b21628ef2091c852cdd9098530d656e9f30f2515
 <%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -25,9 +28,13 @@
         <hr>
         <div class="container">
         
+<<<<<<< HEAD
         <%
         	MemberDTO mdto =(MemberDTO)session.getAttribute("login");
         
+=======
+         <%
+>>>>>>> b21628ef2091c852cdd9098530d656e9f30f2515
         	BoardDTO dto =(BoardDTO)request.getAttribute("board");
        	 	System.out.println("게시판 상세 페이지 jsp:" + dto);
        	 	String mbrName = dto.getMbrName();
@@ -46,7 +53,11 @@
 		<form class="boardupdate" action="../BoardModifyServlet" method="post">
 		
 			<select class="select_category" name="boardCategory" id="boardCategory" >
+<<<<<<< HEAD
 				<option selected><%= boardCategory %></option>
+=======
+				<option selected value="<%= boardCategory %>"><%= boardCategory %></option>
+>>>>>>> b21628ef2091c852cdd9098530d656e9f30f2515
 				<option value="게임정보">게임정보</option>
 				<option value="질문&답변">질문&답변</option>
 				<option value="할인정보">할인정보</option>
@@ -58,7 +69,11 @@
 			
 			<textarea name="boardContent" id="boardContent" maxlength="2048"><%= boardContent %></textarea><br>
 			
+<<<<<<< HEAD
 			<button type="submit" name="boardKind" id="boardupdate" value="boardUpdate">수정</button>
+=======
+			<button type="button" name="boardKind" id="boardupdate" value="boardUpdate">수정</button>
+>>>>>>> b21628ef2091c852cdd9098530d656e9f30f2515
 			<button type="reset" name="boarddelete" id="boarddelete">다시작성</button>
 				
 		</form>

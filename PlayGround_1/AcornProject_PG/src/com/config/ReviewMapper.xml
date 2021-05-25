@@ -69,11 +69,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by mbrId
 	</select>
 
-	<select id="totalCount" resultType="int" parameterType="string">
-		select count(*)
-		from review
-		order by mbrId
-	</select>
-
 
 </mapper>
