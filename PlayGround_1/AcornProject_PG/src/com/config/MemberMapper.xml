@@ -39,6 +39,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where mbrId = #{mbrId}
 	</update>
 	
+	<!--회원 정보 삭제  -->
+	<delete id="memberDelete" parameterType="Hashmap">
+	DELETE *
+	FROM member
+	WHERE mbrId = #{mbrId}
+		AND mbrPw= #{mbrPw} 
+	</delete>
+	
 	<!-- 아이디 찾기-->
 	<select id="idSearch" resultType="string" parameterType="MemberDTO">
 	select mbrId
