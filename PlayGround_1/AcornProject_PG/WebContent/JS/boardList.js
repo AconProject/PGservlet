@@ -46,7 +46,7 @@ function jsonParserForBoard(data){
 
 /* 게시판 글 목록 불러오기 (첫 로딩)*/
 function getBoardList(){
-	fetch('../BoardListServlet?boardKind=boardList')
+	fetch('../BoardListServlet?boardKind=boardList&&boardCategory=all')
 		.then(res => res.json())
 		.then(data => {
 			jsonParserForBoard(data);
