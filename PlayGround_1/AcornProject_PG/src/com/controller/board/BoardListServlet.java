@@ -45,7 +45,7 @@ public class BoardListServlet extends HttpServlet {
 		List<BoardDTO> list = null;
 		System.out.println(boardKind + "\t" + boardCategory);
 		if (boardKind.contentEquals("boardList")) {
-			list = service.boardSelect();
+			list = service.boardSelect(boardCategory);
 		} else if (boardKind.contentEquals("boardSearchList")) {
 			String searchWord = request.getParameter("searchWord");
 			String searchCategory = request.getParameter("searchCategory");
