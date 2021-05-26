@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dto.BoardDTO;
 import com.dto.ReplyDTO;
@@ -43,7 +44,9 @@ public class BoardDetailServlet extends HttpServlet {
 		BoardDTO dto = bService.boardDetailSelect(boardId);
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
 		System.out.println("게시판 상세 페이지 :" + dto);
-		request.setAttribute("board", dto);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("board", dto);
 		request.setAttribute("replyList", replyList);
 		RequestDispatcher dis = request.getRequestDispatcher("Board/boardPage.jsp");
 		dis.forward(request, response);

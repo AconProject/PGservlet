@@ -33,7 +33,7 @@
         <section class="main-contents">
         
         <%
-        	BoardDTO dto =(BoardDTO)request.getAttribute("board");
+        	BoardDTO dto =(BoardDTO)session.getAttribute("board");
        	 	System.out.println("게시판 상세 페이지 jsp:" + dto);
        	 	String mbrName = dto.getMbrName();
        	 	String boardName = dto.getBoardName();
@@ -61,27 +61,31 @@
         <img class="img" alt="조회수" src="${pageContext.request.contextPath}/Image/eye.png">
         <br>
         
+        <!-- 게시글 -->
         <div class="content">
 			<p id="boardContent"><%= boardContent %></p>
 			
 		</div>
+		
+		<!-- 좋아요 -->
 		<div class="button_good">
-			<button type="button" id="good">좋아요</button>
+			<button id="likedbtn"></button>
 		</div>
 		
-<<<<<<< HEAD
+		<%
+			MemberDTO mdto =(MemberDTO)session.getAttribute("login");
+			String login_mbrName = mdto.getMbrName();
+			if(mbrName.contentEquals(login_mbrName)) {
+		%>
 		<div class="boardbutton">
-			<button type="submit" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>		
-			<button type="submit" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
-=======
-			<div class="button_good">
-				<button type="button" id="good">좋아요</button>
-			</div>
-			
-			<button type="button" name="boardKind" id="boardupdate" value="boardUpdate" onclick="location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>
-			<button type="button" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
->>>>>>> b21628ef2091c852cdd9098530d656e9f30f2515
+			<button type="submit" class="boardbtn" id="boardupdate" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>		
+			<button type="submit" class="boardbtn" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
 		</div>
+		<%
+			}
+		%>
+			
+		
 	</section>
        
        
@@ -96,28 +100,30 @@
 							<td class="review"><p id="gameReplyContent">만약 같이 할 사람이 있고 할만한 게임을 찾고 계시다면 꼭 사셔서 해보시길 바랍니다. 시간 가는 줄 모르고 즐겼습니다. 아직 초반이지만 엔딩까지가 너무 기대되고 플레이 하는 내내 웃으면서 즐겼습니다.</p></td>
 							<td class="meter"><meter min="0" max="100" value="75.1"></meter><span id="gameScore">75.1</span></td>
 							<td class="thumb"><img class="icon" src="${pageContext.request.contextPath}/Image/thumb.png" alt="추천수"><span id="gameReplyRecommend">12</span></td>
-							<td><button type="submit" id="update">수정</button></td>
-							<td><button type="submit" id="delete">삭제</button></td>
+							<td><button class="btn" type="submit" id="update">수정</button></td>
+							<td><button class="btn" type="submit" id="delete">삭제</button></td>
 						</tr>
 						<tr>
 							<td class="mbrName" id="mbrName">Samlple_user</td>
 							<td class="review"><p id="gameReplyContent">겜은 샀고, 친구는 어디서 사면 되나요?</p></td>
 							<td class="meter"><meter min="0" max="100" value="98.5"></meter><span id="gameScore">98.5</span></td>
 							<td class="thumb"><img class="icon" src="${pageContext.request.contextPath}/Image/thumb.png" alt="추천수"><span id="gameReplyRecommend">10</span></td>
-							<td><button type="submit" id="update">수정</button></td>
-							<td><button type="submit" id="delete">삭제</button></td>
+							<td><button class="btn" type="submit" id="update">수정</button></td>
+							<td><button class="btn" type="submit" id="delete">삭제</button></td>
 						</tr>
 					</table>
+					
+					<hr>
 					
 					<!-- 댓글 삽입  -->
 					<%
 					
-						MemberDTO mdto =(MemberDTO)session.getAttribute("login");
+						MemberDTO reply_mdto =(MemberDTO)session.getAttribute("login");
 						
 						String name = "로그인해주세요";
-			    		if(mdto != null ){
-			    			name =  mdto.getMbrName();
-			    		} else if(mdto == null) {
+			    		if(reply_mdto != null ){
+			    			name =  reply_mdto.getMbrName();
+			    		} else if(reply_mdto == null) {
 					%>
 					<script>
 					    function click() {
@@ -131,9 +137,9 @@
 					<form action="">
 						<table class="reviewTable">
 							<tr>
-								<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
+								<td rowspan="3" class="replymbrName" id="replymbrName"><%= name %></td>
 								<td rowspan="3" class="review">
-								<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
+									<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
 								</td>
 								<td class="newmeter">0 <input type="range" name="reviewScore" id="newmeter" min="0" max="100" onclick="range()"> 100
 								</td>
@@ -142,8 +148,10 @@
 								<td><span id="reviewScore">0</span></td>
 							</tr>
 							<tr>
-								<td><button type="submit" id="submit" onclick="click();">올리기</button></td>
+								<td><button type="submit" class="btn" id="submit" onclick="click();">올리기</button></td>
 							</tr>
+							
+							
 						</table>
 					</form>
 		</div>
