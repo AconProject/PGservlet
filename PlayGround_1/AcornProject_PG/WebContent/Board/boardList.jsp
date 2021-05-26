@@ -19,7 +19,7 @@
 		<h1>게시판</h1>
 
 		카테고리
-		<select name="boardCategory">
+		<select id="boardCategory">
 			<option value="all">전체</option>
 			<option value="common">일반글</option>
 			<option value="info">게임정보</option>
