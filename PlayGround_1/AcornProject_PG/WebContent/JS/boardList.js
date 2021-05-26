@@ -7,6 +7,10 @@ window.onload = function(){
 	// 카테고리 선택 이벤트 등록
 	document.getElementById('boardCategory').addEventListener('change', getChangedBoardList, false);
 
+	// 게시판 검색 이벤트 등록
+	document.getElementById('search').addEventListener('click', getBoardSearchList, false);
+	
+	// 페이지 로딩 시 보여줄 게시판 불러오기
 	getBoardList();
 };
 
@@ -58,10 +62,9 @@ function getBoardList(){
 
 /* 게시판 글 목록 불러오기 (카테고리 선택 시)*/
 function getChangedBoardList(){
-	let target = document.getElementById('boardCategory');
-	let selectedCategory = target.options[target.selectedIndex].value;
+	let boardCategory = document.getElementById('boardCategory').value;
 
-	fetch('../BoardListServlet?boardKind=boardList&&boardCategory='+selectedCategory)
+	fetch('../BoardListServlet?boardKind=boardList&&boardCategory=' + boardCategory)
 		.then(res => res.json())
 		.then(data => {
 			removeAllElements('tr[id^="board"]');
@@ -73,13 +76,19 @@ function getChangedBoardList(){
 }
 
 /* 게시판 검색 결과 불러오기 */
-// function getBoardSearchList(){
-// 	fetch('BoardListServlet?boardKind=boardSearchList')
-// 		.then(res => res.json())
-// 		.then(data => {
-// 			console.log(data);
-// 		})
-// 		.catch(err => {
-// 			console.log(err);
-// 		});
-// }
+function getBoardSearchList(){
+	let searchCategory = document.getElementById('searchCategory').value;
+	let searchText = document.getElementById('searchText').value;
+	let boardCategory = document.getElementById('boardCategory').value;
+
+	fetch('BoardListServlet?boardKind=boardSearchList&&searchCategory='
+		+ searchCategory + '&&searchWord=' + searchText + '&&boardCategory=' + boardCategory)
+		.then(res => res.json())
+		.then(data => {
+			removeAllElements('tr[id^="board"]');
+			jsonParserForBoard(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+}
