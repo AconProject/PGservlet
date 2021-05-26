@@ -38,15 +38,13 @@
 			</tr>
 		</table>
 
-		<form action="BoardListServlet">
-			<select name="searchCategory">
-				<option selected>제목+작성자</option>
-				<option>제목</option>
-				<option>작성자</option>
-			</select>
-			<input type="text">
-			<button type="submit"><img src="../Image/search.png" alt="검색"></button>
-		</form>
+		<select id="searchCategory">
+			<option value="contents" selected>제목+내용</option>
+			<option value="title">제목</option>
+			<option value="writer">작성자</option>
+		</select>
+		<input type="text" id="searchText">
+		<button id="search"><img src="../Image/search.png" alt="검색"></button>
 
 		<button id="write">글 작성</button>
 
