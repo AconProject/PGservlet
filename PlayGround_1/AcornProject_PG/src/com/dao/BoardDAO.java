@@ -27,7 +27,7 @@ public class BoardDAO {
 	}
 	
 	public List<BoardDTO> boardSelect(SqlSession session, String boardCategory) {
-		return session.selectList("BoardMapper.boardSelect");
+		return session.selectList("BoardMapper.boardSelect", boardCategory);
 	}
 	
 	public List<BoardDTO> boardAllSelect(SqlSession session) {
