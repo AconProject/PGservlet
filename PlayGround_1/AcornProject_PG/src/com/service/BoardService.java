@@ -66,12 +66,15 @@ public class BoardService {
 		return list;
 	}
 	
-	public List<BoardDTO> boardSelect() {
+	public List<BoardDTO> boardSelect(String boardCategory) {
 		List<BoardDTO> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			BoardDAO dao = new BoardDAO();
-			list = dao.boardSelect(session);
+			if (boardCategory.contentEquals("all"))
+				list = dao.boardAllSelect(session);
+			else
+				list = dao.boardSelect(session, boardCategory);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

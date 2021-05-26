@@ -35,6 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardSelect" parameterType="string" resultType="BoardDTO">
 		SELECT *
 		FROM board
+		WHERER boardCategory = #{boardCategory}
+		ORDER BY boardDate DESC
+	</select>
+	
+	<select id="boardAllSelect" resultType="BoardDTO">
+		SELECT *
+		FROM board
 		ORDER BY boardDate DESC
 	</select>
 

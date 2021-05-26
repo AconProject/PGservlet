@@ -26,8 +26,12 @@ public class BoardDAO {
 		return session.selectList("BoardMapper.hitQnaBoardSelect");
 	}
 	
-	public List<BoardDTO> boardSelect(SqlSession session) {
+	public List<BoardDTO> boardSelect(SqlSession session, String boardCategory) {
 		return session.selectList("BoardMapper.boardSelect");
+	}
+	
+	public List<BoardDTO> boardAllSelect(SqlSession session) {
+		return session.selectList("BoardMapper.boardAllSelect");
 	}
 
 	public List<BoardDTO> boardTitleSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
