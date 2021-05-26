@@ -69,4 +69,8 @@ public class BoardDAO {
 	public int getBoardId(SqlSession session) {
 		return session.selectOne("BoardMapper.getBoardId");
 	}
+	
+	public List<BoardDTO> boardWriterSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
+		return session.selectList("BoardMapper.boardWriterSearchSelect", searchMap);
+	}
 }

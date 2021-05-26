@@ -49,8 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardTitleSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory = #{boardCategory}
-		AND boardName LIKE #{searchWord}
+		WHERE boardCategory LIKE '%#{boardCategory}%' 
+		AND boardName LIKE '%#{searchWord}%'
 		ORDER BY boardDate DESC
 	</select>
 
@@ -58,8 +58,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory = #{boardCategory}
-		AND boardContent LIKE #{searchWord}
+		WHERE boardCategory LIKE '%#{boardCategory}%'
+		AND (boardContent LIKE '%#{searchWord}%'
+		OR boardName LIKE '%#{searchWord}%')
+		ORDER BY boardDate DESC
+	</select>
+	
+	<select id="boardWriterSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+		SELECT *
+		FROM board
+		WHERE boardCategory LIKE '%#{boardCategory}%'
+		AND boardName LIKE '%#{searchWord}%'
 		ORDER BY boardDate DESC
 	</select>
 	

@@ -90,8 +90,10 @@ public class BoardService {
 			BoardDAO dao = new BoardDAO();
 			if (searchMap.get("searchCategory").contentEquals("title")) {
 				list = dao.boardTitleSearchSelect(session, searchMap);
-			} else {
+			} else if (searchMap.get("searchCategory").contentEquals("contents")) {
 				list = dao.boardContentSearchSelect(session, searchMap);
+			} else {
+				list = dao.boardWriterSearchSelect(session, searchMap);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
