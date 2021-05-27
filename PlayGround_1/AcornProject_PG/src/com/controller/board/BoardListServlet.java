@@ -37,6 +37,8 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html;charset=utf-8");
 		BoardService service = new BoardService();
 		String boardKind = request.getParameter("boardKind");
 		String boardCategory = request.getParameter("boardCategory");
@@ -55,11 +57,9 @@ public class BoardListServlet extends HttpServlet {
 			searchMap.put("searchWord", searchWord);
 			searchMap.put("searchCategory", searchCategory);
 			searchMap.put("boardCategory", boardCategory);
-			for (String s : searchMap.keySet())
-				System.out.println(s + "\t" + searchMap.get(s));
 			list = service.boardSearchSelect(searchMap);
 		}
-		System.out.println("list" + list);
+		System.out.println("list : " + list);
 		PrintWriter out = response.getWriter();
 		for (BoardDTO dto : list) {
 			jsonList.add(gson.toJson(dto));
