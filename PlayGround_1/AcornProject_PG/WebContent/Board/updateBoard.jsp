@@ -8,9 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Update Board</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="${pageContext.request.contextPath}/CSS/UpdateBoard.css" rel="stylesheet">
-    <%
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="${pageContext.request.contextPath}/CSS/UpdateBoard.css" rel="stylesheet">
+<%
         	int boardId = Integer.parseInt(request.getParameter("boardId"));
         	System.out.println("boardID jsp:" + boardId);
         	
@@ -35,15 +35,13 @@ window.onload = function(){
 }; 
 
 </script>
-
 </head>
 <body>
 	
 	<!-- 페이지 상단 로고 및 배너 -->
 	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
-	<!-- 메인화면 컨텐츠-->
-	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
+	<!-- 메인화면 은 데이터 받아오면 변경 예정 -->
     <div class="wrapper">
 		<!-- 상단 -->
         <section class="main-contents">
@@ -52,7 +50,6 @@ window.onload = function(){
         <div class="container">
         
 		<form class="boardupdate" action="../BoardModifyServlet" method="post">
-		
 			<select class="select_category" name="boardCategory" id="boardCategory" >
 				<option selected value=""></option>
 				<option value="게임정보">게임정보</option>
@@ -67,7 +64,6 @@ window.onload = function(){
 			<textarea name="boardContent" id="boardContent" maxlength="2048"></textarea><br>
 			
 			<button type="submit" name="boardKind" id="boardupdate" value="boardUpdate">수정</button>
-			<button type="button" name="boardKind" id="boardupdate" value="boardUpdate">수정</button>
 			<button type="reset" name="boarddelete" id="boarddelete">다시작성</button>
 				
 		</form>
