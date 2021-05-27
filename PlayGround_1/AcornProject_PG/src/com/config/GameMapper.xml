@@ -5,19 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="GameMapper">
 
 	<select id="newGameListSelect" resultType="GameDTO">
-		SELECT gameNo, gameName, gameImage, gamePrice, gameContent, gameContent, gameGenre, '('||to_char(gameReleasedDate,'yyyy')||')' as gameReleasedDate, gameCategory
+		SELECT /*+ index_desc(game game_date)*/
+		gameNo, gameName, gameImage, gamePrice, gameContent, gameContent, gameGenre, '('||to_char(gameReleasedDate,'yyyy')||')' as gameReleasedDate, gameCategory
 		FROM game
 		WHERE rownum &lt; 11
-		ORDER BY gameReleasedDate DESC
 	</select>
 
 	<select id="recommendGameListSelect" parameterType="int" resultType="GameDTO">
-		SELECT game.gameNo, game.gameName, game.gameImage,
+		SELECT /*+ index_desc(rate rate_score, game game_date)*/
+		game.gameNo, game.gameName, game.gameImage,
 		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')' as gameReleasedDate, game.gameCategory
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND rownum &lt; #{limit}
-		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 
 	<select id="recommendUserTagGameListSelect" parameterType="string" resultType="GameDTO">
