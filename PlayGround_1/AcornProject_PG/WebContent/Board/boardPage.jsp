@@ -28,16 +28,17 @@
 	window.onload = function(){
 		var boardId = "<%= boardId %>";
 		 $.ajax({
-		        url:'../BoardDetailServlet',
+		        url:'BoardDetailServlet',
 		        type: 'get',
 		        dataType:'text',
 		        data: {boardId : boardId}
 		 		,
 		        success :  function(data, status, xhr){
-					console.log("ajax: " + data);	            
+					console.log("ajax: " + data);	       
 		        },
 		        error : function(xhr, status, error) {
 					console.log(error);
+					
 				}
 		    });	
 	}; 
@@ -72,7 +73,6 @@
         <!-- 게시글 -->
         <div class="content">
 			<p id="boardContent"></p>
-			
 		</div>
 		
 		<!-- 좋아요 -->
