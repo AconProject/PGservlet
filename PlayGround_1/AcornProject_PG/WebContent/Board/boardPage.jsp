@@ -11,6 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="${pageContext.request.contextPath}/CSS/BoardPage.css" rel="stylesheet">
 
+		<%
+        	int boardId = Integer.parseInt(request.getParameter("boardId"));
+        	System.out.println("boardID jsp:" + boardId);
+        	
+        %>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function range() {
 
@@ -19,7 +25,22 @@
 
 	}
 	
-	
+	window.onload = function(){
+		var boardId = "<%= boardId %>";
+		 $.ajax({
+		        url:'../BoardDetailServlet',
+		        type: 'get',
+		        dataType:'text',
+		        data: {boardId : boardId}
+		 		,
+		        success :  function(data, status, xhr){
+					console.log("ajax: " + data);	            
+		        },
+		        error : function(xhr, status, error) {
+					console.log(error);
+				}
+		    });	
+	}; 
 </script>
 
 </head>
@@ -34,38 +55,23 @@
     
         <section class="main-contents">
         
-        <%
-        	BoardDTO dto =(BoardDTO)session.getAttribute("board");
-       	 	System.out.println("게시판 상세 페이지 jsp:" + dto);
-       	 	String mbrName = dto.getMbrName();
-       	 	String boardName = dto.getBoardName();
-       	 	String boardCategory = dto.getBoardCategory();
-       	 	String boardContent = dto.getBoardContent();
-       	 	int boardLiked = dto.getBoardLiked();
-       	 	int boardCount = dto.getBoardCount();
-			Date boardDate = dto.getBoardDate(); 
-			
-       	 	String date = boardDate.toString();
-       	 	String Date = date.substring(0,	10);
-       	 	
-        %>
         
-        <h3 id="boardCategory"><%= boardCategory %></h3>
-        <h1 id="boardName"><%= boardName %></h1>
-        <span id="boardDate">[ <%= Date %> ]</span>
-        <span id="mbrName"><%= mbrName %></span>
+        <h3 id="boardCategory"></h3>
+        <h1 id="boardName"></h1>
+        <span id="boardDate">[  ]</span>
+        <span id="mbrName"></span>
         <hr>
         <span id="replyCount">344</span>
         <img class="img" alt="댓글" src="${pageContext.request.contextPath}/Image/reply.png">
-        <span id="boardLiked"><%= boardLiked %></span>
+        <span id="boardLiked"></span>
         <img class="img" alt="좋아요" src="${pageContext.request.contextPath}/Image/thumb.png">
-        <span id="boardCount"><%= boardCount %></span>
+        <span id="boardCount"></span>
         <img class="img" alt="조회수" src="${pageContext.request.contextPath}/Image/eye.png">
         <br>
         
         <!-- 게시글 -->
         <div class="content">
-			<p id="boardContent"><%= boardContent %></p>
+			<p id="boardContent"></p>
 			
 		</div>
 		
@@ -77,14 +83,14 @@
 		<%
 			MemberDTO mdto =(MemberDTO)session.getAttribute("login");
 			String login_mbrName = mdto.getMbrName();
-			if(mbrName.contentEquals(login_mbrName)) {
+			//if(mbrName.contentEquals(login_mbrName)) {
 		%>
 		<div class="boardbutton">
 			<button type="submit" class="boardbtn" id="boardupdate" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp?boardId=${boardId}'">수정</button>		
 			<button type="submit" class="boardbtn" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
 		</div>
 		<%
-			}
+			//}
 		%>
 			
 		
