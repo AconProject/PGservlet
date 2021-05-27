@@ -10,6 +10,32 @@
 <title>Update Board</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="${pageContext.request.contextPath}/CSS/UpdateBoard.css" rel="stylesheet">
+    <%
+        	int boardId = Integer.parseInt(request.getParameter("boardId"));
+        	System.out.println("boardID jsp:" + boardId);
+        	
+        %>
+<script type="text/javascript">	
+	
+window.onload = function(){
+	var boardId = "<%= boardId %>";
+	 $.ajax({
+	        url:'../BoardDetailServlet',
+	        type: 'get',
+	        dataType:'text',
+	        data: {boardId : boardId}
+	 		,
+	        success :  function(data, status, xhr){
+				console.log("ajax: " + data);	            
+	        },
+	        error : function(xhr, status, error) {
+				console.log(error);
+			}
+	    })	
+}; 
+
+</script>
+
 </head>
 <body>
 	
@@ -25,28 +51,10 @@
         <hr>
         <div class="container">
         
-        <%
-        	MemberDTO mdto =(MemberDTO)session.getAttribute("login");
-        
-        	BoardDTO dto =(BoardDTO)request.getAttribute("board");
-       	 	System.out.println("게시판 상세 페이지 jsp:" + dto);
-       	 	String mbrName = dto.getMbrName();
-       	 	String boardName = dto.getBoardName();
-       	 	String boardCategory = dto.getBoardCategory();
-       	 	String boardContent = dto.getBoardContent();
-       	 	int boardLiked = dto.getBoardLiked();
-       	 	int boardCount = dto.getBoardCount();
-			Date boardDate = dto.getBoardDate(); 
-			
-       	 	String date = boardDate.toString();
-       	 	String Date = date.substring(0,	10);
-       	 	
-        %>
-        
 		<form class="boardupdate" action="../BoardModifyServlet" method="post">
 		
 			<select class="select_category" name="boardCategory" id="boardCategory" >
-				<option selected value="<%= boardCategory %>"><%= boardCategory %></option>
+				<option selected value=""></option>
 				<option value="게임정보">게임정보</option>
 				<option value="질문&답변">질문&답변</option>
 				<option value="할인정보">할인정보</option>
@@ -54,9 +62,9 @@
 				<option value="기타">기타</option>
 			</select>
 
-			<input type="text" name="boardName" id="boardName" value="<%= boardName %>" placeholder="제목" ><br>
+			<input type="text" name="boardName" id="boardName" value="" placeholder="제목" ><br>
 			
-			<textarea name="boardContent" id="boardContent" maxlength="2048"><%= boardContent %></textarea><br>
+			<textarea name="boardContent" id="boardContent" maxlength="2048"></textarea><br>
 			
 			<button type="submit" name="boardKind" id="boardupdate" value="boardUpdate">수정</button>
 			<button type="button" name="boardKind" id="boardupdate" value="boardUpdate">수정</button>

@@ -18,6 +18,8 @@
 		document.getElementById("reviewScore").innerHTML = x;
 
 	}
+	
+	
 </script>
 
 </head>
@@ -78,7 +80,7 @@
 			if(mbrName.contentEquals(login_mbrName)) {
 		%>
 		<div class="boardbutton">
-			<button type="submit" class="boardbtn" id="boardupdate" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp'">수정</button>		
+			<button type="submit" class="boardbtn" id="boardupdate" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp?boardId=${boardId}'">수정</button>		
 			<button type="submit" class="boardbtn" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
 		</div>
 		<%
