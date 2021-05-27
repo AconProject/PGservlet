@@ -10,9 +10,9 @@
 <title>Update Board</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="${pageContext.request.contextPath}/CSS/UpdateBoard.css" rel="stylesheet">
-<%
+		<%
         	int boardId = Integer.parseInt(request.getParameter("boardId"));
-        	System.out.println("boardID jsp:" + boardId);
+        	System.out.println("updateboardID jsp:" + boardId);
         	
         %>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -23,16 +23,21 @@ window.onload = function(){
 	 $.ajax({
 	        url:'../BoardDetailServlet',
 	        type: 'get',
-	        dataType:'text',
-	        data: {boardId : boardId}
-	 		,
+	        dataType:'json',
+	        data: {boardId : boardId},
 	        success :  function(data, status, xhr){
-				console.log("ajax: " + data);	            
+				console.log("ajax: " + data);	  
+				var board = JSON.parse(data[0]);
+				console.log(board.boardContent);
+				$("#boardCategory").val(board.boardCategory);
+				$("#boardContent").text(board.boardContent);
+				$("#boardName").val(board.boardName);
+				$("#boardDate").text("[ " + board.boardDate + " ]");
 	        },
 	        error : function(xhr, status, error) {
 				console.log(error);
 			}
-	    })	
+	    });	
 }; 
 
 </script>

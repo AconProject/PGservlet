@@ -39,7 +39,7 @@ public class BoardDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    response.setContentType("text/html;charset=utf-8");
-		int boardId = Integer.parseInt(request.getParameter("boardId"));
+	    int boardId = Integer.parseInt(request.getParameter("boardId"));
 		BoardService bService = new BoardService();
 		ReplyService rService = new ReplyService();
 		String mesg = request.getParameter("mesg");
