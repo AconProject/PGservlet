@@ -51,7 +51,7 @@ public class BoardDetailServlet extends HttpServlet {
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
 		System.out.println("게시판 상세 페이지 :" + dto);
 		PrintWriter out = response.getWriter();
-		out.println(gson.toJson(dto));
+		jsonList.add(gson.toJson(dto));
 		for (ReplyDTO reply : replyList) {
 			jsonList.add(gson.toJson(reply));
 		}
