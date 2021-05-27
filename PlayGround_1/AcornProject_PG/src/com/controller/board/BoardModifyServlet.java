@@ -85,11 +85,11 @@ public class BoardModifyServlet extends HttpServlet {
 		if (isComplete) {
 			if (boardKind.contentEquals("boardInsert")) {
 				mesg = "해당 게시글을 추가하였습니다.";
-				nextPage = "BoardPage.jsp?boardId=" + Integer.toString(boardId);
+				nextPage = "Board/boardPage.jsp?boardId=" + Integer.toString(boardId);
 			}
 			else if (boardKind.contentEquals("boardUpdate")) {
 				mesg = "해당 게시글을 수정하였습니다.";
-				nextPage = "BoardPage.jsp?boardId=" + bId;
+				nextPage = "Board/boardPage.jsp?boardId=" + bId;
 			}
 			else {
 				mesg = "해당 게시글을 삭제하였습니다.";
