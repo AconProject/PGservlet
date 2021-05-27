@@ -9,7 +9,12 @@ window.onload = function(){
 
 	// 게시판 검색 이벤트 등록
 	document.getElementById('search').addEventListener('click', getBoardSearchList, false);
-	
+	document.getElementById('searchText').addEventListener('keypress', function(event){
+		if (event.key === 'Enter') {
+			getBoardSearchList();
+		}
+	}, false);
+
 	// 페이지 로딩 시 보여줄 게시판 불러오기
 	getBoardList();
 };
@@ -80,8 +85,9 @@ function getBoardSearchList(){
 	let searchCategory = document.getElementById('searchCategory').value;
 	let searchText = document.getElementById('searchText').value;
 	let boardCategory = document.getElementById('boardCategory').value;
+	document.getElementById('searchText').value = '';
 
-	fetch('BoardListServlet?boardKind=boardSearchList&&searchCategory='
+	fetch('../BoardListServlet?boardKind=boardSearchList&&searchCategory='
 		+ searchCategory + '&&searchWord=' + searchText + '&&boardCategory=' + boardCategory)
 		.then(res => res.json())
 		.then(data => {
