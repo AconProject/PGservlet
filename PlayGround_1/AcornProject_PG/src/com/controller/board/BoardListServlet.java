@@ -54,14 +54,12 @@ public class BoardListServlet extends HttpServlet {
 				searchWord = "%";
 			searchMap.put("searchWord", searchWord);
 			searchMap.put("searchCategory", searchCategory);
-			if (boardCategory.contentEquals("all"))
-				boardCategory = "'info', 'QnA', 'common', 'sales'";
 			searchMap.put("boardCategory", boardCategory);
 			for (String s : searchMap.keySet())
 				System.out.println(s + "\t" + searchMap.get(s));
 			list = service.boardSearchSelect(searchMap);
 		}
-		System.out.println(list);
+		System.out.println("list" + list);
 		PrintWriter out = response.getWriter();
 		for (BoardDTO dto : list) {
 			jsonList.add(gson.toJson(dto));

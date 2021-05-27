@@ -49,8 +49,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardTitleSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory IN (#{boardCategory}) 
-		AND boardName LIKE '%'||#{searchWord}||'%'
+		WHERE <if test="boardCategory != 'all'">
+		boardCategory = #{boardCategory}
+		AND 
+		</if>boardName LIKE '%'||#{searchWord}||'%'
 		ORDER BY boardDate DESC
 	</select>
 
@@ -58,8 +60,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardContentSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory IN (#{boardCategory})
-		AND (boardContent LIKE '%'||#{searchWord}||'%'
+		WHERE 
+		<if test="boardCategory != 'all'">
+		boardCategory = #{boardCategory}
+		AND 
+		</if>(boardContent LIKE '%'||#{searchWord}||'%'
 		OR boardName LIKE '%'||#{searchWord}||'%')
 		ORDER BY boardDate DESC
 	</select>
@@ -67,8 +72,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardWriterSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory IN (#{boardCategory})
-		AND boardName LIKE '%'||#{searchWord}||'%'
+		WHERE <if test="boardCategory != 'all'">
+		boardCategory = #{boardCategory}
+		AND 
+		</if> boardName LIKE '%'||#{searchWord}||'%'
 		ORDER BY boardDate DESC
 	</select>
 	
