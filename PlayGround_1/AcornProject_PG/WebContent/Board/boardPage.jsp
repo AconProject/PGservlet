@@ -30,11 +30,18 @@
 		 $.ajax({
 		        url:'BoardDetailServlet',
 		        type: 'get',
-		        dataType:'text',
+		        dataType:'json',
 		        data: {boardId : boardId}
 		 		,
 		        success :  function(data, status, xhr){
-					console.log("ajax: " + data);	       
+					console.log("ajax: " + data);	  
+					var board = JSON.parse(data[0]);
+					console.log(board.boardContent);
+					$("#boardCategory").text(board.boardCategory);
+					$("#boardContent").text(board.boardContent);
+					$("#boardName").text(board.boardName);
+					$("#boardDate").text("[ " + board.boardDate + " ]");
+					$("#mbrName").text(board.mbrName);
 		        },
 		        error : function(xhr, status, error) {
 					console.log(error);
@@ -59,7 +66,7 @@
         
         <h3 id="boardCategory"></h3>
         <h1 id="boardName"></h1>
-        <span id="boardDate">[  ]</span>
+        <span id="boardDate">[]</span>
         <span id="mbrName"></span>
         <hr>
         <span id="replyCount">344</span>
@@ -86,7 +93,7 @@
 			//if(mbrName.contentEquals(login_mbrName)) {
 		%>
 		<div class="boardbutton">
-			<button type="submit" class="boardbtn" id="boardupdate" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp?boardId=${boardId}'">수정</button>		
+			<button type="submit" class="boardbtn" id="boardupdate" onclick = "location.href='${pageContext.request.contextPath}/Board/updateBoard.jsp?boardId=<%=boardId%>'">수정</button>		
 			<button type="submit" class="boardbtn" name="boardKind" id="boarddelete" value="boardDelete">삭제</button>
 		</div>
 		<%
