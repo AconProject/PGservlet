@@ -48,10 +48,7 @@
 
 		<button id="write">글 작성</button>
 
-		<div>
-			<button>&lt;</button>
-			<button>&gt;</button>
-		</div>
+		<div id="paging"></div>
 
     </div>
 
