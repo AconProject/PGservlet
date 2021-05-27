@@ -38,8 +38,20 @@ function removeAllElements(query){
 	}
 }
 
+/* 페이징 처리 */
+function paging(totalData, dataPerPage, pageCount, currentPage){
+	let totalPage = Math.ceil(totalData / dataPerPage); // 총 페이지수
+	let pageGroup = Math.ceil(currentPage / pageCount); // 페이지 그룹
+	console.log(totalPage, pageGroup);
+}
+
 /* 게시판 데이터 파싱 후 출력 */
 function jsonParserForBoard(data){
+	let totalData = data.length; // 총 게시글 수
+	let dataPerPage = 10; // 한 페이지에 나타낼수 있는 게시글수
+	let pageCount = 10; // 한 화면에 나타낼수 있는 페이지 수
+	paging(totalData, dataPerPage, pageCount, 1);
+
 	for (let i=0; i<data.length; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'boardList', '', 'id', 'board'+i);
