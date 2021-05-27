@@ -10,6 +10,7 @@
 	String mesg = (String) session.getAttribute("mesg");
     String mesg1 = (String)request.getAttribute("mbrId");
     String mesg2 = (String)request.getAttribute("mbrPw");
+    
     if(mesg1 != null){
 %>    
    <script>

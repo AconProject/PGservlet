@@ -27,28 +27,27 @@ public class MemberDeleteServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MemberUpdateServlet까지 왔다!");
+		System.out.println("MemberDeleteServlet까지 넘어옴");
+		request.setCharacterEncoding("utf-8");// 한글처리
+		response.setContentType("text/html; charset=UTF-8");
 		
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		String nextPage ="LoginUIServlet";
+		String nextPage ="LoginServlet";
 		
 		if (dto != null) {
-			request.setCharacterEncoding("utf-8");// 한글처리
-			response.setContentType("text/html; charset=UTF-8");
-			
 			String mbrId = request.getParameter("mbrId");
 			String mbrPw = request.getParameter("mbrPw");
-			
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("mbrId",mbrId);
 			map.put("mbrPw",mbrPw);
+			System.out.println("map: "+map);
 			MemberService service = new MemberService();
 			int num = service.memberDelete(map);
-			System.out.println("회원정보 삭제된 결과 num : " + num);
-			
+			System.out.println("회원정보 삭제된 결과: " + num);
+			request.setAttribute("mesg", "[회원 탈퇴]하셨습니다.");
+		
 		} else {
-			
 			request.setAttribute("mesg", "로그인이 필요한 작업입니다.");
 		}
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);

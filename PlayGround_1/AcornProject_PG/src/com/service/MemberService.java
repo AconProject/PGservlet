@@ -120,8 +120,9 @@ public class MemberService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
+			session.commit();
 			session.close();
 		}
 		return result;
-	}//end idCheck
+	}//end memberDelete
 }//end class
