@@ -37,7 +37,7 @@ function removeAllElements(query){
 }
 
 /* 페이징 처리 */
-function paging(totalData, maxDataPerPage, maxPagePerWindow, currentPage){
+function paging(data, totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 	let totalPage = Math.ceil(totalData / maxDataPerPage); // 총 페이지수
 	let pageGroup = Math.ceil(currentPage / maxPagePerWindow); // 페이지 그룹
 	
@@ -65,6 +65,10 @@ function paging(totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 	document.getElementById('paging').innerHTML = html;
 	document.getElementById('page' + currentPage).style.fontWeight = 'bold';
 
+	let start = (currentPage-1) * maxDataPerPage;
+	let end = currentPage * maxDataPerPage;
+	jsonParserForBoard(data, start, end);
+
 	let pages = document.querySelectorAll('#paging a');
 	pages.forEach(page => {
 		page.addEventListener('click', function(){
@@ -76,19 +80,15 @@ function paging(totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 			if (id == 'prev')
 				selectedPage = prev;
 
-			paging(totalData, maxDataPerPage, maxPagePerWindow, selectedPage);
+			removeAllElements('tr[id^="board"]');
+			paging(data, totalData, maxDataPerPage, maxPagePerWindow, selectedPage);
 		}, false);
 	});
 }
 
 /* 게시판 데이터 파싱 후 출력 */
-function jsonParserForBoard(data){
-	let totalData = data.length; // 총 게시글 수
-	let maxDataPerPage = 5; // 한 페이지에 나타낼수 있는 게시글수
-	let maxPagePerWindow = 5; // 한 화면에 나타낼수 있는 페이지 수
-	paging(totalData, maxDataPerPage, maxPagePerWindow, 1);
-
-	for (let i=0; i<data.length; i++){
+function jsonParserForBoard(data, start, end){
+	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'boardList', '', 'id', 'board'+i);
 		insertElement('td', 'board'+i, jsonObj.boardCategory);
@@ -101,12 +101,20 @@ function jsonParserForBoard(data){
 	}
 }
 
+/* 페이징함수 호출함수 */
+function processBoardData(data){
+	let totalData = data.length; // 총 게시글 수
+	let maxDataPerPage = 10; // 한 페이지에 나타낼수 있는 게시글수
+	let maxPagePerWindow = 5; // 한 화면에 나타낼수 있는 페이지 수
+	paging(data, totalData, maxDataPerPage, maxPagePerWindow, 1);
+}
+
 /* 게시판 글 목록 불러오기 (첫 로딩)*/
 function getBoardList(){
 	fetch('../BoardListServlet?boardKind=boardList&&boardCategory=all')
 		.then(res => res.json())
 		.then(data => {
-			jsonParserForBoard(data);
+			processBoardData(data);
 		})
 		.catch(err => {
 			console.log(err);
@@ -121,7 +129,7 @@ function getChangedBoardList(){
 		.then(res => res.json())
 		.then(data => {
 			removeAllElements('tr[id^="board"]');
-			jsonParserForBoard(data);
+			processBoardData(data);
 		})
 		.catch(err => {
 			console.log(err);
@@ -140,7 +148,7 @@ function getBoardSearchList(){
 		.then(res => res.json())
 		.then(data => {
 			removeAllElements('tr[id^="board"]');
-			jsonParserForBoard(data);
+			processBoardData(data);
 		})
 		.catch(err => {
 			console.log(err);
