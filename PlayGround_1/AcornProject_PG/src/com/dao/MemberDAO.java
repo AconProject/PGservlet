@@ -45,6 +45,8 @@ public class MemberDAO {
 
 	public int memberDelete(SqlSession session, HashMap<String, String> map) {
 		int result = session.delete("MemberMapper.memberDelete", map);
+		System.out.println("DAO에서의 map: "+map);
+		System.out.println("DAO에서의 result:" +result);
 		return result;
 	}
 }
