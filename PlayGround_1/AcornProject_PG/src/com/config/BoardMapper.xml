@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'info'
+		AND rownum &lt; 6
 		ORDER BY boardLiked DESC, boardCount DESC
 	</select>
 	
@@ -15,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'info'
+		AND rownum &lt; 6
 		ORDER BY boardCount DESC, boardLiked DESC
 	</select>
 	
@@ -22,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'QnA'
+		AND rownum &lt; 6
 		ORDER BY boardLiked DESC, boardCount DESC
 	</select>
 	
@@ -29,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'QnA'
+		AND rownum &lt; 6
 		ORDER BY boardCount DESC, boardLiked DESC
 	</select>
 	
@@ -75,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE <if test="boardCategory != 'all'">
 		boardCategory = #{boardCategory}
 		AND 
-		</if> boardName LIKE '%'||#{searchWord}||'%'
+		</if> mbrName LIKE '%'||#{searchWord}||'%'
 		ORDER BY boardDate DESC
 	</select>
 	
