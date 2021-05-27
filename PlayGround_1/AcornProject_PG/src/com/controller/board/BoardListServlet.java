@@ -43,18 +43,22 @@ public class BoardListServlet extends HttpServlet {
 		Gson gson = new GsonBuilder().create();
 		JSONArray jsonList = new JSONArray();
 		List<BoardDTO> list = null;
-		System.out.println(boardKind + "\t" + boardCategory);
 		if (boardKind.contentEquals("boardList")) {
 			list = service.boardSelect(boardCategory);
 		} else if (boardKind.contentEquals("boardSearchList")) {
 			String searchWord = request.getParameter("searchWord");
 			String searchCategory = request.getParameter("searchCategory");
 			HashMap <String, String> searchMap = new HashMap<String, String>();
+			System.out.println(boardKind + "\t" + boardCategory + "\t" + searchWord + "\t" + searchCategory);
 			if (searchWord == null)
 				searchWord = "%";
 			searchMap.put("searchWord", searchWord);
 			searchMap.put("searchCategory", searchCategory);
+			if (boardCategory.contentEquals("all"))
+				boardCategory = "'info', 'QnA', 'common', 'sales'";
 			searchMap.put("boardCategory", boardCategory);
+			for (String s : searchMap.keySet())
+				System.out.println(s + "\t" + searchMap.get(s));
 			list = service.boardSearchSelect(searchMap);
 		}
 		System.out.println(list);

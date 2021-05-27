@@ -39,6 +39,9 @@ public class BoardDAO {
 	}
 
 	public List<BoardDTO> boardContentSearchSelect(SqlSession session, HashMap<String, String> searchMap) {
+		System.out.println("dao!!!!!!!!!!!!!!!!!!!!!!");
+		for (String s : searchMap.keySet())
+			System.out.println(s + "\t" + searchMap.get(s));
 		return session.selectList("BoardMapper.boardContentSearchSelect", searchMap);
 	}
 	
