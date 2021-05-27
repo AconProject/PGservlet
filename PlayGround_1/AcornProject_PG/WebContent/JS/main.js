@@ -20,17 +20,15 @@ window.onload = function(){
 /* 모든 요소 삭제 (데이터 갱신 시 기존 데이터 삭제 위함) */
 function removeAllElements(query){
 	let removeEles = document.querySelectorAll(query);
-	for (let i=0; i<removeEles.length; i++){
+	for (let i=0; i<removeEles.length; i++)
 		removeEles[i].parentNode.removeChild(removeEles[i]);
-	}
 }
 
 /* JSP에 새로운 태그 및 컨텐츠 삽입 */
 function insertElement(childTag, parentId, content, attr, attrVal){
 	let newEle = document.createElement(childTag);
-	if (attr && attrVal){
+	if (attr && attrVal)
 		newEle.setAttribute(attr, attrVal);
-	}
 	newEle.innerHTML = content;
 	let parentEle = document.getElementById(parentId);
 	parentEle.appendChild(newEle);
@@ -158,7 +156,7 @@ function getTag(){
 		.then(res => res.json())
 		.then(data => {
 			jsonParserForTags(data);
-			const tags = document.getElementsByName('tag');
+			let tags = document.getElementsByName('tag');
 			tags.forEach((tag) => {
 				tag.addEventListener('click', getCheckboxValue, false);
 			});

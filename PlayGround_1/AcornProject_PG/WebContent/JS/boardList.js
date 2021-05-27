@@ -22,9 +22,8 @@ window.onload = function(){
 /* JSP에 새로운 태그 및 컨텐츠 삽입 */
 function insertElement(childTag, parentId, content, attr, attrVal){
 	let newEle = document.createElement(childTag);
-	if (attr && attrVal){
+	if (attr && attrVal)
 		newEle.setAttribute(attr, attrVal);
-	}
 	newEle.innerHTML = content;
 	let parentEle = document.getElementById(parentId);
 	parentEle.appendChild(newEle);
@@ -33,56 +32,60 @@ function insertElement(childTag, parentId, content, attr, attrVal){
 /* 모든 요소 삭제 (데이터 갱신 시 기존 데이터 삭제 위함) */
 function removeAllElements(query){
 	let removeEles = document.querySelectorAll(query);
-	for (let i=0; i<removeEles.length; i++){
+	for (let i=0; i<removeEles.length; i++)
 		removeEles[i].parentNode.removeChild(removeEles[i]);
-	}
 }
 
 /* 페이징 처리 */
 function paging(totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 	let totalPage = Math.ceil(totalData / maxDataPerPage); // 총 페이지수
 	let pageGroup = Math.ceil(currentPage / maxPagePerWindow); // 페이지 그룹
+	
 	let last = pageGroup * maxPagePerWindow; // 화면에 보여질 마지막 페이지 번호
 	if (last > totalPage)
 		last = totalPage;
+	
 	let first = last - (maxPagePerWindow-1); // 화면에 보여질 첫번째 페이지 번호
+	if (first < 1)
+		first = 1;
+
 	let next = last + 1;
 	let prev = first - 1;
 	let html = '';
 
-	if (prev > 0){
-		html += '<a href=# id="prev"><</a>';
-	}
+	if (prev > 0)
+		html += '<a href="#" id="prev">&lt;</a>';
 
-	for (let i=first; i<=last; i++){
-		html += '<a href="#" id="' + i + '">' + i + '</a>';
-	}
+	for (let i=first; i<=last; i++)
+		html += '<a href="#" id="page' + i + '">' + i + '</a>';
 
-	if (last < totalPage){
-		html += '<a href=# id="next"><</a>';
-	}
+	if (last < totalPage)
+		html += '<a href="#" id="next">&gt;</a>';
 
-	document.getElementById('paging').innerHTML(html);
-	document.querySelector('#paging a#' + currentPage).style.fontWeight = 'bold';
-	document.querySelectorAll('#paging a').addEventListener('click', function(){
-		let id = this.getAttribute('id');
-		let selectedPage = this.innerText;
+	document.getElementById('paging').innerHTML = html;
+	document.getElementById('page' + currentPage).style.fontWeight = 'bold';
 
-		if (id == 'next'){
-			selectedPage = next;
-		}
-		if (id == 'prev'){
-			selectedPage = prev;
-		}
-		paging(totalData, maxDataPerPage, maxPagePerWindow, selectedPage);
-	}, false);
+	let pages = document.querySelectorAll('#paging a');
+	pages.forEach(page => {
+		page.addEventListener('click', function(){
+			let id = this.getAttribute('id');
+			let selectedPage = this.innerText;
+	
+			if (id == 'next')
+				selectedPage = next;
+			if (id == 'prev')
+				selectedPage = prev;
+
+			paging(totalData, maxDataPerPage, maxPagePerWindow, selectedPage);
+		}, false);
+	});
 }
 
 /* 게시판 데이터 파싱 후 출력 */
 function jsonParserForBoard(data){
 	let totalData = data.length; // 총 게시글 수
-	let maxDataPerPage = 10; // 한 페이지에 나타낼수 있는 게시글수
-	let maxPagePerWindow = 10; // 한 화면에 나타낼수 있는 페이지 수
+	let maxDataPerPage = 5; // 한 페이지에 나타낼수 있는 게시글수
+	let maxPagePerWindow = 5; // 한 화면에 나타낼수 있는 페이지 수
 	paging(totalData, maxDataPerPage, maxPagePerWindow, 1);
 
 	for (let i=0; i<data.length; i++){
