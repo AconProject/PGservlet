@@ -8,24 +8,24 @@ import com.dto.LikeDTO;
 
 public class LikeDAO {
 	
-	public int likeBoardCount(SqlSession session, HashMap<String, String> ids) {
-		return session.selectOne("LikeMapper.likeBoardCount", ids);
+	public int likeBoardCount(SqlSession session, LikeDTO like) {
+		return session.selectOne("LikeMapper.likeBoardCount", like);
 	}
 	
-	public int likeBoardInsert(SqlSession session, HashMap<String, String> ids) {
-		return session.insert("LikeMapper.likeBoardInsert", ids);
+	public int likeBoardInsert(SqlSession session, LikeDTO like) {
+		return session.insert("LikeMapper.likeBoardInsert", like);
 	}
 	
-	public int likeBoardDelete(SqlSession session, HashMap<String, String> ids) {
-		return session.delete("LikeMapper.likeBoardDelete", ids);
+	public int likeBoardDelete(SqlSession session, LikeDTO like) {
+		return session.delete("LikeMapper.likeBoardDelete", like);
 	}
 	
-	public int likeReplyDelete(SqlSession session, HashMap<String, String> ids) {
-		return session.delete("LikeMapper.likeReplyDelete", ids);
+	public int likeReplyDelete(SqlSession session, LikeDTO like) {
+		return session.delete("LikeMapper.likeReplyDelete", like);
 	}
 	
-	public int likeReplyInsert(SqlSession session, HashMap<String, String> ids) {
-		return session.insert("LikeMapper.likeReplyInsert", ids);
+	public int likeReplyInsert(SqlSession session, LikeDTO like) {
+		return session.insert("LikeMapper.likeReplyInsert", like);
 	}
 	
 	/////게임 댓글에 대한  좋아요 삽입 가능
@@ -41,4 +41,7 @@ public class LikeDAO {
 		return session.selectOne("LikeMapper.likeReviewCount", ldto);
 	}
 	
+	public int likeReplyCount(SqlSession session, LikeDTO like) {
+		return session.selectOne("LikeMapper.likeReplyCount", like);
+	}
 }
