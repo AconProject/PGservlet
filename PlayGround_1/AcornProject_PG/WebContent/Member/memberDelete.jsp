@@ -9,11 +9,38 @@
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Image/gameLogo.png" />
 <link href="${pageContext.request.contextPath}/CSS/MemberUpdate.css" rel="stylesheet">
 
+<%
+	MemberDTO dto = (MemberDTO) session.getAttribute("login");
+	String mbrId = dto.getMbrId();
+	String mbrPw = dto.getMbrPw();
+%>
+	
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
+	$(function() {
+		$("form").submit(function(event) {
+			// 아이디 & 비밀번호 입력 검사
+			
+			var mbrId = $("#mbrId");
+			var mbrPw = $("#mbrPw");
+			console.log(mbrId,mbrPw);
+			
+			if (mbrId.val().length == 0) {
+				swal("Oops!!", "ID를 다시 입력해주세요!", "error");
+				mbrId.focus();
+				event.preventDefault();
+				
+			} else if (mbrPw.val().length == 0) {
+				swal("Oops!!", "PASSWORD를 다시 입력해주세요!", "error");
+				mbrPw.focus();
+				event.preventDefault();
+			}
 		
+		})
+		
+	}); // end ready
 </script>
 </head>
 
@@ -22,11 +49,7 @@
 	<!-- 페이지 상단 로고 및 배너 -->
 	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
-	<%
-	MemberDTO dto = (MemberDTO) session.getAttribute("login");
-	String mbrId = dto.getMbrId();
-	String mbrPw = dto.getMbrPw();
-	%>
+	
 	<!-- 메인화면 컨텐츠-->
 	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
 	<div class="wrapper">

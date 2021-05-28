@@ -147,6 +147,10 @@ meter{
 #newmeter{
 	margin:20px;
 }
+#reviewScore {
+	margin:0 px 20px;
+	font-size: 20px;
+}
 button {
 	margin-bottom: 20px;
 	width: 90px;
