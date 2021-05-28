@@ -91,3 +91,7 @@ img{
 	border-radius: 10%;
 	border: none;
 }
+
+#write:hover {
+	cursor: pointer;
+}

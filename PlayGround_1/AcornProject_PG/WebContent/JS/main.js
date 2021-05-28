@@ -41,7 +41,8 @@ function jsonParserForTop(data){
 		if (i<3){
 			insertElement('td', 'topTableNum', (i+1)+'.');
 			insertElement('td', 'topTableImg', '<a href="GameDetailServlet?gameNo='
-				+ jsonObj.gameNo +'"><img class="gameImg" src="' + jsonObj.gameImage + '"></a>');
+				+ jsonObj.gameNo +'"><img class="gameImg" src="' + jsonObj.gameImage
+				+ '" alt="이미지를 불러올 수 없습니다."></a>');
 			insertElement('td', 'topTableName', '<a href="GameDetailServlet?gameNo='
 				+ jsonObj.gameNo + '">' + jsonObj.gameName + '</a>', 'class', 'center');
 			insertElement('td', 'topTableYear',
@@ -66,7 +67,8 @@ function jsonParserForMiddle(data){
 			insertElement('tr', 'midTable', '', 'id', 'midTr'+i);
 			insertElement('td', 'midTr'+i, (cnt+1)+'.');
 			insertElement('td', 'midTr'+i, '<a href="GameDetailServlet?gameNo='
-				+ jsonObj.gameNo + '"><img class="gameImg" src="' + jsonObj.gameImage + '"></a>');
+				+ jsonObj.gameNo + '"><img class="gameImg" src="' + jsonObj.gameImage
+				+ '" alt="이미지를 불러올 수 없습니다."></a>');
 			insertElement('td', 'midTr'+i, '<a href="GameDetailServlet?gameNo='
 				+ jsonObj.gameNo + '">' + jsonObj.gameName+jsonObj.gameReleasedDate + '</a>');
 		} else{

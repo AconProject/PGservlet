@@ -1,8 +1,11 @@
 window.onload = function(){
 	// 글쓰기 버튼 클릭 이벤트 등록
-	document.getElementById('write').addEventListener('click', function(){
-		location.href = '../Board/writeBoard.jsp';
-	}, false);
+	let writeBtn = document.getElementById('write');
+	if (writeBtn) {
+		writeBtn.addEventListener('click', function(){
+			location.href = '../Board/writeBoard.jsp';
+		}, false);
+	}
 
 	// 카테고리 선택 이벤트 등록
 	document.getElementById('boardCategory').addEventListener('change', getChangedBoardList, false);
