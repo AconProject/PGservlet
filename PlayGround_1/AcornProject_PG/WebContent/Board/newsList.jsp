@@ -7,7 +7,7 @@
 <title>NewsPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="${pageContext.request.contextPath}/CSS/BoardList.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/JS/boardList.js?v=<%=System.currentTimeMillis() %>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/JS/newsList.js?v=<%=System.currentTimeMillis() %>"></script>
 </head>
 <body>
 	<!-- 페이지 상단 로고 및 배너 -->
@@ -18,17 +18,14 @@
 
 		<h1>뉴스 및 소식</h1>
 
-		<table>
+		<table id="newsList">
 			<tr>
 				<th>제목</th>
 				<th>날짜</th>
 			</tr>
 		</table>
 
-		<div>
-			<button>&lt;</button>
-			<button>&gt;</button>
-		</div>
+		<div id="paging"></div>
 
     </div>
 
