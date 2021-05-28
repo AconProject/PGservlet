@@ -47,7 +47,8 @@ function paging(data, totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 		html += '<a href="#" id="next">&gt;</a>';
 
 	document.getElementById('paging').innerHTML = html;
-	document.getElementById('page' + currentPage).style.fontWeight = 'bold';
+	document.getElementById('page' + currentPage).style.color = 'white';
+	document.getElementById('page' + currentPage).style.backgroundColor = '#34314c';
 
 	// 게시판 데이터 일부만 출력
 	let start = (currentPage-1) * maxDataPerPage;
@@ -77,6 +78,7 @@ function jsonParserForNews(data, start, end){
 	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'newsList', '', 'id', 'news'+i);
+		document.getElementById('news'+i).setAttribute('class', 'line');
 		insertElement('td', 'news'+i, '<a href="' + jsonObj.newsUrl + '">'
 			+ jsonObj.newsTitle + '</a>');
 		insertElement('td', 'news'+i, jsonObj.newsDate);
