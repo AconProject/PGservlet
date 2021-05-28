@@ -10,12 +10,12 @@ import com.dao.LikeDAO;
 import com.dto.LikeDTO;
 
 public class LikeService {
-	public int likeBoardCount(HashMap<String, String> ids) {
+	public int likeBoardCount(LikeDTO like) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int cnt = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
-			cnt = dao.likeBoardCount(session, ids);
+			cnt = dao.likeBoardCount(session, like);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -24,12 +24,12 @@ public class LikeService {
 		return cnt;
 	}
 	
-	public boolean likeBoardInsert(HashMap<String, String> ids) {
+	public boolean likeBoardInsert(LikeDTO like) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int cnt = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
-			cnt = dao.likeBoardInsert(session, ids);
+			cnt = dao.likeBoardInsert(session, like);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -38,12 +38,12 @@ public class LikeService {
 		return cnt == 1 ? true : false;
 	}
 	
-	public boolean likeBoardDelete(HashMap<String, String> ids) {
+	public boolean likeBoardDelete(LikeDTO like) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int cnt = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
-			cnt = dao.likeBoardDelete(session, ids);
+			cnt = dao.likeBoardDelete(session, like);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -52,12 +52,26 @@ public class LikeService {
 		return cnt == 1 ? true : false;
 	}
 	
-	public boolean likeReplyDelete(HashMap<String, String> ids) {
+	public int likeReplyCount(LikeDTO like) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int cnt = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
-			cnt = dao.likeReplyDelete(session, ids);
+			cnt = dao.likeBoardCount(session, like);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return cnt;
+	}
+	
+	public boolean likeReplyDelete(LikeDTO like) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int cnt = 0;
+		try {
+			LikeDAO dao = new LikeDAO();
+			cnt = dao.likeReplyDelete(session, like);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -66,12 +80,12 @@ public class LikeService {
 		return cnt == 1 ? true : false;
 	}
 	
-	public boolean likeReplyInsert(HashMap<String, String> ids) {
+	public boolean likeReplyInsert(LikeDTO like) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int cnt = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
-			cnt = dao.likeReplyInsert(session, ids);
+			cnt = dao.likeReplyInsert(session, like);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
