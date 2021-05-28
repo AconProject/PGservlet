@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -47,7 +48,14 @@
 			<button id="search"><img src="../Image/search.png" alt="검색"></button>
 		</div>
 
+		<%
+			MemberDTO dto =(MemberDTO)session.getAttribute("login");
+			if(dto != null){
+		%>
 		<button id="write">글 작성</button>
+		<%
+  			}
+		%>
 
 		<div id="paging"></div>
 
