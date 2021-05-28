@@ -78,7 +78,6 @@ function jsonParserForNews(data, start, end){
 	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'newsList', '', 'id', 'news'+i);
-		document.getElementById('news'+i).setAttribute('class', 'line');
 		insertElement('td', 'news'+i, '<a href="' + jsonObj.newsUrl + '">'
 			+ jsonObj.newsTitle + '</a>');
 		insertElement('td', 'news'+i, jsonObj.newsDate);
@@ -88,7 +87,7 @@ function jsonParserForNews(data, start, end){
 /* 페이징함수 호출함수 */
 function processNewsData(data){
 	let totalData = data.length; // 총 게시글 수
-	let maxDataPerPage = 10; // 한 페이지에 나타낼수 있는 게시글수
+	let maxDataPerPage = 15; // 한 페이지에 나타낼수 있는 게시글수
 	let maxPagePerWindow = 5; // 한 화면에 나타낼수 있는 페이지 수
 	paging(data, totalData, maxDataPerPage, maxPagePerWindow, 1);
 }

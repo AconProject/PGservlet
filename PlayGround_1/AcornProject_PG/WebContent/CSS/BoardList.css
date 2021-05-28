@@ -55,6 +55,7 @@ th {
 td {
 	text-align: center;
 	line-height: 2.5;
+	border-bottom: 1px solid #34314c;
 }
 
 #paging {
@@ -89,8 +90,4 @@ img{
 	height: 30px;
 	border-radius: 10%;
 	border: none;
-}
-
-.line {
-	border-bottom: 1px solid #34314c;
 }
