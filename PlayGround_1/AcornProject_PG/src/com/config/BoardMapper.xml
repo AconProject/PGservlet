@@ -9,11 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM board
 		WHERE boardCategory = 'info'
 		AND rownum &lt; 6
-		ORDER BY boardLiked DESC, boardCount DESC
 	</select>
 	
 	<select id="hitInfoBoardSelect" resultType="BoardDTO">
-		SELECT /*+ index_desc(board board_category_count, board_category_liked)*/  *
+		SELECT /*+ index_desc(board board_category_count, board_category_liked)*/ *
 		FROM board
 		WHERE boardCategory = 'info'
 		AND rownum &lt; 6
@@ -40,9 +39,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="boardAllSelect" resultType="BoardDTO">
-		SELECT /*+ index_desc(board board_date)*/ *
+		SELECT /*+ index_desc(board board_category_date)*/ *
 		FROM board
-		ORDER BY boardDate DESC
 	</select>
 
 	<!-- %넣기 -->
@@ -101,14 +99,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="boardLikePlus" parameterType="int">
 		UPDATE board
-	     SET boardLiked = boardLiked + 1
-	     WHERE boardId = #{boardId}
+		SET boardLiked = boardLiked + 1
+		WHERE boardId = #{boardId}
 	</update>
 	
 	<update id="boardLikeMinus" parameterType="int">
 		UPDATE board
-	     SET boardLiked = boardLiked - 1
-	     WHERE boardId = #{boardId}
+		SET boardLiked = boardLiked - 1
+		WHERE boardId = #{boardId}
 	</update>
 	
 	<select id="boardDetailSelect" parameterType="int" resultType="boardDTO">
