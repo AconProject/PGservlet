@@ -63,7 +63,8 @@ function paging(data, totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 		html += '<a href="#" id="next">&gt;</a>';
 
 	document.getElementById('paging').innerHTML = html;
-	document.getElementById('page' + currentPage).style.fontWeight = 'bold';
+	document.getElementById('page' + currentPage).style.color = 'white';
+	document.getElementById('page' + currentPage).style.backgroundColor = '#34314c';
 
 	// 게시판 데이터 일부만 출력
 	let start = (currentPage-1) * maxDataPerPage;
@@ -93,6 +94,7 @@ function jsonParserForBoard(data, start, end){
 	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'boardList', '', 'id', 'board'+i);
+		document.getElementById('board'+i).setAttribute('class', 'line');
 		insertElement('td', 'board'+i, jsonObj.boardCategory);
 		insertElement('td', 'board'+i, '<a href="../BoardDetailServlet?boardId='
 			+ jsonObj.boardId + '">' + jsonObj.boardName + '</a>');
