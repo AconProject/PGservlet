@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 마이페이지 - 정보 -->
 	<select id="mypage" parameterType="string" resultType="MemberDTO">
-		select mbrId,mbrName,mbrEmail,mbrGenre,mbrRegdate
+		select *
 		from member
 		where mbrId = #{mbrId}
 	</select>

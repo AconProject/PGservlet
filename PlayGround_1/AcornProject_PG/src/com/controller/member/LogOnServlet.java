@@ -39,7 +39,7 @@ public class LogOnServlet extends HttpServlet {
 		
 		String nextPage = null;
 		if (dto != null) {
-			System.out.println(dto.toString());
+			System.out.println("LogOnServlet: "+dto.toString());
 			nextPage = "Main.jsp";
 			session.setAttribute("login", dto);
 		} else {
