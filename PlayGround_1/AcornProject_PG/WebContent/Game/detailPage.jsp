@@ -32,8 +32,9 @@
 	
 
 	GameDTO gdto = (GameDTO) request.getAttribute("detailGame");
-	/* RateDTO rdto = (RateDTO) request.getAttribute("gameScore"); */
-	
+	RateDTO ratedto = (RateDTO) request.getAttribute("gameScore");
+	double gameScore = ratedto.getGameScore();
+
 	System.out.println("detailjsp - 게임정보 gdto : " + gdto);
 	String gameNo = gdto.getGameNo();
 	String gameName = gdto.getGameName();
@@ -79,7 +80,7 @@
 									</tr>
 								</table>
 							</td>
-							<td rowspan="2"><div class="score" id="gameScore">99.9</div></td>
+							<td rowspan="2"><div class="score" id="gameScore"><%= gameScore %></div></td>
 						</tr>
 						<tr>
 							<td><p class="content" id="gameContent">
@@ -162,7 +163,7 @@
 								<td><span id="reviewScore">0</span></td>
 							</tr>
 							<tr>
-								<td><button type="submit" id="submit" onclick="click();">올리기</button></td>
+								<td><button type="submit" id="submit">올리기</button></td>
 							</tr>
 						</table>
 					</form>
