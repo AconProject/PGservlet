@@ -29,7 +29,7 @@ public class reviewInsertServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		System.out.println("로그인상태 회원정보: "+dto);
+		System.out.println("로그인상태 회원정보(insert): "+dto);
 		
 		ReviewService rService = new ReviewService();
 		String nextPage = null;
@@ -46,7 +46,7 @@ public class reviewInsertServlet extends HttpServlet {
 
 			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, mbrName,gameNo, reviewContent, reviewLiked, reviewScore,
 					reviewDate);
-
+			System.out.println("작성한 review: " + rdto);
 			// 댓글 삽입
 			int reviewResult = rService.reviewInsert(rdto);
 

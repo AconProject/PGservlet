@@ -28,7 +28,7 @@
             document.getElementById("genre").innerText=mesg;
 		}
 		
-		function click() {
+		/* function click() {
 			const query = 'input[name="tag"]:checked';
 			const select = document.querySelectorAll(query);
 			
@@ -40,7 +40,7 @@
 			
 			document.getElementById("mbrGenre").value=result;
             document.getElementById("genre").innerText=result;
-		}
+		} */
 		
 		function check() {
 			
@@ -133,81 +133,81 @@
 					<table border="1">
 						<tr>
 							<td>
-							<input type="checkbox" name="tag" id="tag1" value="레이싱" onclick="click()">
+							<input type="checkbox" name="tag" id="tag1" value="레이싱">
 							<label for="tag1">&nbsp;레이싱</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag2" value="생존" onclick="click()">
+							<input type="checkbox" name="tag" id="tag2" value="생존" >
 							<label for="tag2">&nbsp;생존</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag3" value="슈팅" onclick="click()">
+							<input type="checkbox" name="tag" id="tag3" value="슈팅" >
 							<label for="tag3">&nbsp;슈팅</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag4" value="스포츠" onclick="click()">
+							<input type="checkbox" name="tag" id="tag4" value="스포츠" >
 							<label for="tag4">&nbsp;스포츠</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag5"	value="시뮬레이션" onclick="click()">
+							<input type="checkbox" name="tag" id="tag5"	value="시뮬레이션" >
 							<label for="tag5">&nbsp;시뮬레이션</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag6" value="액션" onclick="click()">
+							<input type="checkbox" name="tag" id="tag6" value="액션" >
 							<label for="tag6">&nbsp;액션</label>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-							<input type="checkbox" name="tag" id="tag7" value="어드밴처" onclick="click()">
+							<input type="checkbox" name="tag" id="tag7" value="어드밴처">
 							<label for="tag7">&nbsp;어드밴처</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag8" value="오프월드" onclick="click()">
+							<input type="checkbox" name="tag" id="tag8" value="오프월드">
 							<label for="tag8">&nbsp;오프월드</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag9" value="음악" onclick="click()">
+							<input type="checkbox" name="tag" id="tag9" value="음악">
 							<label for="tag9">&nbsp;음악</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag10" value="전략" onclick="click()">
+							<input type="checkbox" name="tag" id="tag10" value="전략">
 							<label for="tag10">&nbsp;전략</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag11" value="전쟁" onclick="click()">
+							<input type="checkbox" name="tag" id="tag11" value="전쟁">
 							<label for="tag11">&nbsp;전쟁</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag12" value="캐쥬얼" onclick="click()">
+							<input type="checkbox" name="tag" id="tag12" value="캐쥬얼">
 							<label for="tag12">&nbsp;캐쥬얼</label>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-							<input type="checkbox" name="tag" id="tag13" value="모험" onclick="click()">
-							<label for="tag13">&nbsp;모함</label>
+							<input type="checkbox" name="tag" id="tag13" value="모험">
+							<label for="tag13">&nbsp;모험</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag14" value="판타지" onclick="click()">
+							<input type="checkbox" name="tag" id="tag14" value="판타지">
 							<label for="tag14">&nbsp;판타지</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag15" value="퍼즐" onclick="click()">
+							<input type="checkbox" name="tag" id="tag15" value="퍼즐">
 							<label for="tag15">&nbsp;퍼즐</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag16" value="롤플레잉" onclick="click()">
+							<input type="checkbox" name="tag" id="tag16" value="롤플레잉">
 							<label for="tag16">&nbsp;롤플레잉</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag17" value="공상과학" onclick="click()">
+							<input type="checkbox" name="tag" id="tag17" value="공상과학">
 							<label for="tag17">&nbsp;공상과학</label>
 							</td>
 							<td>
-							<input type="checkbox" name="tag" id="tag18" value="턴제전략" onclick="click()">
+							<input type="checkbox" name="tag" id="tag18" value="턴제전략">
 							<label for="tag18">&nbsp;턴제전략</label>
 							</td>
 						</tr>
