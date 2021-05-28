@@ -94,7 +94,6 @@ function jsonParserForBoard(data, start, end){
 	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'boardList', '', 'id', 'board'+i);
-		document.getElementById('board'+i).setAttribute('class', 'line');
 		insertElement('td', 'board'+i, jsonObj.boardCategory);
 		insertElement('td', 'board'+i, '<a href="../BoardDetailServlet?boardId='
 			+ jsonObj.boardId + '">' + jsonObj.boardName + '</a>');
@@ -108,7 +107,7 @@ function jsonParserForBoard(data, start, end){
 /* 페이징함수 호출함수 */
 function processBoardData(data){
 	let totalData = data.length; // 총 게시글 수
-	let maxDataPerPage = 10; // 한 페이지에 나타낼수 있는 게시글수
+	let maxDataPerPage = 15; // 한 페이지에 나타낼수 있는 게시글수
 	let maxPagePerWindow = 5; // 한 화면에 나타낼수 있는 페이지 수
 	paging(data, totalData, maxDataPerPage, maxPagePerWindow, 1);
 }

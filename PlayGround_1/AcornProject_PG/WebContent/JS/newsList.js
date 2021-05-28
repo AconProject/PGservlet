@@ -78,7 +78,6 @@ function jsonParserForNews(data, start, end){
 	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'newsList', '', 'id', 'news'+i);
-		document.getElementById('news'+i).setAttribute('class', 'line');
 		insertElement('td', 'news'+i, '<a href="' + jsonObj.newsUrl + '">'
 			+ jsonObj.newsTitle + '</a>');
 		insertElement('td', 'news'+i, jsonObj.newsDate);
