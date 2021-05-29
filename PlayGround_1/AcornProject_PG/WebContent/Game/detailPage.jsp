@@ -19,6 +19,11 @@
 		document.getElementById("reviewScore").innerHTML = x;
 
 	}
+	
+    function click() {
+		alert("로그인하고 작성하세요!");
+	}
+
 </script>
 
 </head>
@@ -139,35 +144,29 @@
 						String name = "로그인해주세요";
 			    		if(dto != null ){
 			    			name =  dto.getMbrName();
-			    		} else if(dto == null) {
-					%>
-					<script>
-					    function click() {
-							alert("로그인하고 작성하세요!");
-						}
-					</script>
+			    	%>
+			    			<form action="reviewInsertServlet">
+							<input type="hidden" name="game" value="<%= gdto %>">
+							<table class="reviewTable">
+								<tr>
+									<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
+									<td rowspan="3" class="review">
+									<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
+									</td>
+									<td class="newmeter">0 <input type="range" name="reviewScore" id="newmeter" min="0" max="100" onclick="range()"> 100
+									</td>
+								<tr>
+									<td><span id="reviewScore">0</span></td>
+								</tr>
+								<tr>
+									<td><button type="submit" id="submit">올리기</button></td>
+								</tr>
+							</table>
+						</form>
+						
 					<%
-			    		}
-			    		
+			    		} 
 					%>
-					<form action="reviewInsertServlet">
-						<table class="reviewTable">
-							<tr>
-								<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
-								<td rowspan="3" class="review">
-								<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
-								</td>
-								<td class="newmeter">0 <input type="range" name="reviewScore" id="newmeter" min="0" max="100" onclick="range()"> 100
-								</td>
-							<tr>
-								<td><span id="reviewScore">0</span></td>
-							</tr>
-							<tr>
-								<td><button type="submit" id="submit">올리기</button></td>
-							</tr>
-						</table>
-					</form>
-					
 		
 				</div>
 			</div>

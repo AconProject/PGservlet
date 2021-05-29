@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dto.GameDTO;
 import com.dto.LikeDTO;
 import com.dto.MemberDTO;
 import com.dto.ReviewDTO;
@@ -28,23 +29,29 @@ public class reviewInsertServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		System.out.println("로그인상태 회원정보(insert): "+dto);
+		MemberDTO login = (MemberDTO) session.getAttribute("login");
+		System.out.println("로그인상태 회원정보(insert): "+ login);
+		
+		GameDTO game = (GameDTO)request.getAttribute("game");
+		System.out.println("상세페이지게임정보: " + game);
 		
 		ReviewService rService = new ReviewService();
 		String nextPage = null;
 
-		if (dto != null) {
-			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
-			String mbrId = request.getParameter("mbrId");
-			String mbrName=request.getParameter("mbrName");
-			String gameNo = request.getParameter("gameNo");
+		if (login != null) {
+			String rId = request.getParameter("reviewId");
+			int reviewId = 0;
+			if (rId != null)
+				reviewId = Integer.parseInt(rId);
+//			String mbrId = request.getParameter("mbrId");
+//			String mbrName=request.getParameter("mbrName");
+//			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
-			int reviewLiked = Integer.parseInt(request.getParameter("reviewLiked"));
-			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
-			String reviewDate = "";
+			int reviewLiked = 0;
+			Double reviewScore = 0.0;
+			String reviewDate = request.getParameter("reviewDate");
 
-			ReviewDTO rdto = new ReviewDTO(reviewId, mbrId, mbrName,gameNo, reviewContent, reviewLiked, reviewScore,
+			ReviewDTO rdto = new ReviewDTO(reviewId, login.getMbrId(), login.getMbrName(), game.getGameNo(), reviewContent, reviewLiked, reviewScore,
 					reviewDate);
 			System.out.println("작성한 review: " + rdto);
 			// 댓글 삽입
@@ -56,7 +63,7 @@ public class reviewInsertServlet extends HttpServlet {
 			int replyId = 0; // 게시판 댓글ID
 
 			// likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한 순서
-			LikeDTO ldto = new LikeDTO(likeNo, mbrId, boardId, reviewId, replyId);
+			LikeDTO ldto = new LikeDTO(likeNo, login.getMbrId(), boardId, reviewId, replyId);
 			LikeService lService = new LikeService();
 
 			// 댓글에 대한 좋아요를 위해 삽입
