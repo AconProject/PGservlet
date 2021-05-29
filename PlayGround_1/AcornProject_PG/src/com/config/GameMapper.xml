@@ -65,11 +65,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--연관 게임 리스트 -->
 	<select id="relatedGameList" resultType="GameDTO">
-		SELECT *
+		SELECT /*+ index_desc(game game_date)*/ *
 		FROM game,rate
 		WHERE game.gameNo = rate.gameNo
 		AND game.gameCategory = #{gameCategory}
-		ORDER BY rate.gameScore desc, game.gameReleasedDate desc
+		ORDER BY rate.gameScore DESC
 	</select>
 	
 	<!-- 태그 상세 페이지 -->
