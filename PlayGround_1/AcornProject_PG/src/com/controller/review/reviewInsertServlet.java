@@ -36,21 +36,22 @@ public class reviewInsertServlet extends HttpServlet {
 		String nextPage = null;
 
 		if (login != null) {
+			
 			String rId = request.getParameter("reviewId");
 			int reviewId = 0;
 			if (rId != null)
 				reviewId = Integer.parseInt(rId);
 			
-	//		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+//		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 //			String mbrId = request.getParameter("mbrId");
-//			String mbrName=request.getParameter("mbrName");
+			String mbrName=request.getParameter("mbrName");
 			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
 			int reviewLiked = 0;
 			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
 			String reviewDate = request.getParameter("reviewDate");
 
-			ReviewDTO rdto = new ReviewDTO(reviewId, login.getMbrId(), login.getMbrName(), gameNo, reviewContent, reviewLiked, reviewScore,
+			ReviewDTO rdto = new ReviewDTO(reviewId, login.getMbrId(), mbrName, gameNo, reviewContent, reviewLiked, reviewScore,
 					reviewDate);
 			System.out.println("작성한 review: " + rdto);
 			
