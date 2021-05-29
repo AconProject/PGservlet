@@ -32,9 +32,6 @@ public class reviewInsertServlet extends HttpServlet {
 		MemberDTO login = (MemberDTO) session.getAttribute("login");
 		System.out.println("로그인상태 회원정보(insert): "+ login);
 		
-		GameDTO game = (GameDTO)request.getAttribute("game");
-		System.out.println("상세페이지게임정보: " + game);
-		
 		ReviewService rService = new ReviewService();
 		String nextPage = null;
 
@@ -43,23 +40,27 @@ public class reviewInsertServlet extends HttpServlet {
 			int reviewId = 0;
 			if (rId != null)
 				reviewId = Integer.parseInt(rId);
+			
+	//		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 //			String mbrId = request.getParameter("mbrId");
 //			String mbrName=request.getParameter("mbrName");
-//			String gameNo = request.getParameter("gameNo");
+			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
 			int reviewLiked = 0;
-			Double reviewScore = 0.0;
+			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
 			String reviewDate = request.getParameter("reviewDate");
 
-			ReviewDTO rdto = new ReviewDTO(reviewId, login.getMbrId(), login.getMbrName(), game.getGameNo(), reviewContent, reviewLiked, reviewScore,
+			ReviewDTO rdto = new ReviewDTO(reviewId, login.getMbrId(), login.getMbrName(), gameNo, reviewContent, reviewLiked, reviewScore,
 					reviewDate);
 			System.out.println("작성한 review: " + rdto);
+			
 			// 댓글 삽입
 			int reviewResult = rService.reviewInsert(rdto);
-
+			System.out.println("댓글삽입 성공: " + reviewResult);
+			
 			//////// like 테이블에 삽입: reviewId
-			int likeNo = 0; // 추천번호
-			int boardId = 0; // 게시글 ID
+			int likeNo = 0; // 추천
+			int boardId = 0; // 게번호시글 ID
 			int replyId = 0; // 게시판 댓글ID
 
 			// likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한 순서

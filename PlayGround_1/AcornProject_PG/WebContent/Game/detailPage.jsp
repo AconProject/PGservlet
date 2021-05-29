@@ -116,9 +116,9 @@
 				<div>
 					<table class="midTable">
 					<%
-					for (int i = (p - 1) * 4; i < (p * perPage); i++) {
-						if (i == totalPage) break;
-						ReviewDTO review = rdto.get(i);
+						for (int i = (p - 1) * 4; i < (p * perPage); i++) {
+							if (i == totalPage) break;
+							ReviewDTO review = rdto.get(i);
 					 %>
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
@@ -128,14 +128,15 @@
 							<td><button type="submit" id="update">수정</button></td>
 							<td><button type="submit" id="delete">삭제</button></td>
 						</tr>
-								<%				
-				}
+					<%				
+							}
 					%>
 					</table>
 		
-<%
-			}
-		%>
+					<%
+						}
+					%>
+					
 					<!-- 댓글 삽입  -->
 					<%
 					
@@ -145,8 +146,9 @@
 			    		if(dto != null ){
 			    			name =  dto.getMbrName();
 			    	%>
+			    			
 			    			<form action="reviewInsertServlet">
-							<input type="hidden" name="game" value="<%= gdto %>">
+							<input type="hidden" name="gameNo" value="<%= gameNo %>">
 							<table class="reviewTable">
 								<tr>
 									<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
@@ -165,7 +167,7 @@
 						</form>
 						
 					<%
-			    		} 
+						}
 					%>
 		
 				</div>
