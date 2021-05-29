@@ -72,7 +72,7 @@ function paging(data, totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 	// 게시판 데이터 일부만 출력
 	let start = (currentPage-1) * maxDataPerPage;
 	let end = currentPage * maxDataPerPage;
-	jsonParserForBoard(data, start, end);
+	jsonParserForBoards(data, start, end);
 
 	// 페이지 숫자 클릭 시 다시 페이징
 	let pages = document.querySelectorAll('#paging a');
@@ -93,7 +93,7 @@ function paging(data, totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 }
 
 /* 게시판 데이터 파싱 후 출력 */
-function jsonParserForBoard(data, start, end){
+function jsonParserForBoards(data, start, end){
 	for (let i=start; i<data.length && i<end; i++){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'boardList', '', 'id', 'board'+i);
@@ -108,7 +108,7 @@ function jsonParserForBoard(data, start, end){
 }
 
 /* 페이징함수 호출함수 */
-function processBoardData(data){
+function prepareForPaging(data){
 	let totalData = data.length; // 총 게시글 수
 	let maxDataPerPage = 15; // 한 페이지에 나타낼수 있는 게시글수
 	let maxPagePerWindow = 5; // 한 화면에 나타낼수 있는 페이지 수
@@ -120,7 +120,7 @@ function getBoardList(){
 	fetch('../BoardListServlet?boardKind=boardList&&boardCategory=all')
 		.then(res => res.json())
 		.then(data => {
-			processBoardData(data);
+			prepareForPaging(data);
 		})
 		.catch(err => {
 			console.log(err);
@@ -135,7 +135,7 @@ function getChangedBoardList(){
 		.then(res => res.json())
 		.then(data => {
 			removeAllElements('tr[id^="board"]');
-			processBoardData(data);
+			prepareForPaging(data);
 		})
 		.catch(err => {
 			console.log(err);
@@ -154,7 +154,7 @@ function getBoardSearchList(){
 		.then(res => res.json())
 		.then(data => {
 			removeAllElements('tr[id^="board"]');
-			processBoardData(data);
+			prepareForPaging(data);
 		})
 		.catch(err => {
 			console.log(err);
