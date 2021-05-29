@@ -98,8 +98,8 @@ function jsonParserForBoard(data, start, end){
 		let jsonObj = JSON.parse(data[i]);
 		insertElement('tr', 'boardList', '', 'id', 'board'+i);
 		insertElement('td', 'board'+i, jsonObj.boardCategory);
-		insertElement('td', 'board'+i, '<a href="../BoardDetailServlet?boardId='
-			+ jsonObj.boardId + '">' + jsonObj.boardName + '</a>');
+		insertElement('td', 'board'+i, '<a href="boardPage.jsp?boardId=' + jsonObj.boardId
+			+ '">' + jsonObj.boardName + '</a>');
 		insertElement('td', 'board'+i, jsonObj.mbrName);
 		insertElement('td', 'board'+i, jsonObj.boardDate);
 		insertElement('td', 'board'+i, jsonObj.boardCount);
