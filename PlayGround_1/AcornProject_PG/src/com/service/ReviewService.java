@@ -52,6 +52,7 @@ public class ReviewService {
 		int result;
 		try {
 			result = dao.reviewInsert(session, rdto);
+			session.commit();
 		} finally {
 			session.close();
 		}
