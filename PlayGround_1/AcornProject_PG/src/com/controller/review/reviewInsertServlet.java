@@ -1,6 +1,7 @@
 package com.controller.review;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,13 +38,8 @@ public class reviewInsertServlet extends HttpServlet {
 
 		if (login != null) {
 			
-			String rId = request.getParameter("reviewId");
-			int reviewId = 0;
-			if (rId != null)
-				reviewId = Integer.parseInt(rId);
-			
 //		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
-//			String mbrId = request.getParameter("mbrId");
+			String mbrId = request.getParameter("mbrId");
 			String mbrName=request.getParameter("mbrName");
 			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
@@ -51,40 +47,44 @@ public class reviewInsertServlet extends HttpServlet {
 			Double reviewScore = Double.parseDouble(request.getParameter("reviewScore"));
 			String reviewDate = request.getParameter("reviewDate");
 
-			ReviewDTO rdto = new ReviewDTO(reviewId, login.getMbrId(), mbrName, gameNo, reviewContent, reviewLiked, reviewScore,
-					reviewDate);
-			System.out.println("작성한 review: " + rdto);
+			ReviewDTO xx = new ReviewDTO();
+			xx.setMbrId(login.getMbrId());
+			xx.setMbrName(login.getMbrName());
+			xx.setGameNo(gameNo);
+			xx.setReviewContent(reviewContent);
+			xx.setReviewLiked(reviewLiked);
+			xx.setReviewScore(reviewScore);
+			xx.setReviewDate(reviewDate);
+			
+			System.out.println("작성한 review: " + xx);
 			
 			// 댓글 삽입
-			int reviewResult = rService.reviewInsert(rdto);
+			int reviewResult = rService.reviewInsert(xx);
 			System.out.println("댓글삽입 성공: " + reviewResult);
 			
-			//////// like 테이블에 삽입: reviewId
-			int likeNo = 0; // 추천
-			int boardId = 0; // 게번호시글 ID
-			int replyId = 0; // 게시판 댓글ID
-
-			// likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한 순서
-			LikeDTO ldto = new LikeDTO(likeNo, login.getMbrId(), boardId, reviewId, replyId);
-			LikeService lService = new LikeService();
-
-			// 댓글에 대한 좋아요를 위해 삽입
-			int reviewLike = 0;
-			int isComplete = 0;
-			int likedReviewInsert = lService.likeReviewInsert(ldto);
-			int cnt = lService.likeReviewCount(ldto); // 여기부터 내일
-			if (cnt == 0) { // 없는 경우: review 좋아요 +1 & like 보드에 삽입
-				reviewLike = rService.reviewLikePlus(reviewId); // review 댓글 +1
-				isComplete = lService.likeReviewInsert(ldto); //
-
-			} else { // 있는 경우: review 좋아요 -1 && like 보드에서 삭제.
-				reviewLike = rService.reviewLikeMinus(reviewId); // review 댓글 -1
-				isComplete = lService.likeReviewDelete(ldto); //
-			}
-
-			System.out.println("reviewLike: " + reviewLike + "\t" + "isComplete: " + isComplete + "\t"
-					+ "likedReviewInsert: " + likedReviewInsert);
-			nextPage = "GameDetailServlet";
+			/*
+			 * //////// like 테이블에 삽입: reviewId int likeNo = 0; // 추천 int boardId = 0; //
+			 * 게번호시글 ID int replyId = 0; // 게시판 댓글ID
+			 * 
+			 * // likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한 순서 //
+			 * LikeDTO ldto = new LikeDTO(likeNo, login.getMbrId(), boardId, reviewId,
+			 * replyId); // LikeService lService = new LikeService();
+			 * 
+			 * // 댓글에 대한 좋아요를 위해 삽입 int reviewLike = 0; int isComplete = 0; int
+			 * likedReviewInsert = lService.likeReviewInsert(ldto); // int cnt =
+			 * lService.likeReviewCount(ldto); // 여기부터 내일 // if (cnt == 0) { // 없는 경우:
+			 * review 좋아요 +1 & like 보드에 삽입 // reviewLike =
+			 * rService.reviewLikePlus(reviewId); // review 댓글 +1 // isComplete =
+			 * lService.likeReviewInsert(ldto); //
+			 * 
+			 * // } else { // 있는 경우: review 좋아요 -1 && like 보드에서 삭제. // reviewLike =
+			 * rService.reviewLikeMinus(reviewId); // review 댓글 -1 // isComplete =
+			 * lService.likeReviewDelete(ldto); // // }
+			 * 
+			 * System.out.println("reviewLike: " + reviewLike + "\t" + "isComplete: " +
+			 * isComplete + "\t" + "likedReviewInsert: " + likedReviewInsert);
+			 */
+			nextPage = "GameDetailServlet?gameNo="+gameNo;
 			
 		} else {
 			nextPage = "LoginServlet";
