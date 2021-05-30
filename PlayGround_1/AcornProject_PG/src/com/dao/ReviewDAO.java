@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -55,6 +56,11 @@ public class ReviewDAO {
 
 	public int reviewLikeSelect(SqlSession session, int reviewId) {
 		int result = session.selectOne("ReviewMapper.reviewLikeSelect", reviewId);
+		return result;
+	}
+
+	public int selectreviewId(SqlSession session, HashMap<String, String> map) {
+		int result = session.selectOne("ReviewMapper.selectreviewId", map);
 		return result;
 	}
 

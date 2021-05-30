@@ -11,12 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import com.dto.LikeDTO;
 import com.dto.MemberDTO;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.service.LikeService;
 import com.service.ReplyService;
 
@@ -42,25 +38,22 @@ public class ReplyLikeServlet extends HttpServlet {
 		ReplyService rService = new ReplyService();
 		LikeService lService = new LikeService();
 		HttpSession session = request.getSession();
-		HashMap<String, String> ids = new HashMap<>();
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
-		String replyId = request.getParameter("replyId");
+		int replyId = Integer.parseInt(request.getParameter("replyId"));
 		int replyLike = Integer.parseInt(request.getParameter("like"));
 		int cnt = 0;
 		boolean isComplete = false;
 		int originLike = replyLike;
-
+		LikeDTO like = new LikeDTO(0, login.getMbrId(), 0, 0, replyId);
 		
 		System.out.println("현재 좋아요 개수 : " + replyLike);
-		ids.put("replyId", replyId);
-		ids.put("mbrId", login.getMbrId());
-		cnt = lService.likeBoardCount(ids);
+		cnt = lService.likeBoardCount(like);
 		if (cnt >= 1) {
-			replyLike += rService.replyLikeMinus(Integer.parseInt(replyId)) * -1;
-			isComplete = lService.likeReplyDelete(ids);
+			replyLike += rService.replyLikeMinus(replyId) * -1;
+			isComplete = lService.likeReplyDelete(like);
 		} else {
-			replyLike += rService.replyLikePlus(Integer.parseInt(replyId));
-			isComplete = lService.likeReplyInsert(ids);
+			replyLike += rService.replyLikePlus(replyId);
+			isComplete = lService.likeReplyInsert(like);
 		}
 		System.out.println("좋아요 : " + replyLike + " , liked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);
 		PrintWriter out = response.getWriter();

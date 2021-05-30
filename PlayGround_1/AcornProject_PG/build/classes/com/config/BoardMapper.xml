@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'info'
+		AND rownum &lt; 6
 		ORDER BY boardLiked DESC, boardCount DESC
 	</select>
 	
@@ -15,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'info'
+		AND rownum &lt; 6
 		ORDER BY boardCount DESC, boardLiked DESC
 	</select>
 	
@@ -22,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'QnA'
+		AND rownum &lt; 6
 		ORDER BY boardLiked DESC, boardCount DESC
 	</select>
 	
@@ -29,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE boardCategory = 'QnA'
+		AND rownum &lt; 6
 		ORDER BY boardCount DESC, boardLiked DESC
 	</select>
 	
@@ -46,29 +50,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- %넣기 -->
-	<select id="boardTitleSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+	<select id="boardTitleSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory LIKE '%#{boardCategory}%' 
-		AND boardName LIKE '%#{searchWord}%'
+		WHERE <if test="boardCategory != 'all'">
+		boardCategory = #{boardCategory}
+		AND 
+		</if>boardName LIKE '%'||#{searchWord}||'%'
 		ORDER BY boardDate DESC
 	</select>
 
 	<!-- %넣기 -->
-	<select id="boardContentSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+	<select id="boardContentSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory LIKE '%#{boardCategory}%'
-		AND (boardContent LIKE '%#{searchWord}%'
-		OR boardName LIKE '%#{searchWord}%')
+		WHERE 
+		<if test="boardCategory != 'all'">
+		boardCategory = #{boardCategory}
+		AND 
+		</if>(boardContent LIKE '%'||#{searchWord}||'%'
+		OR boardName LIKE '%'||#{searchWord}||'%')
 		ORDER BY boardDate DESC
 	</select>
 	
-	<select id="boardWriterSearchSelect" parameterType="HashMap" resultType="BoardDTO">
+	<select id="boardWriterSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
 		SELECT *
 		FROM board
-		WHERE boardCategory LIKE '%#{boardCategory}%'
-		AND boardName LIKE '%#{searchWord}%'
+		WHERE <if test="boardCategory != 'all'">
+		boardCategory = #{boardCategory}
+		AND 
+		</if> mbrName LIKE '%'||#{searchWord}||'%'
 		ORDER BY boardDate DESC
 	</select>
 	

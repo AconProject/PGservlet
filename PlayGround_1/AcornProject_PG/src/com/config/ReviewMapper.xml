@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--댓글:삽입 -->
 	<insert id="reviewInsert" parameterType="ReviewDTO">
 		Insert
-		INTO review (reviewId, mbrId, gameNo, reviewContent, reviewLiked, reviewScore, reviewDate)
-		VALUES (review_seq.nextval,#{mbrId},#{gameNo},#{reviewContent},0,#{reviewScore},SYSDATE)
+		INTO review (reviewId, mbrId, mbrName, gameNo, reviewContent, reviewLiked, reviewScore, reviewDate)
+		VALUES (reviewseq.nextval,#{mbrId},#{mbrName},#{gameNo},#{reviewContent},0,#{reviewScore},SYSDATE)
 	</insert>
 
 	<!--댓글:수정 -->
@@ -69,5 +69,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by mbrId
 	</select>
 
-
+	<!-- reviewId 찾기  -->
+	<select id="selectreviewId" parameterType="hashmap" resultType="int">
+		SELECT reviewId
+		FROM review
+		WHERE mbrName = #{mbrName} and gameNo = #{gameNo}
+	</select>
+	
 </mapper>

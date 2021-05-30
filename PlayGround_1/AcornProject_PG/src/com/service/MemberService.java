@@ -109,4 +109,20 @@ public class MemberService {
 		}
 		return userid;
 	}
+
+
+	public int memberDelete(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int result  = 0;
+		try {
+			 MemberDAO dao = new MemberDAO();
+			 result = dao.memberDelete(session, map);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.commit();
+			session.close();
+		}
+		return result;
+	}//end memberDelete
 }//end class

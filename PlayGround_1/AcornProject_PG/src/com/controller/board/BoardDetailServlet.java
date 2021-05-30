@@ -1,18 +1,21 @@
 package com.controller.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
 
 import com.dto.BoardDTO;
 import com.dto.ReplyDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.BoardService;
 import com.service.ReplyService;
 
@@ -35,21 +38,24 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardId = Integer.parseInt(request.getParameter("boardId"));
+	    response.setContentType("text/html;charset=utf-8");
+	    int boardId = Integer.parseInt(request.getParameter("boardId"));
 		BoardService bService = new BoardService();
 		ReplyService rService = new ReplyService();
 		String mesg = request.getParameter("mesg");
-		System.out.println(mesg);
+	    Gson gson = new GsonBuilder().create();
+		JSONArray jsonList = new JSONArray();
+		
 		System.out.println("boardID : " + boardId);
 		BoardDTO dto = bService.boardDetailSelect(boardId);
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
 		System.out.println("게시판 상세 페이지 :" + dto);
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("board", dto);
-		request.setAttribute("replyList", replyList);
-		RequestDispatcher dis = request.getRequestDispatcher("Board/boardPage.jsp");
-		dis.forward(request, response);
+		PrintWriter out = response.getWriter();
+		jsonList.add(gson.toJson(dto));
+		for (ReplyDTO reply : replyList) {
+			jsonList.add(gson.toJson(reply));
+		}
+		out.println(jsonList);
 	}
 
 	/**

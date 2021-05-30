@@ -37,19 +37,21 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html;charset=utf-8");
 		BoardService service = new BoardService();
 		String boardKind = request.getParameter("boardKind");
 		String boardCategory = request.getParameter("boardCategory");
 		Gson gson = new GsonBuilder().create();
 		JSONArray jsonList = new JSONArray();
 		List<BoardDTO> list = null;
-		System.out.println(boardKind + "\t" + boardCategory);
 		if (boardKind.contentEquals("boardList")) {
 			list = service.boardSelect(boardCategory);
 		} else if (boardKind.contentEquals("boardSearchList")) {
 			String searchWord = request.getParameter("searchWord");
 			String searchCategory = request.getParameter("searchCategory");
 			HashMap <String, String> searchMap = new HashMap<String, String>();
+			System.out.println(boardKind + "\t" + boardCategory + "\t" + searchWord + "\t" + searchCategory);
 			if (searchWord == null)
 				searchWord = "%";
 			searchMap.put("searchWord", searchWord);
@@ -57,7 +59,7 @@ public class BoardListServlet extends HttpServlet {
 			searchMap.put("boardCategory", boardCategory);
 			list = service.boardSearchSelect(searchMap);
 		}
-		System.out.println(list);
+		System.out.println("list : " + list);
 		PrintWriter out = response.getWriter();
 		for (BoardDTO dto : list) {
 			jsonList.add(gson.toJson(dto));

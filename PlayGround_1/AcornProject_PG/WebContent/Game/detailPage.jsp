@@ -19,6 +19,11 @@
 		document.getElementById("reviewScore").innerHTML = x;
 
 	}
+	
+    function click() {
+		alert("로그인하고 작성하세요!");
+	}
+
 </script>
 
 </head>
@@ -32,8 +37,9 @@
 	
 
 	GameDTO gdto = (GameDTO) request.getAttribute("detailGame");
-	/* RateDTO rdto = (RateDTO) request.getAttribute("gameScore"); */
-	
+	RateDTO ratedto = (RateDTO) request.getAttribute("gameScore");
+	double gameScore = ratedto.getGameScore();
+
 	System.out.println("detailjsp - 게임정보 gdto : " + gdto);
 	String gameNo = gdto.getGameNo();
 	String gameName = gdto.getGameName();
@@ -79,7 +85,7 @@
 									</tr>
 								</table>
 							</td>
-							<td rowspan="2"><div class="score" id="gameScore">99.9</div></td>
+							<td rowspan="2"><div class="score" id="gameScore"><%= gameScore %></div></td>
 						</tr>
 						<tr>
 							<td><p class="content" id="gameContent">
@@ -110,9 +116,9 @@
 				<div>
 					<table class="midTable">
 					<%
-					for (int i = (p - 1) * 4; i < (p * perPage); i++) {
-						if (i == totalPage) break;
-						ReviewDTO review = rdto.get(i);
+						for (int i = (p - 1) * 4; i < (p * perPage); i++) {
+							if (i == totalPage) break;
+							ReviewDTO review = rdto.get(i);
 					 %>
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
@@ -122,14 +128,15 @@
 							<td><button type="submit" id="update">수정</button></td>
 							<td><button type="submit" id="delete">삭제</button></td>
 						</tr>
-								<%				
-				}
+					<%				
+							}
 					%>
 					</table>
 		
-<%
-			}
-		%>
+					<%
+						}
+					%>
+					
 					<!-- 댓글 삽입  -->
 					<%
 					
@@ -138,35 +145,30 @@
 						String name = "로그인해주세요";
 			    		if(dto != null ){
 			    			name =  dto.getMbrName();
-			    		} else if(dto == null) {
-					%>
-					<script>
-					    function click() {
-							alert("로그인하고 작성하세요!");
-						}
-					</script>
+			    	%>
+			    			
+			    			<form action="reviewInsertServlet">
+							<input type="hidden" name="gameNo" value="<%= gameNo %>">
+							<table class="reviewTable">
+								<tr>
+									<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
+									<td rowspan="3" class="review">
+									<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
+									</td>
+									<td class="newmeter">0 <input type="range" name="reviewScore" id="newmeter" min="0" max="100" onclick="range()"> 100
+									</td>
+								<tr>
+									<td><span id="reviewScore">0</span></td>
+								</tr>
+								<tr>
+									<td><button type="submit" id="submit">올리기</button></td>
+								</tr>
+							</table>
+						</form>
+						
 					<%
-			    		}
-			    		
+						}
 					%>
-					<form action="reviewInsertServlet">
-						<table class="reviewTable">
-							<tr>
-								<td rowspan="3" class="mbrName" id="mbrName"><%= name %></td>
-								<td rowspan="3" class="review">
-								<textarea name="reviewContent" id="gameReplyContent" cols="80" rows="5" placeholder=" 내용을 입력해주세요"></textarea>
-								</td>
-								<td class="newmeter">0 <input type="range" name="reviewScore" id="newmeter" min="0" max="100" onclick="range()"> 100
-								</td>
-							<tr>
-								<td><span id="reviewScore">0</span></td>
-							</tr>
-							<tr>
-								<td><button type="submit" id="submit" onclick="click();">올리기</button></td>
-							</tr>
-						</table>
-					</form>
-					
 		
 				</div>
 			</div>
