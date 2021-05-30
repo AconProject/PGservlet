@@ -11,7 +11,7 @@
 <title>Detail Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="${pageContext.request.contextPath}/CSS/DetailPage.css" rel="stylesheet">
-
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function range() {
 
@@ -23,7 +23,21 @@
     function click() {
 		alert("로그인하고 작성하세요!");
 	}
-
+	
+   $(function() {
+	   
+	   // 삭제버튼 누르기
+		$(".delBtn").on("click", function() {
+			console.log("클릭했다!");
+			var reviewId = $(this).attr("data-reviewId");
+			var gameNo = $(this).attr("data-gameNo");
+			console.log("gameNo: " + gameNo);
+			location.href="reviewDeleteServlet?reviewId=" + reviewId + "&gameNo=" + gameNo;
+		})
+		
+	});
+    
+    
 </script>
 
 </head>
@@ -56,6 +70,7 @@
 	/* double gameScore = rdto.getGameScore(); */
 	String[] category = gameGenre.split(",");
 	
+	MemberDTO login =(MemberDTO)session.getAttribute("login");
 	%>
 
 	<!-- 메인화면 컨텐츠-->
@@ -114,11 +129,13 @@
 			</div>
 			<div class="container">
 				<div>
+				
 					<table class="midTable">
 					<%
 						for (int i = (p - 1) * 4; i < (p * perPage); i++) {
 							if (i == totalPage) break;
 							ReviewDTO review = rdto.get(i);
+							
 					 %>
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
@@ -126,7 +143,8 @@
 							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
 							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend"><%= review.getReviewLiked() %></span></td>
 							<td><button type="submit" id="update">수정</button></td>
-							<td><button type="submit" id="delete">삭제</button></td>
+							<td><button type="submit" class="delBtn" id="delete" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">삭제</button></td>
+							
 						</tr>
 					<%				
 							}
@@ -139,12 +157,9 @@
 					
 					<!-- 댓글 삽입  -->
 					<%
-					
-						MemberDTO dto =(MemberDTO)session.getAttribute("login");
-						
 						String name = "로그인해주세요";
-			    		if(dto != null ){
-			    			name =  dto.getMbrName();
+			    		if(login != null ){
+			    			name =  login.getMbrName();
 			    	%>
 			    			
 			    			<form action="reviewInsertServlet">

@@ -78,6 +78,7 @@ public class ReviewService {
 		int result;
 		try {
 			result = dao.reviewDelete(session, reviewId);
+			session.commit();
 		} finally {
 			session.close();
 		}
