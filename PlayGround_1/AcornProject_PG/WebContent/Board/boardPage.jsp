@@ -1,3 +1,6 @@
+<%@page import="com.dto.MemberDTO"%>
+<%@page import="com.google.gson.*"%>
+<%@page import="org.json.simple.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,11 +15,28 @@
 	<!-- 페이지 상단 로고 및 배너 -->
     <jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
+	<div id="loginId" style="display:none"></div>
 	<div class="wrapper contents">
 		<!-- 게시글 내용 -->
 		<section>
 			<div id="boardContents"></div>
-			<button id="modify">글 수정</button>
+
+			<%
+			MemberDTO dto = (MemberDTO)session.getAttribute("login");
+			Gson gson = new GsonBuilder().create();
+
+			if(dto != null){
+			%>
+			<script>
+				let loginJSON = <%= gson.toJson(dto) %>;
+				let loginId = loginJSON.mbrId;
+				document.getElementById('loginId').innerText = loginId;
+			</script>
+			<%
+  			}
+			%>
+
+			<div id="btn"></div>
 		</section>
 
 		<!-- 댓글 -->

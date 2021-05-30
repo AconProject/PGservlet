@@ -147,7 +147,6 @@ function getBoardSearchList(){
 	let searchCategory = document.getElementById('searchCategory').value;
 	let searchText = document.getElementById('searchText').value;
 	let boardCategory = document.getElementById('boardCategory').value;
-	document.getElementById('searchText').value = '';
 
 	fetch('../BoardListServlet?boardKind=boardSearchList&&searchCategory='
 		+ searchCategory + '&&searchWord=' + searchText + '&&boardCategory=' + boardCategory)

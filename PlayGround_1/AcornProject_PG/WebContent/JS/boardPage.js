@@ -1,16 +1,24 @@
+let boardId = '';
+
 window.onload = function(){
 
 	// boardId 값 가져오기
-	let boardId = location.href.substr(
+	boardId = location.href.substr(
 		location.href.lastIndexOf('=') + 1
 	);
-
-	document.getElementById('modify').addEventListener('click', function(){
-		location.href = 'updateBoard.jsp?boardId=' + boardId;
-	}, false);
 	
-	getBoardContents(boardId);
+	getBoardContents();
 };
+
+/* JSP에 새로운 태그 및 컨텐츠 삽입 */
+function insertElement(childTag, parentId, content, attr, attrVal){
+	let newEle = document.createElement(childTag);
+	if (attr && attrVal)
+		newEle.setAttribute(attr, attrVal);
+	newEle.innerHTML = content;
+	let parentEle = document.getElementById(parentId);
+	parentEle.appendChild(newEle);
+}
 
 /* 게시글 데이터 파싱 후 출력 */
 function jsonParserForBoardContents(data){
@@ -28,6 +36,8 @@ function jsonParserForBoardContents(data){
 		'내용 - ' + jsonObj.boardContent + '<br>';
 	
 	document.getElementById('boardContents').innerHTML = html;
+
+	checkMemberId(jsonObj.mbrId);
 }
 
 /* 게시글 댓글 파싱 후 출력 */
@@ -47,7 +57,7 @@ function jsonParserForBoardReply(data){
 }
 
 /* 게시글 내용 불러오기 */
-function getBoardContents(boardId){
+function getBoardContents(){
 	fetch('../BoardDetailServlet?boardId=' + boardId)
 		.then(res => res.json())
 		.then(data => {
@@ -58,4 +68,17 @@ function getBoardContents(boardId){
 		.catch(err => {
 			console.log(err);
 		});
+}
+
+/* 글 작성자와 로그인한 유저가 일치한지 확인 */
+function checkMemberId(writerId){
+	let loginId = document.getElementById('loginId').innerText;
+	if (loginId === writerId) {
+		insertElement('button', 'btn', '글 삭제', 'id', 'delete');
+		insertElement('button', 'btn', '글 수정', 'id', 'modify');
+		
+		document.getElementById('modify').addEventListener('click', function(){
+			location.href = 'updateBoard.jsp?boardId=' + boardId;
+		}, false);
+	}
 }

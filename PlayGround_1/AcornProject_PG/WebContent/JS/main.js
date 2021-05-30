@@ -61,7 +61,7 @@ function jsonParserForMiddle(data){
 	let gameRate;
 	let cnt = 0;
 	for (let i=0; i<data.length; i++){
-		if (i%2 == 0) {
+		if (i%2 === 0) {
 			// 게임 데이터
 			let jsonObj = JSON.parse(data[i]);
 			insertElement('tr', 'midTable', '', 'id', 'midTr'+i);
@@ -199,7 +199,7 @@ function getCheckboxValue(){
 	let selectedEls = 
 		document.querySelectorAll(query);
 
-	if (selectedEls.length == 0){
+	if (selectedEls.length === 0){
 		removeAllElements('.midTable tr');
 		getTagGame();
 	} else{
