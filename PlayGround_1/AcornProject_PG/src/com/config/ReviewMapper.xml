@@ -69,5 +69,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by mbrId
 	</select>
 
-
+	<!-- reviewId 찾기  -->
+	<select id="selectreviewId" parameterType="hashmap" resultType="int">
+		SELECT reviewId
+		FROM review
+		WHERE mbrName = #{mbrName} and gameNo = #{gameNo}
+	</select>
+	
 </mapper>

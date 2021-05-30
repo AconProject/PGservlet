@@ -1,6 +1,7 @@
 package com.controller.review;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -61,7 +62,13 @@ public class reviewInsertServlet extends HttpServlet {
 			// 댓글 삽입
 			int reviewResult = rService.reviewInsert(xx);
 			System.out.println("댓글삽입 성공: " + reviewResult);
-			
+		
+			// reviewId
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("mbrName",mbrName);
+			map.put("gameNo", gameNo);
+			int reviewId = rService.selectreviewId(map);
+			System.out.println("reviewId 찾았다: " + reviewId);
 			/*
 			 * //////// like 테이블에 삽입: reviewId int likeNo = 0; // 추천 int boardId = 0; //
 			 * 게번호시글 ID int replyId = 0; // 게시판 댓글ID

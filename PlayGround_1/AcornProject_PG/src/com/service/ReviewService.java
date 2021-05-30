@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -127,4 +128,14 @@ public class ReviewService {
 		return result;
 	}
 
+	public int selectreviewId(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int result;
+		try {
+			result = dao.selectreviewId(session, map);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 }
