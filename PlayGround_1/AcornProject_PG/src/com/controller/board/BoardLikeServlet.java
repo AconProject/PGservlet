@@ -1,6 +1,7 @@
 package com.controller.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,11 +40,12 @@ public class BoardLikeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
-		int boardLike = Integer.parseInt(request.getParameter("boardLike"));
+		int originLike = Integer.parseInt(request.getParameter("boardLike"));
 		int cnt = 0;
+		int boardLike = 0;
 		boolean isComplete = false;
 		LikeDTO like = new LikeDTO(0, login.getMbrId(), boardId, 0, 0);
-		System.out.println("현재 좋아요 개수 : " + boardLike);
+		System.out.println("현재 좋아요 개수 : " + originLike);
 		cnt = lService.likeBoardCount(like);
 		if (cnt >= 1) {
 			boardLike += bService.boardLikeMinus(boardId) * -1;
@@ -54,7 +56,12 @@ public class BoardLikeServlet extends HttpServlet {
 		}
 		System.out.println("좋아요 : " + boardLike + " , boardLiked 개수 : " + cnt + " , 삭제, 삽입 : " + isComplete);
 		
-		request.setAttribute("boardLike", boardLike);
+		PrintWriter out = response.getWriter();
+		
+		if (originLike == boardLike)
+			out.println("error");
+		else
+			out.println(boardLike);
 	}
 
 
