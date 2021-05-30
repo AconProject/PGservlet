@@ -6,8 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Write Board</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../CSS/WriteBoard.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../CSS/WriteBoard.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+<!-- 스타일관련 -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
+<!-- 자바스크립트관련 -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>
+<!-- 한글관련 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/lang/summernote-ko-KR.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#boardContent').summernote({
+            lang: 'ko-KR',
+            height: 500,
+        })
+    })
+</script> 
 </head>
 <body>
 
@@ -36,25 +57,9 @@
 
 			<input type="text" name="boardName" id="boardName" placeholder="제목" ><br>
 			
-			<textarea name="boardContent" id="boardContent" maxlength="2048" placeholder="
-
-(샘플 텍스트)
- 
- 게임을 다른 사람에게 추천하고 싶으시지만 어떻게 해야 할지 모르시는 분들을 위한 리뷰 작성의 가이드 입니다.
-
- 가이드는 대략적인 틀을 잡아 리뷰작성의 경험이 없으신 분들도 어느정도 퀄리티 높은 리뷰를 작성하실 수 있도록 도움을 드리는데에 목적이 있지만 해당 가이드가 정석이나 정답은 아니기 때문에 회원님들께서 취향에 맞게 편집하시어 사용하시길 바랍니다.
-
- 
-
- 아래 가이드를 자유롭게 사용 또는 변경하시어 이용하시길 바랍니다. 
-
- 
-
-* 사용방법
-
-1. 아래 내용 드래그 후 복사하기
-2. 리뷰 작성 페이지에 아래 내용을 붙여넣기.
-3. 그대로 사용하시거나 편집(변경)하시어 리뷰 작성하기. "></textarea><br>
+			<div class="write">
+        		<textarea name="boardContent" id="boardContent" cols="30" rows="10" class="form-control"></textarea>
+   			</div>
 			
 			<button type="submit" name="boardKind" id="boardsubmit" value="boardInsert">제출</button>
 			<button type="reset" name="boardreset" id="boardreset">다시쓰기</button>

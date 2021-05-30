@@ -88,7 +88,11 @@ hr {
 	text-indent: 15px;
 }
 
-#boardContent {
+.write {
+	margin-top: 30px;
+}
+
+/* #boardContent {
 	width: 1075px;
 	height:500px;
 	margin-top: 30px;
@@ -98,7 +102,7 @@ hr {
 	border-radius: 5px;
 	text-indent: 10px;
 	text-align: justify;
-}
+} */
 
 #boardsubmit, #boardreset {
 	width: 120px;
