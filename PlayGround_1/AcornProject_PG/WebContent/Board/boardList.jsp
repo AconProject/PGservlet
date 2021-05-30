@@ -49,7 +49,7 @@
 		</div>
 
 		<%
-			MemberDTO dto =(MemberDTO)session.getAttribute("login");
+			MemberDTO dto = (MemberDTO)session.getAttribute("login");
 			if(dto != null){
 		%>
 		<button id="write">글 작성</button>

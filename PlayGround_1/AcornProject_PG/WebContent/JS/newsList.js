@@ -62,9 +62,9 @@ function paging(data, totalData, maxDataPerPage, maxPagePerWindow, currentPage){
 			let id = this.getAttribute('id');
 			let selectedPage = this.innerText;
 	
-			if (id == 'next')
+			if (id === 'next')
 				selectedPage = next;
-			if (id == 'prev')
+			if (id === 'prev')
 				selectedPage = prev;
 
 			removeAllElements('tr[id^="news"]');
