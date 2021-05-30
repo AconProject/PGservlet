@@ -72,7 +72,7 @@ function getBoardContents(){
 
 /* 글 작성자와 로그인한 유저가 일치한지 확인 */
 function checkMemberId(writerId){
-	let loginId = document.getElementById('loginId').innerText;
+	let loginId = document.getElementById('loginId').getAttribute('value');
 	if (loginId === writerId) {
 		insertElement('button', 'btn', '글 삭제', 'id', 'delete');
 		insertElement('button', 'btn', '글 수정', 'id', 'modify');

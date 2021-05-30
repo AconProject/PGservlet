@@ -14,17 +14,19 @@
 
 	<div class="wrapper contents">
 
-		<form action="BoardModifyServlet">
-			<select>
+		<form action="../BoardModifyServlet" method="post">
+			<input type="hidden" name="boardId" id="boardId">
+			<input type="hidden" name="boardKind" id="boardKind" value="boardUpdate">
+			<select name="boardCategory">
 				<option value="common">일반글</option>
 				<option value="info">게임정보</option>
 				<option value="sales">할인정보</option>
 				<option value="QnA">QnA</option>
 			</select>
-			<input type="text" id="boardName">
-			<input type="text" id="boardContents">
-			<button>삭제</button>
-			<button type="submit">수정</button>
+			<input type="text" name="boardName" id="boardName">
+			<input type="text" name="boardContent" id="boardContent">
+			<button type="reset">다시쓰기</button>
+			<button type="submit">완료</button>
 		</form>
 
 	</div>
