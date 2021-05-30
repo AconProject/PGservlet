@@ -31,15 +31,16 @@ public class reviewDeleteServlet extends HttpServlet {
 		String nextPage = null;
 
 		if (dto != null) {
-			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
-			int result = rservice.reviewDelete(reviewId);
+			String reviewId = request.getParameter("reviewId");
+			String gameNo = request.getParameter("gameNo");
+			System.out.println("gameno: " + gameNo);
+			int result = rservice.reviewDelete(Integer.parseInt(reviewId));
 			if (result == 1) {
 				System.out.println("Update 성공");
 			} else {
 				System.out.println("Update 실패");
 			}
-
-			nextPage = "GameDetailServlet";
+			nextPage = "GameDetailServlet?gameNo="+gameNo;
 
 		} else {
 			nextPage = "LoginServlet";

@@ -59,9 +59,10 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int selectreviewId(SqlSession session, HashMap<String, String> map) {
+	public int selectreviewId(SqlSession session, HashMap<String, Object> map) {
 		int result = session.selectOne("ReviewMapper.selectreviewId", map);
 		return result;
 	}
+
 
 }

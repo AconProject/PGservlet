@@ -41,15 +41,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 게임댓글: 좋아요 +1 -->
-	<update id="reviewLikePlus" parameterType="string">
-		UPDATE reply
+	<update id="reviewLikePlus" parameterType="int">
+		UPDATE review
 		SET reviewLiked = reviewLiked+1
 		WHERE reviewId=#{reviewId}
 	</update>
 
 	<!-- 게임댓글: 좋아요 -1 -->
-	<update id="reviewLikeMinus" parameterType="string">
-		UPDATE reply
+	<update id="reviewLikeMinus" parameterType="int">
+		UPDATE review
 		SET reviewLiked = reviewLiked-1
 		WHERE reviewId=#{reviewId}
 	</update>
@@ -75,5 +75,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM review
 		WHERE mbrName = #{mbrName} and gameNo = #{gameNo}
 	</select>
+	
+
+	
 	
 </mapper>

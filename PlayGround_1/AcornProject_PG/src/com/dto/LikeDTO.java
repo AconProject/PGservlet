@@ -1,13 +1,12 @@
 package com.dto;
 
 public class LikeDTO {
-	
+
 	int likeNo;
 	String mbrId;
 	int boardId;
 	int reviewId;
 	int replyId;
-	
 	
 	public LikeDTO() {
 		super();
@@ -53,12 +52,9 @@ public class LikeDTO {
 	}
 	@Override
 	public String toString() {
-		return "LikedDTO [likeNo=" + likeNo + ", mbrId=" + mbrId + ", boardId=" + boardId + ", reviewId=" + reviewId
+		return "LikeDTO [likeNo=" + likeNo + ", mbrId=" + mbrId + ", boardId=" + boardId + ", reviewId=" + reviewId
 				+ ", replyId=" + replyId + "]";
 	}
-	
-	
-	
-	
 
+	
 }
