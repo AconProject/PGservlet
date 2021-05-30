@@ -92,6 +92,7 @@ public class ReviewService {
 		try {
 			ReviewDAO dao = new ReviewDAO();
 			result = dao.reviewLikePlus(session, reviewId);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -107,6 +108,8 @@ public class ReviewService {
 		try {
 			ReviewDAO dao = new ReviewDAO();
 			result = dao.reviewLikeMinus(session, reviewId);
+			session.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -128,7 +131,7 @@ public class ReviewService {
 		return result;
 	}
 
-	public int selectreviewId(HashMap<String, String> map) {
+	public int selectreviewId(HashMap<String, Object> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int result;
 		try {
