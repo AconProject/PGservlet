@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.GameDAO;
+import com.dao.MemberDAO;
 import com.dao.ReplyDAO;
 import com.dao.ReviewDAO;
 import com.dto.GameDTO;
@@ -141,6 +142,21 @@ public class ReviewService {
 			session.close();
 		}
 		return result;
+	}
+
+	// 중복된 닉네임 찾기
+	public int nameCheck(String mbrName) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int count = 0;
+		try {
+			ReviewDAO dao = new ReviewDAO();
+			count = dao.nameCheck(session, mbrName);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return count;
 	}
 
 

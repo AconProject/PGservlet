@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INTO review (reviewId, mbrId, mbrName, gameNo, reviewContent, reviewLiked, reviewScore, reviewDate)
 		VALUES (reviewseq.nextval,#{mbrId},#{mbrName},#{gameNo},#{reviewContent},0,#{reviewScore},SYSDATE)
 	</insert>
-
+	
 	<!--댓글:수정 -->
 	<update id="reviewUpdate" parameterType="ReviewDTO">
 		UPDATE review
@@ -76,7 +76,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE mbrName = #{mbrName} and gameNo = #{gameNo}
 	</select>
 	
-
-	
+	<!-- 댓글 회원별명 존재여부 확인 -->
+	<select id="nameCheck" parameterType="string" resultType="int">
+		select count(*)
+		from review
+		where mbrName = #{mbrName}
+	</select>
 	
 </mapper>
