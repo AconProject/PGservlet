@@ -40,6 +40,18 @@
     
 </script>
 
+<%
+	String mesg = (String) session.getAttribute("mesg");
+	if(mesg != null){
+%>
+	<script>
+     alert('<%= mesg %>');
+   </script>
+
+<%
+		session.removeAttribute("mbrId");
+	  } 
+%>
 </head>
 
 
@@ -130,29 +142,48 @@
 			<div class="container">
 				<div>
 				
-					<table class="midTable">
 					<%
+						if(login != null) {
 						for (int i = (p - 1) * 4; i < (p * perPage); i++) {
 							if (i == totalPage) break;
 							ReviewDTO review = rdto.get(i);
 							
 					 %>
+					 	<table class="midTable">
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
 							<td class="review"><p id="gameReplyContent"><%= review.getReviewContent() %></p></td>
 							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
 							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend"><%= review.getReviewLiked() %></span></td>
+							<%
+								if(login.getMbrName().equals(review.getMbrName())) {
+							%>
 							<td><button type="submit" id="update">수정</button></td>
 							<td><button type="submit" class="delBtn" id="delete" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">삭제</button></td>
-							
+							<%
+								}
+							%>
 						</tr>
+						</table>
 					<%				
 							}
+						} else {
+							for (int i = (p - 1) * 4; i < (p * perPage); i++) {
+								if (i == totalPage) break;
+								ReviewDTO review = rdto.get(i);
 					%>
-					</table>
-		
+						<table class="midTable">
+						<tr>
+							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
+							<td class="review"><p id="gameReplyContent"><%= review.getReviewContent() %></p></td>
+							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
+							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend"><%= review.getReviewLiked() %></span></td>
+						</tr>
+						</table>
 					<%
+							}
 						}
+					}
 					%>
 					
 					<!-- 댓글 삽입  -->
