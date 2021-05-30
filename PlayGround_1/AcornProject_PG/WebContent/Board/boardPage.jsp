@@ -15,7 +15,7 @@
 	<!-- 페이지 상단 로고 및 배너 -->
     <jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
-	<div id="loginId" style="display:none"></div>
+	<input type="hidden" id="loginId">
 	<div class="wrapper contents">
 		<!-- 게시글 내용 -->
 		<section>
@@ -30,7 +30,7 @@
 			<script>
 				let loginJSON = <%= gson.toJson(dto) %>;
 				let loginId = loginJSON.mbrId;
-				document.getElementById('loginId').innerText = loginId;
+				document.getElementById('loginId').setAttribute('value', loginId);
 			</script>
 			<%
   			}
