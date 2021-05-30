@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(*)
 		FROM liked
 		WHERE mbrId = #{mbrId}
-		AND ReviewdId = #{ReviewId}
+		AND reviewId = #{reviewId}
 	</select>
 
 	<insert id="likeReviewInsert" parameterType="LikeDTO">

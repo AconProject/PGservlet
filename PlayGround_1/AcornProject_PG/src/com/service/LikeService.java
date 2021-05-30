@@ -102,6 +102,8 @@ public class LikeService {
 		try {
 			LikeDAO dao = new LikeDAO();
 			likeReview = dao.likeReviewInsert(session, ldto);
+			session.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -116,6 +118,8 @@ public class LikeService {
 		try {
 			LikeDAO dao = new LikeDAO();
 			likeReview = dao.likeReviewDelete(session, ldto);
+			session.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
