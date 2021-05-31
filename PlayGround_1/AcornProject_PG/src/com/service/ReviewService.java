@@ -159,5 +159,20 @@ public class ReviewService {
 		return count;
 	}
 
+	// 댓글 수정버튼 클릭시 reviewId로 댓글 찾기
+	public ReviewDTO updatebtn(int reviewId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		ReviewDTO dto = null;
+		try {
+			ReviewDAO dao = new ReviewDAO();
+			dto = dao.updatebtn(session, reviewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
+
 
 }

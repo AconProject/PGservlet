@@ -69,5 +69,10 @@ public class ReviewDAO {
 		return count;
 	}
 
+	public ReviewDTO updatebtn(SqlSession session, int reviewId) {
+		ReviewDTO result = session.selectOne("ReviewMapper.updatebtn", reviewId);
+		return result;
+	}
+
 
 }

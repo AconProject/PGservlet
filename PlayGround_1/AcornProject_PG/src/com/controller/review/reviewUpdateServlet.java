@@ -27,8 +27,10 @@ public class reviewUpdateServlet extends HttpServlet {
 
 	//댓글 수정 기능 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
+		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		ReviewService rservice = new ReviewService();
 		String nextPage = null;
