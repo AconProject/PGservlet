@@ -26,6 +26,16 @@
 	
    $(function() {
 	   
+	   // 수정버튼 누르기
+	   $(".upBtn").on("click", function() {
+		   console.log("클릭했다!");
+		   var reviewId = $(this).attr("data-reviewId");
+		   var reviewContent = $(this).attr("data-reviewContent");
+		   window.name = "parentForm"; // 댓글수정페이지
+		   window.open("Game/reviewUpdateForm.jsp?reviewId=" + reviewId+"&reviewContent=" +reviewContent, "updateForm", "width=570, height=350, resizable=no, scrollbars=no");
+	   }); // end upBtn
+	   
+	   
 	   // 삭제버튼 누르기
 		$(".delBtn").on("click", function() {
 			console.log("클릭했다!");
@@ -33,7 +43,13 @@
 			var gameNo = $(this).attr("data-gameNo");
 			console.log("gameNo: " + gameNo);
 			location.href="reviewDeleteServlet?reviewId=" + reviewId + "&gameNo=" + gameNo;
-		})
+		}); // end delBtn
+		
+		// 좋아요버튼 누르기
+		$(".icon").on("click", function() {
+			console.log("따봉 클릭!");
+			var click = $(this).attr("data-liked");
+		}); // end liked
 		
 	});
     
@@ -149,6 +165,7 @@
 							ReviewDTO review = rdto.get(i);
 							
 					 %>
+					 
 					 	<table class="midTable">
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
@@ -158,13 +175,17 @@
 							<%
 								if(login.getMbrName().equals(review.getMbrName())) {
 							%>
-							<td><button type="submit" id="update">수정</button></td>
+							
+							<td><button type="submit" class="upBtn" id="update" data-reviewContent="<%= review.getReviewContent() %>" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">수정</button></td>
 							<td><button type="submit" class="delBtn" id="delete" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">삭제</button></td>
+							
 							<%
 								}
-							%>	
+							%>
+								
 						</tr>
 						</table>
+						
 					<%				
 							}
 						} else {
@@ -172,6 +193,7 @@
 								if (i == totalPage) break;
 								ReviewDTO review = rdto.get(i);
 					%>
+					
 						<table class="midTable">
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
@@ -180,6 +202,7 @@
 							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend"><%= review.getReviewLiked() %></span></td>
 						</tr>
 						</table>
+						
 					<%
 							}
 						}
