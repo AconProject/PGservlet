@@ -46,7 +46,7 @@ public class QnAListMainServlet extends HttpServlet {
 	    JSONArray jsonList = new JSONArray();  
 		List<BoardDTO> qnaList = null;
 		
-		if (qnaCategory == null || qnaCategory == "recommend") {
+		if (qnaCategory == null || qnaCategory.contentEquals("recommend")) {
 			qnaList = boardService.recommendQnaBoardSelect();
 		} else {
 			qnaList = boardService.hitQnaBoardSelect();
