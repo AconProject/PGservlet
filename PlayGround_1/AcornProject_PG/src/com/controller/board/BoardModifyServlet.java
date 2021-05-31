@@ -45,13 +45,12 @@ public class BoardModifyServlet extends HttpServlet {
 	
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8"); 
+		response.setCharacterEncoding("text/html; charset=utf-8");
 		BoardService service = new BoardService();
 		HttpSession session = request.getSession();
 		String boardKind = request.getParameter("boardKind");
 		boolean isComplete = false;
 		String mesg = "";
-		
 		MemberDTO login= (MemberDTO) session.getAttribute("login");
 		System.out.println(login);
 		String bId = request.getParameter("boardId");
@@ -65,7 +64,6 @@ public class BoardModifyServlet extends HttpServlet {
 		int boardCount = 0;
 		long miliSeconds = System.currentTimeMillis();
 		Date boardDate = new Date(miliSeconds);
-		String nextPage = "";
 		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(), boardName, boardCategory, boardContent, boardLiked
 				, boardCount, boardDate);
 		System.out.println(dto);
@@ -95,7 +93,6 @@ public class BoardModifyServlet extends HttpServlet {
 				mesg = "해당 게시물에 대한 처리를 수행하지 못했습니다.";
 		}
 		System.out.println(isComplete + "\t " + mesg);
-		System.out.println(nextPage);
 		PrintWriter out = response.getWriter();
 		out.println(mesg);
 		out.println(boardId);
