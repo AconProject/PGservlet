@@ -1,6 +1,8 @@
 package com.controller.review;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,12 +32,14 @@ public class reviewUpdateServlet extends HttpServlet {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		ReviewService rservice = new ReviewService();
 		String nextPage = null;
+		String mesg = null;
+		
 
 		if (dto != null) {
 			//변수 수정 (jsp에서 들어오는 데이터에 따라) //점수 내용. 
 			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 			String mbrId = "";
-			String mbrName=request.getParameter("mbrName");
+			String mbrName=request.getParameter("mbrName"); //딱히 필요없을듯...
 			String gameNo = "";
 			String reviewContent = request.getParameter("reviewContent");
 			int reviewLiked = 0;
@@ -46,17 +50,20 @@ public class reviewUpdateServlet extends HttpServlet {
 					reviewDate);
 			int result = rservice.reviewUpdate(rdto);
 			if (result == 1) {
-				System.out.println("Update 성공");
+				 mesg= "Update 성공";
 			} else {
-				System.out.println("Update 실패");
+				 mesg= "Update 실패";
 			}
+			PrintWriter out = response.getWriter();
+			out.print(mesg);
+			out.flush();
 			
-			nextPage = "GameDetailServlet";
 		} else {
 			nextPage = "LoginServlet";
 			session.setAttribute("mesg", "로그인이 필요한 작업입니다.");
+			response.sendRedirect(nextPage);
 		}
-		response.sendRedirect(nextPage);
+		
 	
 	}
 
