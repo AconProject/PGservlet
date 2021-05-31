@@ -1,11 +1,9 @@
 package com.controller.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -104,8 +102,8 @@ public class BoardModifyServlet extends HttpServlet {
 		}
 		System.out.println(isComplete + "\t " + mesg);
 		System.out.println(nextPage);
-		request.setAttribute("mesg", mesg);
-		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
-	    dis.forward(request, response);
+		PrintWriter out = response.getWriter();
+		out.println(mesg);
+		out.println(boardId);
 	}
 }
