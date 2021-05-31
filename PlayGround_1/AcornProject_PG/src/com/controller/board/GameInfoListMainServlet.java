@@ -47,7 +47,7 @@ public class GameInfoListMainServlet extends HttpServlet {
 		Gson gson = new GsonBuilder().create();
 	    JSONArray jsonList = new JSONArray();
 		
-		if (gameInfoCategory == null || gameInfoCategory == "recommend") {
+		if (gameInfoCategory == null || gameInfoCategory.contentEquals("recommend")) {
 			gameInfoList = boardService.recommendInfoBoardSelect();
 		} else {
 			gameInfoList = boardService.hitInfoBoardSelect();
