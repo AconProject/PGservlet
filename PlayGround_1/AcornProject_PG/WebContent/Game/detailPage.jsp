@@ -162,7 +162,7 @@
 							<td><button type="submit" class="delBtn" id="delete" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">삭제</button></td>
 							<%
 								}
-							%>
+							%>	
 						</tr>
 						</table>
 					<%				
