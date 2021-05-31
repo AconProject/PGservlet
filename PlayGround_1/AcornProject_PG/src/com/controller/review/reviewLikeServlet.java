@@ -95,7 +95,7 @@ public class reviewLikeServlet extends HttpServlet {
 				System.out.println("isComplete: " + isComplete);
 			}
 			
-			//증가된 좋아요 가져오기
+			//증가된 좋아요 가져오기 
 			int reviewLikedSelect = rService.reviewLikeSelect(reviewId);
 			PrintWriter out = response.getWriter();
 			out.print(reviewLikedSelect);
@@ -104,6 +104,7 @@ public class reviewLikeServlet extends HttpServlet {
 		} else {
 			nextPage = "LoginServlet";
 			session.setAttribute("mesg", "로그인이 필요한 작업입니다.");
+			response.sendRedirect(nextPage);
 		}
 
 	} // end doGet
