@@ -13,7 +13,14 @@
 	<%
 		MemberDTO dto = (MemberDTO)session.getAttribute("login");
 		Gson gson = new GsonBuilder().create();
+	%>
+</head>
+<body>
+	<!-- 페이지 상단 로고 및 배너 -->
+    <jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
+	<input type="hidden" id="loginId">
+	<%
 		if(dto != null){
 	%>
 		<script>
@@ -24,12 +31,7 @@
 	<%
 		}
 	%>
-</head>
-<body>
-	<!-- 페이지 상단 로고 및 배너 -->
-    <jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
-	<input type="hidden" id="loginId">
 	<div class="wrapper contents">
 		<!-- 게시글 내용 -->
 		<section>
