@@ -70,6 +70,8 @@ public class BoardModifyServlet extends HttpServlet {
 		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(), boardName, boardCategory, boardContent, boardLiked
 				, boardCount, boardDate);
 		System.out.println(dto);
+		PrintWriter out = response.getWriter();
+
 		if (login != null) {
 			if (login.getMbrId().contentEquals(login.getMbrId()) && boardKind.contentEquals("boardInsert")) {
 				boardId = service.getBoardId();
@@ -88,21 +90,23 @@ public class BoardModifyServlet extends HttpServlet {
 				mesg = "해당 게시글을 수정하였습니다.";
 			else
 				mesg = "해당 게시글을 삭제하였습니다.";
+			
+			out.print("<script>alert('"+ mesg +"');</script>");
+			if (boardKind.contentEquals("boardDelete")){
+				out.print("<script>location.href = 'Board/boardList.jsp';</script>");
+			} else {
+				out.print("<script>location.href = 'Board/boardPage.jsp?boardId=" + boardId + "';</script>");
+			}
 		} 
 		if (!isComplete){
 			if (login == null)
 				mesg = "로그인 필요합니다.";
 			else
 				mesg = "해당 게시물에 대한 처리를 수행하지 못했습니다.";
+			
+			out.print("<script>alert('"+ mesg +"');</script>");
+			out.print("<script>location.href = 'Board/boardList.jsp';</script>");
 		}
 		System.out.println(isComplete + "\t " + mesg);
-		PrintWriter out = response.getWriter();
-
-		out.print("<script>alert('"+ mesg +"');</script>");
-		if (boardKind.contentEquals("boardDelete")){
-			out.print("<script>location.href = 'Board/boardList.jsp';</script>");
-		} else {
-			out.print("<script>location.href = 'Board/boardPage.jsp?boardId=" + boardId + "';</script>");
-		}
 	}
 }
