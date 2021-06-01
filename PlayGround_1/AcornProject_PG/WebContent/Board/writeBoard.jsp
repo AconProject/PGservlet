@@ -47,12 +47,10 @@
 		<form class="boardwrite" action="../BoardModifyServlet" method="post">
 			
 			<select class="select_category" name="boardCategory" id="boardCategory" >
-				<option selected>Category</option>
-				<option value="게임정보">게임정보</option>
-				<option value="질문&답변">질문&답변</option>
-				<option value="할인정보">할인정보</option>
-				<option value="자유게시판">자유게시판</option>
-				<option value="기타">기타</option>
+				<option value="common">일반글</option>
+				<option value="info">게임정보</option>
+				<option value="sales">할인정보</option>
+				<option value="QnA">QnA</option>
 			</select>
 
 			<input type="text" name="boardName" id="boardName" placeholder="제목" ><br>
