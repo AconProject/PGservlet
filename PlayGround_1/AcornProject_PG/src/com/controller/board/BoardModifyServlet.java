@@ -45,6 +45,7 @@ public class BoardModifyServlet extends HttpServlet {
 	
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html; charset=utf-8");
 		BoardService service = new BoardService();
 		HttpSession session = request.getSession();
@@ -95,6 +96,6 @@ public class BoardModifyServlet extends HttpServlet {
 		System.out.println(isComplete + "\t " + mesg);
 		PrintWriter out = response.getWriter();
 		out.println(mesg);
-		out.println(boardId);
+		response.sendRedirect("Board/boardPage.jsp?boardId=" + boardId);
 	}
 }
