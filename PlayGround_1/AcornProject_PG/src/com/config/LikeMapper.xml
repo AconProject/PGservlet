@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="LikeMapper">
 
 	<select id="likeBoardCount" parameterType="LikeDTO" resultType="int">
-		SELECT count(*)
+		SELECT /*+ index(liked liked_mbrid)*/ count(*)
 		FROM liked
 		WHERE mbrId = #{mbrId}
 		AND boardId = #{boardId}
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- review -->
 	<select id="likeReviewCount" parameterType="LikeDTO">
-		SELECT count(*)
+		SELECT /*+ index(liked liked_mbrid)*/ count(*)
 		FROM liked
 		WHERE mbrId = #{mbrId}
 		AND reviewId = #{reviewId}
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="likeReplyCount" parameterType="LikeDTO" resultType="int">
-		SELECT count(*)
+		SELECT /*+ index(liked liked_mbrid)*/ count(*)
 		FROM liked
 		WHERE mbrId = #{mbrId}
 		AND replyId = #{replyId}
