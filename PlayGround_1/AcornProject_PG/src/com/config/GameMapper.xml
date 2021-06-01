@@ -22,12 +22,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="recommendUserTagGameListSelect" parameterType="string" resultType="GameDTO">
-		SELECT /*+ index_desc(game game_date)*/
+		SELECT /*+ index_desc(game game_date) leading(rate game)*/ 
 		game.gameNo, game.gameName, game.gameImage,
 		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')' as gameReleasedDate, game.gameCategory
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
-		AND REGEXP_LIKE (game.gameGenre, (SELECT NVL(REPLACE(mbrGenre, ',', '|'), '*')
+		AND REGEXP_LIKE (game.gameGenre, (SELECT /*+ no_unnest push_subq nl_sj */ NVL(REPLACE(mbrGenre, ',', '|'), '*')
 		FROM member
 		WHERE mbrId = #{mbrId}
 		))
@@ -36,14 +36,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="tagGameListSelect" resultType="GameDTO">
-		SELECT /*+ index_desc(game game_date)*/
+		SELECT /*+ index_desc(game game_date) leading(rate game)*/ 
 		game.gameNo, game.gameName, game.gameImage,
 		game.gamePrice, game.gameContent, game.gameContent, game.gameGenre, '('||to_char(game.gameReleasedDate,'yyyy')||')' as gameReleasedDate, game.gameCategory
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE
 		  <foreach collection="list" item="item"
-	        open="(game.gameGenre, (select genre.gameCategory from genre where genreId = "
+	        open="(game.gameGenre, (select /*+ no_unnest push_subq nl_sj */ genre.gameCategory from genre where genreId = "
 	        close="))"
 	        separator=")||'|'||(select genre.gameCategory from genre where genreId = ">
             #{item}
@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--연관 게임 리스트 -->
 	<select id="relatedGameList" resultType="GameDTO">
-		SELECT /*+ index_desc(game game_date)*/ *
+		SELECT /*+ index_ss_desc(game game_date_category)*/ *
 		FROM game,rate
 		WHERE game.gameNo = rate.gameNo
 		AND game.gameCategory = #{gameCategory}
@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 태그 상세 페이지 -->
 	<select id="tagDetailSelect" parameterType="string" resultType="GameDTO">
-	select gameNo,gameName,gameImage,gameGenre,to_char(gameReleasedDate, 'YYYY-MM-DD') as gameReleasedDate
+	select /*+ index(game game_category)*/ gameNo,gameName,gameImage,gameGenre,to_char(gameReleasedDate, 'YYYY-MM-DD') as gameReleasedDate
 	from game
 	where gameCategory = #{gameCategory}
 	</select>
