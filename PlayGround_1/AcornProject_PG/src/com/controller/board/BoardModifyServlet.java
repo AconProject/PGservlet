@@ -90,7 +90,7 @@ public class BoardModifyServlet extends HttpServlet {
 				mesg = "해당 게시글을 삭제하였습니다.";
 		} 
 		if (!isComplete){
-			if (login != null)
+			if (login == null)
 				mesg = "로그인 필요합니다.";
 			else
 				mesg = "해당 게시물에 대한 처리를 수행하지 못했습니다.";
