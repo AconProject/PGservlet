@@ -6,14 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="replyLikePlus" parameterType="string">
 		UPDATE reply
-	     SET replyLiked = replyLiked + 1
-	     WHERE boardId = #{replyId}
+	     	SET replyLiked = replyLiked + 1
+	     	WHERE boardId = #{replyId}
 	</update>
 	
 	<update id="replyLikeMinus" parameterType="string">
 		UPDATE reply
-	     SET replyLiked = replyLiked - 1
-	     WHERE boardId = #{replyId}
+	     	SET replyLiked = replyLiked - 1
+	     	WHERE boardId = #{replyId}
 	</update>
 	
 	<select id="replyListSelect" parameterType="int" resultType="ReplyDTO">

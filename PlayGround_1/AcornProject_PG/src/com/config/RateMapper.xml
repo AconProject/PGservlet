@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="RateMapper">
 	
 	<select id="rateRecommendSelect" resultType="double">
-		SELECT rate.gameScore
+		SELECT /*+ leading(rate game) use_nl(game)*/ rate.gameScore
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND rownum &lt; 6
@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="rateTagSelect" resultType="double">
-		SELECT rate.gameScore
+		SELECT /*+ leading(rate game) use_nl(game)*/ rate.gameScore
 		FROM game, rate
 		WHERE game.gameNo = rate.gameNo
 		AND REGEXP_LIKE
@@ -27,8 +27,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY rate.gameScore DESC, game.gameReleasedDate DESC
 	</select>
 
-	
-	
 	<select id="getGameScore" parameterType="string" resultType="RateDTO">
 	SELECT *
 	FROM rate
