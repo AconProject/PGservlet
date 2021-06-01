@@ -36,7 +36,11 @@
   			}
 			%>
 
-			<div id="btn"></div>
+			<div id="updateBtn"></div>
+			<form action="../BoardModifyServlet" id="deleteForm">
+				<input type="hidden" name="boardId" id="boardId">
+				<input type="hidden" name="boardKind" value="boardDelete">
+			</form>
 		</section>
 
 		<!-- 댓글 -->

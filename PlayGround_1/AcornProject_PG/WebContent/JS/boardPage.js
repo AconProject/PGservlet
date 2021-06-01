@@ -7,6 +7,8 @@ window.onload = function(){
 		location.href.lastIndexOf('=') + 1
 	);
 	
+	document.getElementById('boardId').setAttribute('value', boardId);
+
 	getBoardContents();
 };
 
@@ -70,14 +72,14 @@ function getBoardContents(){
 		});
 }
 
-/* 글 작성자와 로그인한 유저가 일치한지 확인 */
+/* 글 작성자만 수정/삭제 버튼 표시 */
 function checkMemberId(writerId){
 	let loginId = document.getElementById('loginId').getAttribute('value');
 	if (loginId === writerId) {
-		insertElement('button', 'btn', '글 삭제', 'id', 'delete');
-		insertElement('button', 'btn', '글 수정', 'id', 'modify');
+		insertElement('button', 'updateBtn', '글 수정', 'id', 'update');
+		insertElement('button', 'deleteForm', '글 삭제', 'type', 'submit');
 		
-		document.getElementById('modify').addEventListener('click', function(){
+		document.getElementById('update').addEventListener('click', function(){
 			location.href = 'updateBoard.jsp?boardId=' + boardId;
 		}, false);
 	}

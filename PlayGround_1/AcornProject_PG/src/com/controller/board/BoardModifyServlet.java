@@ -46,7 +46,9 @@ public class BoardModifyServlet extends HttpServlet {
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("text/html; charset=utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		BoardService service = new BoardService();
 		HttpSession session = request.getSession();
 		String boardKind = request.getParameter("boardKind");
@@ -95,7 +97,12 @@ public class BoardModifyServlet extends HttpServlet {
 		}
 		System.out.println(isComplete + "\t " + mesg);
 		PrintWriter out = response.getWriter();
-		out.println(mesg);
-		response.sendRedirect("Board/boardPage.jsp?boardId=" + boardId);
+
+		out.print("<script>alert('"+ mesg +"');</script>");
+		if (boardKind.contentEquals("boardDelete")){
+			out.print("<script>location.href = 'Board/boardList.jsp';</script>");
+		} else {
+			out.print("<script>location.href = 'Board/boardPage.jsp?boardId=" + boardId + "';</script>");
+		}
 	}
 }

@@ -16,7 +16,7 @@
 
 		<form action="../BoardModifyServlet" method="post">
 			<input type="hidden" name="boardId" id="boardId">
-			<input type="hidden" name="boardKind" id="boardKind" value="boardUpdate">
+			<input type="hidden" name="boardKind" value="boardUpdate">
 			<select name="boardCategory">
 				<option value="common">일반글</option>
 				<option value="info">게임정보</option>
