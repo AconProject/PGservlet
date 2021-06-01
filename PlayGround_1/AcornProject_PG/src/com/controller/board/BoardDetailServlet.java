@@ -39,7 +39,7 @@ public class BoardDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    response.setContentType("text/html;charset=utf-8");
-		int boardId = Integer.parseInt(request.getParameter("boardId"));
+	    int boardId = Integer.parseInt(request.getParameter("boardId"));
 		BoardService bService = new BoardService();
 		ReplyService rService = new ReplyService();
 		String mesg = request.getParameter("mesg");
@@ -51,7 +51,7 @@ public class BoardDetailServlet extends HttpServlet {
 		List<ReplyDTO> replyList = rService.replyListSelect(boardId);
 		System.out.println("게시판 상세 페이지 :" + dto);
 		PrintWriter out = response.getWriter();
-		out.println(gson.toJson(dto));
+		jsonList.add(gson.toJson(dto));
 		for (ReplyDTO reply : replyList) {
 			jsonList.add(gson.toJson(reply));
 		}

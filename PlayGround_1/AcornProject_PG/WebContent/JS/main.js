@@ -20,17 +20,15 @@ window.onload = function(){
 /* 모든 요소 삭제 (데이터 갱신 시 기존 데이터 삭제 위함) */
 function removeAllElements(query){
 	let removeEles = document.querySelectorAll(query);
-	for (let i=0; i<removeEles.length; i++){
+	for (let i=0; i<removeEles.length; i++)
 		removeEles[i].parentNode.removeChild(removeEles[i]);
-	}
 }
 
 /* JSP에 새로운 태그 및 컨텐츠 삽입 */
 function insertElement(childTag, parentId, content, attr, attrVal){
 	let newEle = document.createElement(childTag);
-	if (attr && attrVal){
+	if (attr && attrVal)
 		newEle.setAttribute(attr, attrVal);
-	}
 	newEle.innerHTML = content;
 	let parentEle = document.getElementById(parentId);
 	parentEle.appendChild(newEle);
@@ -43,7 +41,8 @@ function jsonParserForTop(data){
 		if (i<3){
 			insertElement('td', 'topTableNum', (i+1)+'.');
 			insertElement('td', 'topTableImg', '<a href="GameDetailServlet?gameNo='
-				+ jsonObj.gameNo +'"><img class="gameImg" src="' + jsonObj.gameImage + '"></a>');
+				+ jsonObj.gameNo +'"><img class="gameImg" src="' + jsonObj.gameImage
+				+ '" alt="이미지를 불러올 수 없습니다."></a>');
 			insertElement('td', 'topTableName', '<a href="GameDetailServlet?gameNo='
 				+ jsonObj.gameNo + '">' + jsonObj.gameName + '</a>', 'class', 'center');
 			insertElement('td', 'topTableYear',
@@ -62,13 +61,14 @@ function jsonParserForMiddle(data){
 	let gameRate;
 	let cnt = 0;
 	for (let i=0; i<data.length; i++){
-		if (i%2 == 0) {
+		if (i%2 === 0) {
 			// 게임 데이터
 			let jsonObj = JSON.parse(data[i]);
 			insertElement('tr', 'midTable', '', 'id', 'midTr'+i);
 			insertElement('td', 'midTr'+i, (cnt+1)+'.');
 			insertElement('td', 'midTr'+i, '<a href="GameDetailServlet?gameNo='
-				+ jsonObj.gameNo + '"><img class="gameImg" src="' + jsonObj.gameImage + '"></a>');
+				+ jsonObj.gameNo + '"><img class="gameImg" src="' + jsonObj.gameImage
+				+ '" alt="이미지를 불러올 수 없습니다."></a>');
 			insertElement('td', 'midTr'+i, '<a href="GameDetailServlet?gameNo='
 				+ jsonObj.gameNo + '">' + jsonObj.gameName+jsonObj.gameReleasedDate + '</a>');
 		} else{
@@ -158,7 +158,7 @@ function getTag(){
 		.then(res => res.json())
 		.then(data => {
 			jsonParserForTags(data);
-			const tags = document.getElementsByName('tag');
+			let tags = document.getElementsByName('tag');
 			tags.forEach((tag) => {
 				tag.addEventListener('click', getCheckboxValue, false);
 			});
@@ -199,7 +199,7 @@ function getCheckboxValue(){
 	let selectedEls = 
 		document.querySelectorAll(query);
 
-	if (selectedEls.length == 0){
+	if (selectedEls.length === 0){
 		removeAllElements('.midTable tr');
 		getTagGame();
 	} else{

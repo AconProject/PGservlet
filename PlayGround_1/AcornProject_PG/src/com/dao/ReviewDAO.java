@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -57,5 +58,21 @@ public class ReviewDAO {
 		int result = session.selectOne("ReviewMapper.reviewLikeSelect", reviewId);
 		return result;
 	}
+
+	public int selectreviewId(SqlSession session, HashMap<String, Object> map) {
+		int result = session.selectOne("ReviewMapper.selectreviewId", map);
+		return result;
+	}
+
+	public int nameCheck(SqlSession session, String mbrName) {
+		int count = session.selectOne("ReviewMapper.nameCheck", mbrName);
+		return count;
+	}
+
+	public ReviewDTO updatebtn(SqlSession session, int reviewId) {
+		ReviewDTO result = session.selectOne("ReviewMapper.updatebtn", reviewId);
+		return result;
+	}
+
 
 }

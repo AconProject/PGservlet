@@ -1,11 +1,13 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 import com.dao.GameDAO;
+import com.dao.MemberDAO;
 import com.dao.ReplyDAO;
 import com.dao.ReviewDAO;
 import com.dto.GameDTO;
@@ -52,6 +54,7 @@ public class ReviewService {
 		int result;
 		try {
 			result = dao.reviewInsert(session, rdto);
+			session.commit();
 		} finally {
 			session.close();
 		}
@@ -76,6 +79,7 @@ public class ReviewService {
 		int result;
 		try {
 			result = dao.reviewDelete(session, reviewId);
+			session.commit();
 		} finally {
 			session.close();
 		}
@@ -90,6 +94,7 @@ public class ReviewService {
 		try {
 			ReviewDAO dao = new ReviewDAO();
 			result = dao.reviewLikePlus(session, reviewId);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -105,6 +110,8 @@ public class ReviewService {
 		try {
 			ReviewDAO dao = new ReviewDAO();
 			result = dao.reviewLikeMinus(session, reviewId);
+			session.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -125,5 +132,47 @@ public class ReviewService {
 		}
 		return result;
 	}
+
+	public int selectreviewId(HashMap<String, Object> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int result;
+		try {
+			result = dao.selectreviewId(session, map);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	// 중복된 닉네임 찾기
+	public int nameCheck(String mbrName) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int count = 0;
+		try {
+			ReviewDAO dao = new ReviewDAO();
+			count = dao.nameCheck(session, mbrName);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return count;
+	}
+
+	// 댓글 수정버튼 클릭시 reviewId로 댓글 찾기
+	public ReviewDTO updatebtn(int reviewId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		ReviewDTO dto = null;
+		try {
+			ReviewDAO dao = new ReviewDAO();
+			dto = dao.updatebtn(session, reviewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
+
 
 }

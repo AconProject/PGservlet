@@ -22,7 +22,7 @@
 					<li><a href="${pageContext.request.contextPath}/Board/boardList.jsp">게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/Board/newsList.jsp">뉴스 및 소식</a></li>
 					<li><a href="${pageContext.request.contextPath}/MyPageServlet">마이페이지</a></li>
-					<li><a href="LogoutServlet">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath}/LogoutServlet">로그아웃</a></li>
 				</ul>
 			</nav>
 			<%
@@ -34,8 +34,8 @@
 				<ul class="nav">
 					<li><a href="${pageContext.request.contextPath}/Board/boardList.jsp">게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/Board/newsList.jsp">뉴스 및 소식</a></li>
-					<li><a href="LoginServlet">로그인</a></li>
-					<li><a href="MemberUIServlet">회원가입</a></li>
+					<li><a href="${pageContext.request.contextPath}/LoginServlet">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/MemberUIServlet">회원가입</a></li>
 				</ul>
 			</nav>
 			

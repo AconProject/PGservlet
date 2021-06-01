@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,9 +19,8 @@
 
 		<h1>게시판</h1>
 
-		카테고리
 		<select id="boardCategory">
-			<option value="all">전체</option>
+			<option value="all">전체 카테고리</option>
 			<option value="common">일반글</option>
 			<option value="info">게임정보</option>
 			<option value="sales">할인정보</option>
@@ -38,15 +38,24 @@
 			</tr>
 		</table>
 
-		<select id="searchCategory">
-			<option value="contents" selected>제목+내용</option>
-			<option value="title">제목</option>
-			<option value="writer">작성자</option>
-		</select>
-		<input type="text" id="searchText">
-		<button id="search"><img src="../Image/search.png" alt="검색"></button>
+		<div class="searchBox">
+			<select id="searchCategory">
+				<option value="contents" selected>제목+내용</option>
+				<option value="title">제목</option>
+				<option value="writer">작성자</option>
+			</select>
+			<input type="text" id="searchText">
+			<button id="search"><img src="../Image/search.png" alt="검색"></button>
+		</div>
 
+		<%
+			MemberDTO dto = (MemberDTO)session.getAttribute("login");
+			if(dto != null){
+		%>
 		<button id="write">글 작성</button>
+		<%
+  			}
+		%>
 
 		<div id="paging"></div>
 

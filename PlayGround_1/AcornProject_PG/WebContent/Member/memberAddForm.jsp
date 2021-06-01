@@ -82,7 +82,7 @@
 	var tagPage;
 	function tag() {
 		console.log("tagPage!!");
-		tagPage = window.open("Member/tagPage.jsp","","width=200,height=300,left=700,top=650,scrollbars=1,location=no,resizable=no");
+		tagPage = window.open("${pageContext.request.contextPath}/Member/tagPage.jsp","","width=200,height=300,left=700,top=650,scrollbars=1,location=no,resizable=no");
 	}
 	
 	

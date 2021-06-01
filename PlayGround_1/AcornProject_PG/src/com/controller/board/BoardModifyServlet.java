@@ -1,11 +1,9 @@
 package com.controller.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,13 +45,15 @@ public class BoardModifyServlet extends HttpServlet {
 	
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8"); 
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("text/html; charset=utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		BoardService service = new BoardService();
 		HttpSession session = request.getSession();
 		String boardKind = request.getParameter("boardKind");
 		boolean isComplete = false;
 		String mesg = "";
-		
 		MemberDTO login= (MemberDTO) session.getAttribute("login");
 		System.out.println(login);
 		String bId = request.getParameter("boardId");
@@ -67,10 +67,11 @@ public class BoardModifyServlet extends HttpServlet {
 		int boardCount = 0;
 		long miliSeconds = System.currentTimeMillis();
 		Date boardDate = new Date(miliSeconds);
-		String nextPage = "";
 		BoardDTO dto = new BoardDTO(boardId, login.getMbrId(), login.getMbrName(), boardName, boardCategory, boardContent, boardLiked
 				, boardCount, boardDate);
 		System.out.println(dto);
+		PrintWriter out = response.getWriter();
+
 		if (login != null) {
 			if (login.getMbrId().contentEquals(login.getMbrId()) && boardKind.contentEquals("boardInsert")) {
 				boardId = service.getBoardId();
@@ -83,29 +84,29 @@ public class BoardModifyServlet extends HttpServlet {
 			}
 		}
 		if (isComplete) {
-			if (boardKind.contentEquals("boardInsert")) {
+			if (boardKind.contentEquals("boardInsert")) 
 				mesg = "해당 게시글을 추가하였습니다.";
-				nextPage = "BoardPage.jsp?boardId=" + Integer.toString(boardId);
-			}
-			else if (boardKind.contentEquals("boardUpdate")) {
+			else if (boardKind.contentEquals("boardUpdate"))
 				mesg = "해당 게시글을 수정하였습니다.";
-				nextPage = "BoardPage.jsp?boardId=" + bId;
-			}
-			else {
+			else
 				mesg = "해당 게시글을 삭제하였습니다.";
-				nextPage = "boardList.jsp";
+			
+			out.print("<script>alert('"+ mesg +"');</script>");
+			if (boardKind.contentEquals("boardDelete")){
+				out.print("<script>location.href = 'Board/boardList.jsp';</script>");
+			} else {
+				out.print("<script>location.href = 'Board/boardPage.jsp?boardId=" + boardId + "';</script>");
 			}
 		} 
 		if (!isComplete){
-			if (login != null)
+			if (login == null)
 				mesg = "로그인 필요합니다.";
 			else
 				mesg = "해당 게시물에 대한 처리를 수행하지 못했습니다.";
+			
+			out.print("<script>alert('"+ mesg +"');</script>");
+			out.print("<script>location.href = 'Board/boardList.jsp';</script>");
 		}
 		System.out.println(isComplete + "\t " + mesg);
-		System.out.println(nextPage);
-		request.setAttribute("mesg", mesg);
-		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
-	     dis.forward(request, response);
 	}
 }
