@@ -48,14 +48,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 아이디 찾기 -->
 	<select id="idSearch" resultType="string" parameterType="MemberDTO">
-		select /*+ index(member member_mbrEmail)*/ mbrId
+		select /*+ index(member member_email)*/ mbrId
 		from member
 		where mbrName=#{mbrName} and mbrEmail=#{mbrEmail}
 	</select>
 
 	<!-- 비밀번호 찾기 -->
 	<select id="pwSearch" resultType="string" parameterType="MemberDTO">
-		select /*+ index(member member_mbrEmail)*/ mbrPw
+		select /*+ index(member member_email)*/ mbrPw
 		from member
 		where mbrId=#{mbrId} and mbrEmail=#{mbrEmail}
 	</select>
