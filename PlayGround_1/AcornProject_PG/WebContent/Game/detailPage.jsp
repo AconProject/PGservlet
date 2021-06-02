@@ -118,13 +118,13 @@
 							<td class="tags">
 								<table>
 									<tr>
-										<td><a href="#" class="tag">#<%=category[0]%></a></td>
-										<td><a href="#" class="tag">#<%=category[1]%></a></td>
-										<td><a href="#" class="tag">#<%=category[2]%></a></td>
+										<td><a href="./GameTagDetailServlet?gameCategory=<%=category[0]%>" class="tag">#<%=category[0]%></a></td>
+										<td><a href="./GameTagDetailServlet?gameCategory=<%=category[1]%>" class="tag">#<%=category[1]%></a></td>
+										<td><a href="./GameTagDetailServlet?gameCategory=<%=category[2]%>" class="tag">#<%=category[2]%></a></td>
 									</tr>
 									<tr>
-										<td><a href="#" class="tag">#<%=category[3]%></a></td>
-										<td><a href="#" class="tag">#<%=category[4]%></a></td>
+										<td><a href="./GameTagDetailServlet?gameCategory=<%=category[3]%>" class="tag">#<%=category[3]%></a></td>
+										<td><a href="./GameTagDetailServlet?gameCategory=<%=category[4]%>" class="tag">#<%=category[4]%></a></td>
 									</tr>
 								</table>
 							</td>
