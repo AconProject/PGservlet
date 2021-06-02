@@ -50,7 +50,7 @@
 								</tr>
 								<tr>
 									<td class= "td_default" align ="left">
-										<a class= "a_black" href=""> 
+										<a class= "a_black" href="GameDetailServlet?gameNo=<%=gameNo %>"> 
 										<%= gameName%><br>
 										</a>
 									</td>
