@@ -248,23 +248,39 @@
 			<div class="assogame">
 				<h1>연관 게임</h1>
 			</div>
+			
 			<div class="container">
 				<div>
 					<table class="bottomTable">
-						<tr>
-							<td><img class="game" id="game1" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
-							<td><img class="game" id="game2" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
-							<td><img class="game" id="game3" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
-							<td><img class="game" id="game4" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
-							<td><img class="game" id="game5" src="Image/sampleGame.jpg" alt="게임 이미지"></td>
+					<tr>
+					<%
+						List<GameDTO> relategame = (List<GameDTO>)request.getAttribute("relateGame");
+						for(int i = 0; i < relategame.size(); i++) {
+							GameDTO relate = relategame.get(i);
+							String gameNum = relate.getGameNo();
+							String gamename = relate.getGameName();
+							String gameImage = relate.getGameImage();
+					%> 
+						
+							<td><<a href="GameDetailServlet?gameNo=<%= gameNum %>" ><img class="game" id="game1" src="<%= gameImage %>" alt="게임 이미지"></a></td>
+					<%
+						}
+					%> 
 						</tr>
 						<tr>
-							<td class="title"><a href="#" class="gametitle" id="title1">Destinia</a></td>
-							<td class="title"><a href="#" class="gametitle" id="title2">HeroSquare</a></td>
-							<td class="title"><a href="#" class="gametitle" id="title3">PUBG</a></td>
-							<td class="title"><a href="#" class="gametitle" id="title4">Fortnite</a></td>
-							<td class="title"><a href="#" class="gametitle" id="title5">After Alpha</a></td>
+					<%
+						for(int i = 0; i < relategame.size(); i++) {
+							GameDTO relate = relategame.get(i);
+							String gameNum = relate.getGameNo();
+							String gamename = relate.getGameName();
+							String gameImage = relate.getGameImage();
+					%>
+							<td class="title"><a href="GameDetailServlet?gameNo=<%= gameNum %>" class="gametitle" id="title1"><%= gamename %></a></td>
+					<%
+						}
+					%> 
 						</tr>
+					
 					</table>
 				</div>
 			</div>
