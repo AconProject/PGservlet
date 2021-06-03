@@ -10,15 +10,16 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	$(function() {
+	/* $(function() {
 		
 		$("form").on("submit", function() {
-			/* var reviewId = $(this).attr("data-reviewId");
+			console.log("클릭했다!");
+			var reviewId = $(this).attr("data-reviewId");
 			var reviewContent = $("#reviewContent").val();
 			console.log("reviewId: " + reviewId + " content: " + reviewContent);
 			$.ajax({
 				type:"get",
-				url:"../reviewUpdateServlet".
+				url:"reviewUpdateServlet".
 				dataType="text",
 				data:{
 					reviewId : reviewId,
@@ -30,11 +31,11 @@
 				error : function(xhr, status, error) {
 					console.log("error!");
 				}
-			})// end ajax */
+			})// end ajax 
 			
-			window.close();
+			//window.close();
 		})
-	}); 
+	});  */
 </script>
 </head>
 <body>
@@ -53,11 +54,11 @@
 	<br>
 	
 	<div id="reviewUpdateForm">
-		<form name="reviewupdate" method="get" action="reviewUpdateServlet">
+		<form name="reviewupdate" method="get" action="../reviewUpdateServlet">
 			<input type="hidden" name="reviewId" value="<%= reviewId %>">
 			<textarea rows="7" cols="70" name="reviewContent" id="reviewContent"><%= reviewContent %></textarea>
 			<br>
-			<button type="submit" id="update">제출</button>
+			<input type="submit" value="제출">
 			<input type="button" value="창닫기" onclick="window.close();">
 		</form>
 	</div>

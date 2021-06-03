@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="ReviewMapper">
 
 	<select id="reviewSelect" parameterType="string" resultType="ReviewDTO">
-		SELECT *
+		SELECT /*+ index_ss(review uniqueRvCheck) */ *
 		FROM review
 		WHERE gameNo = #{gameNo}
 		ORDER BY reviewLiked desc
@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--댓글:삽입 -->
 	<insert id="reviewInsert" parameterType="ReviewDTO">
-		Insert
+		INSERT
 		INTO review (reviewId, mbrId, mbrName, gameNo, reviewContent, reviewLiked, reviewScore, reviewDate)
 		VALUES (reviewseq.nextval,#{mbrId},#{mbrName},#{gameNo},#{reviewContent},0,#{reviewScore},SYSDATE)
 	</insert>
@@ -71,14 +71,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- reviewId 찾기  -->
 	<select id="selectreviewId" parameterType="hashmap" resultType="int">
-		SELECT reviewId
+		SELECT /*+ index_ss(review uniqueRvCheck) */ reviewId
 		FROM review
 		WHERE mbrName = #{mbrName} and gameNo = #{gameNo}
 	</select>
 	
 	<!-- 댓글 회원별명 존재여부 확인 -->
 	<select id="nameCheck" parameterType="string" resultType="int">
-		select count(*)
+		select /*+ index(review review_mbrName) */ count(*)
 		from review
 		where mbrName = #{mbrName}
 	</select>
