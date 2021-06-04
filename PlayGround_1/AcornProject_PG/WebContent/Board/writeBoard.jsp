@@ -35,8 +35,6 @@
 	<!-- 페이지 상단 로고 및 배너 -->
 	<jsp:include page="../common/header.jsp" flush="true"></jsp:include>
 
-	<!-- 메인화면 컨텐츠-->
-	<!-- 안의 내용은 데이터 받아오면 변경 예정 -->
 
     <div class="wrapper">
 		<!-- 상단 -->
@@ -68,6 +66,7 @@
         
 	</div>
 		
+	
 	<!-- 페이지 최하단 배너 -->
 	<jsp:include page="../common/footer.jsp" flush="false"></jsp:include>
 	
