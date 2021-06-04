@@ -48,7 +48,19 @@
 		// 좋아요버튼 누르기
 		$(".icon").on("click", function() {
 			console.log("따봉 클릭!");
-			var click = $(this).attr("data-liked");
+			var liked = $("#gameReviewLiked").text();
+			console.log(liked);
+			
+			$.ajax({
+				type:"get",
+				url:"",
+				dataType:"text",
+				success: function() {
+					
+				}
+			}); // end ajax
+			
+			
 		}); // end liked
 		
 	});
@@ -171,7 +183,7 @@
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
 							<td class="review"><p id="gameReplyContent"><%= review.getReviewContent() %></p></td>
 							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
-							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReplyRecommend"><%= review.getReviewLiked() %></span></td>
+							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReviewLiked"><%= review.getReviewLiked() %></span></td>
 							<%
 								if(login.getMbrName().equals(review.getMbrName())) {
 							%>
