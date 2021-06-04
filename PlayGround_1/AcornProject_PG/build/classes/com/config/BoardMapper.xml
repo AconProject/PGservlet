@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="BoardMapper">
 	
 	<select id="recommendInfoBoardSelect" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index(board board_category) */ *
 		FROM board
 		WHERE boardCategory = 'info'
 		AND rownum &lt; 6
@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="hitInfoBoardSelect" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index(board board_category) */ *
 		FROM board
 		WHERE boardCategory = 'info'
 		AND rownum &lt; 6
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="recommendQnaBoardSelect" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index(board board_category) */ *
 		FROM board
 		WHERE boardCategory = 'QnA'
 		AND rownum &lt; 6
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="hitQnaBoardSelect" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index(board board_category) */ *
 		FROM board
 		WHERE boardCategory = 'QnA'
 		AND rownum &lt; 6
@@ -37,10 +37,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="boardSelect" parameterType="string" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index_ss_desc(board board_date_category) */ *
 		FROM board
 		WHERE boardCategory = #{boardCategory}
-		ORDER BY boardDate DESC
 	</select>
 	
 	<select id="boardAllSelect" resultType="BoardDTO">
@@ -51,18 +50,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- %넣기 -->
 	<select id="boardTitleSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index_ss_desc(board board_date_category) */ *
 		FROM board
 		WHERE <if test="boardCategory != 'all'">
 		boardCategory = #{boardCategory}
 		AND 
 		</if>boardName LIKE '%'||#{searchWord}||'%'
-		ORDER BY boardDate DESC
 	</select>
 
 	<!-- %넣기 -->
 	<select id="boardContentSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index_ss_desc(board board_date_category) */ *
 		FROM board
 		WHERE 
 		<if test="boardCategory != 'all'">
@@ -70,17 +68,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND 
 		</if>(boardContent LIKE '%'||#{searchWord}||'%'
 		OR boardName LIKE '%'||#{searchWord}||'%')
-		ORDER BY boardDate DESC
 	</select>
 	
 	<select id="boardWriterSearchSelect" parameterType="java.util.HashMap" resultType="BoardDTO">
-		SELECT *
+		SELECT /*+ index_ss_desc(board board_date_category) */ *
 		FROM board
 		WHERE <if test="boardCategory != 'all'">
 		boardCategory = #{boardCategory}
 		AND 
 		</if> mbrName LIKE '%'||#{searchWord}||'%'
-		ORDER BY boardDate DESC
 	</select>
 	
 	<insert id="boardInsert" parameterType="BoardDTO">
@@ -101,21 +97,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="boardLikeCount" parameterType="Hashmap">
 		SELECT count(*)
-        FROM liked
-        WHERE boardId = #{boardId}
-        AND mbrId = #{mbrId}
+        	FROM liked
+        	WHERE boardId = #{boardId}
+        	AND mbrId = #{mbrId}
 	</update>
 	
 	<update id="boardLikePlus" parameterType="int">
 		UPDATE board
-	     SET boardLiked = boardLiked + 1
-	     WHERE boardId = #{boardId}
+		SET boardLiked = boardLiked + 1
+		WHERE boardId = #{boardId}
 	</update>
 	
 	<update id="boardLikeMinus" parameterType="int">
 		UPDATE board
-	     SET boardLiked = boardLiked - 1
-	     WHERE boardId = #{boardId}
+		SET boardLiked = boardLiked - 1
+		WHERE boardId = #{boardId}
 	</update>
 	
 	<select id="boardDetailSelect" parameterType="int" resultType="boardDTO">
