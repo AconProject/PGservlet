@@ -33,13 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE reviewId=#{reviewId}
 	</delete>
 
-	<!--좋아요 가져오기 -->
-	<select id="reviewLikeCheck" parameterType="int" resultType="list">
-		SELECT reviewLiked
-		FROM review
-		WHERE reviewId=#{reviewId}
-	</select>
-
 	<!-- 게임댓글: 좋아요 +1 -->
 	<update id="reviewLikePlus" parameterType="int">
 		UPDATE review

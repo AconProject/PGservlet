@@ -48,15 +48,28 @@
 		// 좋아요버튼 누르기
 		$(".icon").on("click", function() {
 			console.log("따봉 클릭!");
-			var liked = $("#gameReviewLiked").text();
-			console.log(liked);
+			var num = $(this).attr("data-num");
+			var liked = $("#"+num).text();
+			var reviewId = $(this).attr("data-reviewId");
+			var gameNo = $(this).attr("data-gameNo");
+			var mbrName = $("mbrName").text();
+			console.log("gameNo: ", gameNo);
+			console.log("ReviewId: ", reviewId);
+			console.log("좋아요 수: ", liked);
 			
 			$.ajax({
 				type:"get",
-				url:"",
+				url:"reviewLikeServlet",
 				dataType:"text",
-				success: function() {
-					
+				data:{
+					reviewId : reviewId,
+					gameNo : gameNo
+				},
+				success: function(Data, status, xhr) {
+					console.log("success");
+				},
+				error : function(xhr, status, error) {
+					console.log("error");
 				}
 			}); // end ajax
 			
@@ -143,9 +156,7 @@
 							<td rowspan="2"><div class="score" id="gameScore"><%= gameScore %></div></td>
 						</tr>
 						<tr>
-							<td><p class="content" id="gameContent">
-									“ <%= gameContent %> ”
-							</p></td>
+							<td><p class="content" id="gameContent">“ <%= gameContent %> ” </p></td>
 						</tr>
 
 					</table>
@@ -175,7 +186,7 @@
 						for (int i = (p - 1) * 4; i < (p * perPage); i++) {
 							if (i == totalPage) break;
 							ReviewDTO review = rdto.get(i);
-							
+							String id = "gameReviewLiked" + i;
 					 %>
 					 
 					 	<table class="midTable">
@@ -183,7 +194,7 @@
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
 							<td class="review"><p id="gameReplyContent"><%= review.getReviewContent() %></p></td>
 							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
-							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수"><span id="gameReviewLiked"><%= review.getReviewLiked() %></span></td>
+							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수" data-num="<%= id %>" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>"><span id="<%=id%>"><%= review.getReviewLiked() %></span></td>
 							<%
 								if(login.getMbrName().equals(review.getMbrName())) {
 							%>
@@ -215,6 +226,9 @@
 						</tr>
 						</table>
 						
+						<script>
+							
+						</script>
 					<%
 							}
 						}
