@@ -19,6 +19,7 @@ public class Member extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("여기까지 왓니?");
+		System.out.println("하이 에이치 아이");
 	}
 
 	/**
