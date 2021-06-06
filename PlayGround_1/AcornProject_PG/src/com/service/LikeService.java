@@ -103,7 +103,6 @@ public class LikeService {
 			LikeDAO dao = new LikeDAO();
 			likeReview = dao.likeReviewInsert(session, ldto);
 			session.commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
