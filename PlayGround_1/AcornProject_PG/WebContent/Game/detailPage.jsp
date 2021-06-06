@@ -53,11 +53,16 @@
 			var liked = $("#"+num).text();
 			var reviewId = $(this).attr("data-reviewId");
 			var gameNo = $(this).attr("data-gameNo");
-			var mbrName = $("mbrName").text();
+			var login = $(this).attr("data-login");
+			
 			console.log("gameNo: ", gameNo);
 			console.log("ReviewId: ", reviewId);
 			console.log("좋아요 수: ", liked);
+			console.log("로그인: ", login);
 			
+			if(num == null){
+				alert('로그인 후 사용 바람');
+			}else {
 			$.ajax({
 				type:"get",
 				url:"reviewLikeServlet",
@@ -75,7 +80,7 @@
 					console.log("error");
 				}
 			}); // end ajax
-			
+			}
 			
 		}); // end liked
 		
@@ -197,7 +202,7 @@
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
 							<td class="review"><p id="gameReplyContent"><%= review.getReviewContent() %></p></td>
 							<td class="meter"><meter min="0" max="100" value="<%= review.getReviewScore() %>"></meter><span id="gameScore"><%= review.getReviewScore() %></span></td>
-							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수" data-num="<%= id %>" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>"><span id="<%=id%>"><%= review.getReviewLiked() %></span></td>
+							<td class="thumb"><img class="icon" src="Image/thumb.png" alt="추천수" data-login="<%= login.getMbrId()%>" data-num="<%= id %>" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>"><span id="<%=id%>"><%= review.getReviewLiked() %></span></td>
 							<%
 								if(login.getMbrName().equals(review.getMbrName())) {
 							%>
@@ -219,7 +224,7 @@
 								if (i == totalPage) break;
 								ReviewDTO review = rdto.get(i);
 					%>
-					
+						
 						<table class="midTable">
 						<tr>
 							<td class="mbrName" id="mbrName"><%= review.getMbrName() %></td>
