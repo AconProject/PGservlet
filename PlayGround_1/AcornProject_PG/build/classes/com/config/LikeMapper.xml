@@ -35,16 +35,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- review -->
-	<select id="likeReviewCount" parameterType="LikeDTO">
+	<select id="likeReviewCount" parameterType="hashmap" resultType="int">
 		SELECT /*+ index(liked liked_mbrId)*/ count(*)
 		FROM liked
 		WHERE mbrId = #{mbrId}
-		AND reviewId = #{reviewId}
+		and reviewId = #{reviewId}
 	</select>
 
 	<insert id="likeReviewInsert" parameterType="LikeDTO">
 		INSERT INTO liked(likeNo, mbrId, boardId, reviewId, replyId)
-		VALUES (likedseq.nextval, #{mbrId}, 0, #{reviewId}, 0)
+		VALUES (likedSeq.NEXTVAL, #{mbrId}, null, #{reviewId}, null)
 	</insert>
 
 	<delete id="likeReviewDelete" parameterType="LikeDTO">

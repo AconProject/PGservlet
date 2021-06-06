@@ -11,7 +11,6 @@
 <title>Detail Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="${pageContext.request.contextPath}/CSS/DetailPage.css" rel="stylesheet">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function range() {
@@ -73,8 +72,14 @@
 				},
 				success: function(Data, status, xhr) {
 					console.log("success");
-					console.log("증가된 좋아요 수 : " + Data);
-					var liked = $("#"+num).text(Data);
+					console.log(Data);
+					if(Data==="이미 좋아요를 누르셨습니다."){
+						console.log("이미 좋아요를 눌렀습니다.")
+						alert(Data);
+					} else {
+						console.log("증가된 좋아요 수 : " + Data);
+						var liked = $("#"+num).text(Data);
+					}
 				},
 				error : function(xhr, status, error) {
 					console.log("error");

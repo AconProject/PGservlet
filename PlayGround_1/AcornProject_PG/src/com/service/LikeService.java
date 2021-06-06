@@ -127,12 +127,12 @@ public class LikeService {
 		return likeReview ;
 	}
 	//////
-	public int likeReviewCount(LikeDTO ldto) {
+	public int likeReviewCount(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int result = 0;
 		try {
 			LikeDAO dao = new LikeDAO();
-			result = dao.likeReviewCount(session, ldto);
+			result = dao.likeReviewCount(session, map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -37,8 +37,8 @@ public class LikeDAO {
 		return session.delete("LikeMapper.likeReviewDelete",ldto); 
 	}
 
-	public int likeReviewCount(SqlSession session, LikeDTO ldto) {
-		return session.selectOne("LikeMapper.likeReviewCount", ldto);
+	public int likeReviewCount(SqlSession session, HashMap<String, String> map) {
+		return session.selectOne("LikeMapper.likeReviewCount", map);
 	}
 	
 	public int likeReplyCount(SqlSession session, LikeDTO like) {
