@@ -64,8 +64,8 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int nameCheck(SqlSession session, String mbrName) {
-		int count = session.selectOne("ReviewMapper.nameCheck", mbrName);
+	public int nameCheck(SqlSession session, HashMap<String, String> map) {
+		int count = session.selectOne("ReviewMapper.nameCheck", map);
 		return count;
 	}
 

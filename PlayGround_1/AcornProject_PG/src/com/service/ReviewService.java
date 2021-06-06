@@ -145,12 +145,12 @@ public class ReviewService {
 	}
 
 	// 중복된 닉네임 찾기
-	public int nameCheck(String mbrName) {
+	public int nameCheck(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int count = 0;
 		try {
 			ReviewDAO dao = new ReviewDAO();
-			count = dao.nameCheck(session, mbrName);
+			count = dao.nameCheck(session, map);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
