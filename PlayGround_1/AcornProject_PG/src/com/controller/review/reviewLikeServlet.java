@@ -47,9 +47,14 @@ public class reviewLikeServlet extends HttpServlet {
 		int plus = rService.reviewLikePlus(Integer.parseInt(reviewId));
 		System.out.println("좋아요 플러스: " + plus);
 
-		// 좋아요 수 불러오기
-		int reviewliked = rService.reviewLikeSelect(Integer.parseInt(reviewId));
-		System.out.println("좋아요 수: " + reviewliked);
+		String mesg = "";
+		if(plus == 1) {
+			mesg = "좋아요 +1 입니다!";
+		}
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print(mesg);
 		
 	} // end doGet
 
