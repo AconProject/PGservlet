@@ -32,16 +32,16 @@ public class reviewInsertServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		MemberDTO login = (MemberDTO) session.getAttribute("login");
-		System.out.println("로그인상태 회원정보(insert): "+ login);
-		
+		System.out.println("로그인상태 회원정보(insert): " + login);
+
 		ReviewService rService = new ReviewService();
 		String nextPage = null;
 
 		if (login != null) {
-			
+
 //		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
 			String mbrId = request.getParameter("mbrId");
-			String mbrName=request.getParameter("mbrName");
+			String mbrName = request.getParameter("mbrName");
 			String gameNo = request.getParameter("gameNo");
 			String reviewContent = request.getParameter("reviewContent");
 			int reviewLiked = 0;
@@ -56,15 +56,32 @@ public class reviewInsertServlet extends HttpServlet {
 			xx.setReviewLiked(reviewLiked);
 			xx.setReviewScore(reviewScore);
 			xx.setReviewDate(reviewDate);
-			
-			System.out.println("작성한 review: " + xx);
-			
-			// 댓글 삽입
-			int reviewResult = rService.reviewInsert(xx);
-			System.out.println("댓글삽입 성공: " + reviewResult);
 
-			nextPage = "GameDetailServlet?gameNo="+gameNo;
-			
+			System.out.println("작성한 review: " + xx);
+
+			// 댓글 회원 중복
+			String mbrname_r = xx.getMbrName();
+			String gameNo_r = xx.getGameNo();
+			System.out.println("넘어온 정보: " + mbrname_r + "\t" + gameNo_r);
+
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("mbrname", mbrname_r);
+			map.put("gameNo", gameNo_r);
+			System.out.println(map);
+			int nameCheck = rService.nameCheck(map);
+			System.out.println("회원중복(댓글): " + nameCheck);
+
+			if (nameCheck == 0) {
+				// 댓글 삽입
+				int reviewResult = rService.reviewInsert(xx);
+				System.out.println("댓글삽입 성공: " + reviewResult);
+
+				nextPage = "GameDetailServlet?gameNo=" + gameNo;
+			} else {
+				nextPage = "GameDetailServlet?gameNo=\"+gameNo";
+				session.setAttribute("mesg", "이미 댓글을 다셨습니다.");
+			}
+
 		} else {
 			nextPage = "LoginServlet";
 			session.setAttribute("mesg", "로그인이 필요한 작업입니다.");
