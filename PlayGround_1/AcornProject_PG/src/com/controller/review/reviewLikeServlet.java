@@ -2,7 +2,6 @@ package com.controller.review;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +25,6 @@ public class reviewLikeServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-//댓글에 대해 좋아요 눌렀을때 기능 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -40,22 +38,27 @@ public class reviewLikeServlet extends HttpServlet {
 		String reviewId = request.getParameter("reviewId");
 		System.out.println("likeservlet 도착!!");
 		System.out.println("gameNo: " + gameNo + " reviewId: " + reviewId);
-		
+
 		ReviewService rService = new ReviewService();
+
+		// likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한 순서
+		LikeDTO xx = new LikeDTO();
+		xx.setMbrId(login.getMbrId());
+		xx.setReviewId(Integer.parseInt(reviewId));
+		LikeService lService = new LikeService();
 
 		// 좋아요 누르기 (+1)
 		int plus = rService.reviewLikePlus(Integer.parseInt(reviewId));
 		System.out.println("좋아요 플러스: " + plus);
 
-		String mesg = "";
-		if(plus == 1) {
-			mesg = "좋아요 +1 입니다!";
-		}
-		
+		ReviewDTO rdto = rService.updatebtn(Integer.parseInt(reviewId));
+		System.out.println("찾기: " + rdto);
+		int liked = rdto.getReviewLiked();
+		System.out.println("증가된 좋아요 수 : " + rdto);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(mesg);
-		
+		out.print(liked);
+
 	} // end doGet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

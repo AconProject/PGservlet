@@ -68,8 +68,8 @@
 				},
 				success: function(Data, status, xhr) {
 					console.log("success");
-					swal(""+Data);
-					console.log(Data);
+					console.log("증가된 좋아요 수 : " + Data);
+					var liked = $("#"+num).text(Data);
 				},
 				error : function(xhr, status, error) {
 					console.log("error");
