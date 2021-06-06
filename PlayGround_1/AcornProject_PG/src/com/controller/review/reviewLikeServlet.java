@@ -2,6 +2,7 @@ package com.controller.review;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +31,7 @@ public class reviewLikeServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
 		MemberDTO login = (MemberDTO) session.getAttribute("login");
 		System.out.println("로그인되어있는 회원정보: " + login);
 
@@ -46,26 +48,42 @@ public class reviewLikeServlet extends HttpServlet {
 		ldto.setMbrId(login.getMbrId());
 		ldto.setReviewId(Integer.parseInt(reviewId));
 		System.out.println("ldto: " + ldto);
-		
+
 		LikeService lService = new LikeService();
-		
+
 		// 먼저 좋아요 눌렀는지 안눌렀는지 확인
-		
-		
-		// 좋아요 누르기 (+1)
-		int plus = rService.reviewLikePlus(Integer.parseInt(reviewId));
-		System.out.println("좋아요 플러스: " + plus);
-		if(plus==1) {
-			int likedAdd = lService.likeReviewInsert(ldto);
-			System.out.println("liked테이블 추가: " + likedAdd);
+		String mbrId = ldto.getMbrId();
+		System.out.println("mbrId: " + mbrId);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("mbrId", mbrId);
+		map.put("reviewId", reviewId);
+		int likedCount = lService.likeReviewCount(map);
+		System.out.println("혹시 눌럿니?" + likedCount);
+
+		// 이미 누른적 있을 때
+		if (likedCount != 0) {
+			String mesg = "이미 좋아요를 누르셨습니다.";
+			out.print(mesg);
 		}
-		ReviewDTO rdto = rService.updatebtn(Integer.parseInt(reviewId));
-		System.out.println("찾기: " + rdto);
-		int liked = rdto.getReviewLiked();
-		System.out.println("증가된 좋아요 수 : " + rdto);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.print(liked);
+		
+		// 처음 눌렀을 때
+		if (likedCount == 0) {
+			// 좋아요 누르기 (+1)
+			int plus = rService.reviewLikePlus(Integer.parseInt(reviewId));
+			System.out.println("좋아요 플러스: " + plus);
+			if (plus == 1) {
+				int likedAdd = lService.likeReviewInsert(ldto);
+				System.out.println("liked테이블 추가: " + likedAdd);
+			}
+
+			ReviewDTO rdto = rService.updatebtn(Integer.parseInt(reviewId));
+			System.out.println("찾기: " + rdto);
+			int liked = rdto.getReviewLiked();
+			System.out.println("증가된 좋아요 수 : " + rdto);
+
+			out.print(liked);
+
+		}
 
 	} // end doGet
 
