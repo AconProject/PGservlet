@@ -42,15 +42,23 @@ public class reviewLikeServlet extends HttpServlet {
 		ReviewService rService = new ReviewService();
 
 		// likeNo: like테이블 들어갈 시, 순서 && mbrId: 원글작성자 ID && reviewId: 해당 댓글에 대한 순서
-		LikeDTO xx = new LikeDTO();
-		xx.setMbrId(login.getMbrId());
-		xx.setReviewId(Integer.parseInt(reviewId));
+		LikeDTO ldto = new LikeDTO();
+		ldto.setMbrId(login.getMbrId());
+		ldto.setReviewId(Integer.parseInt(reviewId));
+		System.out.println("ldto: " + ldto);
+		
 		LikeService lService = new LikeService();
-
+		
+		// 먼저 좋아요 눌렀는지 안눌렀는지 확인
+		
+		
 		// 좋아요 누르기 (+1)
 		int plus = rService.reviewLikePlus(Integer.parseInt(reviewId));
 		System.out.println("좋아요 플러스: " + plus);
-
+		if(plus==1) {
+			int likedAdd = lService.likeReviewInsert(ldto);
+			System.out.println("liked테이블 추가: " + likedAdd);
+		}
 		ReviewDTO rdto = rService.updatebtn(Integer.parseInt(reviewId));
 		System.out.println("찾기: " + rdto);
 		int liked = rdto.getReviewLiked();
