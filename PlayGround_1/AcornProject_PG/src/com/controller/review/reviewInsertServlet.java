@@ -2,7 +2,7 @@ package com.controller.review;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dto.GameDTO;
-import com.dto.LikeDTO;
 import com.dto.MemberDTO;
 import com.dto.ReviewDTO;
-import com.service.LikeService;
 import com.service.ReviewService;
 
 @WebServlet("/reviewInsertServlet")
@@ -61,23 +58,26 @@ public class reviewInsertServlet extends HttpServlet {
 
 			// 댓글 회원 중복
 			String mbrname_r = xx.getMbrName();
-			String gameNo_r = xx.getGameNo();
+			int gameNo_r = Integer.parseInt(xx.getGameNo());
 			System.out.println("넘어온 정보: " + mbrname_r + "\t" + gameNo_r);
 
-			HashMap<String, String> map = new HashMap<String, String>();
+			// HashMap으로 중복 찾기
+			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("mbrname", mbrname_r);
 			map.put("gameNo", gameNo_r);
 			System.out.println(map);
+			
 			int nameCheck = rService.nameCheck(map);
 			System.out.println("회원중복(댓글): " + nameCheck);
 
+			// 중복이 0이면 댓글삽입
 			if (nameCheck == 0) {
 				// 댓글 삽입
 				int reviewResult = rService.reviewInsert(xx);
 				System.out.println("댓글삽입 성공: " + reviewResult);
 
 				nextPage = "GameDetailServlet?gameNo=" + gameNo;
-			} else {
+			} else {   // 중복이 1이면 다시 상세페이지
 				nextPage = "GameDetailServlet?gameNo=\"+gameNo";
 				session.setAttribute("mesg", "이미 댓글을 다셨습니다.");
 			}

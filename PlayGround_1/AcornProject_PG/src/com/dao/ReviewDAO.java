@@ -2,6 +2,7 @@ package com.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -64,7 +65,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public int nameCheck(SqlSession session, HashMap<String, String> map) {
+	public int nameCheck(SqlSession session, Map<String, Object> map) {
 		int count = session.selectOne("ReviewMapper.nameCheck", map);
 		return count;
 	}
