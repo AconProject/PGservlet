@@ -24,7 +24,6 @@
 		alert("로그인하고 작성하세요!");
 	}
 	
-   $(function() {
 	   
 	   // 수정버튼 누르기
 	   $(".upBtn").on("click", function() {
@@ -32,7 +31,7 @@
 		   var reviewId = $(this).attr("data-reviewId");
 		   var reviewContent = $(this).attr("data-reviewContent");
 		   console.log(reviewId + "\t" + reviewContent);
-	   }); // end upBtn
+	   }); // end upBtn 
 	   
 	   
 	   // 삭제버튼 누르기
@@ -102,7 +101,7 @@
    </script>
 
 <%
-		session.removeAttribute("mbrId");
+		session.removeAttribute("mesg");
 	  } 
 	
 %>
@@ -212,7 +211,7 @@
 								if(login.getMbrName().equals(review.getMbrName())) {
 							%>
 							
-							<td><button type="submit" class="upBtn" id="update" data-reviewContent="<%= review.getReviewContent() %>" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">수정</button></td>
+							<td><button type="submit" class="upBtn" id="update" onclick="answerEdit();" data-reviewContent="<%= review.getReviewContent() %>" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">수정</button></td>
 							<td><button type="submit" class="delBtn" id="delete" data-reviewId="<%= review.getReviewId() %>" data-gameNo="<%= review.getGameNo() %>">삭제</button></td>
 							
 							<%
