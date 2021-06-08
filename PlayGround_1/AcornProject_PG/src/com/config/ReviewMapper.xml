@@ -71,10 +71,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 댓글 회원별명 존재여부 확인 -->
 	<select id="nameCheck" parameterType="Map" resultType="int">
-		select /*+ index(review review_mbrName) */ count(*)
-		from review
-		where mbrName = #{mbrName}
-		and gameNo = #{gameNo}
+		select count(*)
+        from review
+        where mbrName = #{mbrName}
+        and gameNo = #{gameNo}
 	</select>
 	
 	<!-- 수정버튼 누를시 reviewId로 댓글 찾기 -->

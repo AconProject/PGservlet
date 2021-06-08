@@ -63,7 +63,7 @@ public class reviewInsertServlet extends HttpServlet {
 
 			// HashMap으로 중복 찾기
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("mbrname", mbrname_r);
+			map.put("mbrName", mbrname_r);
 			map.put("gameNo", gameNo_r);
 			System.out.println(map);
 			
@@ -78,7 +78,7 @@ public class reviewInsertServlet extends HttpServlet {
 
 				nextPage = "GameDetailServlet?gameNo=" + gameNo;
 			} else {   // 중복이 1이면 다시 상세페이지
-				nextPage = "GameDetailServlet?gameNo=\"+gameNo";
+				nextPage = "GameDetailServlet?gameNo=" + gameNo;
 				session.setAttribute("mesg", "이미 댓글을 다셨습니다.");
 			}
 

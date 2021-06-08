@@ -31,8 +31,7 @@
 		   console.log("클릭했다!");
 		   var reviewId = $(this).attr("data-reviewId");
 		   var reviewContent = $(this).attr("data-reviewContent");
-		   window.name = "parentForm"; // 댓글수정페이지
-		   window.open("Game/reviewUpdateForm.jsp?reviewId=" + reviewId+"&reviewContent=" +reviewContent, "updateForm", "width=570, height=350, resizable=no, scrollbars=no");
+		   console.log(reviewId + "\t" + reviewContent);
 	   }); // end upBtn
 	   
 	   
@@ -105,6 +104,7 @@
 <%
 		session.removeAttribute("mbrId");
 	  } 
+	
 %>
 </head>
 
