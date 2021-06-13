@@ -24,7 +24,8 @@
 		alert("로그인하고 작성하세요!");
 	}
 	
-	   
+	$(function() {
+		
 	   // 수정버튼 누르기
 	   $(".upBtn").on("click", function() {
 		   console.log("클릭했다!");
